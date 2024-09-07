@@ -1,4 +1,4 @@
-<h1>Temcontroller on ESP32 using MAX6675</h1>
+<h1>Temerature controller on ESP32 using MAX6675</h1>
 
 <h2>Hardware</h2>
 
@@ -20,14 +20,14 @@
 
 <ul>
     <li>FreeRTOS for task scheduling and management</li>
-    <li>Web interface created by ESP32 displaying real-time graphs</li>
+    <li>Web interface created for ESP32 displaying real-time graphs</li>
     <li>Printing temperature and time values in a table</li>
     <li>Allowing the setting of PID constants for PWM signal</li>
 </ul>
 
 <h2>Code</h2>
 
-<p>The actual code can be found in folder <code>v.0.1</code>, under <a href="/Software/ActualCode/Temperature-control/">MCUCod</a>.</p>
+<p>The actual code can be found in folder <code>v.0.1</code>, under <a href="/Software/Temperature-control/">MCUCod</a>.</p>
 
 <h2>Circuit and PCB Design</h2>
 

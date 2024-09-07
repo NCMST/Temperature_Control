@@ -1,0 +1,9 @@
+PROJECT_NAME           = "TestESP32S3"
+
+OUTPUT_DIRECTORY       = ./docs
+
+INPUT                  = ./src
+
+RECURSIVE              = YES
+
+GENERATE_HTML          = YES
