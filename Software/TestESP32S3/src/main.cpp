@@ -1,81 +1,65 @@
 #include "main.h"
 
-WebServer server(80);
+// Adding tasck for Internet and Peripheral
+void InternetTask(void *pvParameters);
+void PeripheralTask(void *pvParameters);
 
+WebServer server(80);
 ESP32WiFiConfig wifiConfig(ap_ssid, ap_password, buttonPin, server);
 
-/**
- * @brief InternetTask
- * 
- * @param pvParameters
- * @details Task to handle internet operations
- * @note The task is created on Core 0 
- */
-void InternetTask(void *pvParameters) {
-    ESP32WiFiConfig* wifiConfig = static_cast<ESP32WiFiConfig*>(pvParameters);
-    wifiConfig->setup();  // Perform initial setup
-    for (;;) {
-        wifiConfig->loop();  // Handle server operations
-        vTaskDelay(10 / portTICK_PERIOD_MS);  // Yield control
+void setup()
+{
+    Serial.begin(115200);
+
+    pinMode(RGB_PIN, OUTPUT);
+
+    // Configurare Wi-Fi
+    if (!wifiConfig.checkWiFiConnection())
+    {
+        wifiConfig.startAP();
+        Serial.print("AP IP address: ");
+        Serial.println(WiFi.softAPIP());
+        neopixelWrite(RGB_PIN, 0, 0, 255); // Albastru pentru modul AP
+
+        // Așteptați până când se realizează conexiunea
+        while (!wifiConfig.isConnected())
+        {
+            delay(1000);
+            Serial.println("Așteptare conexiune Wi-Fi...");
+        }
+    }
+
+    Serial.println("Conectat la Wi-Fi");
+    Serial.print("Adresa IP: ");
+    Serial.println(WiFi.localIP());
+    neopixelWrite(RGB_PIN, 0, 255, 0); // Verde pentru conexiune reușită
+
+    // Creează task-ul pentru operațiuni internet pe Core 0
+    xTaskCreatePinnedToCore(InternetTask, "InternetTask", 4096, &wifiConfig, 1, NULL, 0);
+
+    // Creează task-ul pentru operațiuni periferice pe Core 1
+    xTaskCreatePinnedToCore(PeripheralTask, "PeripheralTask", 4096, NULL, 1, NULL, 1);
+}
+
+void loop()
+{
+    // Loop-ul principal rămâne gol, deoarece task-urile se ocupă de funcționalități
+}
+
+void InternetTask(void *pvParameters)
+{
+    for (;;)
+    {
+        // Codul pentru Task1
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
 
-/**
- * @brief PeripheralTask
- * 
- * @details Task to handle peripheral operations
- * @note The task is created on Core 1
- * @param pvParameters 
- */
-void PeripheralTask(void *pvParameters) {
-    for (;;) {
-        // Code to handle peripherals
-        vTaskDelay(100 / portTICK_PERIOD_MS);  // Adjust delay as needed
+void PeripheralTask(void *pvParameters)
+{
+    for (;;)
+    {
+        // Aici puteți adăuga alte funcționalități pentru perifericele
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
-}
-
-/**
- * @brief setup
- * 
- * @return void
- * 
- * @details
- * 
- * 
- */
-void setup() {
-    // Create a task for internet operations on Core 0
-    xTaskCreatePinnedToCore(
-        InternetTask,     // Task function
-        "InternetTask",   // Name of the task
-        4096,             // Stack size
-        &wifiConfig,      // Parameter to pass
-        1,                // Priority
-        NULL,             // Task handle
-        0                 // Core 0
-    );
-
-    // Create a task for peripheral operations on Core 1
-    xTaskCreatePinnedToCore(
-        PeripheralTask,   // Task function
-        "PeripheralTask", // Name of the task
-        4096,             // Stack size
-        NULL,             // Parameter to pass
-        1,                // Priority
-        NULL,             // Task handle
-        1                 // Core 1
-    );
-}
-
-/**
- * @brief loop
- * 
- * @return void
- * 
- * @details
- * 
- * 
- */
-void loop() {
-    
 }

@@ -5,7 +5,7 @@
 <p>This project utilizes the following hardware components:</p>
 
 <ul>
-    <li><code>ESP32-S3</code> <a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html">link for more info</a></li>
+    <li><code>ESP32-S3</code> <a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html">link for more info</a> or <a href="https://github.com/WeActStudio/WeActStudio.ESP32S3-AorB">link for a spesific WeActStudio board</a></li>
     <li><code>ESP32 DevKitC V4</code> <a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/hw-reference/esp32/get-started-devkitc.html">link for more info</a></li>
     <li>MAX6675 thermocouple module</li>
     <li>Reset button for Wi-Fi</li>

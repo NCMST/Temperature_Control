@@ -149,3 +149,72 @@ String ESP32WiFiConfig::readEEPROM(int startAddr) {
     }
     return data;
 }
+
+/**
+ * @brief checkWiFiConnection
+ * 
+ * @return bool
+ * 
+ * @details Check if WiFi connection is established
+ * 
+ * @author crc
+ * 
+ */
+bool ESP32WiFiConfig::checkWiFiConnection() {
+    String ssid = readEEPROM(0);
+    String password = readEEPROM(32);
+
+    if (ssid.length() > 0 && password.length() > 0) {
+        WiFi.begin(ssid.c_str(), password.c_str());
+
+        int attempts = 0;
+        while (WiFi.status() != WL_CONNECTED && attempts < 20) {
+            delay(500);
+            Serial.print(".");
+            attempts++;
+        }
+
+        return WiFi.status() == WL_CONNECTED;
+    }
+
+    return false;
+}
+
+/**
+ * @brief checkConnectedDevices
+ *
+ * 
+ */
+
+void ESP32WiFiConfig::checkConnectedDevices() {
+    wifi_sta_list_t stationList;
+    tcpip_adapter_sta_list_t adapterList;
+
+    esp_wifi_ap_get_sta_list(&stationList);
+    tcpip_adapter_get_sta_list(&stationList, &adapterList);
+
+    for (int i = 0; i < adapterList.num; i++) {
+        tcpip_adapter_sta_info_t station = adapterList.sta[i];
+        Serial.print("Device connected - MAC: ");
+        for (int j = 0; j < 6; j++) {
+            Serial.printf("%02X", station.mac[j]);
+            if (j < 5) Serial.print(":");
+        }
+        Serial.print(" IP: ");
+        Serial.println(ip4addr_ntoa((const ip4_addr_t*)&(station.ip)));
+    }
+
+    if (WiFi.status() == WL_CONNECTED && !connected) {
+        connected = true;
+        Serial.println("Wi-Fi conectat cu succes!");
+        Serial.print("Adresa IP: ");
+        Serial.println(WiFi.localIP());
+    } else if (WiFi.status() != WL_CONNECTED && connected) {
+        connected = false;
+        Serial.println("Conexiunea Wi-Fi a fost pierdută!");
+    }
+}
+
+bool ESP32WiFiConfig::isConnected() {
+    return WiFi.status() == WL_CONNECTED;
+}
