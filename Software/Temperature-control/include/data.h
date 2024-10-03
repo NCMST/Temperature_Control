@@ -11,6 +11,7 @@ public:
     String list;
     uint32_t dates[NUMBER_OF_TEMP_VALUE];
     uint8_t flag[START_FLAG_INDEX + 1];
+    uint32_t time, setTime;
 
     Data() : GyverPID() {
         names[0] = "Real_temp";
