@@ -6,13 +6,17 @@
 
 <ul>
     <li><code>ESP32-S3</code> <a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html">link for more info</a> or <a href="https://github.com/WeActStudio/WeActStudio.ESP32S3-AorB">link for a spesific WeActStudio board</a></li>
-    <li><code>ESP32 DevKitC V4</code> <a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/hw-reference/esp32/get-started-devkitc.html">link for more info</a></li>
+    <li><code>ESP32 DevKitC V4</code> <a href="https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-devkitc.html">link for more info</a></li>
     <li>MAX6675 thermocouple module</li>
-    <li>Reset button for Wi-Fi</li>
+    <li>Reset button used for Wi-Fi connection also</li>
     <li>SSD1306 OLED display</li>
     <li>Optocoupler with TRIAC for thermal reactor control connected to 220VAC</li>
     <li>Zero cross detector circuit on the same PCB for phase detection and PWM control of reactor power</li>
 </ul>
+<!--  add image Images/PCB.jpg and align to center with image size height= 10px-->
+<div align="center">
+    <img src="Images/PCB.jpg" alt="PCB" style="height: 200px;">
+</div>
 
 <h2>Software</h2>
 
