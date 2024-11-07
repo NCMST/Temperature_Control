@@ -5,7 +5,7 @@ Temperature dataT;
 
 float set_Temp;
 int16_t temp[2][NUMBER_OF_TEMP_VALUE];
-const char* names[2];
+const char *names[2];
 String list;
 uint32_t dates[NUMBER_OF_TEMP_VALUE];
 uint8_t flag[START_FLAG_INDEX + 1];
@@ -25,7 +25,6 @@ void build()
   list = String("real,seted,time");
   dates[NUMBER_OF_TEMP_VALUE - 1] = GPunix(2023, 10, 9, 0, 0, 0);
   names[1] = "Set_temp";
-
 
   GP.BUILD_BEGIN(700);
   GP.THEME(GP_LIGHT);
@@ -139,37 +138,139 @@ void action()
  */
 void initWifi()
 {
-    Screen screen; 
+  Screen screen;
 
-    screen.init();
+  screen.init();
 
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(AP_SSID, AP_PASS);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(AP_SSID, AP_PASS);
 
-    screen.clearDisplay();
-    screen.printText(0, 0, 1, "Connecting ...");
-    screen.display();
+  screen.clearDisplay();
+  screen.printText(0, 0, 1, "Connecting ...");
+  screen.display();
 
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        vTaskDelay(500);
-    }
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    vTaskDelay(500);
+  }
 
-    
-    String ipAddress = WiFi.localIP().toString();
-    screen.clearDisplay();
-    screen.printText(0, 0, 1, "Connected!");
-    screen.printText(0, 20, 1, "IP: " + ipAddress);
-    screen.display();
+  String ipAddress = WiFi.localIP().toString();
+  screen.clearDisplay();
+  screen.printText(0, 0, 1, "Connected!");
+  screen.printText(0, 20, 1, "IP: " + ipAddress);
+  screen.display();
 
-    vTaskDelay(2000); 
+  vTaskDelay(2000);
+
+  delete &screen;
 }
 
 /**
+ * @brief start access point
+ * @date 07/11/2024
+ * @author Catalin
+ * @return void
+ */
+void startAccessPoint()
+{
+
+  Screen screen;
+  // Configurați ESP32 ca Access Point
+  WiFi.softAP(WF_SSID, WF_PASS);
+
+  screen.clearDisplay();
+  screen.printText(0, 0, 1, "AP Started!");
+  screen.printText(0, 20, 1, "Connect to:");
+  screen.printText(0, 40, 1, WF_SSID);
+  screen.display();
+
+  // Configurați serverul web pentru a permite introducerea SSID-ului și parolei
+  ui.attachBuild(wF_build); // Folosiți build existent
+  ui.attach(wF_action);     // Folosiți action existent
+  ui.start();
+
+  delete &screen;
+}
+
+/**
+ * @brief build response
+ * @author Catalin
+ * @date 07/11/2024
+ * @return void
+ * @details Design form for SSID and password
+ */
+void wF_action()
+{
+Screen screen;
+  // Logica pentru a salva SSID-ul și parola introduse de utilizator
+  String ssid = ui.getString("ssid");         // Obține SSID-ul introdus
+  String password = ui.getString("password"); // Obține parola introdusă
+
+  if (ssid.length() > 0 && password.length() > 0)
+  {
+    WiFi.begin(ssid.c_str(), password.c_str()); // Încercați să vă conectați la noua rețea
+
+    screen.clearDisplay();
+    screen.printText(0, 0, 1, "Connecting to:");
+    screen.printText(0, 20, 1, ssid);
+    screen.display();
+
+    int attempts = 0;
+    while (WiFi.status() != WL_CONNECTED && attempts < 20)
+    {
+      vTaskDelay(500 / portTICK_PERIOD_MS);
+      attempts++;
+    }
+
+    if (WiFi.status() == WL_CONNECTED)
+    {
+      String ipAddress = WiFi.localIP().toString();
+      screen.clearDisplay();
+      screen.printText(0, 0, 1, "Connected!");
+      screen.printText(0, 20, 1, "IP: " + ipAddress);
+      screen.display();
+      vTaskDelay(2000);
+    }
+    else
+    {
+      // Afișați un mesaj de eroare dacă nu s-a putut conecta
+      screen.clearDisplay();
+      screen.printText(0, 0, 1, "Failed to connect");
+      screen.display();
+      vTaskDelay(2000);
+      startAccessPoint(); // Reporniți AP pentru a permite reconfigurarea
+    }
+  }
+  delete &screen;
+}
+
+/**
+ * @brief build response
+ * @author Catalin
+ * @date 07/11/2024
+ * @return void
+ * @details Design form for SSID and password
+ */
+void wF_build()
+{
+  GP.BUILD_BEGIN(700);
+  GP.THEME(GP_LIGHT);
+
+  GP.TITLE("WiFi Configuration");
+
+  M_BOX(GP.LABEL("Enter SSID:"));
+  GP.TEXT("ssid", "", "SSID");
+
+  M_BOX(GP.LABEL("Enter Password:"));
+  GP.PASS("password", "", "Password");
+
+  GP.BUTTON("save", "Save");
+}
+/**
  * @brief Convert time to string
- * 
- * @param milliseconds 
- * @return String 
+ *
+ * @param milliseconds
+ * @return String
  */
 String formatTime(unsigned long milliseconds)
 {

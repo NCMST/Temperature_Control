@@ -85,8 +85,9 @@ void displayGraphTask(void *pvParameters)
 }
 
 /**
- * @brief
- *
+ * @brief Task for implementing PID algorithm
+ * @date 07/11/2024
+ * @author Catalin  
  * @param pvParameters
  */
 void PIDControlTask(void *pvParameters)

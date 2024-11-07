@@ -11,12 +11,16 @@
 
 #include "screen.hpp"
 #include "temperature.hpp"
+#include "screen.hpp"
 
 // #define AP_SSID "NCMST"
 // #define AP_PASS "N@n0Teh2016"
 
 #define AP_SSID "UltraFast"
 #define AP_PASS "Fastet123"
+
+#define WF_SSID "ESP32_Config"
+#define WF_PASS "password123"
 
 extern GyverPortal ui;
 extern Temperature dataT;
@@ -33,6 +37,9 @@ void initWifi(void);
 void build();
 void action();
 
+void startAccessPoint();
+void wF_build();
+void wF_action();
 String formatTime(unsigned long milliseconds);
 
 #endif

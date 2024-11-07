@@ -7,8 +7,6 @@
 #include <Arduino.h>
 
 #include <WiFi.h>
-#include <WebServer.h>
-#include <ESPmDNS.h>
 
 #include "webinterface.hpp"
 #include "screen.hpp"
