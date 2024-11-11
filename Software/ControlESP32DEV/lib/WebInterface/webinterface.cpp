@@ -1,15 +1,27 @@
 #include "webinterface.hpp"
 
-GyverPortal ui;
-Temperature dataT;
+WebInterface::WebInterface(void)
+{
+  names[0] = "Real_temp";
+  names[1] = "Set_temp";
 
-float set_Temp;
-int16_t temp[2][NUMBER_OF_TEMP_VALUE];
-const char* names[2];
-String list;
-uint32_t dates[NUMBER_OF_TEMP_VALUE];
-uint8_t flag[START_FLAG_INDEX + 1];
-uint32_t startTime, setTime;
+  set_Temp = 0;
+  list = String("real,seted,time");
+  dates[NUMBER_OF_TEMP_VALUE - 1] = GPunix(2023, 10, 9, 0, 0, 0);
+
+  flag[START_FLAG_INDEX] = false;
+}
+
+WebInterface::~WebInterface()
+{
+  ui.stop();
+  delete[] names;
+  delete[] temp;
+  delete[] dates;
+  delete[] flag;
+  delete &dataT;
+  delete &ui;
+}
 
 /**
  * @brief build web interface
@@ -18,14 +30,7 @@ uint32_t startTime, setTime;
  * @date 05/11/2024
  * @return void
  */
-void build()
-{
-  names[0] = "Real_temp";
-  set_Temp = 0;
-  list = String("real,seted,time");
-  dates[NUMBER_OF_TEMP_VALUE - 1] = GPunix(2023, 10, 9, 0, 0, 0);
-  names[1] = "Set_temp";
-
+void WebInterface::build() {
 
   GP.BUILD_BEGIN(700);
   GP.THEME(GP_LIGHT);
@@ -86,8 +91,7 @@ void build()
  * @date 05/11/2024
  * @return void
  */
-void action()
-{
+void WebInterface::action() {
   float KP, KI, KD;
 
   if (ui.click())
@@ -137,41 +141,45 @@ void action()
  * @author Catalin
  * @return void
  */
-void initWifi()
+void WebInterface::initWifi()
 {
-    Screen screen; 
+  screen.init();
 
-    screen.init();
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(AP_SSID, AP_PASS);
 
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(AP_SSID, AP_PASS);
+  screen.clearDisplay();
+  screen.printText(0, 0, 1, "Connecting ...");
+  screen.display();
 
-    screen.clearDisplay();
-    screen.printText(0, 0, 1, "Connecting ...");
-    screen.display();
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    vTaskDelay(500);
+  }
 
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        vTaskDelay(500);
-    }
+  String ipAddress = WiFi.localIP().toString();
+  screen.clearDisplay();
+  screen.printText(0, 0, 1, "Connected!");
+  screen.printText(0, 20, 1, "IP: " + ipAddress);
+  screen.display();
 
-    
-    String ipAddress = WiFi.localIP().toString();
-    screen.clearDisplay();
-    screen.printText(0, 0, 1, "Connected!");
-    screen.printText(0, 20, 1, "IP: " + ipAddress);
-    screen.display();
-
-    vTaskDelay(2000); 
+  vTaskDelay(2000);
 }
+
+void WebInterface::startWebServer() {
+    ui.attachBuild(build); // Aici build este o metodă membru
+    ui.attach(action);      // Aici action este o metodă membru
+    ui.start();
+}
+
 
 /**
  * @brief Convert time to string
- * 
- * @param milliseconds 
- * @return String 
+ *
+ * @param milliseconds
+ * @return String
  */
-String formatTime(unsigned long milliseconds)
+String WebInterface::formatTime(unsigned long milliseconds)
 {
   unsigned long totalSeconds = milliseconds / 1000;
   unsigned long hours = totalSeconds / 3600;

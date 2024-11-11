@@ -2,24 +2,28 @@
 
 TaskHandle_t DisplayTask, DisplayGraphTask, PID_ControlTask;
 
+WebInterface wf_ui;
+
+Temperature dataT;
+
 void setup()
 {
     Serial.begin(115200);
 
-    initWifi();
+    wf_ui.initWifi();
 
     xTaskCreatePinnedToCore(displayTask, "displayTask", 10000, new Screen(), 1, &DisplayTask, 1);
     xTaskCreatePinnedToCore(displayGraphTask, "Display Graph Task", 10000, NULL, 1, &DisplayGraphTask, 0);
     xTaskCreatePinnedToCore(PIDControlTask, "Implement PID algorithm", 10000, NULL, 1, &PID_ControlTask, 0);
 
-    ui.attachBuild(build);
-    ui.attach(action);
-    ui.start();
+
+    wf_ui.ui.start();
+
 }
 
 void loop()
 {
-    ui.tick();
+    wf_ui.tick();
 }
 
 /**
@@ -37,7 +41,7 @@ void displayTask(void *pvParameters)
         screen->clearDisplay();
 
         // Obține timpul formatat
-        String timeText = "t:" + formatTime(startTime);
+        String timeText = "t:" + wf_ui.formatTime(wf_ui.startTime);
         int timeTextWidth = strlen(timeText.c_str()) * 6;                      // Aproximarea lățimii (6 pixeli per caracter)
         screen->printText((SCREEN_WIDTH - timeTextWidth) / 2, 0, 1, timeText); // Centrarea textului
 
@@ -45,10 +49,10 @@ void displayTask(void *pvParameters)
         String kTempText = "K:" + String(dataT.readKTemp());
         screen->printText(0, 20, 1, kTempText); // Centrarea textului
 
-        String setTempText = "S:" + String(set_Temp);
+        String setTempText = "S:" + String(wf_ui.set_Temp);
         screen->printText(70, 20, 1, setTempText); // Centrarea textului
 
-        if (flag[START_FLAG_INDEX])
+        if (wf_ui.flag[START_FLAG_INDEX])
         {
             String onOffText = "ON";
             screen->printText((SCREEN_WIDTH - strlen(onOffText.c_str()) * 6) / 2, 40, 1, onOffText); // Centrarea textului
@@ -73,12 +77,12 @@ void displayGraphTask(void *pvParameters)
 {
     for (;;)
     {
-        if (flag[START_FLAG_INDEX])
+        if (wf_ui.flag[START_FLAG_INDEX])
         {
-            GPaddInt(dataT.readKTemp(), temp[0], NUMBER_OF_TEMP_VALUE);
-            GPaddInt(set_Temp, temp[1], NUMBER_OF_TEMP_VALUE);
-            GPaddUnixS(5, dates, NUMBER_OF_TEMP_VALUE);
-            list += "\n" + String(dataT.readKTemp()) + ", " + String(set_Temp) + ", " + formatTime(startTime);
+            GPaddInt(dataT.readKTemp(), wf_ui.temp[0], NUMBER_OF_TEMP_VALUE);
+            GPaddInt(wf_ui.set_Temp, wf_ui.temp[1], NUMBER_OF_TEMP_VALUE);
+            GPaddUnixS(5, wf_ui.dates, NUMBER_OF_TEMP_VALUE);
+            wf_ui.list += "\n" + String(dataT.readKTemp()) + ", " + String(wf_ui.set_Temp) + ", " + wf_ui.formatTime(wf_ui.startTime);
         }
         vTaskDelay(5000 / portTICK_PERIOD_MS);
     }
@@ -115,7 +119,7 @@ void PIDControlTask(void *pvParameters)
         lastSensorValue = sensorValue;
         sensorValue = digitalRead(ZD_PIN);
 
-        if (flag[START_FLAG_INDEX])
+        if (wf_ui.flag[START_FLAG_INDEX])
         {
             dataT.setInput(dataT.readKTemp());
             int pwmValue = dataT.getResult();
@@ -130,7 +134,7 @@ void PIDControlTask(void *pvParameters)
             else
                 ledcWrite(PWM_CHANNEL, pwmValue);
 
-            if (!timerStarted && (dataT.getInput() >= (set_Temp - 5)) && (dataT.getInput() <= (set_Temp + 5)))
+            if (!timerStarted && (dataT.getInput() >= (wf_ui.set_Temp - 5)) && (dataT.getInput() <= (wf_ui.set_Temp + 5)))
             {
                 startTime = millis();
                 timerStarted = true;
@@ -140,9 +144,9 @@ void PIDControlTask(void *pvParameters)
             {
                 startTime = millis() - startTime;
 
-                if (startTime >= setTime * 60000)
+                if (startTime >= wf_ui.setTime * 60000)
                 {
-                    flag[START_FLAG_INDEX] = false;
+                    wf_ui.flag[START_FLAG_INDEX] = false;
                     Serial.println("Timpul setat a fost atins!");
                 }
             }

@@ -23,8 +23,6 @@ jobs:
       
       # Build the PlatformIO project
       - name: Build PlatformIO project
-        run: cd Software/Temperature-control/ControlESP32DEV && pio run
+        run: cd Software/freeWebServer && pio run -e esp32dev
 
-      # Copy .elf and .bin files to root directory
-      # - name: Copy ELF and BIN files
-      #   run: cp Software/Temperature-control/.pio/build/az-delivery-devkit-v4/firmware.* Software/Temperature-control/
+

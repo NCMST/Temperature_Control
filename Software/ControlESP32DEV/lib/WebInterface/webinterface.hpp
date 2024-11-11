@@ -18,21 +18,36 @@
 #define AP_SSID "UltraFast"
 #define AP_PASS "Fastet123"
 
-extern GyverPortal ui;
-extern Temperature dataT;
+class WebInterface : public GyverPortal
+{
+private:
+    Temperature dataT;
+    Screen screen;
 
-extern float set_Temp;
-extern int16_t temp[2][NUMBER_OF_TEMP_VALUE];
-extern const char* names[2];
-extern String list;
-extern uint32_t dates[NUMBER_OF_TEMP_VALUE];
-extern uint8_t flag[START_FLAG_INDEX + 1];
-extern uint32_t startTime, setTime;
+public:
+    uint8_t flag[START_FLAG_INDEX + 1];
+    int16_t temp[2][NUMBER_OF_TEMP_VALUE];
+    uint32_t dates[NUMBER_OF_TEMP_VALUE];
+    const char *names[2];
+    String list;
 
-void initWifi(void);
-void build();
-void action();
+    float set_Temp;
+    uint32_t startTime, setTime;
 
-String formatTime(unsigned long milliseconds);
+    GyverPortal ui;
+
+    WebInterface(void);
+    ~WebInterface(void);
+
+    void startWebServer();
+
+    void initWifi(void);
+    void build();
+    void action();
+
+    bool tick() { return ui.tick(); }
+
+    String formatTime(unsigned long milliseconds);
+};
 
 #endif

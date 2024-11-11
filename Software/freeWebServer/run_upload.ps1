@@ -1,0 +1,1 @@
+pio run --target upload --upload-port COM9 -e esp32dev
