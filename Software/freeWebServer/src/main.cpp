@@ -113,6 +113,6 @@ void temperatureTask(void *pvParameters)
         UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
         Serial.println("Temperature stack high water mark: " + String(uxHighWaterMark));
 
-        vTaskDelay(pdMS_TO_TICKS(1000)); // Delay de 1 secundă între citiri
+        vTaskDelay(pdMS_TO_TICKS(500)); // Delay de 1 secundă între citiri
     }
 }

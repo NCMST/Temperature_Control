@@ -4,199 +4,184 @@
 WebServerManager::WebServerManager(const char *ssid, const char *password)
     : ssid(ssid), password(password), server(HTTP_PORT)
 {
-    // Pagina HTML de start
-    homePage = R"rawliteral(
-    <!DOCTYPE html>
-    <html lang="en">
+
+    String headContent = R"rawliteral(
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home Page</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
             body {
                 font-family: Arial, sans-serif;
+                margin: 0; /* Elimină marginile implicite */
+                padding-bottom: 60px; /* Asigură un spațiu pentru footer */
             }
-            #menu {
-                height: 100%;
-                width: 250px; /* Lățimea meniului */
-                position: fixed;
-                z-index: 1;
+            #navbar {
+                position: fixed; /* Fixează navbar-ul la partea de sus */
                 top: 0;
-                left: -250px; /* Ascuns inițial */
-                background-color: #343a40; /* Culoarea de fundal a meniului */
-                overflow-x: hidden;
-                transition: 0.5s; /* Animare pentru deschidere/închidere */
-                padding-top: 20px;
+                left: 0;
+                width: 100%; /* Lățimea completă */
+                background-color: #343a40; /* Culoarea de fundal a navbar-ului */
+                z-index: 1; /* Asigură-te că este deasupra altor elemente */
             }
-            #menu a {
-                padding: 10px 15px;
-                text-decoration: none;
-                font-size: 20px;
-                color: white;
-                display: block;
-                transition: 0.3s;
+            #navbar a {
+                color: white; /* Culoarea textului */
+                padding: 14px 20px; /* Spațiu în jurul link-urilor */
+                text-decoration: none; /* Elimină sublinierea */
+                display: inline-block; /* Afișează link-urile pe aceeași linie */
             }
-            #menu a:hover {
-                color: #f1f1f1; /* Culoare la hover */
+            #navbar a:hover {
+                background-color: #575757; /* Culoare la hover */
             }
-            #burger {
-                font-size: 30px;
-                cursor: pointer;
-                position: absolute; /* Poziție fixă pentru buton */
-                top: 20px; /* Margine de sus */
-                left: 20px; /* Margine de stânga */
-                z-index: 2; /* Asigură-te că este deasupra altor elemente */
-            }
-
             #main {
-                transition: margin-left .5s; /* Animare pentru conținut */
-                padding: 16px;
-                margin-left: 250px; /* Lățimea meniului pentru a face loc */
+                transition: margin-left .5s; /* Tranzitie pentru animare */
+                padding-top: 60px; /* Asigură un spațiu pentru navbar */
+                margin: 5%; /* Asigură un spațiu pentru navbar */
+            }
+            footer {
+                background-color: #343a40; /* Culoarea de fundal a footer-ului */
+                color: white; /* Culoarea textului */
+                text-align: center; /* Centrarea textului */
+                padding: 10px 0; /* Padding pentru footer */
+                position: fixed; /* Fixează footer-ul la baza paginii */
+                bottom: 0; /* Alinierea la baza paginii */
+                width: 100%; /* Lățimea completă a footer-ului */
             }
         </style>
     </head>
-    <body>
-        <div id="menu">
+    )rawliteral";
+
+    String footerContent = R"rawliteral(
+    <footer>
+        <p>Project GitHub:<a style='color:white' href='https://github.com/username/repo'>GitHub Repository</a></p>
+        <p>Author:<br/>Your Name</p>
+        <p>Email for contact:<br/>your.email@example.com</p>
+    </footer>
+    )rawliteral";
+
+    String navContent = R"rawliteral(<div id="navbar">
             <a href="/">Home</a>
             <a href="/graph">Temperature Graph</a>
             <a href="/list">Temperature List</a> <!-- Buton pentru lista temperaturilor -->
         </div>
+    )rawliteral";
+
+    // Pagina HTML de start
+    homePage = R"rawliteral(
+    <!DOCTYPE html>
+    <html lang="en">
+    )rawliteral" +
+               headContent + R"rawliteral(
+    <body>
+        )rawliteral" +
+               navContent + R"rawliteral(
 
         <div id="main">
-            <span id="burger" onclick="toggleMenu()">&#9776;</span> <!-- Buton burger -->
             <h1>Welcome!</h1>
             <button class="btn btn-primary" onclick="location.href='/graph'">Open Graph</button>
             <button class="btn btn-secondary" onclick="location.href='/list'">View Temperature List</button> <!-- Buton pentru lista temperaturilor -->
-        </div>
-
+            
+            <!-- Label-uri pentru temperaturi -->
+            <div class="mt-4">
+                <h3>Current Temperatures:</h3>
+                <p id="insideTemperature">Inside Temperature: -- °C</p>
+                <p id="outsideTemperature">Outside Temperature: -- °C</p>
+            </div>
+        
+        <!-- Scripturi -->
         <script>
-            function toggleMenu() {
-                const menu = document.getElementById("menu");
-                if (menu.style.left === "0px") {
-                    menu.style.left = "-250px"; // Ascunde meniul
-                } else {
-                    menu.style.left = "0"; // Afișează meniul
-                }
+            function updateTemperatures(insideTemp, outsideTemp) {
+                document.getElementById("insideTemperature").innerText = "Inside Temperature: " + insideTemp + " °C";
+                document.getElementById("outsideTemperature").innerText = "Outside Temperature: " + outsideTemp + " °C";
             }
+
+            function fetchCurrentTemperatures() {
+                fetch('/temperature') // Asigură-te că ai o rută corespunzătoare în server
+                    .then(response => response.json())
+                    .then(data => {
+                        updateTemperatures(data.inside_temperature, data.outside_temperature);
+                    })
+                    .catch(error => console.error('Error fetching current temperatures:', error));
+            }
+
+            // Apelează funcția la încărcarea paginii și la intervale regulate
+            fetchCurrentTemperatures();
+            setInterval(fetchCurrentTemperatures, 5000); // Actualizează la fiecare 5 secunde
         </script>
-    </body>
-    </html>
-    )rawliteral";
+        </div>
+        )rawliteral" +
+               footerContent + R"rawliteral(
+        </body>
+        </html>
+        )rawliteral";
 
     // Pagina HTML pentru grafic
     graphPage = R"rawliteral(
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature Graph</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #menu {
-            height: 100%;
-            width: 250px; /* Lățimea meniului */
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: -250px; /* Ascuns inițial */
-            background-color: #343a40; /* Culoarea de fundal a meniului */
-            overflow-x: hidden;
-            transition: 0.5s; /* Animare pentru deschidere/închidere */
-            padding-top: 20px;
-        }
-        #menu a {
-            padding: 10px 15px;
-            text-decoration: none;
-            font-size: 20px;
-            color: white;
-            display: block;
-            transition: 0.3s;
-        }
-        #menu a:hover {
-            color: #f1f1f1; /* Culoare la hover */
-        }
-            #burger {
-                font-size: 30px;
-                cursor: pointer;
-                position: absolute; /* Poziție fixă pentru buton */
-                top: 20px; /* Margine de sus */
-                left: 20px; /* Margine de stânga */
-                z-index: 2; /* Asigură-te că este deasupra altor elemente */
-            }
-
-            #main {
-                transition: margin-left .5s; /* Animare pentru conținut */
-                padding: 16px;
-                margin-left: 250px; /* Lățimea meniului pentru a face loc */
-            }
-    </style>
-</head>
+)rawliteral" +
+               headContent + R"rawliteral(
 <body>
-    <div id="menu">
-        <a href="/">Home</a>
-        <a href="/graph">Temperature Graph</a>
-        <a href="/list">Temperature List</a> <!-- Buton pentru lista temperaturilor -->
-    </div>
+    )rawliteral" +
+               navContent + R"rawliteral(
+     <div id="main">
+                    <h1>Temperature Graph</h1>    
+                    <canvas id="temperatureChart" width="400" height="200"></canvas>
 
-    <div id="main">
-        <span id="burger" onclick="toggleMenu()">&#9776;</span> <!-- Buton burger -->
-        <canvas id="temperatureChart" width="400" height="200"></canvas>
-        <script>
-            const ctx = document.getElementById('temperatureChart').getContext('2d');
-            const temperatureChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [], // Etichete pentru axa X
-                    datasets: [{
-                        label: 'Temperature (°C)',
-                        data: [], // Datele temperaturii
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+                    <script>
+                            const ctx = document.getElementById('temperatureChart').getContext('2d');
+                            const temperatureChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: [], // Etichete pentru axa X
+                                    datasets: [{
+                                        label: 'Temperature (°C)',
+                                        data: [], // Datele temperaturii
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
 
-            function updateTemperatureData(temperature) {
-                const currentTime = new Date().toLocaleTimeString(); // Obține timpul curent
-                temperatureChart.data.labels.push(currentTime);
-                temperatureChart.data.datasets[0].data.push(temperature);
-                temperatureChart.update();
-            }
+                            function updateTemperatureData(temperature) {
+                                const currentTime = new Date().toLocaleTimeString(); // Obține timpul curent
+                                temperatureChart.data.labels.push(currentTime);
+                                temperatureChart.data.datasets[0].data.push(temperature);
+                                temperatureChart.update();
+                            }
 
-            function fetchTemperature() {
-                fetch('/temperature')
-                    .then(response => response.json())
-                    .then(data => {
-                        updateTemperatureData(data.inside_temperature); // Actualizează graficul cu temperatura primită
-                    })
-                    .catch(error => console.error('Error fetching temperature data:', error));
-            }
+                            function fetchTemperature() {
+                                fetch('/temperature')
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        updateTemperatureData(data.inside_temperature); // Actualizează graficul cu temperatura primită
+                                    })
+                                    .catch(error => console.error('Error fetching temperature data:', error));
+                            }
 
-            function toggleMenu() {
-                const menu = document.getElementById("menu");
-                if (menu.style.left === "0px") {
-                    menu.style.left = "-250px"; // Ascunde meniul
-                } else {
-                    menu.style.left = "0"; // Afișează meniul
-                }
-            }
+                            function toggleMenu() {
+                                const menu = document.getElementById("menu");
+                                if (menu.style.left === "0px") {
+                                    menu.style.left = "-250px"; // Ascunde meniul
+                                } else {
+                                    menu.style.left = "0"; // Afișează meniul
+                                }
+                            }
 
-            setInterval(fetchTemperature, 5000); // Actualizează la fiecare 5 secunde
-        </script>
-    </div>
+                            setInterval(fetchTemperature, 5000); // Actualizează la fiecare 5 secunde
+                        </script>
+   
+    )rawliteral" +
+               footerContent + R"rawliteral(
+
 </body>
 </html>
 )rawliteral";
@@ -205,19 +190,10 @@ WebServerManager::WebServerManager(const char *ssid, const char *password)
     listPage = R"rawliteral(
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+)rawliteral" +
+               headContent + R"rawliteral(
 <body>
-   <div id="menu">
-       <a href="/">Home</a>
-       <a href="/graph">Temperature Graph</a>
-       <a href="/list">Temperature List</a> 
-   </div>
-
+)rawliteral" + navContent + R"rawliteral(
    <div id="main">
        <h2>Temperature List</h2>
        <table class="table table-striped">
@@ -252,6 +228,8 @@ WebServerManager::WebServerManager(const char *ssid, const char *password)
        // Apelează funcția la încărcarea paginii
        fetchTemperatureList();
    </script>
+   )rawliteral" +
+               footerContent + R"rawliteral(
 
 </body>
 </html>
