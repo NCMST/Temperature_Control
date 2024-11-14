@@ -6,51 +6,35 @@ WebServerManager::WebServerManager(const char *ssid, const char *password)
 {
 
     String headContent = R"rawliteral(
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0; /* Elimină marginile implicite */
-                padding-bottom: 60px; /* Asigură un spațiu pentru footer */
-            }
-            #navbar {
-                position: fixed; /* Fixează navbar-ul la partea de sus */
-                top: 0;
-                left: 0;
-                width: 100%; /* Lățimea completă */
-                background-color: #343a40; /* Culoarea de fundal a navbar-ului */
-                z-index: 1; /* Asigură-te că este deasupra altor elemente */
-            }
-            #navbar a {
-                color: white; /* Culoarea textului */
-                padding: 14px 20px; /* Spațiu în jurul link-urilor */
-                text-decoration: none; /* Elimină sublinierea */
-                display: inline-block; /* Afișează link-urile pe aceeași linie */
-            }
-            #navbar a:hover {
-                background-color: #575757; /* Culoare la hover */
-            }
-            #main {
-                transition: margin-left .5s; /* Tranzitie pentru animare */
-                padding-top: 60px; /* Asigură un spațiu pentru navbar */
-                margin: 5%; /* Asigură un spațiu pentru navbar */
-            }
-            footer {
-                background-color: #343a40; /* Culoarea de fundal a footer-ului */
-                color: white; /* Culoarea textului */
-                text-align: center; /* Centrarea textului */
-                padding: 10px 0; /* Padding pentru footer */
-                position: fixed; /* Fixează footer-ul la baza paginii */
-                bottom: 0; /* Alinierea la baza paginii */
-                width: 100%; /* Lățimea completă a footer-ului */
-            }
-        </style>
-    </head>
-    )rawliteral";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> <!-- Include jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script> <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Elimină marginile implicite */
+            padding-bottom: 60px; /* Asigură un spațiu pentru footer */
+        }
+        #main {
+            padding-top: 60px; /* Asigură un spațiu pentru navbar */
+            margin: 5%; /* Asigură un spațiu pentru navbar */
+        }
+        footer {
+            background-color: #343a40; /* Culoarea de fundal a footer-ului */
+            color: white; /* Culoarea textului */
+            text-align: center; /* Centrarea textului */
+            padding: 10px 0; /* Padding pentru footer */
+            position: fixed; /* Fixează footer-ul la baza paginii */
+            bottom: 0; /* Alinierea la baza paginii */
+            width: 100%; /* Lățimea completă a footer-ului */
+        }
+    </style>
+</head>
+)rawliteral";
 
     String footerContent = R"rawliteral(
     <footer>
@@ -60,12 +44,20 @@ WebServerManager::WebServerManager(const char *ssid, const char *password)
     </footer>
     )rawliteral";
 
-    String navContent = R"rawliteral(<div id="navbar">
-            <a href="/">Home</a>
-            <a href="/graph">Temperature Graph</a>
-            <a href="/list">Temperature List</a> <!-- Buton pentru lista temperaturilor -->
+    String navContent = R"rawliteral(
+<div id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/graph">Temperature Graph</a>
+            <a class="nav-item nav-link" href="/list">Temperature List</a>
         </div>
-    )rawliteral";
+    </div>
+</div>
+)rawliteral";
 
     // Pagina HTML de start
     homePage = R"rawliteral(
@@ -78,22 +70,52 @@ WebServerManager::WebServerManager(const char *ssid, const char *password)
                navContent + R"rawliteral(
 
         <div id="main">
-            <h1>Welcome!</h1>
+            <h1>Setup for seting temperature!</h1>
             <button class="btn btn-primary" onclick="location.href='/graph'">Open Graph</button>
             <button class="btn btn-secondary" onclick="location.href='/list'">View Temperature List</button> <!-- Buton pentru lista temperaturilor -->
             
             <!-- Label-uri pentru temperaturi -->
             <div class="mt-4">
+
                 <h3>Current Temperatures:</h3>
-                <p id="insideTemperature">Inside Temperature: -- °C</p>
-                <p id="outsideTemperature">Outside Temperature: -- °C</p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Masurment unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>Inside Temperature</td>
+                        <td><p id="insideTemperature"> -- </p></td>
+                        <td>°C</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">2</th>
+                        <td>Outside Temperature</td>
+                        <td><p id="outsideTemperature"> -- </p></td>
+                        <td>°C</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">3</th>
+                        <td>Setpoint Temperature</td>
+                        <td ><input type="text" class="form-control" aria-label="Temperature value (with dot and two decimal places)"></td>
+                        <td>°C</td>
+                        </tr>
+                    </tbody>
+                    </table>             
             </div>
         
         <!-- Scripturi -->
         <script>
             function updateTemperatures(insideTemp, outsideTemp) {
-                document.getElementById("insideTemperature").innerText = "Inside Temperature: " + insideTemp + " °C";
-                document.getElementById("outsideTemperature").innerText = "Outside Temperature: " + outsideTemp + " °C";
+                document.getElementById("insideTemperature").innerText =  insideTemp;
+                document.getElementById("outsideTemperature").innerText =  outsideTemp;
             }
 
             function fetchCurrentTemperatures() {
@@ -178,6 +200,7 @@ WebServerManager::WebServerManager(const char *ssid, const char *password)
 
                             setInterval(fetchTemperature, 5000); // Actualizează la fiecare 5 secunde
                         </script>
+                        </div>
    
     )rawliteral" +
                footerContent + R"rawliteral(
