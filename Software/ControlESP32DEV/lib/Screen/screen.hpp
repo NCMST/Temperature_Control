@@ -23,6 +23,7 @@ public:
     
     bool init();
     bool printText(uint8_t x, uint8_t y, uint8_t size, String text);
+    bool clearDisplay();
 };
 
 #endif // SCREEN_HPP

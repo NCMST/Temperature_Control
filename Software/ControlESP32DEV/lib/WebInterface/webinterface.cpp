@@ -147,11 +147,26 @@ void WebInterface::initWifi()
 
   WiFi.mode(WIFI_STA);
   WiFi.begin(AP_SSID, AP_PASS);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(AP_SSID, AP_PASS);
 
   screen.clearDisplay();
   screen.printText(0, 0, 1, "Connecting ...");
   screen.display();
+  screen.clearDisplay();
+  screen.printText(0, 0, 1, "Connecting ...");
+  screen.display();
 
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    vTaskDelay(500);
+  }
+
+  String ipAddress = WiFi.localIP().toString();
+  screen.clearDisplay();
+  screen.printText(0, 0, 1, "Connected!");
+  screen.printText(0, 20, 1, "IP: " + ipAddress);
+  screen.display();
   while (WiFi.status() != WL_CONNECTED)
   {
     vTaskDelay(500);
@@ -175,6 +190,9 @@ void WebInterface::startWebServer() {
 
 /**
  * @brief Convert time to string
+ *
+ * @param milliseconds
+ * @return String
  *
  * @param milliseconds
  * @return String

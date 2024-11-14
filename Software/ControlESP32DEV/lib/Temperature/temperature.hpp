@@ -46,6 +46,7 @@
 // Flag index
 #define TIME_START 0
 #define START_FLAG_INDEX 1
+#define WIFI_FLAG_INDEX 2
 
 class Temperature 
 {

@@ -11,6 +11,7 @@
 
 #include "screen.hpp"
 #include "temperature.hpp"
+#include "screen.hpp"
 
 // #define AP_SSID "NCMST"
 // #define AP_PASS "N@n0Teh2016"
