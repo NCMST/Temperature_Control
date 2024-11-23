@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Include jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include Chart.js -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0; /* Elimină marginile implicite */
+        padding-bottom: 60px; /* Asigură un spațiu pentru footer */
+      }
+      #main {
+        padding-top: 60px; /* Asigură un spațiu pentru navbar */
+        margin: 5%; /* Asigură un spațiu pentru navbar */
+      }
+      footer {
+        background-color: #343a40; /* Culoarea de fundal a footer-ului */
+        color: white; /* Culoarea textului */
+        text-align: center; /* Centrarea textului */
+        padding: 10px 0; /* Padding pentru footer */
+        position: fixed; /* Fixează footer-ul la baza paginii */
+        bottom: 0; /* Alinierea la baza paginii */
+        width: 100%; /* Lățimea completă a footer-ului */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Home</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/graph">Temperature Graph</a>
+          <a class="nav-item nav-link" href="/list">Temperature List</a>
+        </div>
+      </div>
+    </div>
+    <div id="main">
+      <h1>Setup for seting temperature!</h1>
+      <button class="btn btn-primary" onclick="location.href='/graph'">
+        Open Graph
+      </button>
+      <button class="btn btn-secondary" onclick="location.href='/list'">
+        View Temperature List
+      </button>
+      <!-- Buton pentru lista temperaturilor -->
+
+      <!-- Label-uri pentru temperaturi -->
+      <div class="mt-4">
+        <form id="setpointForm" onsubmit="submitSetpoint(event)">
+          <label for="setpointInput">Setpoint Temperature:</label>
+          <input
+            type="number"
+            step="0.01"
+            id="setpointInput"
+            class="form-control"
+            aria-label="Temperature value (with dot and two decimal places)"
+            placeholder="Enter temperature in °C"
+            required
+          />
+          <button type="submit" class="btn btn-success mt-2">
+            Set Temperature
+          </button>
+        </form>
+
+        <h3>Current Temperatures:</h3>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Value</th>
+              <th scope="col">Masurment unit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Inside Temperature</td>
+              <td><p id="insideTemperature">--</p></td>
+              <td>°C</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Outside Temperature</td>
+              <td><p id="outsideTemperature">--</p></td>
+              <td>°C</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Seted Temperature</td>
+              <td><p id="setpointTemperature">--</p></td>
+              <td>°C</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Scripturi -->
+      <script>
+        function updateTemperatures(insideTemp, outsideTemp, setpointTemp) {
+          document.getElementById("insideTemperature").innerText = insideTemp;
+          document.getElementById("outsideTemperature").innerText = outsideTemp;
+          document.getElementById("setpointTemperature").innerText =
+            setpointTemp; // Ensure this ID matches
+        }
+
+        function fetchCurrentTemperatures() {
+          fetch("/temperature")
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Fetched data:", data); // Log fetched data
+              updateTemperatures(
+                data.inside_temperature,
+                data.outside_temperature,
+                data.setpoint_temperature
+              );
+            })
+            .catch((error) =>
+              console.error("Error fetching current temperatures:", error)
+            );
+        }
+        function submitSetpoint(event) {
+          event.preventDefault(); // Prevent form submission
+          const setpointValue = document.getElementById("setpointInput").value;
+
+          console.log("Submitting setpoint temperature:", setpointValue); // Debug log
+
+          // Send the setpoint value to the server
+          fetch("/setpoint", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              setpoint_temperature: parseFloat(setpointValue),
+            }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                console.log("Setpoint updated successfully");
+                document.getElementById("setpointInput").value = ""; // Clear input field
+              } else {
+                console.error(
+                  "Failed to update setpoint:",
+                  response.statusText
+                );
+              }
+            })
+            .catch((error) => console.error("Error:", error));
+        }
+
+        // Apelează funcția la încărcarea paginii și la intervale regulate
+        fetchCurrentTemperatures();
+        setInterval(fetchCurrentTemperatures, 5000); // Actualizează la fiecare 5 secunde
+      </script>
+    </div>
+    <footer>
+      <p>
+        Project GitHub:<a
+          style="color: white"
+          href="https://github.com/Creciunel/Temperature_Control"
+          >GitHub Repository</a
+        >
+      </p>
+      <p>Author:<br />Catalin Creciunel</p>
+      <p>
+        Email for contact:<br />creciunelcatalin@<a
+          style="color: white"
+          href="https://gmail.com"
+          >gmail.com</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>

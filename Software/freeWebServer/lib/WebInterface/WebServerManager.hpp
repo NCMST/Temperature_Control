@@ -5,9 +5,12 @@
 #include <WebServer.h>
 #include <ArduinoJson.h>
 #include <vector>
+#include <FS.h>
+#include <SPIFFS.h>
 #include "TemperatureData.hpp"
 
 #define HTTP_PORT 80
+#define LOGS_MESSAGE false
 
 // #define AP_SSID "NCMST"
 // #define AP_PASS "N@n0Teh2016"
@@ -44,6 +47,14 @@ public:
     // Funcția pentru a primi temperatura dintr-un task
     void setTemperatureData(const TemperatureData& tempData);
 
+    void handleSetPoint();
+
+    const TemperatureData& getTemperature() const { return currentTemperature; }
+
+    String readFile(const char* path);
+
+    float getStetTemperature() const { return stetTemperature; }
+
 private:
     const char* ssid;         // SSID-ul rețelei Wi-Fi
     const char* password;     // Parola rețelei Wi-Fi
@@ -51,6 +62,9 @@ private:
     String homePage;          // Pagina principală HTML
     String graphPage;         // Pagina graficului HTML
     String listPage;
+
+    float stetTemperature;
+    
 
     std::vector<TemperatureData> temperatureHistory;
 
