@@ -8,6 +8,10 @@ struct TemperatureData {
     float inside_temperature; // in °C
     float outside_temperature; // in °C
     float setpoint_temperature;
+
+    int setTime;
+    
+    bool startFlag;
 };
 
 #endif

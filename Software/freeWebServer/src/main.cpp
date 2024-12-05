@@ -30,7 +30,11 @@ void webServerTask(void *pvParameters)
             webServer.setTemperatureData(currentTemperature);
 
             currentTemperature.setpoint_temperature = webServer.getStetTemperature();
-            
+
+            currentTemperature.startFlag = webServer.getStartFlag();
+
+            currentTemperature.setTime = webServer.getSetTime();
+
             if (LOG_MESSAGE)
                 Serial.println(currentTemperature.setpoint_temperature);
 
@@ -68,12 +72,14 @@ void displayTask(void *pvParameters)
         else
         {
             screen->clearDisplay();
-            screen->printText(0, 0, 1, "Seted time:");
+            screen->printText(0, 0, 1, "Seted time:" + String(currentTemperature.setTime));
+
 
             screen->printText(0, 20, 1, "I_T:" + String(currentTemperature.inside_temperature, 2));
             screen->printText(SCREEN_WIDTH / 2, 20, 1, "O_T:" + String(currentTemperature.outside_temperature, 2));
 
-            screen->printText(0, 40, 1, "S_T:" + String(currentTemperature.setpoint_temperature));
+            screen->printText(0, 40, 1, "S_T:" + String(currentTemperature.setpoint_temperature)); 
+            currentTemperature.startFlag ? screen->printText(80, 40, 1, "ON") : screen->printText(80, 40, 1, "OFF");
         }
 
         UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
@@ -88,15 +94,12 @@ void temperatureTask(void *pvParameters)
 {
     Temperature temperature_data;
 
+    currentTemperature.setpoint_temperature = 0;
+
     Serial.begin(BAUD_RATE);
 
     for (;;)
     {
-        if (LOG_MESSAGE)
-        {
-            Serial.println(String(temperature_data.readKTemp()) + " " + String(temperature_data.readNTCTemp()));
-        }
-
         currentTemperature.inside_temperature = temperature_data.readKTemp();
         currentTemperature.outside_temperature = temperature_data.readNTCTemp();
         currentTemperature.timestamp = String(millis());
@@ -104,6 +107,11 @@ void temperatureTask(void *pvParameters)
         UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
         if (LOG_MESSAGE)
             Serial.println("Temperature stack high water mark: " + String(uxHighWaterMark));
+
+        if (LOG_MESSAGE)
+        {
+            Serial.println(String(temperature_data.readKTemp()) + " " + String(temperature_data.readNTCTemp()));
+        }
 
         vTaskDelay(pdMS_TO_TICKS(500)); // Delay de 1 secundă între citiri
     }

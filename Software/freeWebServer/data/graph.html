@@ -8,29 +8,19 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <!-- Include jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Include Chart.js -->
     <style>
       body {
-        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure body takes at least full viewport height */
         margin: 0; /* Elimină marginile implicite */
-        padding-bottom: 60px; /* Asigură un spațiu pentru footer */
       }
       #main {
-        padding-top: 60px; /* Asigură un spațiu pentru navbar */
-        margin: 5%; /* Asigură un spațiu pentru navbar */
-      }
-      footer {
-        background-color: #343a40; /* Culoarea de fundal a footer-ului */
-        color: white; /* Culoarea textului */
-        text-align: center; /* Centrarea textului */
-        padding: 10px 0; /* Padding pentru footer */
-        position: fixed; /* Fixează footer-ul la baza paginii */
-        bottom: 0; /* Alinierea la baza paginii */
-        width: 100%; /* Lățimea completă a footer-ului */
+        flex: 1; /* Allow main section to grow and fill space */
+        padding-top: 60px; /* Space for navbar */
+        margin: 5%; /* Margin around main content */
       }
     </style>
   </head>
@@ -55,24 +45,113 @@
         </div>
       </div>
     </div>
+
     <div id="main">
       <h1>Temperature Graph</h1>
-      <canvas id="temperatureChart" width="400" height="200"></canvas>
+      <canvas id="temperatureChart" width="400" height="200" class="mt-4 mb-4"></canvas>
+
+      <div class="mt-4">
+        <button class="btn btn-primary" onclick='sendCommand("start")'>
+          Start
+        </button>
+        <button class="btn btn-danger" onclick='sendCommand("stop")'>
+          Stop
+        </button>
+      </div>
+      </br>
+
+      <form id="setpointForm" onsubmit="submitSetpoint(event)">
+        <label for="setpointInput">Setpoint Temperature:</label>
+        <input
+          type="number"
+          step="0.01"
+          id="setpointInput"
+          class="form-control"
+          aria-label="Temperature value (with dot and two decimal places)"
+          placeholder="Enter temperature in °C"
+          required
+        />
+        <button type="submit" class="btn btn-success mt-2">
+          Set Temperature
+        </button>
+      </form>
+    </div>
+
+    <!-- Bootstrap Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+      <div class="container">
+        <p>
+          Project GitHub:<a
+            style="color: white"
+            href="https://github.com/Creciunel/Temperature_Control"
+            >GitHub Repository</a
+          >
+        </p>
+        <p>
+          Author:<br /><a
+            style="color: white"
+            href="https://scholar.google.com/citations?user=f3_envYAAAAJ&hl=en"
+            >Catalin Creciunel</a
+          >
+        </p>
+        <p>
+          Email for contact:<br />creciunelcatalin@<a
+            style="color: white"
+            href="https://gmail.com"
+            >gmail.com</a
+          >
+        </p>
+      </div>
+    </footer>
 
       <script>
+        function sendCommand(command) {
+        fetch("/command", {
+          // Ensure this route is handled on your server
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ action: command }), // Send the command as JSON
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log(
+                `${
+                  command.charAt(0).toUpperCase() + command.slice(1)
+                } command sent successfully.`
+              );
+            } else {
+              console.error(
+                `Failed to send ${command} command:`,
+                response.statusText
+              );
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+      
         const ctx = document
           .getElementById("temperatureChart")
           .getContext("2d");
         const temperatureChart = new Chart(ctx, {
           type: "line",
           data: {
-            labels: [], // Etichete pentru axa X
+            labels: [], // Labels for the X-axis
             datasets: [
               {
-                label: "Temperature (°C)",
-                data: [], // Datele temperaturii
+                label: "Inside Temperature (°C)",
+                data: [], // Inside temperature data
                 borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 1,
+                borderWidth: 2,
+                fill: false,
+              },
+              {
+                label: "Setpoint Temperature (°C)",
+                data: [], // Setpoint temperature data
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 2,
+                fill: false,
               },
             ],
           },
@@ -85,10 +164,11 @@
           },
         });
 
-        function updateTemperatureData(temperature) {
-          const currentTime = new Date().toLocaleTimeString(); // Obține timpul curent
+        function updateTemperatureData(insideTemp, setpointTemp) {
+          const currentTime = new Date().toLocaleTimeString(); // Get current time
           temperatureChart.data.labels.push(currentTime);
-          temperatureChart.data.datasets[0].data.push(temperature);
+          temperatureChart.data.datasets[0].data.push(insideTemp); // Update inside temperature
+          temperatureChart.data.datasets[1].data.push(setpointTemp); // Update setpoint temperature
           temperatureChart.update();
         }
 
@@ -96,42 +176,47 @@
           fetch("/temperature")
             .then((response) => response.json())
             .then((data) => {
-              updateTemperatureData(data.inside_temperature); // Actualizează graficul cu temperatura primită
+              updateTemperatureData(
+                data.inside_temperature,
+                data.setpoint_temperature
+              ); // Update chart with both temperatures
             })
             .catch((error) =>
               console.error("Error fetching temperature data:", error)
             );
         }
 
-        function toggleMenu() {
-          const menu = document.getElementById("menu");
-          if (menu.style.left === "0px") {
-            menu.style.left = "-250px"; // Ascunde meniul
-          } else {
-            menu.style.left = "0"; // Afișează meniul
-          }
+        function submitSetpoint(event) {
+          event.preventDefault(); // Prevent default form submission
+
+          const setpointValue = document.getElementById("setpointInput").value;
+          console.log("Submitting setpoint temperature:", setpointValue); // Debug log
+
+          // Send the setpoint value to the server
+          fetch("/setpoint", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              setpoint_temperature: parseFloat(setpointValue),
+            }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                console.log("Setpoint updated successfully");
+                document.getElementById("setpointInput").value = ""; // Clear input field
+              } else {
+                console.error(
+                  "Failed to update setpoint:",
+                  response.statusText
+                );
+              }
+            })
+            .catch((error) => console.error("Error:", error));
         }
 
-        setInterval(fetchTemperature, 5000); // Actualizează la fiecare 5 secunde
+        setInterval(fetchTemperature, 5000); // Update every 5 seconds
       </script>
-    </div>
-
-    <footer>
-      <p>
-        Project GitHub:<a
-          style="color: white"
-          href="https://github.com/Creciunel/Temperature_Control"
-          >GitHub Repository</a
-        >
-      </p>
-      <p>Author:<br />Catalin Creciunel</p>
-      <p>
-        Email for contact:<br />creciunelcatalin@<a
-          style="color: white"
-          href="https://gmail.com"
-          >gmail.com</a
-        >
-      </p>
-    </footer>
   </body>
 </html>

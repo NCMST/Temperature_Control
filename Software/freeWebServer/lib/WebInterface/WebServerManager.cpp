@@ -4,6 +4,7 @@
 WebServerManager::WebServerManager(const char *ssid, const char *password)
     : ssid(ssid), password(password), server(HTTP_PORT)
 {
+    currentTemperature.startFlag = false;
 
     if (!SPIFFS.begin(true))
     {
@@ -64,57 +65,76 @@ void WebServerManager::begin()
               { handleGraph(); }); // Setează ruta pentru grafic
     server.on("/temperature", [this]()
               { handleTemperatureData(); }); // Setează ruta pentru datele temperaturii
-    // server.on("/list", [this]()
-    //           { handleTemperatureList(); }); // Setează ruta pentru datele temperaturii in lista
 
     server.on("/setpoint", HTTP_POST, [this]()
               { handleSetPoint(); });
 
+    server.on("/command", HTTP_POST, [this]()
+              { handleCommand(); });
+
     server.begin(); // Pornește serverul
 }
 
-void WebServerManager::handleSetPoint()
+void WebServerManager::handleCommand()
 {
-    if (server.method() == HTTP_POST)
+    DynamicJsonDocument doc(1024);
+    DeserializationError error = deserializeJson(doc, server.arg("plain"));
+
+    if (!error)
     {
-        String body = server.arg("plain");        // Get the raw body of the request
-        Serial.println("Received body: " + body); // Debug log
-
-        DynamicJsonDocument doc(1024);
-        DeserializationError error = deserializeJson(doc, body); // Parse JSON from request body
-
-        if (error)
+        String action = doc["action"];
+        if (action == "start")
         {
-            Serial.print("Failed to parse JSON: ");
-            Serial.println(error.f_str());
-            server.send(400, "application/json", "{\"status\":\"error\", \"message\":\"Invalid JSON\"}");
-            return;
-        }
 
-        if (doc.containsKey("setpoint_temperature"))
-        {
-            stetTemperature = doc["setpoint_temperature"];
-
+            currentTemperature.startFlag = true;
+            // Handle start command
             if (LOGS_MESSAGE)
-            {
-                Serial.print("Setpoint temperature updated to: ");
-                Serial.println(stetTemperature);
-                currentTemperature.setpoint_temperature = stetTemperature;
-            }
-
-            server.send(200, "application/json", "{\"status\":\"success\"}");
+                Serial.println("Start command received.");
+            // Add your start logic here
         }
-        else
+        else if (action == "stop")
         {
-            server.send(400, "application/json", "{\"status\":\"error\", \"message\":\"Invalid data\"}");
+
+            currentTemperature.startFlag = false;
+            // Handle stop command
+            if (LOGS_MESSAGE)
+                Serial.println("Stop command received.");
+            // Add your stop logic here
         }
+        server.send(200, "text/plain", "Command received");
     }
     else
     {
-        server.send(405, "text/plain", "Method Not Allowed");
+        if (LOGS_MESSAGE)
+            Serial.println("Failed to parse JSON");
+        server.send(400, "text/plain", "Invalid JSON");
     }
 }
 
+void WebServerManager::handleSetPoint() {
+    DynamicJsonDocument doc(1024);
+    DeserializationError error = deserializeJson(doc, server.arg("plain"));
+
+    if (!error) {
+        float setpoint = doc["setpoint_temperature"];
+        int workingTime = doc["working_time"]; // Get working time from JSON
+
+        stetTemperature = setpoint;
+        currentTemperature.setTime = workingTime;
+
+        currentTemperature.setpoint_temperature = setpoint; // Update your temperature data structure
+        Serial.print("Set point updated to: ");
+        Serial.println(setpoint);
+        
+        Serial.print("Working time set to: ");
+        Serial.println(workingTime); // You can use this value as needed
+
+        server.send(200, "text/plain", "Set point updated"); // Send a response back
+    } else {
+        Serial.println("Failed to parse JSON");
+        server.send(400, "text/plain", "Invalid JSON");
+    }
+}
 // Funcția de gestionare a cererilor pentru pagina principală
 void WebServerManager::handleHome()
 {
@@ -128,7 +148,8 @@ void WebServerManager::handleGraph()
 }
 
 // Funcția de gestionare a cererilor pentru datele temperaturii
-void WebServerManager::handleTemperatureData() {
+void WebServerManager::handleTemperatureData()
+{
     DynamicJsonDocument doc(1024);
     doc["inside_temperature"] = currentTemperature.inside_temperature;
     doc["outside_temperature"] = currentTemperature.outside_temperature;

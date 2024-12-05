@@ -12,8 +12,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Include Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Include Chart.js -->
-    <style>
+    <!-- <style>
       body {
         font-family: Arial, sans-serif;
         margin: 0; /* Elimină marginile implicite */
@@ -32,7 +33,7 @@
         bottom: 0; /* Alinierea la baza paginii */
         width: 100%; /* Lățimea completă a footer-ului */
       }
-    </style>
+    </style> -->
   </head>
   <body>
     <div id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -55,143 +56,194 @@
         </div>
       </div>
     </div>
-    <div id="main">
-      <h1>Setup for seting temperature!</h1>
-      <button class="btn btn-primary" onclick="location.href='/graph'">
-        Open Graph
-      </button>
-      <button class="btn btn-secondary" onclick="location.href='/list'">
-        View Temperature List
-      </button>
-      <!-- Buton pentru lista temperaturilor -->
 
-      <!-- Label-uri pentru temperaturi -->
-      <div class="mt-4">
-        <form id="setpointForm" onsubmit="submitSetpoint(event)">
+    <div class="container mt-4">
+      <h1>Setup for Setting Temperature!</h1>
+
+      <!-- Form for setpoint temperature and working time -->
+      <form id="setpointForm" onsubmit="submitSetpoint(event)">
+        <div class="form-group">
           <label for="setpointInput">Setpoint Temperature:</label>
           <input
             type="number"
             step="0.01"
             id="setpointInput"
             class="form-control"
-            aria-label="Temperature value (with dot and two decimal places)"
             placeholder="Enter temperature in °C"
             required
           />
-          <button type="submit" class="btn btn-success mt-2">
-            Set Temperature
-          </button>
-        </form>
+        </div>
 
-        <h3>Current Temperatures:</h3>
+        <div class="form-group">
+          <label for="workingTimeInput">Working Time (minutes):</label>
+          <input
+            type="number"
+            id="workingTimeInput"
+            class="form-control"
+            placeholder="Enter working time in minutes"
+            required
+          />
+        </div>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Value</th>
-              <th scope="col">Masurment unit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Inside Temperature</td>
-              <td><p id="insideTemperature">--</p></td>
-              <td>°C</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Outside Temperature</td>
-              <td><p id="outsideTemperature">--</p></td>
-              <td>°C</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Seted Temperature</td>
-              <td><p id="setpointTemperature">--</p></td>
-              <td>°C</td>
-            </tr>
-          </tbody>
-        </table>
+        <button type="submit" class="btn btn-success mt-2">
+          Submitting
+        </button>
+      </form>
+
+      <!-- Current Temperatures Table -->
+      <h3 class="mt-4">Current Temperatures:</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Value</th>
+            <th scope="col">Measurement unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Inside Temperature</td>
+            <td><p id="insideTemperature">--</p></td>
+            <td>°C</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Outside Temperature</td>
+            <td><p id="outsideTemperature">--</p></td>
+            <td>°C</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Set Temperature</td>
+            <td><p id="setpointTemperature">--</p></td>
+            <td>°C</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Start and Stop Buttons -->
+      <div class="mt-4">
+        <button class="btn btn-primary" onclick='sendCommand("start")'>
+          Start
+        </button>
+        <button class="btn btn-danger" onclick='sendCommand("stop")'>
+          Stop
+        </button>
       </div>
-
-      <!-- Scripturi -->
-      <script>
-        function updateTemperatures(insideTemp, outsideTemp, setpointTemp) {
-          document.getElementById("insideTemperature").innerText = insideTemp;
-          document.getElementById("outsideTemperature").innerText = outsideTemp;
-          document.getElementById("setpointTemperature").innerText =
-            setpointTemp; // Ensure this ID matches
-        }
-
-        function fetchCurrentTemperatures() {
-          fetch("/temperature")
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("Fetched data:", data); // Log fetched data
-              updateTemperatures(
-                data.inside_temperature,
-                data.outside_temperature,
-                data.setpoint_temperature
-              );
-            })
-            .catch((error) =>
-              console.error("Error fetching current temperatures:", error)
-            );
-        }
-        function submitSetpoint(event) {
-          event.preventDefault(); // Prevent form submission
-          const setpointValue = document.getElementById("setpointInput").value;
-
-          console.log("Submitting setpoint temperature:", setpointValue); // Debug log
-
-          // Send the setpoint value to the server
-          fetch("/setpoint", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              setpoint_temperature: parseFloat(setpointValue),
-            }),
-          })
-            .then((response) => {
-              if (response.ok) {
-                console.log("Setpoint updated successfully");
-                document.getElementById("setpointInput").value = ""; // Clear input field
-              } else {
-                console.error(
-                  "Failed to update setpoint:",
-                  response.statusText
-                );
-              }
-            })
-            .catch((error) => console.error("Error:", error));
-        }
-
-        // Apelează funcția la încărcarea paginii și la intervale regulate
-        fetchCurrentTemperatures();
-        setInterval(fetchCurrentTemperatures, 5000); // Actualizează la fiecare 5 secunde
-      </script>
+      </br>
     </div>
-    <footer>
-      <p>
-        Project GitHub:<a
-          style="color: white"
-          href="https://github.com/Creciunel/Temperature_Control"
-          >GitHub Repository</a
-        >
-      </p>
-      <p>Author:<br />Catalin Creciunel</p>
-      <p>
-        Email for contact:<br />creciunelcatalin@<a
-          style="color: white"
-          href="https://gmail.com"
-          >gmail.com</a
-        >
-      </p>
+    <!-- Bootstrap Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+      <div class="container">
+        <p>
+          Project GitHub:<a
+            style="color: white"
+            href="https://github.com/Creciunel/Temperature_Control"
+            >GitHub Repository</a
+          >
+        </p>
+        <p>
+          Author:<br /><a
+            style="color: white"
+            href="https://scholar.google.com/citations?user=f3_envYAAAAJ&hl=en"
+            >Catalin Creciunel</a
+          >
+        </p>
+        <p>
+          Email for contact:<br />creciunelcatalin@<a
+            style="color: white"
+            href="https://gmail.com"
+            >gmail.com</a
+          >
+        </p>
+      </div>
     </footer>
+
+    <script>
+      function sendCommand(command) {
+        fetch("/command", {
+          // Ensure this route is handled on your server
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ action: command }), // Send the command as JSON
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log(
+                `${
+                  command.charAt(0).toUpperCase() + command.slice(1)
+                } command sent successfully.`
+              );
+            } else {
+              console.error(
+                `Failed to send ${command} command:`,
+                response.statusText
+              );
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function updateTemperatures(insideTemp, outsideTemp, setpointTemp) {
+        document.getElementById("insideTemperature").innerText = insideTemp;
+        document.getElementById("outsideTemperature").innerText = outsideTemp;
+        document.getElementById("setpointTemperature").innerText = setpointTemp; // Ensure this ID matches
+      }
+
+      function fetchCurrentTemperatures() {
+        fetch("/temperature")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Fetched data:", data); // Log fetched data
+            updateTemperatures(
+              data.inside_temperature,
+              data.outside_temperature,
+              data.setpoint_temperature
+            );
+          })
+          .catch((error) =>
+            console.error("Error fetching current temperatures:", error)
+          );
+      }
+      function submitSetpoint(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const setpointValue = document.getElementById("setpointInput").value;
+        const workingTimeValue =
+          document.getElementById("workingTimeInput").value; // Get working time value
+
+        console.log("Submitting setpoint temperature:", setpointValue); // Debug log
+
+        // Send the setpoint value and working time to the server
+        fetch("/setpoint", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            setpoint_temperature: parseFloat(setpointValue),
+            working_time: parseInt(workingTimeValue), // Send working time as an integer
+          }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log("Setpoint updated successfully");
+              document.getElementById("setpointInput").value = ""; // Clear input field
+              document.getElementById("workingTimeInput").value = ""; // Clear working time field
+            } else {
+              console.error("Failed to update setpoint:", response.statusText);
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      // Apelează funcția la încărcarea paginii și la intervale regulate
+      fetchCurrentTemperatures();
+      setInterval(fetchCurrentTemperatures, 5000); // Actualizează la fiecare 5 secunde
+    </script>
   </body>
 </html>

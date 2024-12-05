@@ -49,11 +49,17 @@ public:
 
     void handleSetPoint();
 
+    void handleCommand();
+
     const TemperatureData& getTemperature() const { return currentTemperature; }
 
     String readFile(const char* path);
 
     float getStetTemperature() const { return stetTemperature; }
+
+    bool getStartFlag() const { return currentTemperature.startFlag; }
+
+    int getSetTime() const { return currentTemperature.setTime; }
 
 private:
     const char* ssid;         // SSID-ul rețelei Wi-Fi
