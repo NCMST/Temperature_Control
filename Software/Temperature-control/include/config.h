@@ -26,11 +26,14 @@
 #define LCD_SDA 21
 
 // Setările SSID-ului și parolei WiFi-ului
-#define AP_SSID "NCMST"
-#define AP_PASS "N@n0Teh2016"
+#define AP_SSID_WORK "NCMST"
+#define AP_PASS_WORK "N@n0Teh2016"
 
-// #define AP_SSID "UltraFast"
-// #define AP_PASS "Fastet123"
+#define AP_SSID "UltraFast"
+#define AP_PASS "Fastet123"
+
+#define ROUTER_SSID "NCMST_1"
+#define ROUTER_PASS "N@n0Teh2016"
 
 // Pinii modulului MAX6675K
 #define CLK_PIN 14

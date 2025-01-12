@@ -3,6 +3,7 @@
 
 #include <WiFi.h>
 #include <WebServer.h>
+#include <WiFiMulti.h>
 #include <ArduinoJson.h>
 #include <vector>
 #include <FS.h>
@@ -12,39 +13,26 @@
 #define HTTP_PORT 80
 #define LOGS_MESSAGE false
 
-// #define AP_SSID "NCMST"
-// #define AP_PASS "N@n0Teh2016"
-
-#define AP_SSID "UltraFast"
-#define AP_PASS "Fastet123"
-
-#define WF_SSID "ESP32_Config"
-#define WF_PASS "password123"
-
+#define TEN_SEC 10000
+#define LED_BUILTIN 2
 
 class WebServerManager {
 public:
     // Constructorul
-    WebServerManager(const char* ssid, const char* password);
+    WebServerManager(const char* ssid, const char* password, const char* second_ssid, const char* second_password);
 
-    // Funcția de inițializare a serverului
-    void begin();
+    int begin();
 
-    // Funcția de gestionare a cererilor pentru pagina principală
     void handleHome();
 
-    // Funcția de gestionare a cererilor pentru pagina graficului
     void handleGraph();
 
-    // Funcția de gestionare a cererilor pentru datele temperaturii
     void handleTemperatureData();
 
     void handleTemperatureList();
 
-    // Funcția de gestionare a cererilor clientului
     void handleClient();
 
-    // Funcția pentru a primi temperatura dintr-un task
     void setTemperatureData(const TemperatureData& tempData);
 
     void handleSetPoint();
@@ -61,9 +49,18 @@ public:
 
     int getSetTime() const { return currentTemperature.setTime; }
 
+    void setWiFiCredentials(const char* ssid, const char* password){
+        this->ssid = ssid;
+        this->password = password;
+    }
+
+    void setupWiFIRouter(const char* ssid, const char* password);
+
 private:
     const char* ssid;         // SSID-ul rețelei Wi-Fi
     const char* password;     // Parola rețelei Wi-Fi
+    const char* second_ssid;         // SSID-ul rețelei Wi-Fi
+    const char* second_password;     // Parola rețelei Wi-Fi
     WebServer server;         // Obiectul serverului web
     String homePage;          // Pagina principală HTML
     String graphPage;         // Pagina graficului HTML
@@ -75,6 +72,8 @@ private:
     std::vector<TemperatureData> temperatureHistory;
 
     TemperatureData currentTemperature; // Variabila pentru stocarea temperaturii curente
+
+    WiFiMulti wifiMulti; // Obiectul pentru gestionarea mai multor rețele Wi-Fi
 };
 
 #endif // WEBSERVERMANAGER_HPP

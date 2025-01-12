@@ -1,8 +1,8 @@
 #include "WebServerManager.hpp"
 
 // Constructorul clasei
-WebServerManager::WebServerManager(const char *ssid, const char *password)
-    : ssid(ssid), password(password), server(HTTP_PORT)
+WebServerManager::WebServerManager(const char *ssid, const char *password, const char *secon, const char *seconPass)
+    : ssid(ssid), password(password), server(HTTP_PORT), second_ssid(secon), second_password(seconPass)
 {
     currentTemperature.startFlag = false;
 
@@ -39,21 +39,41 @@ String WebServerManager::readFile(const char *path)
     return content;
 }
 
-// Funcția de inițializare a serverului și conectare la Wi-Fi
-void WebServerManager::begin()
+/**
+ * @brief start the web server, return 1 if is not connected to the wifi in 10 seconds
+ *
+ * @details if is not connected to the wifi in 10 seconds return 1, use setupWiFIRouter to chenge the mode to router or setWiFiCredentials to change the credentials
+ *
+ * @return int
+ */
+int WebServerManager::begin()
 {
     Serial.begin(115200);
-    WiFi.begin(ssid, password); // Conectează-te la Wi-Fi
 
-    while (WiFi.status() != WL_CONNECTED)
+    // Adaugă SSID-urile la WiFiMulti
+    wifiMulti.addAP(ssid, password);               // Prima rețea
+    wifiMulti.addAP(second_ssid, second_password); // A doua rețea
+
+    unsigned long startAttemptTime = millis();
+
+    // Începe să încerce conectarea la rețelele Wi-Fi
+    while (wifiMulti.run() != WL_CONNECTED)
     {
-        vTaskDelay(1000);
+        if (millis() - startAttemptTime >= TEN_SEC) // Verifică dacă au trecut 10 secunde
+        {
+            if (LOGS_MESSAGE)
+                Serial.println("Error: Failed to connect to WiFi");
+
+            digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+            return 1; // Eșec la conectare
+        }
+        vTaskDelay(1000); // Așteaptă 1 secundă înainte de a încerca din nou
         if (LOGS_MESSAGE)
             Serial.println("Conectare la WiFi...");
     }
+
     if (LOGS_MESSAGE)
     {
-
         Serial.println("Conectat la WiFi");
         Serial.print("IP address: ");
         Serial.println(WiFi.localIP());
@@ -73,11 +93,42 @@ void WebServerManager::begin()
               { handleCommand(); });
 
     server.begin(); // Pornește serverul
+
+    return 0;
+}
+
+/**
+ * @brief Seting up the router
+ *
+ * @param ssid
+ * @param password
+ */
+void WebServerManager::setupWiFIRouter(const char *ssid, const char *password)
+{
+    WiFi.mode(WIFI_AP);
+    if (WiFi.softAP(ssid, password)) {
+        Serial.print("Access Point \"");
+        Serial.print(ssid);
+        Serial.println("\" started.");
+        
+        IPAddress IP = WiFi.softAPIP();
+        Serial.print("AP IP address: ");
+        Serial.println(IP);
+        
+        // Configurează rutele serverului web pentru modul AP
+        server.on("/", [this]() { handleHome(); });
+        server.on("/graph", [this]() { handleGraph(); });
+        server.on("/temperature", [this]() { handleTemperatureData(); });
+        
+        server.begin(); // Pornește serverul
+    } else {
+        Serial.println("Failed to start Access Point.");
+    }
 }
 
 void WebServerManager::handleCommand()
 {
-    DynamicJsonDocument doc(1024);
+    JsonDocument doc;
     DeserializationError error = deserializeJson(doc, server.arg("plain"));
 
     if (!error)
@@ -111,11 +162,13 @@ void WebServerManager::handleCommand()
     }
 }
 
-void WebServerManager::handleSetPoint() {
-    DynamicJsonDocument doc(1024);
+void WebServerManager::handleSetPoint()
+{
+    JsonDocument doc;
     DeserializationError error = deserializeJson(doc, server.arg("plain"));
 
-    if (!error) {
+    if (!error)
+    {
         float setpoint = doc["setpoint_temperature"];
         int workingTime = doc["working_time"]; // Get working time from JSON
 
@@ -125,12 +178,14 @@ void WebServerManager::handleSetPoint() {
         currentTemperature.setpoint_temperature = setpoint; // Update your temperature data structure
         Serial.print("Set point updated to: ");
         Serial.println(setpoint);
-        
+
         Serial.print("Working time set to: ");
         Serial.println(workingTime); // You can use this value as needed
 
         server.send(200, "text/plain", "Set point updated"); // Send a response back
-    } else {
+    }
+    else
+    {
         Serial.println("Failed to parse JSON");
         server.send(400, "text/plain", "Invalid JSON");
     }
@@ -150,7 +205,8 @@ void WebServerManager::handleGraph()
 // Funcția de gestionare a cererilor pentru datele temperaturii
 void WebServerManager::handleTemperatureData()
 {
-    DynamicJsonDocument doc(1024);
+    JsonDocument doc;
+
     doc["inside_temperature"] = currentTemperature.inside_temperature;
     doc["outside_temperature"] = currentTemperature.outside_temperature;
     doc["setpoint_temperature"] = currentTemperature.setpoint_temperature;
@@ -163,13 +219,13 @@ void WebServerManager::handleTemperatureData()
 
 void WebServerManager::handleTemperatureList()
 {
-    DynamicJsonDocument doc(1024);
+    JsonDocument doc;
 
     JsonArray array = doc.to<JsonArray>();
 
     for (const auto &entry : temperatureHistory)
     {
-        JsonObject obj = array.createNestedObject();
+        JsonObject obj = array.add<JsonObject>();
         obj["timestamp"] = entry.timestamp;
         obj["inside_temperature"] = entry.inside_temperature;
         obj["outside_temperature"] = entry.outside_temperature;

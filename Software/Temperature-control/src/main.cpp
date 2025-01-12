@@ -10,6 +10,7 @@ void displayTask(void *pvParameters);
 void displayGraph(void *pvParameters);
 void PIDControl(void *pvParameters);
 void initWifi(void);
+void connectToWiFi(Screen& screen, const char* ssid, const char* password, unsigned long timeout);
 
 extern GyverPortal ui; // Declararea variabilei ui ca extern
 extern GyverMAX6675<CLK_PIN, DATA_PIN, CS_PIN> sens;
@@ -150,28 +151,61 @@ void PIDControl(void *pvParameters) {
 void initWifi()
 {
     Screen screen; // Instanță locală
-
     screen.initialize();
 
     WiFi.mode(WIFI_STA);
-    WiFi.begin(AP_SSID, AP_PASS);
 
-    // Mesaj de conectare
-    screen.clearDisplay();
-    screen.printText(0, 0, 1, "Connecting ...");
-    screen.display();
+    // Încercare de conectare la AP_SSID_WORK
+    connectToWiFi(screen, AP_SSID_WORK, AP_PASS_WORK, 10000); // 10 secunde timeout
 
-    while (WiFi.status() != WL_CONNECTED)
+    // Dacă nu s-a conectat, încearcă AP_SSID
+    if (WiFi.status() != WL_CONNECTED)
     {
-        delay(500);
+        connectToWiFi(screen, AP_SSID, AP_PASS, 10000); // 10 secunde timeout
     }
 
-    // Afișarea IP-ului pe ecran timp de 2 secunde
-    String ipAddress = WiFi.localIP().toString();
+    // Dacă încă nu s-a conectat, intră în modul de router
+    if (WiFi.status() != WL_CONNECTED)
+    {
+        WiFi.mode(WIFI_AP);
+        WiFi.softAP(ROUTER_SSID, ROUTER_PASS); // Poți schimba numele și parola router-ului
+        String ipAddress = WiFi.softAPIP().toString();
+        
+        screen.clearDisplay();
+        screen.printText(0, 0, 1, "No Connection!");
+        screen.printText(0, 20, 1, "Router IP: " + ipAddress);
+        screen.display();
+    }
+    else
+    {
+        // Afișarea IP-ului pe ecran timp de 2 secunde
+        String ipAddress = WiFi.localIP().toString();
+        screen.clearDisplay();
+        screen.printText(0, 0, 1, "Connected!");
+        screen.printText(0, 20, 1, "IP: " + ipAddress);
+        screen.display();
+
+        delay(2000); // Afișează IP-ul timp de 2 secunde
+    }
+}
+
+void connectToWiFi(Screen& screen, const char* ssid, const char* password, unsigned long timeout)
+{
+    WiFi.begin(ssid, password);
+    
     screen.clearDisplay();
-    screen.printText(0, 0, 1, "Connected!");
-    screen.printText(0, 20, 1, "IP: " + ipAddress);
+    screen.printText(0, 0, 1, "Connecting to " + String(ssid) + "...");
     screen.display();
 
-    delay(2000); // Afișează IP-ul timp de 2 secunde
+    unsigned long startTime = millis();
+    
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        if (millis() - startTime > timeout)
+        {
+            break; // Ieși din buclă dacă timpul a expirat
+        }
+        delay(500);
+    }
 }
+

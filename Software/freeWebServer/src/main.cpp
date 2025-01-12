@@ -15,8 +15,12 @@ void loop() {}
 
 void webServerTask(void *pvParameters)
 {
-    WebServerManager webServer(AP_SSID, AP_PASS);
-    webServer.begin();
+    WebServerManager webServer(AP_SSID, AP_PASS, AP_SSID_WORK, AP_PASS_WORK);
+
+    if (webServer.begin())
+    {
+        webServer.setupWiFIRouter(WF_SSID, WF_PASS);
+    }
 
     const TickType_t Ofset = pdMS_TO_TICKS(1000);
     TickType_t lastTime = xTaskGetTickCount();
@@ -60,26 +64,30 @@ void displayTask(void *pvParameters)
 
     for (;;)
     {
-        if (!printIP && WiFi.status() == WL_CONNECTED)
+        if (WiFi.status() == WL_CONNECTED)
         {
+            if (!printIP)
+            {
+                screen->clearDisplay();
+                screen->printText(0, 0, 1, "IP: " + WiFi.localIP().toString());
+                screen->printText(0, 30, 1, "SSID: " + WiFi.SSID());
+                vTaskDelay(pdMS_TO_TICKS(5000));
+                printIP = true;
+            }
+
+            // Afișează informațiile despre temperaturi
             screen->clearDisplay();
-            screen->printText(10, 0, 1, "IP: " + WiFi.localIP().toString());
-
-            vTaskDelay(pdMS_TO_TICKS(5000));
-
-            printIP = true;
+            screen->printText(0, 0, 1, "Seted time: " + String(currentTemperature.setTime));
+            screen->printText(0, 20, 1, "I_T: " + String(currentTemperature.inside_temperature, 2));
+            screen->printText(SCREEN_WIDTH / 2, 20, 1, "O_T: " + String(currentTemperature.outside_temperature, 2));
+            screen->printText(0, 40, 1, "S_T: " + String(currentTemperature.setpoint_temperature));
+            currentTemperature.startFlag ? screen->printText(80, 40, 1, "ON") : screen->printText(80, 40, 1, "OFF");
         }
         else
         {
+            printIP = false; // Resetăm printIP pentru a permite reafișarea IP-ului la reconectare
             screen->clearDisplay();
-            screen->printText(0, 0, 1, "Seted time:" + String(currentTemperature.setTime));
-
-
-            screen->printText(0, 20, 1, "I_T:" + String(currentTemperature.inside_temperature, 2));
-            screen->printText(SCREEN_WIDTH / 2, 20, 1, "O_T:" + String(currentTemperature.outside_temperature, 2));
-
-            screen->printText(0, 40, 1, "S_T:" + String(currentTemperature.setpoint_temperature)); 
-            currentTemperature.startFlag ? screen->printText(80, 40, 1, "ON") : screen->printText(80, 40, 1, "OFF");
+            screen->printText(0, 0, 1, "Connecting to WiFi...");
         }
 
         UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);

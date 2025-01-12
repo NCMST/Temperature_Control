@@ -26,7 +26,18 @@
 
 #define BAUD_RATE 115200
 
-#define LOG_MESSAGE false
+#define LED_BUILTIN 2
+
+#define AP_SSID_WORK "NCMST"
+#define AP_PASS_WORK "N@n0Teh2016"
+
+#define AP_SSID "UltraFast"
+#define AP_PASS "Fastet1234"
+
+#define WF_SSID "NCMST_1"
+#define WF_PASS "password123"
+
+#define LOG_MESSAGE true
 
 void webServerTask(void* pvParameters);
 void displayTask(void* pvParameters);
