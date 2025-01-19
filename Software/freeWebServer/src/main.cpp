@@ -1,6 +1,6 @@
 #include "main.hpp"
 
-TaskHandle_t WebServerTaskHandle, TemperatureTaskHandle, DisplayTaskHandle;
+TaskHandle_t WebServerTaskHandle, TemperatureTaskHandle, DisplayTaskHandle, PIDTaskHandle;
 
 TemperatureData currentTemperature;
 
@@ -9,6 +9,8 @@ void setup()
     xTaskCreatePinnedToCore(webServerTask, "runWebServer", SERVER_TASK_STACK_SIZE, NULL, 1, &WebServerTaskHandle, 1);
     xTaskCreatePinnedToCore(displayTask, "runDisplay", DISPLAY_TASK_STACK_SIZE, new Screen(), 1, &DisplayTaskHandle, 0);
     xTaskCreatePinnedToCore(temperatureTask, "runTemperature", TEMPERATURE_TASK_STACK_SIZE, NULL, 1, &TemperatureTaskHandle, 0);
+    // PID
+    xTaskCreatePinnedToCore(pidTaskHandle, "settemperature", PID_TASK_STACK_SIZE, NULL, 1, &PIDTaskHandle, 0);
 }
 
 void loop() {}
@@ -121,6 +123,34 @@ void temperatureTask(void *pvParameters)
             Serial.println(String(temperature_data.readKTemp()) + " " + String(temperature_data.readNTCTemp()));
         }
 
-        vTaskDelay(pdMS_TO_TICKS(500)); // Delay de 1 secundă între citiri
+        vTaskDelay(pdMS_TO_TICKS(100)); // Delay de 1 secundă între citiri
+    }
+}
+
+void pidTaskHandle(void *pvParameters)
+{
+    pinMode(MOC_PIN, OUTPUT);
+    pinMode(ZCD_PIN, INPUT);
+
+    PID pid(1, 0.1, 0.1);
+    pid.setLimits(0, 1);
+
+    for (;;)
+    {
+        if (currentTemperature.startFlag)
+        {
+            uint8_t output = pid.compute(currentTemperature.setpoint_temperature, currentTemperature.inside_temperature);
+            digitalWrite(MOC_PIN, output);
+        }
+        else
+        {
+            analogWrite(MOC_PIN, 0);
+        }
+
+        UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
+        if (LOG_MESSAGE)
+            Serial.println("PID stack high water mark: " + String(uxHighWaterMark));
+
+        vTaskDelay(pdMS_TO_TICKS(200)); // Delay de 0.2 secund între citiri
     }
 }

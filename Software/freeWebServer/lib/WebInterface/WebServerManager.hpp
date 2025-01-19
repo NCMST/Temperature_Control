@@ -13,7 +13,7 @@
 #define HTTP_PORT 80
 #define LOGS_MESSAGE false
 
-#define TEN_SEC 10000
+#define TEN_SEC 5000
 #define LED_BUILTIN 2
 
 class WebServerManager {

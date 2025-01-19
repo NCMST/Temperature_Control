@@ -67,7 +67,7 @@ int WebServerManager::begin()
             digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
             return 1; // Eșec la conectare
         }
-        vTaskDelay(1000); // Așteaptă 1 secundă înainte de a încerca din nou
+        vTaskDelay(100); // Așteaptă 0.1 secundă înainte de a încerca din nou
         if (LOGS_MESSAGE)
             Serial.println("Conectare la WiFi...");
     }
