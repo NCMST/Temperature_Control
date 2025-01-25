@@ -25,6 +25,8 @@ public:
 
     void handleHome();
 
+    void handleList();
+
     void handleGraph();
 
     void handleTemperatureData();
@@ -40,8 +42,6 @@ public:
     void handleCommand();
 
     const TemperatureData& getTemperature() const { return currentTemperature; }
-
-    String readFile(const char* path);
 
     float getStetTemperature() const { return stetTemperature; }
 

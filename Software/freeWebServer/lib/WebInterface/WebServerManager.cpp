@@ -1,22 +1,21 @@
 #include "WebServerManager.hpp"
 
-// Constructorul clasei
-WebServerManager::WebServerManager(const char *ssid, const char *password, const char *secon, const char *seconPass)
-    : ssid(ssid), password(password), server(HTTP_PORT), second_ssid(secon), second_password(seconPass)
+void listSPIFFSFiles()
 {
+    // SPIFFS.format();
 
-    if (!SPIFFS.begin(true))
+    Serial.println("Listing files...");
+    File root = SPIFFS.open("/");
+    File file = root.openNextFile();
+    while (file)
     {
-        Serial.println("An Error has occurred while mounting SPIFFS");
-        return;
+        Serial.print("FILE: ");
+        Serial.println(file.name());
+        file = root.openNextFile();
     }
-
-    homePage = readFile("/home.html");
-
-    graphPage = readFile("/graph.html");
 }
 
-String WebServerManager::readFile(const char *path)
+String readFile(const char *path)
 {
     String content;
 
@@ -36,6 +35,29 @@ String WebServerManager::readFile(const char *path)
     file.close();
 
     return content;
+}
+
+// Constructorul clasei
+WebServerManager::WebServerManager(const char *ssid, const char *password, const char *secon, const char *seconPass)
+    : ssid(ssid), password(password), server(HTTP_PORT), second_ssid(secon), second_password(seconPass)
+{
+
+    if (!SPIFFS.begin(true))
+    {
+        Serial.println("An Error has occurred while mounting SPIFFS");
+        return;
+    }
+
+    homePage = readFile("/home.html");
+
+    graphPage = readFile("/graph.html");
+
+    listPage = readFile("/list.csv");
+
+    if (LOGS_MESSAGE){
+        listSPIFFSFiles();
+        Serial.println(listPage);
+    }
 }
 
 /**
@@ -82,6 +104,10 @@ int WebServerManager::begin()
               { handleHome(); }); // Setează ruta principală
     server.on("/graph", [this]()
               { handleGraph(); }); // Setează ruta pentru grafic
+
+    server.on("/list", [this]()
+              { handleList(); }); // Setează ruta pentru listă
+
     server.on("/temperature", [this]()
               { handleTemperatureData(); }); // Setează ruta pentru datele temperaturii
 
@@ -203,6 +229,12 @@ void WebServerManager::handleGraph()
     server.send(200, "text/html", graphPage);
 }
 
+// Funcția de gestionare a cererilor pentru listă
+void WebServerManager::handleList()
+{
+    server.send(200, "text/html", listPage);
+}
+
 // Funcția de gestionare a cererilor pentru datele temperaturii
 void WebServerManager::handleTemperatureData()
 {
@@ -242,7 +274,7 @@ void WebServerManager::handleTemperatureList()
 void WebServerManager::setTemperatureData(const TemperatureData &tempData)
 {
     currentTemperature = tempData; // Stochează datele primite în variabila curentă.
-    
+
     stetTemperature = tempData.setpoint_temperature;
     startFlag = tempData.startFlag;
     setTime = tempData.setTime;
@@ -254,3 +286,4 @@ void WebServerManager::handleClient()
     server.handleClient(); // Gestionează cererile clientului.
     // handleCommand();
 }
+

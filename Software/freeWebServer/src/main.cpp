@@ -3,9 +3,18 @@
 TaskHandle_t WebServerTaskHandle, TemperatureTaskHandle, DisplayTaskHandle, PIDTaskHandle;
 
 TemperatureData currentTemperature;
+SemaphoreHandle_t temperatureMutex;
 
 void setup()
 {
+    temperatureMutex = xSemaphoreCreateMutex();
+    if (temperatureMutex == NULL)
+    {
+        Serial.println("Failed to create mutex");
+        while (1)
+            ;
+    }
+
     xTaskCreatePinnedToCore(webServerTask, "runWebServer", SERVER_TASK_STACK_SIZE, NULL, 1, &WebServerTaskHandle, 1);
     xTaskCreatePinnedToCore(displayTask, "runDisplay", DISPLAY_TASK_STACK_SIZE, new Screen(), 1, &DisplayTaskHandle, 0);
     xTaskCreatePinnedToCore(temperatureTask, "runTemperature", TEMPERATURE_TASK_STACK_SIZE, NULL, 1, &TemperatureTaskHandle, 0);
@@ -33,11 +42,17 @@ void webServerTask(void *pvParameters)
 
         if (xTaskGetTickCount() - lastTime > SECOND)
         {
-            currentTemperature.setpoint_temperature = webServer.getStetTemperature();
+            // currentTemperature.setpoint_temperature = webServer.getStetTemperature();
+            // currentTemperature.startFlag = webServer.getStartFlag();
+            // currentTemperature.setTime = webServer.getSetTime();
 
-            currentTemperature.startFlag = webServer.getStartFlag();
-
-            currentTemperature.setTime = webServer.getSetTime();
+            if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
+            {
+                currentTemperature.setpoint_temperature = webServer.getStetTemperature();
+                currentTemperature.startFlag = webServer.getStartFlag();
+                currentTemperature.setTime = webServer.getSetTime();
+                xSemaphoreGive(temperatureMutex);
+            }
 
             webServer.setTemperatureData(currentTemperature);
 
@@ -88,11 +103,15 @@ void displayTask(void *pvParameters)
 
             // Afișează informațiile despre temperaturi
             screen->clearDisplay();
-            screen->printText(10, 0, 1, "Seted time: " + String(currentTemperature.setTime - currentTemperature.realTime));
-            screen->printText(0, 20, 1, "I_T: " + String(currentTemperature.inside_temperature, 2));
-            screen->printText(SCREEN_WIDTH / 2, 20, 1, "O_T: " + String(currentTemperature.outside_temperature, 2));
-            screen->printText(0, 40, 1, "S_T: " + String(currentTemperature.setpoint_temperature));
-            currentTemperature.startFlag ? screen->printText(80, 40, 1, "ON") : screen->printText(80, 40, 1, "OFF");
+            if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
+            {
+                screen->printText(10, 0, 1, "Seted time: " + String(currentTemperature.setTime - currentTemperature.realTime));
+                screen->printText(0, 20, 1, "I_T: " + String(currentTemperature.inside_temperature, 2));
+                screen->printText(SCREEN_WIDTH / 2, 20, 1, "O_T: " + String(currentTemperature.outside_temperature, 2));
+                screen->printText(0, 40, 1, "S_T: " + String(currentTemperature.setpoint_temperature));
+                currentTemperature.startFlag ? screen->printText(80, 40, 1, "ON") : screen->printText(80, 40, 1, "OFF");
+                xSemaphoreGive(temperatureMutex);
+            }
         }
         else if (WiFi.softAPgetStationNum() > 0)
         {
@@ -105,12 +124,17 @@ void displayTask(void *pvParameters)
                     vTaskDelay(pdMS_TO_TICKS(5000));
                     printIP = true;
                 }
+
                 screen->clearDisplay();
-                screen->printText(10, 0, 1, "Seted time: " + String(currentTemperature.setTime - currentTemperature.realTime));
-                screen->printText(0, 20, 1, "I_T: " + String(currentTemperature.inside_temperature, 2));
-                screen->printText(SCREEN_WIDTH / 2, 20, 1, "O_T: " + String(currentTemperature.outside_temperature, 2));
-                screen->printText(0, 40, 1, "S_T: " + String(currentTemperature.setpoint_temperature));
-                currentTemperature.startFlag ? screen->printText(80, 40, 1, "ON") : screen->printText(80, 40, 1, "OFF");
+                if (xSemaphoreTake(temperatureMutex, portMAX_DELAY)) // Verificăm dacă mutexul este disponibil
+                {
+                    screen->printText(10, 0, 1, "Seted time: " + String(currentTemperature.setTime - currentTemperature.realTime));
+                    screen->printText(0, 20, 1, "I_T: " + String(currentTemperature.inside_temperature, 2));
+                    screen->printText(SCREEN_WIDTH / 2, 20, 1, "O_T: " + String(currentTemperature.outside_temperature, 2));
+                    screen->printText(0, 40, 1, "S_T: " + String(currentTemperature.setpoint_temperature));
+                    currentTemperature.startFlag ? screen->printText(80, 40, 1, "ON") : screen->printText(80, 40, 1, "OFF");
+                    xSemaphoreGive(temperatureMutex); // Eliberăm mutexul
+                }
             }
             else
             {
@@ -141,7 +165,12 @@ void temperatureTask(void *pvParameters)
 {
     Temperature temperature_data;
 
-    currentTemperature.setpoint_temperature = 0;
+    // Inițializare temperatură setpoint la zero
+    if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
+    {
+        currentTemperature.setpoint_temperature = 0;
+        xSemaphoreGive(temperatureMutex);
+    }
 
     Serial.begin(BAUD_RATE);
 
@@ -149,9 +178,15 @@ void temperatureTask(void *pvParameters)
 
     for (;;)
     {
-        currentTemperature.inside_temperature = temperature_data.readKTemp();
-        currentTemperature.outside_temperature = temperature_data.readNTCTemp();
-        currentTemperature.timestamp = String(millis());
+        // Protejarea accesului la variabila globală cu mutex
+        if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
+        {
+            currentTemperature.inside_temperature = temperature_data.readKTemp();
+            currentTemperature.outside_temperature = temperature_data.readNTCTemp();
+            currentTemperature.timestamp = String(millis());
+
+            xSemaphoreGive(temperatureMutex);
+        }
 
         if (xTaskGetTickCount() - lastTime > LOGS_OFFSET)
         {
@@ -161,12 +196,16 @@ void temperatureTask(void *pvParameters)
 
             if (LOG_MESSAGE)
             {
-                Serial.println("K_Temperature, NTC_Temperature: " + String(temperature_data.readKTemp()) + " " + String(temperature_data.readNTCTemp()));
+                float kTemp = temperature_data.readKTemp();
+                float ntcTemp = temperature_data.readNTCTemp();
+
+                Serial.println("K_Temperature, NTC_Temperature: " + String(kTemp) + " " + String(ntcTemp));
             }
+
             lastTime = xTaskGetTickCount();
         }
 
-        vTaskDelay(pdMS_TO_TICKS(200)); // Delay de 0.1 secundă între citiri
+        vTaskDelay(pdMS_TO_TICKS(200)); // Delay de 0.2 secunde între citiri
     }
 }
 
@@ -203,10 +242,13 @@ void pidTaskHandle(void *pvParameters)
                     {
                         currentTemperature.realTime++;
                     }
-                    else
+                    else if (currentTemperature.setTime - currentTemperature.realTime == 0)
                     {
-                        // Stop heating when time reaches 0
-                        currentTemperature.startFlag = false;
+                        if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
+                        {
+                            currentTemperature.startFlag = false;
+                            xSemaphoreGive(temperatureMutex);
+                        }
                         digitalWrite(MOC_PIN, 0);
                     }
                 }
