@@ -9,7 +9,8 @@ struct TemperatureData {
     float outside_temperature; // in °C
     float setpoint_temperature;
 
-    int setTime;
+    uint32_t setTime;
+    uint32_t realTime;
     
     bool startFlag;
 };

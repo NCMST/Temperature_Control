@@ -8,7 +8,7 @@ class PID
 public:
     PID(float kp, float ki, float kd);
     void setLimits(float min, float max);
-    float compute(float setpoint, float measured_value);
+    int compute(float setpoint, float measured_value);
 
     void setKp(float new_kp) { kp = new_kp; }
     void setKi(float new_ki) { ki = new_ki; }

@@ -11,7 +11,7 @@
 #include "TemperatureData.hpp"
 
 #define HTTP_PORT 80
-#define LOGS_MESSAGE false
+#define LOGS_MESSAGE true
 
 #define TEN_SEC 5000
 #define LED_BUILTIN 2
@@ -45,9 +45,9 @@ public:
 
     float getStetTemperature() const { return stetTemperature; }
 
-    bool getStartFlag() const { return currentTemperature.startFlag; }
+    bool getStartFlag() const { return startFlag; }
 
-    int getSetTime() const { return currentTemperature.setTime; }
+    int getSetTime() const { return setTime; }
 
     void setWiFiCredentials(const char* ssid, const char* password){
         this->ssid = ssid;
@@ -67,6 +67,8 @@ private:
     String listPage;
 
     float stetTemperature;
+    bool startFlag;
+    uint32_t setTime;
     
 
     std::vector<TemperatureData> temperatureHistory;

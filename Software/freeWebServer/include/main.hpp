@@ -34,12 +34,16 @@
 #define AP_PASS_WORK                "N@n0Teh2016"
 
 #define AP_SSID                     "UltraFast"
-#define AP_PASS                     "Fastet1234"
+#define AP_PASS                     "Fastet123"
 
 #define WF_SSID                     "NCMST_1"
 #define WF_PASS                     "password123"
 
 #define LOG_MESSAGE false
+#define LOGS_OFFSET pdMS_TO_TICKS(10000)
+
+#define SECOND pdMS_TO_TICKS(1000)
+#define MINUT pdMS_TO_TICKS(1000 * 60)
 
 void webServerTask(void* pvParameters);
 void displayTask(void* pvParameters);

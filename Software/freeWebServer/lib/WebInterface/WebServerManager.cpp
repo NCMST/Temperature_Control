@@ -4,7 +4,6 @@
 WebServerManager::WebServerManager(const char *ssid, const char *password, const char *secon, const char *seconPass)
     : ssid(ssid), password(password), server(HTTP_PORT), second_ssid(secon), second_password(seconPass)
 {
-    currentTemperature.startFlag = false;
 
     if (!SPIFFS.begin(true))
     {
@@ -137,7 +136,8 @@ void WebServerManager::handleCommand()
         if (action == "start")
         {
 
-            currentTemperature.startFlag = true;
+            startFlag = true;
+
             // Handle start command
             if (LOGS_MESSAGE)
                 Serial.println("Start command received.");
@@ -146,7 +146,8 @@ void WebServerManager::handleCommand()
         else if (action == "stop")
         {
 
-            currentTemperature.startFlag = false;
+            startFlag = false;
+
             // Handle stop command
             if (LOGS_MESSAGE)
                 Serial.println("Stop command received.");
@@ -170,12 +171,12 @@ void WebServerManager::handleSetPoint()
     if (!error)
     {
         float setpoint = doc["setpoint_temperature"];
-        int workingTime = doc["working_time"]; // Get working time from JSON
+        uint32_t workingTime = doc["working_time"]; // Get working time from JSON
 
         stetTemperature = setpoint;
-        currentTemperature.setTime = workingTime;
+        setTime = workingTime;
 
-        currentTemperature.setpoint_temperature = setpoint; // Update your temperature data structure
+        // currentTemperature.setpoint_temperature = setpoint; // Update your temperature data structure
         Serial.print("Set point updated to: ");
         Serial.println(setpoint);
 
@@ -241,10 +242,15 @@ void WebServerManager::handleTemperatureList()
 void WebServerManager::setTemperatureData(const TemperatureData &tempData)
 {
     currentTemperature = tempData; // Stochează datele primite în variabila curentă.
+    
+    stetTemperature = tempData.setpoint_temperature;
+    startFlag = tempData.startFlag;
+    setTime = tempData.setTime;
 }
 
 // Funcția de gestionare a cererilor clientului
 void WebServerManager::handleClient()
 {
     server.handleClient(); // Gestionează cererile clientului.
+    // handleCommand();
 }

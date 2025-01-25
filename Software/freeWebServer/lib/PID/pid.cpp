@@ -2,7 +2,7 @@
 
 PID::PID(float kp, float ki, float kd) : kp(kp), ki(ki), kd(kd), integral(0), last_error(0) {}
 
-float PID::compute(float setpoint, float measured_value) {
+int PID::compute(float setpoint, float measured_value) {
     float error = setpoint - measured_value;
     integral += error;
 
