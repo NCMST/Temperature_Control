@@ -14,13 +14,19 @@
       body {
         display: flex;
         flex-direction: column;
-        min-height: 100vh; /* Ensure body takes at least full viewport height */
-        margin: 0; /* Elimină marginile implicite */
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      footer {
+        margin-top: auto;
+        width: 100%;
       }
       #main {
-        flex: 1; /* Allow main section to grow and fill space */
-        padding-top: 60px; /* Space for navbar */
-        margin: 5%; /* Margin around main content */
+        flex: 1;
+        padding-top: 20px; /* Reduced space for navbar */
+        margin: 0 auto; /* Center the main content */
+        width: 90%; /* Adjust width to reduce left space */
       }
     </style>
   </head>
@@ -46,38 +52,40 @@
       </div>
     </div>
 
-    <div id="main">
+    <div id="main" class="container text-center">
       <h1>Temperature Graph</h1>
-      <canvas id="temperatureChart" width="400" height="200" class="mt-4 mb-4"></canvas>
-
-      <div class="mt-4">
-        <button class="btn btn-primary" onclick='sendCommand("start")'>
-          Start
-        </button>
-        <button class="btn btn-danger" onclick='sendCommand("stop")'>
-          Stop
-        </button>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12">
+          <canvas id="temperatureChart" width="800" height="400" class="mt-4 mb-4"></canvas>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="mt-4">
+            <button class="btn btn-primary mb-2" onclick='sendCommand("start")'>
+              Start
+            </button>
+            <button class="btn btn-danger mb-2" onclick='sendCommand("stop")'>
+              Stop
+            </button>
+          </div>
+          <form id="setpointForm" onsubmit="submitSetpoint(event)">
+            <label for="setpointInput">Setpoint Temperature:</label>
+            <input
+              type="number"
+              step="0.01"
+              id="setpointInput"
+              class="form-control mb-2"
+              aria-label="Temperature value (with dot and two decimal places)"
+              placeholder="Enter temperature in °C"
+              required
+            />
+            <button type="submit" class="btn btn-success">
+              Set Temperature
+            </button>
+          </form>
+        </div>
       </div>
-      </br>
-
-      <form id="setpointForm" onsubmit="submitSetpoint(event)">
-        <label for="setpointInput">Setpoint Temperature:</label>
-        <input
-          type="number"
-          step="0.01"
-          id="setpointInput"
-          class="form-control"
-          aria-label="Temperature value (with dot and two decimal places)"
-          placeholder="Enter temperature in °C"
-          required
-        />
-        <button type="submit" class="btn btn-success mt-2">
-          Set Temperature
-        </button>
-      </form>
     </div>
 
-    <!-- Bootstrap Footer -->
     <footer class="bg-dark text-white text-center py-3">
       <div class="container">
         <p>
@@ -104,15 +112,14 @@
       </div>
     </footer>
 
-      <script>
-        function sendCommand(command) {
+    <script>
+      function sendCommand(command) {
         fetch("/command", {
-          // Ensure this route is handled on your server
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ action: command }), // Send the command as JSON
+          body: JSON.stringify({ action: command }),
         })
           .then((response) => {
             if (response.ok) {
@@ -130,93 +137,92 @@
           })
           .catch((error) => console.error("Error:", error));
       }
-      
-        const ctx = document
-          .getElementById("temperatureChart")
-          .getContext("2d");
-        const temperatureChart = new Chart(ctx, {
-          type: "line",
-          data: {
-            labels: [], // Labels for the X-axis
-            datasets: [
-              {
-                label: "Inside Temperature (°C)",
-                data: [], // Inside temperature data
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 2,
-                fill: false,
-              },
-              {
-                label: "Setpoint Temperature (°C)",
-                data: [], // Setpoint temperature data
-                borderColor: "rgba(255, 99, 132, 1)",
-                borderWidth: 2,
-                fill: false,
-              },
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
+
+      const ctx = document
+        .getElementById("temperatureChart")
+        .getContext("2d");
+      const temperatureChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: "Inside Temperature (°C)",
+              data: [],
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 2,
+              fill: false,
+            },
+            {
+              label: "Setpoint Temperature (°C)",
+              data: [],
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 2,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
             },
           },
-        });
+        },
+      });
 
-        function updateTemperatureData(insideTemp, setpointTemp) {
-          const currentTime = new Date().toLocaleTimeString(); // Get current time
-          temperatureChart.data.labels.push(currentTime);
-          temperatureChart.data.datasets[0].data.push(insideTemp); // Update inside temperature
-          temperatureChart.data.datasets[1].data.push(setpointTemp); // Update setpoint temperature
-          temperatureChart.update();
-        }
+      function updateTemperatureData(insideTemp, setpointTemp) {
+        const currentTime = new Date().toLocaleTimeString();
+        temperatureChart.data.labels.push(currentTime);
+        temperatureChart.data.datasets[0].data.push(insideTemp);
+        temperatureChart.data.datasets[1].data.push(setpointTemp);
+        temperatureChart.update();
+      }
 
-        function fetchTemperature() {
-          fetch("/temperature")
-            .then((response) => response.json())
-            .then((data) => {
-              updateTemperatureData(
-                data.inside_temperature,
-                data.setpoint_temperature
-              ); // Update chart with both temperatures
-            })
-            .catch((error) =>
-              console.error("Error fetching temperature data:", error)
+      function fetchTemperature() {
+        fetch("/temperature")
+          .then((response) => response.json())
+          .then((data) => {
+            updateTemperatureData(
+              data.inside_temperature,
+              data.setpoint_temperature
             );
-        }
-
-        function submitSetpoint(event) {
-          event.preventDefault(); // Prevent default form submission
-
-          const setpointValue = document.getElementById("setpointInput").value;
-          console.log("Submitting setpoint temperature:", setpointValue); // Debug log
-
-          // Send the setpoint value to the server
-          fetch("/setpoint", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              setpoint_temperature: parseFloat(setpointValue),
-            }),
           })
-            .then((response) => {
-              if (response.ok) {
-                console.log("Setpoint updated successfully");
-                document.getElementById("setpointInput").value = ""; // Clear input field
-              } else {
-                console.error(
-                  "Failed to update setpoint:",
-                  response.statusText
-                );
-              }
-            })
-            .catch((error) => console.error("Error:", error));
-        }
+          .catch((error) =>
+            console.error("Error fetching temperature data:", error)
+          );
+      }
 
-        setInterval(fetchTemperature, 5000); // Update every 5 seconds
-      </script>
+      function submitSetpoint(event) {
+        event.preventDefault();
+
+        const setpointValue = document.getElementById("setpointInput").value;
+        console.log("Submitting setpoint temperature:", setpointValue);
+
+        fetch("/setpoint", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            setpoint_temperature: parseFloat(setpointValue),
+          }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log("Setpoint updated successfully");
+              document.getElementById("setpointInput").value = "";
+            } else {
+              console.error(
+                "Failed to update setpoint:",
+                response.statusText
+              );
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      setInterval(fetchTemperature, 5000);
+    </script>
   </body>
 </html>

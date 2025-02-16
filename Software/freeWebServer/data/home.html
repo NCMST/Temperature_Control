@@ -58,77 +58,84 @@
     </div>
 
     <div class="container mt-4">
-      <h1>Setup for Setting Temperature!</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Setup for Setting Temperature!</h1>
 
-      <!-- Form for setpoint temperature and working time -->
-      <form id="setpointForm" onsubmit="submitSetpoint(event)">
-        <div class="form-group">
-          <label for="setpointInput">Setpoint Temperature:</label>
-          <input
-            type="number"
-            step="0.01"
-            id="setpointInput"
-            class="form-control"
-            placeholder="Enter temperature in °C"
-            required
-          />
+          <!-- Form for setpoint temperature and working time -->
+          <form id="setpointForm" onsubmit="submitSetpoint(event)">
+            <div class="form-group">
+              <label for="setpointInput">Setpoint Temperature:</label>
+              <input
+                type="number"
+                step="0.01"
+                id="setpointInput"
+                class="form-control"
+                placeholder="Enter temperature in °C"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="workingTimeInput">Working Time (minutes):</label>
+              <input
+                type="number"
+                id="workingTimeInput"
+                class="form-control"
+                placeholder="Enter working time in minutes"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-success mt-2">
+              Submitting
+            </button>
+          </form>
         </div>
 
-        <div class="form-group">
-          <label for="workingTimeInput">Working Time (minutes):</label>
-          <input
-            type="number"
-            id="workingTimeInput"
-            class="form-control"
-            placeholder="Enter working time in minutes"
-            required
-          />
+        <div class="col-md-6">
+          <!-- Current Temperatures Table -->
+          <h3 class="mt-4">Current Temperatures:</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Value</th>
+                <th scope="col">Measurement unit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Inside Temperature</td>
+                <td><p id="insideTemperature">--</p></td>
+                <td>°C</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Outside Temperature</td>
+                <td><p id="outsideTemperature">--</p></td>
+                <td>°C</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Set Temperature</td>
+                <td><p id="setpointTemperature">--</p></td>
+                <td>°C</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
-        <button type="submit" class="btn btn-success mt-2">
-          Submitting
-        </button>
-      </form>
-
-      <!-- Current Temperatures Table -->
-      <h3 class="mt-4">Current Temperatures:</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Value</th>
-            <th scope="col">Measurement unit</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Inside Temperature</td>
-            <td><p id="insideTemperature">--</p></td>
-            <td>°C</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Outside Temperature</td>
-            <td><p id="outsideTemperature">--</p></td>
-            <td>°C</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Set Temperature</td>
-            <td><p id="setpointTemperature">--</p></td>
-            <td>°C</td>
-          </tr>
-        </tbody>
-      </table>
+      </div>
+    </div>
 
       <!-- Start and Stop Buttons -->
-      <div class="mt-4">
-        <button class="btn btn-primary" onclick='sendCommand("start")'>
+      <div class="mt-4 text-center">
+        <button class="btn btn-primary btn-lg mx-2" onclick='sendCommand("start")'>
           Start
         </button>
-        <button class="btn btn-danger" onclick='sendCommand("stop")'>
+        <button class="btn btn-danger btn-lg mx-2" onclick='sendCommand("stop")'></button>
           Stop
         </button>
       </div>
