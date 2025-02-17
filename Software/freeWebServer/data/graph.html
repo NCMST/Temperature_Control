@@ -59,15 +59,7 @@
           <canvas id="temperatureChart" width="800" height="400" class="mt-4 mb-4"></canvas>
         </div>
         <div class="col-lg-4 col-md-12">
-          <div class="mt-4">
-            <button class="btn btn-primary mb-2" onclick='sendCommand("start")'>
-              Start
-            </button>
-            <button class="btn btn-danger mb-2" onclick='sendCommand("stop")'>
-              Stop
-            </button>
-          </div>
-          <form id="setpointForm" onsubmit="submitSetpoint(event)">
+          <form id="setpointForm" onsubmit="submitSetpoint(event)"></form>
             <label for="setpointInput">Setpoint Temperature:</label>
             <input
               type="number"
@@ -78,10 +70,18 @@
               placeholder="Enter temperature in °C"
               required
             />
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn btn-success mb-2">
               Set Temperature
             </button>
           </form>
+          <div class="mt-4">
+            <button class="btn btn-primary mb-2" onclick='sendCommand("start")'>
+              Start
+            </button>
+            <button class="btn btn-danger mb-2" onclick='sendCommand("stop")'>
+              Stop
+            </button>
+          </div>
         </div>
       </div>
     </div>

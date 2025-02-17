@@ -52,9 +52,10 @@ WebServerManager::WebServerManager(const char *ssid, const char *password, const
 
     graphPage = readFile("/graph.html");
 
-    listPage = readFile("/list.csv");
+    listPage = readFile("/list.html");
 
-    if (LOGS_MESSAGE){
+    if (LOGS_MESSAGE)
+    {
         listSPIFFSFiles();
         Serial.println(listPage);
     }
@@ -117,6 +118,9 @@ int WebServerManager::begin()
     server.on("/command", HTTP_POST, [this]()
               { handleCommand(); });
 
+    server.on("/download", [this]()
+              { handleDownload(); }); // Setează ruta pentru descărcare
+
     server.begin(); // Pornește serverul
 
     return 0;
@@ -131,22 +135,28 @@ int WebServerManager::begin()
 void WebServerManager::setupWiFIRouter(const char *ssid, const char *password)
 {
     WiFi.mode(WIFI_AP);
-    if (WiFi.softAP(ssid, password)) {
+    if (WiFi.softAP(ssid, password))
+    {
         Serial.print("Access Point \"");
         Serial.print(ssid);
         Serial.println("\" started.");
-        
+
         IPAddress IP = WiFi.softAPIP();
         Serial.print("AP IP address: ");
         Serial.println(IP);
-        
+
         // Configurează rutele serverului web pentru modul AP
-        server.on("/", [this]() { handleHome(); });
-        server.on("/graph", [this]() { handleGraph(); });
-        server.on("/temperature", [this]() { handleTemperatureData(); });
-        
+        server.on("/", [this]()
+                  { handleHome(); });
+        server.on("/graph", [this]()
+                  { handleGraph(); });
+        server.on("/temperature", [this]()
+                  { handleTemperatureData(); });
+
         server.begin(); // Pornește serverul
-    } else {
+    }
+    else
+    {
         Serial.println("Failed to start Access Point.");
     }
 }
@@ -287,3 +297,48 @@ void WebServerManager::handleClient()
     // handleCommand();
 }
 
+/**
+ * @brief download the list.csv file
+ * 
+ */
+void WebServerManager::handleDownload()
+{
+    // get the file
+    File file = SPIFFS.open("/list.csv", "r");
+    if (!file)
+    {
+        server.send(404, "text/plain", "File not found");
+        return;
+    }
+
+    server.streamFile(file, "text/csv");
+    file.close();
+}
+
+/**
+ * @brief update the list.csv file
+ * 
+ * @param realTemperature 
+ * @param setTemperature 
+ * @param time 
+ */
+void WebServerManager::updateCSV(float realTemperature, float setTemperature, uint32_t time)
+{
+    File file = SPIFFS.open("/list.csv", "a");
+
+    if (!file)
+    {
+        if (LOGS_MESSAGE)
+            Serial.println("Failed to open file for writing");
+        return;
+    }
+
+    file.print(realTemperature);
+    file.print(",");
+    file.print(setTemperature);
+    file.print(",");
+    file.print(time);
+    file.println();
+
+    file.close();
+}

@@ -56,6 +56,10 @@ public:
 
     void setupWiFIRouter(const char* ssid, const char* password);
 
+    void handleDownload();
+
+    void updateCSV(float realTemperature, float setTemperature, uint32_t time);
+
 private:
     const char* ssid;         // SSID-ul rețelei Wi-Fi
     const char* password;     // Parola rețelei Wi-Fi

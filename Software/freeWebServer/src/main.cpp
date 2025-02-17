@@ -24,6 +24,7 @@ void setup()
 
 void loop() {}
 
+// Core 1
 void webServerTask(void *pvParameters)
 {
     WebServerManager webServer(AP_SSID, AP_PASS, AP_SSID_WORK, AP_PASS_WORK);
@@ -35,28 +36,43 @@ void webServerTask(void *pvParameters)
 
     TickType_t lastTime = xTaskGetTickCount();
     TickType_t lastTime_2 = xTaskGetTickCount();
+    TickType_t lastTime_3 = xTaskGetTickCount();
 
     for (;;)
     {
         webServer.handleClient();
 
+        // Sending the temperature data to the web server every second
         if (xTaskGetTickCount() - lastTime > SECOND)
         {
-            // currentTemperature.setpoint_temperature = webServer.getStetTemperature();
-            // currentTemperature.startFlag = webServer.getStartFlag();
-            // currentTemperature.setTime = webServer.getSetTime();
-
+            // Reading the temperature data from the web server
             if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
             {
                 currentTemperature.setpoint_temperature = webServer.getStetTemperature();
                 currentTemperature.startFlag = webServer.getStartFlag();
                 currentTemperature.setTime = webServer.getSetTime();
+
+                // Sending the temperature data to the web server
+                webServer.setTemperatureData(currentTemperature);
                 xSemaphoreGive(temperatureMutex);
             }
 
-            webServer.setTemperatureData(currentTemperature);
-
             lastTime = xTaskGetTickCount();
+        }
+
+        // Upload data in list.csv every minute
+        if (xTaskGetTickCount() - lastTime_3 > MINUT)
+        {
+            if (currentTemperature.startFlag)
+            {
+                if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
+                {
+                    webServer.updateCSV(currentTemperature.inside_temperature, currentTemperature.setpoint_temperature, currentTemperature.setTime - currentTemperature.realTime);
+                    xSemaphoreGive(temperatureMutex);
+                }
+            }
+
+            lastTime_3 = xTaskGetTickCount();
         }
 
         if (xTaskGetTickCount() - lastTime_2 > LOGS_OFFSET)
@@ -76,6 +92,7 @@ void webServerTask(void *pvParameters)
     }
 }
 
+// Core 0
 void displayTask(void *pvParameters)
 {
     Screen *screen = (Screen *)pvParameters;
