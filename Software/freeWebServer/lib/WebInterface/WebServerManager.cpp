@@ -10,6 +10,10 @@
  */
 #include "WebServerManager.hpp"
 
+/**
+ * @brief list all the files from the SPIFFS
+ * 
+ */
 void listSPIFFSFiles()
 {
     // SPIFFS.format();
@@ -25,6 +29,12 @@ void listSPIFFSFiles()
     }
 }
 
+/**
+ * @brief Read the content of a file
+ * 
+ * @param path 
+ * @return String 
+ */
 String readFile(const char *path)
 {
     String content;
@@ -47,7 +57,14 @@ String readFile(const char *path)
     return content;
 }
 
-// Constructor of the class
+/**
+ * @brief Construct a new Web Server Manager:: Web Server Manager object
+ * 
+ * @param ssid 
+ * @param password 
+ * @param secon 
+ * @param seconPass 
+ */
 WebServerManager::WebServerManager(const char *ssid, const char *password, const char *secon, const char *seconPass)
     : ssid(ssid), password(password), server(HTTP_PORT), second_ssid(secon), second_password(seconPass)
 {
@@ -171,6 +188,11 @@ void WebServerManager::setupWiFIRouter(const char *ssid, const char *password)
     }
 }
 
+/**
+ * @brief handle the command
+ *
+ * as of now, the command can be start or stop
+ */
 void WebServerManager::handleCommand()
 {
     JsonDocument doc;
@@ -209,6 +231,9 @@ void WebServerManager::handleCommand()
     }
 }
 
+/**
+ * @brief handle the set point
+ */
 void WebServerManager::handleSetPoint()
 {
     JsonDocument doc;
@@ -238,25 +263,34 @@ void WebServerManager::handleSetPoint()
     }
 }
 
-// Function to handle requests for the home page
+/**
+ * @brief handle the home page
+ */
 void WebServerManager::handleHome()
 {
     server.send(200, "text/html", homePage);
 }
 
-// Function to handle requests for the graph page
+/**
+ * @brief handle the graph page
+ */
 void WebServerManager::handleGraph()
 {
     server.send(200, "text/html", graphPage);
 }
 
-// Function to handle requests for the list
+/**
+ * @brief handle the list page
+ * 
+ */
 void WebServerManager::handleList()
 {
     server.send(200, "text/html", listPage);
 }
 
-// Function to handle requests for temperature data
+/**
+ * @brief handle the temperature data
+ */
 void WebServerManager::handleTemperatureData()
 {
     JsonDocument doc;
@@ -271,6 +305,10 @@ void WebServerManager::handleTemperatureData()
     server.send(200, "application/json", jsonResponse);
 }
 
+/**
+ * @brief handle the temperature list
+ * 
+ */
 void WebServerManager::handleTemperatureList()
 {
     JsonDocument doc;
@@ -291,7 +329,11 @@ void WebServerManager::handleTemperatureList()
     server.send(200, "application/json", jsonResponse);
 }
 
-// Function to receive temperature from a task
+/**
+ * @brief set the temperature data
+ * 
+ * @param tempData 
+ */
 void WebServerManager::setTemperatureData(const TemperatureData &tempData)
 {
     currentTemperature = tempData; // Store the received data in the current variable.
@@ -301,7 +343,10 @@ void WebServerManager::setTemperatureData(const TemperatureData &tempData)
     setTime = tempData.setTime;
 }
 
-// Function to handle client requests
+/**
+ * @brief handle the client
+ * 
+ */
 void WebServerManager::handleClient()
 {
     server.handleClient(); // Handle client requests.

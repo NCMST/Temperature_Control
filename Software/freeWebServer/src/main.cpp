@@ -1,11 +1,42 @@
+/**
+ * @file main.cpp
+ * @author Creciune Catalin creciunelcatalin@gmail.com
+ * @brief 
+ * @version 0.1
+ * @date 2025-02-21
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 #include "main.hpp"
 
+/**
+ * @brief Task handles for web server, temperature reading, display, and PID control.
+ * 
+ */
 TaskHandle_t WebServerTaskHandle, TemperatureTaskHandle, DisplayTaskHandle, PIDTaskHandle;
 
+/**
+ * @brief Current temperature data.
+ * 
+ */
 TemperatureData currentTemperature;
+/**
+ * @brief Semaphore for temperature data access.
+ * 
+ */
 SemaphoreHandle_t temperatureMutex;
 
+/**
+ * @brief Flag for zero crossing detection.
+ * 
+ */
 volatile bool zeroCross = false;
+
+/**
+ * @brief Flag for turning off PID output.
+ * 
+ */
 volatile bool turnOffRequest = false;
 
 /**

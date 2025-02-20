@@ -100,46 +100,147 @@ class WebServerManager
  */
 {
 public:
+    /**
+     * @brief Construct a new Web Server Manager object
+     * 
+     * @param ssid 
+     * @param password 
+     * @param second_ssid 
+     * @param second_password 
+     */
     WebServerManager(const char *ssid, const char *password, const char *second_ssid, const char *second_password);
 
+    /**
+     * @brief Initialize the web server and start listening for client requests
+     * 
+     * @return int 
+     */
     int begin();
 
+    /**
+     * @brief Handle requests to the home page
+     * 
+     */
     void handleHome();
 
+    /**
+     * @brief Handle requests to the list page
+     * 
+     * List page contains the list of temperature data in csv format during the heating period
+     * 
+     */
     void handleList();
 
+    /**
+     * @brief Handle requests to the graph page
+     * 
+     * Graph page contains the graph of temperature data during the heating period
+     * 
+     */
     void handleGraph();
 
+    /**
+     * @brief Handle requests for temperature data
+     * 
+     */
     void handleTemperatureData();
 
+    /**
+     * @brief Handle requests for the list of temperature data
+     * 
+     */
     void handleTemperatureList();
 
+    /**
+     * @brief Handle client connections
+     * 
+     */
     void handleClient();
 
+    /**
+     * @brief Set the current temperature data
+     * 
+     * obtainining data from sensors and setting the current temperature data
+     * 
+     * @param tempData 
+     */
     void setTemperatureData(const TemperatureData &tempData);
 
+    /**
+     * @brief Handle requests to set the temperature set point
+     * 
+     * get data from the client and set the temperature set point
+     */
     void handleSetPoint();
 
+    /**
+     * @brief Handle various commands sent to the server
+     *
+     * commands like start, stop, set temperature, set time 
+     */
     void handleCommand();
 
+    /**
+     * @brief Returns the current temperature data
+     * 
+     * @return const TemperatureData& 
+     */
     const TemperatureData &getTemperature() const { return currentTemperature; }
 
+    /**
+     * @brief Returns the set temperature
+     * 
+     * @return float 
+     */
     float getStetTemperature() const { return stetTemperature; }
 
+    /**
+     * @brief Returns the start flag status
+     * 
+     * @return bool 
+     */
     bool getStartFlag() const { return startFlag; }
 
+    /**
+     * @brief Returns the set time
+     * 
+     * @return uint 
+     */
     int getSetTime() const { return setTime; }
 
+    /**
+     * @brief Sets the Wi-Fi credentials for the primary network
+     * 
+     * @param ssid 
+     * @param password 
+     */
     void setWiFiCredentials(const char *ssid, const char *password)
     {
         this->ssid = ssid;
         this->password = password;
     }
 
+    /**
+     * @brief Sets up the Wi-Fi router with the given credentials
+     * 
+     * @param ssid 
+     * @param password 
+     */
     void setupWiFIRouter(const char *ssid, const char *password);
 
+    /**
+     * @brief Handles requests to download data
+     * 
+     */
     void handleDownload();
 
+    /**
+     * @brief Updates the CSV file with temperature data
+     * 
+     * @param realTemperature 
+     * @param setTemperature 
+     * @param time 
+     */
     void updateCSV(float realTemperature, float setTemperature, uint32_t time);
 
 private:

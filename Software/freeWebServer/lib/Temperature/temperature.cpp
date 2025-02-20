@@ -1,5 +1,22 @@
+/**
+ * @file temperature.cpp
+ * @author Creciune Catalin creciunelcatalin@gmail.com
+ * @brief 
+ * @version 0.1
+ * @date 2025-02-21
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 #include "temperature.hpp"
 
+/**
+ * @brief Read the temperature of the K type thermocouple
+ * 
+ * temperature of the heater
+ * 
+ * @return float 
+ */
 float Temperature::readKTemp(void) {
     if (max6675.readTemp()) { 
         return max6675.getTemp(); 
@@ -7,6 +24,13 @@ float Temperature::readKTemp(void) {
     return false; 
 }
 
+/**
+ * @brief Read the temperature of the NTC thermistor
+ * 
+ * Temperature of the room
+ * 
+ * @return double 
+ */
 double Temperature::readNTCTemp(void) {
     const auto Vout = static_cast<double>(ADC_RESOLUTION - analogRead(NTC_PIN)) * VCC / ADC_RESOLUTION;
     const auto Rth = (VCC * NTC_R2 / Vout) - NTC_R2;
@@ -15,4 +39,8 @@ double Temperature::readNTCTemp(void) {
     return temperature - 273.15; // Convert in Celsius
 }
 
+/**
+ * @brief Destroy the Temperature object
+ * 
+ */
 Temperature::~Temperature() {}
