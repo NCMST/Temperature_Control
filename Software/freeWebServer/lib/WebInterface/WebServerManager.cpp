@@ -1,3 +1,13 @@
+/**
+ * @file WebServerManager.cpp
+ * @author Creciune Catalin creciunelcatalin@gmail.com
+ * @brief 
+ * @version 0.1
+ * @date 2025-02-21
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 #include "WebServerManager.hpp"
 
 void listSPIFFSFiles()
