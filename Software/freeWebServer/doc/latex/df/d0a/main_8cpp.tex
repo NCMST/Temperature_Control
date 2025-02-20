@@ -29,7 +29,7 @@ void \mbox{\hyperlink{main_8cpp_a19fbfc122dff7ef467f9cd7f84d99b1d}{pid\+Task\+Ha
 \begin{DoxyCompactItemize}
 \item 
 Task\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_a54f480b471d82539b01bcae0758ab8dc}{Web\+Server\+Task\+Handle}}
-\item 
+\begin{DoxyCompactList}\small\item\em Task handles for web server, temperature reading, display, and \mbox{\hyperlink{classPID}{PID}} control. \end{DoxyCompactList}\item 
 Task\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_afb12f43ef50ce0fba62be0aabdb1db3b}{Temperature\+Task\+Handle}}
 \item 
 Task\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_ad344a61fcea7cf007193183240616e80}{Display\+Task\+Handle}}
@@ -37,13 +37,28 @@ Task\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_ad344a61fcea7cf007193183240616e80
 Task\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_ab112334482528ed6cc36eed18fb55302}{PIDTask\+Handle}}
 \item 
 \mbox{\hyperlink{structTemperatureData}{Temperature\+Data}} \mbox{\hyperlink{main_8cpp_ac0997dd0c5c5eeef33bafa6b6a8d3381}{current\+Temperature}}
-\item 
+\begin{DoxyCompactList}\small\item\em Current temperature data. \end{DoxyCompactList}\item 
 Semaphore\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_ab70af3d89d266c81dca143d86e3d0461}{temperature\+Mutex}}
-\item 
+\begin{DoxyCompactList}\small\item\em Semaphore for temperature data access. \end{DoxyCompactList}\item 
 volatile bool \mbox{\hyperlink{main_8cpp_a7589c154ea6fa877b87954587b64d6e1}{zero\+Cross}} = false
-\item 
+\begin{DoxyCompactList}\small\item\em Flag for zero crossing detection. \end{DoxyCompactList}\item 
 volatile bool \mbox{\hyperlink{main_8cpp_a8e3938899050c4fc630f49bf4f89460f}{turn\+Off\+Request}} = false
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Flag for turning off \mbox{\hyperlink{classPID}{PID}} output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Creciune Catalin \href{mailto:creciunelcatalin@gmail.com}{\texttt{ creciunelcatalin@gmail.\+com}} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/02-\/21
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Function Documentation}
@@ -181,6 +196,10 @@ This ISR is triggered at each zero crossing of the AC signal. It sets the zero\+
 \doxysubsubsection{\texorpdfstring{currentTemperature}{currentTemperature}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structTemperatureData}{Temperature\+Data}} current\+Temperature}
 
+
+
+Current temperature data. 
+
 \mbox{\Hypertarget{main_8cpp_ad344a61fcea7cf007193183240616e80}\label{main_8cpp_ad344a61fcea7cf007193183240616e80}} 
 \index{main.cpp@{main.cpp}!DisplayTaskHandle@{DisplayTaskHandle}}
 \index{DisplayTaskHandle@{DisplayTaskHandle}!main.cpp@{main.cpp}}
@@ -199,6 +218,10 @@ This ISR is triggered at each zero crossing of the AC signal. It sets the zero\+
 \doxysubsubsection{\texorpdfstring{temperatureMutex}{temperatureMutex}}
 {\footnotesize\ttfamily Semaphore\+Handle\+\_\+t temperature\+Mutex}
 
+
+
+Semaphore for temperature data access. 
+
 \mbox{\Hypertarget{main_8cpp_afb12f43ef50ce0fba62be0aabdb1db3b}\label{main_8cpp_afb12f43ef50ce0fba62be0aabdb1db3b}} 
 \index{main.cpp@{main.cpp}!TemperatureTaskHandle@{TemperatureTaskHandle}}
 \index{TemperatureTaskHandle@{TemperatureTaskHandle}!main.cpp@{main.cpp}}
@@ -211,15 +234,27 @@ This ISR is triggered at each zero crossing of the AC signal. It sets the zero\+
 \doxysubsubsection{\texorpdfstring{turnOffRequest}{turnOffRequest}}
 {\footnotesize\ttfamily volatile bool turn\+Off\+Request = false}
 
+
+
+Flag for turning off \mbox{\hyperlink{classPID}{PID}} output. 
+
 \mbox{\Hypertarget{main_8cpp_a54f480b471d82539b01bcae0758ab8dc}\label{main_8cpp_a54f480b471d82539b01bcae0758ab8dc}} 
 \index{main.cpp@{main.cpp}!WebServerTaskHandle@{WebServerTaskHandle}}
 \index{WebServerTaskHandle@{WebServerTaskHandle}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{WebServerTaskHandle}{WebServerTaskHandle}}
 {\footnotesize\ttfamily Task\+Handle\+\_\+t Web\+Server\+Task\+Handle}
 
+
+
+Task handles for web server, temperature reading, display, and \mbox{\hyperlink{classPID}{PID}} control. 
+
 \mbox{\Hypertarget{main_8cpp_a7589c154ea6fa877b87954587b64d6e1}\label{main_8cpp_a7589c154ea6fa877b87954587b64d6e1}} 
 \index{main.cpp@{main.cpp}!zeroCross@{zeroCross}}
 \index{zeroCross@{zeroCross}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{zeroCross}{zeroCross}}
 {\footnotesize\ttfamily volatile bool zero\+Cross = false}
+
+
+
+Flag for zero crossing detection. 
 

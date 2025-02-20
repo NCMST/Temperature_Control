@@ -91,10 +91,16 @@ Destroy the \mbox{\hyperlink{classScreen}{Screen}} object.
 
 Initialize the screen. 
 
+initialize the screen
+
 \begin{DoxyReturn}{Returns}
 true if the screen is initialized 
 
 false if the screen is not initialized
+
+true 
+
+false
 
 true if the screen is initialized successfully. 
 
@@ -112,6 +118,8 @@ Clear the screen.
 
 Print text on the screen at specified coordinates.
 
+print text on the screen
+
 \begin{DoxyReturn}{Returns}
 true if the screen is cleared 
 
@@ -127,6 +135,22 @@ false if the screen is not cleared
 \hline
 {\em text} & \\
 \hline
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em size} & \\
+\hline
+{\em text} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
 {\em x} & The x-\/coordinate where the text will be printed. \\
 \hline
 {\em y} & The y-\/coordinate where the text will be printed. \\

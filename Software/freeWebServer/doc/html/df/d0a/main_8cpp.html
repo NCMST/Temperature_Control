@@ -173,6 +173,7 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a54f480b471d82539b01bcae0758ab8dc"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#a54f480b471d82539b01bcae0758ab8dc">WebServerTaskHandle</a></td></tr>
+<tr class="memdesc:a54f480b471d82539b01bcae0758ab8dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task handles for web server, temperature reading, display, and <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> control.  <a href="../../df/d0a/main_8cpp.html#a54f480b471d82539b01bcae0758ab8dc">More...</a><br /></td></tr>
 <tr class="separator:a54f480b471d82539b01bcae0758ab8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb12f43ef50ce0fba62be0aabdb1db3b"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#afb12f43ef50ce0fba62be0aabdb1db3b">TemperatureTaskHandle</a></td></tr>
 <tr class="separator:afb12f43ef50ce0fba62be0aabdb1db3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,15 +182,24 @@ Variables</h2></td></tr>
 <tr class="memitem:ab112334482528ed6cc36eed18fb55302"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#ab112334482528ed6cc36eed18fb55302">PIDTaskHandle</a></td></tr>
 <tr class="separator:ab112334482528ed6cc36eed18fb55302"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0997dd0c5c5eeef33bafa6b6a8d3381"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d0d/structTemperatureData.html">TemperatureData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#ac0997dd0c5c5eeef33bafa6b6a8d3381">currentTemperature</a></td></tr>
+<tr class="memdesc:ac0997dd0c5c5eeef33bafa6b6a8d3381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current temperature data.  <a href="../../df/d0a/main_8cpp.html#ac0997dd0c5c5eeef33bafa6b6a8d3381">More...</a><br /></td></tr>
 <tr class="separator:ac0997dd0c5c5eeef33bafa6b6a8d3381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab70af3d89d266c81dca143d86e3d0461"><td class="memItemLeft" align="right" valign="top">SemaphoreHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#ab70af3d89d266c81dca143d86e3d0461">temperatureMutex</a></td></tr>
+<tr class="memdesc:ab70af3d89d266c81dca143d86e3d0461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore for temperature data access.  <a href="../../df/d0a/main_8cpp.html#ab70af3d89d266c81dca143d86e3d0461">More...</a><br /></td></tr>
 <tr class="separator:ab70af3d89d266c81dca143d86e3d0461"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7589c154ea6fa877b87954587b64d6e1"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#a7589c154ea6fa877b87954587b64d6e1">zeroCross</a> = false</td></tr>
+<tr class="memdesc:a7589c154ea6fa877b87954587b64d6e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag for zero crossing detection.  <a href="../../df/d0a/main_8cpp.html#a7589c154ea6fa877b87954587b64d6e1">More...</a><br /></td></tr>
 <tr class="separator:a7589c154ea6fa877b87954587b64d6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e3938899050c4fc630f49bf4f89460f"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d0a/main_8cpp.html#a8e3938899050c4fc630f49bf4f89460f">turnOffRequest</a> = false</td></tr>
+<tr class="memdesc:a8e3938899050c4fc630f49bf4f89460f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag for turning off <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> output.  <a href="../../df/d0a/main_8cpp.html#a8e3938899050c4fc630f49bf4f89460f">More...</a><br /></td></tr>
 <tr class="separator:a8e3938899050c4fc630f49bf4f89460f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Creciune Catalin <a href="#" onclick="location.href='mai'+'lto:'+'cre'+'ci'+'une'+'lc'+'ata'+'li'+'n@g'+'ma'+'il.'+'co'+'m'; return false;">creci<span style="display: none;">.nosp@m.</span>unel<span style="display: none;">.nosp@m.</span>catal<span style="display: none;">.nosp@m.</span>in@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a> </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-02-21</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="ac55d0909bfe96e544bb1324d9e0be983"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac55d0909bfe96e544bb1324d9e0be983">&#9670;&nbsp;</a></span>displayTask()</h2>
 
@@ -392,6 +402,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Current temperature data. </p>
+
 </div>
 </div>
 <a id="ad344a61fcea7cf007193183240616e80"></a>
@@ -434,6 +446,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Semaphore for temperature data access. </p>
+
 </div>
 </div>
 <a id="afb12f43ef50ce0fba62be0aabdb1db3b"></a>
@@ -462,6 +476,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Flag for turning off <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> output. </p>
+
 </div>
 </div>
 <a id="a54f480b471d82539b01bcae0758ab8dc"></a>
@@ -475,6 +491,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Task handles for web server, temperature reading, display, and <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> control. </p>
 
 </div>
 </div>
@@ -490,6 +508,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Flag for zero crossing detection. </p>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -498,7 +518,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="../../df/d0a/main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Fri Feb 21 2025 01:27:24 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Fri Feb 21 2025 01:56:40 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
