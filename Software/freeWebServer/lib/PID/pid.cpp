@@ -6,20 +6,20 @@ int PID::compute(float setpoint, float measured_value) {
     float error = setpoint - measured_value;
     integral += error;
 
-    // Calcularea derivatei
+    // Calculate the derivative
     float derivative = error - last_error;
     last_error = error;
 
-    // Calcularea ieșirii PID
+    // Calculate the PID output
     float output = kp * error + ki * integral + kd * derivative;
 
-    // Limitarea ieșirii între output_min și output_max
+    // Limit the output between output_min and output_max
     if (output > output_max) {
         output = output_max;
-        integral -= error; // Anti-windup: ajustează integralul dacă ieșirea este limitată
+        integral -= error; // Anti-windup: adjust the integral if the output is limited
     } else if (output < output_min) {
         output = output_min;
-        integral -= error; // Anti-windup: ajustează integralul dacă ieșirea este limitată
+        integral -= error; // Anti-windup: adjust the integral if the output is limited
     }
 
     return output;

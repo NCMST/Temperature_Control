@@ -3,7 +3,7 @@
 
 struct TemperatureData {
     
-    String timestamp;        // Timpul la care a fost înregistrată temperatura
+    String timestamp;        // The time when the temperature was recorded
 
     float inside_temperature; // in °C
     float outside_temperature; // in °C

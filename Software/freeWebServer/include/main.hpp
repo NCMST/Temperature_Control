@@ -23,21 +23,25 @@
 #define SERVER_TASK_STACK_SIZE      8192
 #define TEMPERATURE_TASK_STACK_SIZE 2048
 #define DISPLAY_TASK_STACK_SIZE     4096
-#define PID_TASK_STACK_SIZE         2048
+#define PID_TASK_STACK_SIZE         4096
 
 #define BAUD_RATE                   115200
 #define LED_BUILTIN                 2
 #define MOC_PIN                     23
 #define ZCD_PIN                     36 
 
-#define AP_SSID_WORK                "NCMST"
-#define AP_PASS_WORK                "N@n0Teh2016"
+#ifdef USE_CONFIG_H
+#include "config.h"
+#else
+#define AP_SSID_WORK "your_default_ssid_work"
+#define AP_PASS_WORK "your_default_pass_work"
 
-#define AP_SSID                     "UltraFast"
-#define AP_PASS                     "Fastet123"
+#define AP_SSID "your_default_ssid"
+#define AP_PASS "your_default_pass"
 
-#define WF_SSID                     "NCMST_1"
-#define WF_PASS                     "password123"
+#define WF_SSID "your_default_ssid"
+#define WF_PASS "your_default_pass"
+#endif
 
 #define LOG_MESSAGE false
 #define LOGS_OFFSET pdMS_TO_TICKS(10000)
@@ -49,6 +53,5 @@ void webServerTask(void* pvParameters);
 void displayTask(void* pvParameters);
 void temperatureTask(void *pvParameters);
 void pidTaskHandle(void *pvParameters);
-
 
 #endif // MAIN_H

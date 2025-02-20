@@ -37,7 +37,7 @@ String readFile(const char *path)
     return content;
 }
 
-// Constructorul clasei
+// Constructor of the class
 WebServerManager::WebServerManager(const char *ssid, const char *password, const char *secon, const char *seconPass)
     : ssid(ssid), password(password), server(HTTP_PORT), second_ssid(secon), second_password(seconPass)
 {
@@ -62,9 +62,9 @@ WebServerManager::WebServerManager(const char *ssid, const char *password, const
 }
 
 /**
- * @brief start the web server, return 1 if is not connected to the wifi in 10 seconds
+ * @brief start the web server, return 1 if not connected to the wifi in 10 seconds
  *
- * @details if is not connected to the wifi in 10 seconds return 1, use setupWiFIRouter to chenge the mode to router or setWiFiCredentials to change the credentials
+ * @details if not connected to the wifi in 10 seconds return 1, use setupWiFIRouter to change the mode to router or setWiFiCredentials to change the credentials
  *
  * @return int
  */
@@ -72,45 +72,45 @@ int WebServerManager::begin()
 {
     Serial.begin(115200);
 
-    // Adaugă SSID-urile la WiFiMulti
-    wifiMulti.addAP(ssid, password);               // Prima rețea
-    wifiMulti.addAP(second_ssid, second_password); // A doua rețea
+    // Add SSIDs to WiFiMulti
+    wifiMulti.addAP(ssid, password);               // First network
+    wifiMulti.addAP(second_ssid, second_password); // Second network
 
     unsigned long startAttemptTime = millis();
 
-    // Începe să încerce conectarea la rețelele Wi-Fi
+    // Start trying to connect to Wi-Fi networks
     while (wifiMulti.run() != WL_CONNECTED)
     {
-        if (millis() - startAttemptTime >= TEN_SEC) // Verifică dacă au trecut 10 secunde
+        if (millis() - startAttemptTime >= TEN_SEC) // Check if 10 seconds have passed
         {
             if (LOGS_MESSAGE)
                 Serial.println("Error: Failed to connect to WiFi");
 
             digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-            return 1; // Eșec la conectare
+            return 1; // Connection failed
         }
-        vTaskDelay(100); // Așteaptă 0.1 secundă înainte de a încerca din nou
+        vTaskDelay(100); // Wait 0.1 second before trying again
         if (LOGS_MESSAGE)
-            Serial.println("Conectare la WiFi...");
+            Serial.println("Connecting to WiFi...");
     }
 
     if (LOGS_MESSAGE)
     {
-        Serial.println("Conectat la WiFi");
+        Serial.println("Connected to WiFi");
         Serial.print("IP address: ");
         Serial.println(WiFi.localIP());
     }
 
     server.on("/", [this]()
-              { handleHome(); }); // Setează ruta principală
+              { handleHome(); }); // Set the main route
     server.on("/graph", [this]()
-              { handleGraph(); }); // Setează ruta pentru grafic
+              { handleGraph(); }); // Set the route for the graph
 
     server.on("/list", [this]()
-              { handleList(); }); // Setează ruta pentru listă
+              { handleList(); }); // Set the route for the list
 
     server.on("/temperature", [this]()
-              { handleTemperatureData(); }); // Setează ruta pentru datele temperaturii
+              { handleTemperatureData(); }); // Set the route for temperature data
 
     server.on("/setpoint", HTTP_POST, [this]()
               { handleSetPoint(); });
@@ -119,15 +119,15 @@ int WebServerManager::begin()
               { handleCommand(); });
 
     server.on("/download", [this]()
-              { handleDownload(); }); // Setează ruta pentru descărcare
+              { handleDownload(); }); // Set the route for download
 
-    server.begin(); // Pornește serverul
+    server.begin(); // Start the server
 
     return 0;
 }
 
 /**
- * @brief Seting up the router
+ * @brief Setting up the router
  *
  * @param ssid
  * @param password
@@ -145,7 +145,7 @@ void WebServerManager::setupWiFIRouter(const char *ssid, const char *password)
         Serial.print("AP IP address: ");
         Serial.println(IP);
 
-        // Configurează rutele serverului web pentru modul AP
+        // Configure web server routes for AP mode
         server.on("/", [this]()
                   { handleHome(); });
         server.on("/graph", [this]()
@@ -153,7 +153,7 @@ void WebServerManager::setupWiFIRouter(const char *ssid, const char *password)
         server.on("/temperature", [this]()
                   { handleTemperatureData(); });
 
-        server.begin(); // Pornește serverul
+        server.begin(); // Start the server
     }
     else
     {
@@ -227,25 +227,26 @@ void WebServerManager::handleSetPoint()
         server.send(400, "text/plain", "Invalid JSON");
     }
 }
-// Funcția de gestionare a cererilor pentru pagina principală
+
+// Function to handle requests for the home page
 void WebServerManager::handleHome()
 {
     server.send(200, "text/html", homePage);
 }
 
-// Funcția de gestionare a cererilor pentru pagina graficului
+// Function to handle requests for the graph page
 void WebServerManager::handleGraph()
 {
     server.send(200, "text/html", graphPage);
 }
 
-// Funcția de gestionare a cererilor pentru listă
+// Function to handle requests for the list
 void WebServerManager::handleList()
 {
     server.send(200, "text/html", listPage);
 }
 
-// Funcția de gestionare a cererilor pentru datele temperaturii
+// Function to handle requests for temperature data
 void WebServerManager::handleTemperatureData()
 {
     JsonDocument doc;
@@ -280,20 +281,20 @@ void WebServerManager::handleTemperatureList()
     server.send(200, "application/json", jsonResponse);
 }
 
-// Funcția care primește temperatura dintr-un task
+// Function to receive temperature from a task
 void WebServerManager::setTemperatureData(const TemperatureData &tempData)
 {
-    currentTemperature = tempData; // Stochează datele primite în variabila curentă.
+    currentTemperature = tempData; // Store the received data in the current variable.
 
     stetTemperature = tempData.setpoint_temperature;
     startFlag = tempData.startFlag;
     setTime = tempData.setTime;
 }
 
-// Funcția de gestionare a cererilor clientului
+// Function to handle client requests
 void WebServerManager::handleClient()
 {
-    server.handleClient(); // Gestionează cererile clientului.
+    server.handleClient(); // Handle client requests.
     // handleCommand();
 }
 

@@ -1,1 +1,0 @@
-esphome.exe run esphome_temperatura.yaml

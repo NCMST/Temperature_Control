@@ -5,6 +5,12 @@ TaskHandle_t WebServerTaskHandle, TemperatureTaskHandle, DisplayTaskHandle, PIDT
 TemperatureData currentTemperature;
 SemaphoreHandle_t temperatureMutex;
 
+volatile bool zeroCross = false;
+
+void IRAM_ATTR zeroCrossISR() {
+    zeroCross = true;  // Set the flag at each zero crossing
+}
+
 void setup()
 {
     temperatureMutex = xSemaphoreCreateMutex();
@@ -80,8 +86,8 @@ void webServerTask(void *pvParameters)
             UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
             if (LOG_MESSAGE)
             {
-                Serial.println("Seted time: " + String(webServer.getSetTime()));
-                Serial.println("Seted temperatureL: " + String(currentTemperature.setpoint_temperature));
+                Serial.println("Set time: " + String(webServer.getSetTime()));
+                Serial.println("Set temperature: " + String(currentTemperature.setpoint_temperature));
                 Serial.println("WebServer stack high water mark: " + String(uxHighWaterMark));
             }
 
@@ -118,11 +124,11 @@ void displayTask(void *pvParameters)
                 printIP = true;
             }
 
-            // Afișează informațiile despre temperaturi
+            // Display temperature information
             screen->clearDisplay();
             if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
             {
-                screen->printText(10, 0, 1, "Seted time: " + String(currentTemperature.setTime - currentTemperature.realTime));
+                screen->printText(10, 0, 1, "Set time: " + String(currentTemperature.setTime - currentTemperature.realTime));
                 screen->printText(0, 20, 1, "I_T: " + String(currentTemperature.inside_temperature, 2));
                 screen->printText(SCREEN_WIDTH / 2, 20, 1, "O_T: " + String(currentTemperature.outside_temperature, 2));
                 screen->printText(0, 40, 1, "S_T: " + String(currentTemperature.setpoint_temperature));
@@ -143,25 +149,25 @@ void displayTask(void *pvParameters)
                 }
 
                 screen->clearDisplay();
-                if (xSemaphoreTake(temperatureMutex, portMAX_DELAY)) // Verificăm dacă mutexul este disponibil
+                if (xSemaphoreTake(temperatureMutex, portMAX_DELAY)) // Check if the mutex is available
                 {
-                    screen->printText(10, 0, 1, "Seted time: " + String(currentTemperature.setTime - currentTemperature.realTime));
+                    screen->printText(10, 0, 1, "Set time: " + String(currentTemperature.setTime - currentTemperature.realTime));
                     screen->printText(0, 20, 1, "I_T: " + String(currentTemperature.inside_temperature, 2));
                     screen->printText(SCREEN_WIDTH / 2, 20, 1, "O_T: " + String(currentTemperature.outside_temperature, 2));
                     screen->printText(0, 40, 1, "S_T: " + String(currentTemperature.setpoint_temperature));
                     currentTemperature.startFlag ? screen->printText(80, 40, 1, "ON") : screen->printText(80, 40, 1, "OFF");
-                    xSemaphoreGive(temperatureMutex); // Eliberăm mutexul
+                    xSemaphoreGive(temperatureMutex); // Release the mutex
                 }
             }
             else
             {
                 screen->printText(0, 60, 1, "Waiting for client...");
-                printIP = false; // Resetăm printIP pentru a permite reafișarea IP-ului la reconectare
+                printIP = false; // Reset printIP to allow re-display of IP on reconnection
             }
         }
         else
         {
-            printIP = false; // Resetăm printIP pentru a permite reafișarea IP-ului la reconectare
+            printIP = false; // Reset printIP to allow re-display of IP on reconnection
             screen->clearDisplay();
             screen->printText(0, 0, 1, "Connecting to WiFi...");
         }
@@ -174,7 +180,7 @@ void displayTask(void *pvParameters)
             lastTime = xTaskGetTickCount();
         }
 
-        vTaskDelay(pdMS_TO_TICKS(500)); // Delay de 0.5 secundă
+        vTaskDelay(pdMS_TO_TICKS(500)); // 0.5 second delay
     }
 }
 
@@ -182,7 +188,7 @@ void temperatureTask(void *pvParameters)
 {
     Temperature temperature_data;
 
-    // Inițializare temperatură setpoint la zero
+    // Initialize setpoint temperature to zero
     if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
     {
         currentTemperature.setpoint_temperature = 0;
@@ -195,7 +201,7 @@ void temperatureTask(void *pvParameters)
 
     for (;;)
     {
-        // Protejarea accesului la variabila globală cu mutex
+        // Protect access to the global variable with a mutex
         if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
         {
             currentTemperature.inside_temperature = temperature_data.readKTemp();
@@ -222,14 +228,15 @@ void temperatureTask(void *pvParameters)
             lastTime = xTaskGetTickCount();
         }
 
-        vTaskDelay(pdMS_TO_TICKS(200)); // Delay de 0.2 secunde între citiri
+        vTaskDelay(pdMS_TO_TICKS(200)); // 0.2 second delay between readings
     }
 }
 
-void pidTaskHandle(void *pvParameters)
-{
+void pidTaskHandle(void *pvParameters) {
     pinMode(MOC_PIN, OUTPUT);
-    pinMode(ZCD_PIN, INPUT);
+    pinMode(ZCD_PIN, INPUT_PULLUP);
+
+    attachInterrupt(digitalPinToInterrupt(ZCD_PIN), zeroCrossISR, FALLING); // Detect zero crossing
 
     PID pid(1, 0.1, 0.1);
     pid.setLimits(0, 1);
@@ -239,30 +246,34 @@ void pidTaskHandle(void *pvParameters)
 
     currentTemperature.realTime = 0;
     uint8_t output = 0;
+    int delayTime = 0;
 
-    for (;;)
-    {
-        // evry 0.2 sec
-        if (currentTemperature.startFlag)
-        {
+    for (;;) {
+        Serial.println(digitalRead(ZCD_PIN));
+
+        if (currentTemperature.startFlag) {
             output = pid.compute(currentTemperature.setpoint_temperature, currentTemperature.inside_temperature);
-            digitalWrite(MOC_PIN, output);
+            
+            // Convert PID output (0 - 1) to a corresponding delay for phase control
+            delayTime = map(output * 100, 0, 100, 8000, 100); // 8ms - 0.1ms (50Hz = 10ms per half period)
+            
+            if (zeroCross) {
+                delayMicroseconds(delayTime); // Delay for phase adjustment
+                digitalWrite(MOC_PIN, HIGH);
+                delayMicroseconds(100); // Short duration to trigger the triac
+                digitalWrite(MOC_PIN, LOW);
+                zeroCross = false; // Reset the flag
+            }
 
-            // evry 1 min
-            if (xTaskGetTickCount() - lastTime_work > MINUT)
-            {
-                // Check if the temperature is within the error range
-                if (abs(currentTemperature.setpoint_temperature - currentTemperature.inside_temperature) <= 3 || currentTemperature.setpoint_temperature > currentTemperature.inside_temperature)
-                {
-                    // Decrease the set time
-                    if (currentTemperature.setTime - currentTemperature.realTime > 0)
-                    {
+            // Update remaining time
+            if (xTaskGetTickCount() - lastTime_work > MINUT) {
+                if (abs(currentTemperature.setpoint_temperature - currentTemperature.inside_temperature) <= 3 || 
+                    currentTemperature.setpoint_temperature > currentTemperature.inside_temperature) {
+                    
+                    if (currentTemperature.setTime - currentTemperature.realTime > 0) {
                         currentTemperature.realTime++;
-                    }
-                    else if (currentTemperature.setTime - currentTemperature.realTime == 0)
-                    {
-                        if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
-                        {
+                    } else if (currentTemperature.setTime - currentTemperature.realTime == 0) {
+                        if (xSemaphoreTake(temperatureMutex, portMAX_DELAY)) {
                             currentTemperature.startFlag = false;
                             xSemaphoreGive(temperatureMutex);
                         }
@@ -271,17 +282,14 @@ void pidTaskHandle(void *pvParameters)
                 }
                 lastTime_work = xTaskGetTickCount();
             }
-        }
-        else
-        {
+        } else {
             digitalWrite(MOC_PIN, 0);
         }
 
-        // evry 10 sec
-        if (xTaskGetTickCount() - lastTime > LOGS_OFFSET)
-        {
+        // Logs every 10 seconds
+        if (xTaskGetTickCount() - lastTime > LOGS_OFFSET) {
             Serial.println("PID output: " + String(output));
-            Serial.println("Remained time: " + String(currentTemperature.setTime - currentTemperature.realTime));
+            Serial.println("Remaining time: " + String(currentTemperature.setTime - currentTemperature.realTime));
 
             UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
             if (LOG_MESSAGE)
@@ -289,6 +297,6 @@ void pidTaskHandle(void *pvParameters)
             lastTime = xTaskGetTickCount();
         }
 
-        vTaskDelay(pdMS_TO_TICKS(200)); // Delay de 0.2 secund între citiri
+        vTaskDelay(pdMS_TO_TICKS(20)); // Short delay to avoid blocking the task
     }
 }
