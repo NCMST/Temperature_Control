@@ -1,0 +1,4 @@
+<map id="Screen" name="Screen">
+<area shape="rect" id="node1" title="A class to manage the OLED screen using Adafruit_SSD1306 library." alt="" coords="41,80,108,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,144,32"/>
+</map>

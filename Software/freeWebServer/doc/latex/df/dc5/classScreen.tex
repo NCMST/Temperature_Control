@@ -1,0 +1,149 @@
+\hypertarget{classScreen}{}\doxysection{Screen Class Reference}
+\label{classScreen}\index{Screen@{Screen}}
+
+
+A class to manage the OLED screen using Adafruit\+\_\+\+SSD1306 library.  
+
+
+
+
+{\ttfamily \#include $<$screen.\+hpp$>$}
+
+
+
+Inheritance diagram for Screen\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{d7/d6d/classScreen__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Screen\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{de/dcf/classScreen__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classScreen_ab15688f15969591b4da987ec8e2526ce}{Screen}} (int8\+\_\+t reset\+\_\+pin=\mbox{\hyperlink{screen_8hpp_a619e07239fb3b9b14d40646ab41d5b4f}{OLED\+\_\+\+RESET}})
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classScreen}{Screen}} object. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classScreen_a7923190c9409229d86c2888d76752f77}{$\sim$\+Screen}} () noexcept
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{classScreen}{Screen}} object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classScreen_a368787716b5a044b1140a01c4a4772b6}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the screen. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classScreen_addaa49f81c2e276476c2bae2583c9863}{print\+Text}} (uint8\+\_\+t x, uint8\+\_\+t y, uint8\+\_\+t size, String text)
+\begin{DoxyCompactList}\small\item\em Clear the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class to manage the OLED screen using Adafruit\+\_\+\+SSD1306 library. 
+
+This class provides methods to initialize, clear, and print text on the screen.
+
+\begin{DoxyNote}{Note}
+Inherits from Adafruit\+\_\+\+SSD1306. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classScreen_ab15688f15969591b4da987ec8e2526ce}\label{classScreen_ab15688f15969591b4da987ec8e2526ce}} 
+\index{Screen@{Screen}!Screen@{Screen}}
+\index{Screen@{Screen}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{Screen()}{Screen()}}
+{\footnotesize\ttfamily Screen\+::\+Screen (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{reset\+\_\+pin = {\ttfamily \mbox{\hyperlink{screen_8hpp_a619e07239fb3b9b14d40646ab41d5b4f}{OLED\+\_\+\+RESET}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classScreen}{Screen}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reset\+\_\+pin} & \\
+\hline
+{\em reset\+\_\+pin} & The pin number used to reset the screen. Default is OLED\+\_\+\+RESET. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classScreen_a7923190c9409229d86c2888d76752f77}\label{classScreen_a7923190c9409229d86c2888d76752f77}} 
+\index{Screen@{Screen}!````~Screen@{$\sim$Screen}}
+\index{````~Screen@{$\sim$Screen}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{$\sim$Screen()}{~Screen()}}
+{\footnotesize\ttfamily Screen\+::$\sim$\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Destroy the \mbox{\hyperlink{classScreen}{Screen}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classScreen_a368787716b5a044b1140a01c4a4772b6}\label{classScreen_a368787716b5a044b1140a01c4a4772b6}} 
+\index{Screen@{Screen}!init@{init}}
+\index{init@{init}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily bool Screen\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the screen. 
+
+\begin{DoxyReturn}{Returns}
+true if the screen is initialized 
+
+false if the screen is not initialized
+
+true if the screen is initialized successfully. 
+
+false if the screen initialization fails. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classScreen_addaa49f81c2e276476c2bae2583c9863}\label{classScreen_addaa49f81c2e276476c2bae2583c9863}} 
+\index{Screen@{Screen}!printText@{printText}}
+\index{printText@{printText}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{printText()}{printText()}}
+{\footnotesize\ttfamily bool Screen\+::print\+Text (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x,  }\item[{uint8\+\_\+t}]{y,  }\item[{uint8\+\_\+t}]{size,  }\item[{String}]{text }\end{DoxyParamCaption})}
+
+
+
+Clear the screen. 
+
+Print text on the screen at specified coordinates.
+
+\begin{DoxyReturn}{Returns}
+true if the screen is cleared 
+
+false if the screen is not cleared
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em size} & \\
+\hline
+{\em text} & \\
+\hline
+{\em x} & The x-\/coordinate where the text will be printed. \\
+\hline
+{\em y} & The y-\/coordinate where the text will be printed. \\
+\hline
+{\em size} & The size of the text. \\
+\hline
+{\em text} & The text to be printed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the text is printed successfully. 
+
+false if the text printing fails. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Screen/\mbox{\hyperlink{screen_8hpp}{screen.\+hpp}}\item 
+lib/\+Screen/\mbox{\hyperlink{screen_8cpp}{screen.\+cpp}}\end{DoxyCompactItemize}

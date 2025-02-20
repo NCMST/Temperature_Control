@@ -1,0 +1,94 @@
+\hypertarget{WebServerManager_8hpp}{}\doxysection{lib/\+Web\+Interface/\+Web\+Server\+Manager.hpp File Reference}
+\label{WebServerManager_8hpp}\index{lib/WebInterface/WebServerManager.hpp@{lib/WebInterface/WebServerManager.hpp}}
+{\ttfamily \#include $<$Wi\+Fi.\+h$>$}\newline
+{\ttfamily \#include $<$Web\+Server.\+h$>$}\newline
+{\ttfamily \#include $<$Wi\+Fi\+Multi.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino\+Json.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$FS.\+h$>$}\newline
+{\ttfamily \#include $<$SPIFFS.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Temperature\+Data.\+hpp\char`\"{}}\newline
+Include dependency graph for Web\+Server\+Manager.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/d34/WebServerManager_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/dce/WebServerManager_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{WebServerManager_8hpp_a0906dae4a42c1fef9ec0cd0a5212ed4a}{HTTP\+\_\+\+PORT}}~80
+\begin{DoxyCompactList}\small\item\em HTTP port. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{WebServerManager_8hpp_a482f23f43bfd2edd483e8f99b57baa82}{LOGS\+\_\+\+MESSAGE}}~true
+\begin{DoxyCompactList}\small\item\em log messages to the serial monitor \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{WebServerManager_8hpp_adc6e235951ba21272a96f12242dfff69}{TIME\+\_\+\+BEFOR\+\_\+\+AP}}~5000
+\begin{DoxyCompactList}\small\item\em Time before the access point is started. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{WebServerManager_8hpp_a450a7c16ead7b3c7b882536b08f30a00}{LED\+\_\+\+BUILTIN}}~2
+\begin{DoxyCompactList}\small\item\em LED\+\_\+\+BUILTIN pin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Creciune Catalin \href{mailto:creciunelcatalin@gmail.com}{\texttt{ creciunelcatalin@gmail.\+com}} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/02-\/21
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{WebServerManager_8hpp_a0906dae4a42c1fef9ec0cd0a5212ed4a}\label{WebServerManager_8hpp_a0906dae4a42c1fef9ec0cd0a5212ed4a}} 
+\index{WebServerManager.hpp@{WebServerManager.hpp}!HTTP\_PORT@{HTTP\_PORT}}
+\index{HTTP\_PORT@{HTTP\_PORT}!WebServerManager.hpp@{WebServerManager.hpp}}
+\doxysubsubsection{\texorpdfstring{HTTP\_PORT}{HTTP\_PORT}}
+{\footnotesize\ttfamily \#define HTTP\+\_\+\+PORT~80}
+
+
+
+HTTP port. 
+
+\mbox{\Hypertarget{WebServerManager_8hpp_a450a7c16ead7b3c7b882536b08f30a00}\label{WebServerManager_8hpp_a450a7c16ead7b3c7b882536b08f30a00}} 
+\index{WebServerManager.hpp@{WebServerManager.hpp}!LED\_BUILTIN@{LED\_BUILTIN}}
+\index{LED\_BUILTIN@{LED\_BUILTIN}!WebServerManager.hpp@{WebServerManager.hpp}}
+\doxysubsubsection{\texorpdfstring{LED\_BUILTIN}{LED\_BUILTIN}}
+{\footnotesize\ttfamily \#define LED\+\_\+\+BUILTIN~2}
+
+
+
+LED\+\_\+\+BUILTIN pin. 
+
+\mbox{\Hypertarget{WebServerManager_8hpp_a482f23f43bfd2edd483e8f99b57baa82}\label{WebServerManager_8hpp_a482f23f43bfd2edd483e8f99b57baa82}} 
+\index{WebServerManager.hpp@{WebServerManager.hpp}!LOGS\_MESSAGE@{LOGS\_MESSAGE}}
+\index{LOGS\_MESSAGE@{LOGS\_MESSAGE}!WebServerManager.hpp@{WebServerManager.hpp}}
+\doxysubsubsection{\texorpdfstring{LOGS\_MESSAGE}{LOGS\_MESSAGE}}
+{\footnotesize\ttfamily \#define LOGS\+\_\+\+MESSAGE~true}
+
+
+
+log messages to the serial monitor 
+
+boolean value \mbox{\Hypertarget{WebServerManager_8hpp_adc6e235951ba21272a96f12242dfff69}\label{WebServerManager_8hpp_adc6e235951ba21272a96f12242dfff69}} 
+\index{WebServerManager.hpp@{WebServerManager.hpp}!TIME\_BEFOR\_AP@{TIME\_BEFOR\_AP}}
+\index{TIME\_BEFOR\_AP@{TIME\_BEFOR\_AP}!WebServerManager.hpp@{WebServerManager.hpp}}
+\doxysubsubsection{\texorpdfstring{TIME\_BEFOR\_AP}{TIME\_BEFOR\_AP}}
+{\footnotesize\ttfamily \#define TIME\+\_\+\+BEFOR\+\_\+\+AP~5000}
+
+
+
+Time before the access point is started. 
+
+if the connection to the Wi-\/\+Fi network fails esp32 will start an access point 

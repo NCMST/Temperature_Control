@@ -1,0 +1,102 @@
+\hypertarget{screen_8hpp}{}\doxysection{lib/\+Screen/screen.hpp File Reference}
+\label{screen_8hpp}\index{lib/Screen/screen.hpp@{lib/Screen/screen.hpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$freertos/\+Free\+RTOS.\+h$>$}\newline
+{\ttfamily \#include $<$freertos/task.\+h$>$}\newline
+{\ttfamily \#include $<$SPI.\+h$>$}\newline
+{\ttfamily \#include $<$Wire.\+h$>$}\newline
+{\ttfamily \#include $<$Adafruit\+\_\+\+GFX.\+h$>$}\newline
+{\ttfamily \#include $<$Adafruit\+\_\+\+SSD1306.\+h$>$}\newline
+Include dependency graph for screen.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d12/screen_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{d4/d5e/screen_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classScreen}{Screen}}
+\begin{DoxyCompactList}\small\item\em A class to manage the OLED screen using Adafruit\+\_\+\+SSD1306 library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{screen_8hpp_a2cd109632a6dcccaa80b43561b1ab700}{SCREEN\+\_\+\+WIDTH}}~128
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classScreen}{Screen}} width. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{screen_8hpp_a6974d08a74da681b3957b2fead2608b8}{SCREEN\+\_\+\+HEIGHT}}~64
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classScreen}{Screen}} height. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{screen_8hpp_a619e07239fb3b9b14d40646ab41d5b4f}{OLED\+\_\+\+RESET}}~-\/1
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classScreen}{Screen}} reset pin. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{screen_8hpp_a4dc358585abdaa9531e340bab60ae0b5}{SCREEN\+\_\+\+ADDRESS}}~0x3C
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classScreen}{Screen}} address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Creciune Catalin \href{mailto:creciunelcatalin@gmail.com}{\texttt{ creciunelcatalin@gmail.\+com}} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/02-\/21
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{screen_8hpp_a619e07239fb3b9b14d40646ab41d5b4f}\label{screen_8hpp_a619e07239fb3b9b14d40646ab41d5b4f}} 
+\index{screen.hpp@{screen.hpp}!OLED\_RESET@{OLED\_RESET}}
+\index{OLED\_RESET@{OLED\_RESET}!screen.hpp@{screen.hpp}}
+\doxysubsubsection{\texorpdfstring{OLED\_RESET}{OLED\_RESET}}
+{\footnotesize\ttfamily \#define OLED\+\_\+\+RESET~-\/1}
+
+
+
+\mbox{\hyperlink{classScreen}{Screen}} reset pin. 
+
+-\/1 if the screen does not have a reset pin \mbox{\Hypertarget{screen_8hpp_a4dc358585abdaa9531e340bab60ae0b5}\label{screen_8hpp_a4dc358585abdaa9531e340bab60ae0b5}} 
+\index{screen.hpp@{screen.hpp}!SCREEN\_ADDRESS@{SCREEN\_ADDRESS}}
+\index{SCREEN\_ADDRESS@{SCREEN\_ADDRESS}!screen.hpp@{screen.hpp}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_ADDRESS}{SCREEN\_ADDRESS}}
+{\footnotesize\ttfamily \#define SCREEN\+\_\+\+ADDRESS~0x3C}
+
+
+
+\mbox{\hyperlink{classScreen}{Screen}} address. 
+
+I2C Address for the screen
+
+\begin{DoxyNote}{Note}
+0x3C or 0x3D 
+\end{DoxyNote}
+\mbox{\Hypertarget{screen_8hpp_a6974d08a74da681b3957b2fead2608b8}\label{screen_8hpp_a6974d08a74da681b3957b2fead2608b8}} 
+\index{screen.hpp@{screen.hpp}!SCREEN\_HEIGHT@{SCREEN\_HEIGHT}}
+\index{SCREEN\_HEIGHT@{SCREEN\_HEIGHT}!screen.hpp@{screen.hpp}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_HEIGHT}{SCREEN\_HEIGHT}}
+{\footnotesize\ttfamily \#define SCREEN\+\_\+\+HEIGHT~64}
+
+
+
+\mbox{\hyperlink{classScreen}{Screen}} height. 
+
+\mbox{\Hypertarget{screen_8hpp_a2cd109632a6dcccaa80b43561b1ab700}\label{screen_8hpp_a2cd109632a6dcccaa80b43561b1ab700}} 
+\index{screen.hpp@{screen.hpp}!SCREEN\_WIDTH@{SCREEN\_WIDTH}}
+\index{SCREEN\_WIDTH@{SCREEN\_WIDTH}!screen.hpp@{screen.hpp}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_WIDTH}{SCREEN\_WIDTH}}
+{\footnotesize\ttfamily \#define SCREEN\+\_\+\+WIDTH~128}
+
+
+
+\mbox{\hyperlink{classScreen}{Screen}} width. 
+

@@ -1,0 +1,317 @@
+\hypertarget{main_8hpp}{}\doxysection{include/main.hpp File Reference}
+\label{main_8hpp}\index{include/main.hpp@{include/main.hpp}}
+{\ttfamily \#include $<$freertos/\+Free\+RTOS.\+h$>$}\newline
+{\ttfamily \#include $<$freertos/task.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Wi\+Fi.\+h$>$}\newline
+{\ttfamily \#include $<$Web\+Server.\+h$>$}\newline
+{\ttfamily \#include $<$ESPm\+DNS.\+h$>$}\newline
+{\ttfamily \#include $<$FS.\+h$>$}\newline
+{\ttfamily \#include $<$SPIFFS.\+h$>$}\newline
+{\ttfamily \#include $<$Little\+FS.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}pid.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Web\+Server\+Manager.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}screen.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}temperature.\+hpp\char`\"{}}\newline
+Include dependency graph for main.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{db/dfd/main_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{d0/dcf/main_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8hpp_acd444e3efb7f7ff7d5f65a538c2a754c}{SERVER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE}}~8192
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a254d10ab5923093ac186945fea1e82ef}{TEMPERATURE\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE}}~2048
+\item 
+\#define \mbox{\hyperlink{main_8hpp_ac018fe3f2622c6da250fdcc3d1df54f2}{DISPLAY\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE}}~4096
+\item 
+\#define \mbox{\hyperlink{main_8hpp_acda1e498527b0d7f38973e6deb6d2049}{PID\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE}}~4096
+\item 
+\#define \mbox{\hyperlink{main_8hpp_ad4455691936f92fdd6c37566fc58ba1f}{BAUD\+\_\+\+RATE}}~115200
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a450a7c16ead7b3c7b882536b08f30a00}{LED\+\_\+\+BUILTIN}}~2
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a73ed85b75df76333b431eb1b65939460}{MOC\+\_\+\+PIN}}~23
+\item 
+\#define \mbox{\hyperlink{main_8hpp_afc5a566b0f9d846738dfe5b76596658a}{ZCD\+\_\+\+PIN}}~36
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a07b69d84c93cd57c24b26ab8575caa24}{AP\+\_\+\+SSID\+\_\+\+WORK}}~\char`\"{}your\+\_\+default\+\_\+ssid\+\_\+work\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a8cc0e73ef530448c7ec25de7f9ef15c7}{AP\+\_\+\+PASS\+\_\+\+WORK}}~\char`\"{}your\+\_\+default\+\_\+pass\+\_\+work\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a56ee34255f5306176ee8fea2137397d4}{AP\+\_\+\+SSID}}~\char`\"{}your\+\_\+default\+\_\+ssid\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a85d4dac148bc7ac5dc9a716085308335}{AP\+\_\+\+PASS}}~\char`\"{}your\+\_\+default\+\_\+pass\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a173bba050e90d1b685d079d4da839309}{WF\+\_\+\+SSID}}~\char`\"{}your\+\_\+default\+\_\+ssid\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a9c132ed40fe0cce3c1d0800864be1c58}{WF\+\_\+\+PASS}}~\char`\"{}your\+\_\+default\+\_\+pass\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a7828f43ae5f3574eff31e3dd48aef334}{LOG\+\_\+\+MESSAGE}}~false
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a5f26437558d3eb56f6b16ffadba424db}{LOGS\+\_\+\+OFFSET}}~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(10000)
+\item 
+\#define \mbox{\hyperlink{main_8hpp_a94212be2394d2d37d9dfd33d07d82dba}{SECOND}}~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(1000)
+\item 
+\#define \mbox{\hyperlink{main_8hpp_afccbf9fea014a33f945ff5d8be57f68d}{MINUT}}~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(1000 $\ast$ 60)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8hpp_a571ecf6f1d11b90c386e2c900a8867e3}{web\+Server\+Task}} (void $\ast$pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Web server task definition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8hpp_ac55d0909bfe96e544bb1324d9e0be983}{display\+Task}} (void $\ast$pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Display task definition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8hpp_a96c361e8ae7194173d6843a3b9a2fb73}{temperature\+Task}} (void $\ast$pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classTemperature}{Temperature}} task definition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8hpp_a19fbfc122dff7ef467f9cd7f84d99b1d}{pid\+Task\+Handle}} (void $\ast$pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classPID}{PID}} task definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main_8hpp_a85d4dac148bc7ac5dc9a716085308335}\label{main_8hpp_a85d4dac148bc7ac5dc9a716085308335}} 
+\index{main.hpp@{main.hpp}!AP\_PASS@{AP\_PASS}}
+\index{AP\_PASS@{AP\_PASS}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{AP\_PASS}{AP\_PASS}}
+{\footnotesize\ttfamily \#define AP\+\_\+\+PASS~\char`\"{}your\+\_\+default\+\_\+pass\char`\"{}}
+
+\mbox{\Hypertarget{main_8hpp_a8cc0e73ef530448c7ec25de7f9ef15c7}\label{main_8hpp_a8cc0e73ef530448c7ec25de7f9ef15c7}} 
+\index{main.hpp@{main.hpp}!AP\_PASS\_WORK@{AP\_PASS\_WORK}}
+\index{AP\_PASS\_WORK@{AP\_PASS\_WORK}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{AP\_PASS\_WORK}{AP\_PASS\_WORK}}
+{\footnotesize\ttfamily \#define AP\+\_\+\+PASS\+\_\+\+WORK~\char`\"{}your\+\_\+default\+\_\+pass\+\_\+work\char`\"{}}
+
+\mbox{\Hypertarget{main_8hpp_a56ee34255f5306176ee8fea2137397d4}\label{main_8hpp_a56ee34255f5306176ee8fea2137397d4}} 
+\index{main.hpp@{main.hpp}!AP\_SSID@{AP\_SSID}}
+\index{AP\_SSID@{AP\_SSID}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{AP\_SSID}{AP\_SSID}}
+{\footnotesize\ttfamily \#define AP\+\_\+\+SSID~\char`\"{}your\+\_\+default\+\_\+ssid\char`\"{}}
+
+\mbox{\Hypertarget{main_8hpp_a07b69d84c93cd57c24b26ab8575caa24}\label{main_8hpp_a07b69d84c93cd57c24b26ab8575caa24}} 
+\index{main.hpp@{main.hpp}!AP\_SSID\_WORK@{AP\_SSID\_WORK}}
+\index{AP\_SSID\_WORK@{AP\_SSID\_WORK}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{AP\_SSID\_WORK}{AP\_SSID\_WORK}}
+{\footnotesize\ttfamily \#define AP\+\_\+\+SSID\+\_\+\+WORK~\char`\"{}your\+\_\+default\+\_\+ssid\+\_\+work\char`\"{}}
+
+\mbox{\Hypertarget{main_8hpp_ad4455691936f92fdd6c37566fc58ba1f}\label{main_8hpp_ad4455691936f92fdd6c37566fc58ba1f}} 
+\index{main.hpp@{main.hpp}!BAUD\_RATE@{BAUD\_RATE}}
+\index{BAUD\_RATE@{BAUD\_RATE}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{BAUD\_RATE}{BAUD\_RATE}}
+{\footnotesize\ttfamily \#define BAUD\+\_\+\+RATE~115200}
+
+\mbox{\Hypertarget{main_8hpp_ac018fe3f2622c6da250fdcc3d1df54f2}\label{main_8hpp_ac018fe3f2622c6da250fdcc3d1df54f2}} 
+\index{main.hpp@{main.hpp}!DISPLAY\_TASK\_STACK\_SIZE@{DISPLAY\_TASK\_STACK\_SIZE}}
+\index{DISPLAY\_TASK\_STACK\_SIZE@{DISPLAY\_TASK\_STACK\_SIZE}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{DISPLAY\_TASK\_STACK\_SIZE}{DISPLAY\_TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \#define DISPLAY\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE~4096}
+
+\mbox{\Hypertarget{main_8hpp_a450a7c16ead7b3c7b882536b08f30a00}\label{main_8hpp_a450a7c16ead7b3c7b882536b08f30a00}} 
+\index{main.hpp@{main.hpp}!LED\_BUILTIN@{LED\_BUILTIN}}
+\index{LED\_BUILTIN@{LED\_BUILTIN}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{LED\_BUILTIN}{LED\_BUILTIN}}
+{\footnotesize\ttfamily \#define LED\+\_\+\+BUILTIN~2}
+
+\mbox{\Hypertarget{main_8hpp_a7828f43ae5f3574eff31e3dd48aef334}\label{main_8hpp_a7828f43ae5f3574eff31e3dd48aef334}} 
+\index{main.hpp@{main.hpp}!LOG\_MESSAGE@{LOG\_MESSAGE}}
+\index{LOG\_MESSAGE@{LOG\_MESSAGE}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{LOG\_MESSAGE}{LOG\_MESSAGE}}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+MESSAGE~false}
+
+\mbox{\Hypertarget{main_8hpp_a5f26437558d3eb56f6b16ffadba424db}\label{main_8hpp_a5f26437558d3eb56f6b16ffadba424db}} 
+\index{main.hpp@{main.hpp}!LOGS\_OFFSET@{LOGS\_OFFSET}}
+\index{LOGS\_OFFSET@{LOGS\_OFFSET}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{LOGS\_OFFSET}{LOGS\_OFFSET}}
+{\footnotesize\ttfamily \#define LOGS\+\_\+\+OFFSET~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(10000)}
+
+\mbox{\Hypertarget{main_8hpp_afccbf9fea014a33f945ff5d8be57f68d}\label{main_8hpp_afccbf9fea014a33f945ff5d8be57f68d}} 
+\index{main.hpp@{main.hpp}!MINUT@{MINUT}}
+\index{MINUT@{MINUT}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{MINUT}{MINUT}}
+{\footnotesize\ttfamily \#define MINUT~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(1000 $\ast$ 60)}
+
+\mbox{\Hypertarget{main_8hpp_a73ed85b75df76333b431eb1b65939460}\label{main_8hpp_a73ed85b75df76333b431eb1b65939460}} 
+\index{main.hpp@{main.hpp}!MOC\_PIN@{MOC\_PIN}}
+\index{MOC\_PIN@{MOC\_PIN}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{MOC\_PIN}{MOC\_PIN}}
+{\footnotesize\ttfamily \#define MOC\+\_\+\+PIN~23}
+
+\mbox{\Hypertarget{main_8hpp_acda1e498527b0d7f38973e6deb6d2049}\label{main_8hpp_acda1e498527b0d7f38973e6deb6d2049}} 
+\index{main.hpp@{main.hpp}!PID\_TASK\_STACK\_SIZE@{PID\_TASK\_STACK\_SIZE}}
+\index{PID\_TASK\_STACK\_SIZE@{PID\_TASK\_STACK\_SIZE}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{PID\_TASK\_STACK\_SIZE}{PID\_TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \#define PID\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE~4096}
+
+\mbox{\Hypertarget{main_8hpp_a94212be2394d2d37d9dfd33d07d82dba}\label{main_8hpp_a94212be2394d2d37d9dfd33d07d82dba}} 
+\index{main.hpp@{main.hpp}!SECOND@{SECOND}}
+\index{SECOND@{SECOND}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{SECOND}{SECOND}}
+{\footnotesize\ttfamily \#define SECOND~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(1000)}
+
+\mbox{\Hypertarget{main_8hpp_acd444e3efb7f7ff7d5f65a538c2a754c}\label{main_8hpp_acd444e3efb7f7ff7d5f65a538c2a754c}} 
+\index{main.hpp@{main.hpp}!SERVER\_TASK\_STACK\_SIZE@{SERVER\_TASK\_STACK\_SIZE}}
+\index{SERVER\_TASK\_STACK\_SIZE@{SERVER\_TASK\_STACK\_SIZE}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{SERVER\_TASK\_STACK\_SIZE}{SERVER\_TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \#define SERVER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE~8192}
+
+\mbox{\Hypertarget{main_8hpp_a254d10ab5923093ac186945fea1e82ef}\label{main_8hpp_a254d10ab5923093ac186945fea1e82ef}} 
+\index{main.hpp@{main.hpp}!TEMPERATURE\_TASK\_STACK\_SIZE@{TEMPERATURE\_TASK\_STACK\_SIZE}}
+\index{TEMPERATURE\_TASK\_STACK\_SIZE@{TEMPERATURE\_TASK\_STACK\_SIZE}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{TEMPERATURE\_TASK\_STACK\_SIZE}{TEMPERATURE\_TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \#define TEMPERATURE\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE~2048}
+
+\mbox{\Hypertarget{main_8hpp_a9c132ed40fe0cce3c1d0800864be1c58}\label{main_8hpp_a9c132ed40fe0cce3c1d0800864be1c58}} 
+\index{main.hpp@{main.hpp}!WF\_PASS@{WF\_PASS}}
+\index{WF\_PASS@{WF\_PASS}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{WF\_PASS}{WF\_PASS}}
+{\footnotesize\ttfamily \#define WF\+\_\+\+PASS~\char`\"{}your\+\_\+default\+\_\+pass\char`\"{}}
+
+\mbox{\Hypertarget{main_8hpp_a173bba050e90d1b685d079d4da839309}\label{main_8hpp_a173bba050e90d1b685d079d4da839309}} 
+\index{main.hpp@{main.hpp}!WF\_SSID@{WF\_SSID}}
+\index{WF\_SSID@{WF\_SSID}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{WF\_SSID}{WF\_SSID}}
+{\footnotesize\ttfamily \#define WF\+\_\+\+SSID~\char`\"{}your\+\_\+default\+\_\+ssid\char`\"{}}
+
+\mbox{\Hypertarget{main_8hpp_afc5a566b0f9d846738dfe5b76596658a}\label{main_8hpp_afc5a566b0f9d846738dfe5b76596658a}} 
+\index{main.hpp@{main.hpp}!ZCD\_PIN@{ZCD\_PIN}}
+\index{ZCD\_PIN@{ZCD\_PIN}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{ZCD\_PIN}{ZCD\_PIN}}
+{\footnotesize\ttfamily \#define ZCD\+\_\+\+PIN~36}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8hpp_ac55d0909bfe96e544bb1324d9e0be983}\label{main_8hpp_ac55d0909bfe96e544bb1324d9e0be983}} 
+\index{main.hpp@{main.hpp}!displayTask@{displayTask}}
+\index{displayTask@{displayTask}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{displayTask()}{displayTask()}}
+{\footnotesize\ttfamily void display\+Task (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+
+
+
+Display task definition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & \\
+\hline
+\end{DoxyParams}
+Display task definition.
+
+This task manages the display, shows IP address, SSID, and temperature information, and logs information periodically.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Parameters for the task (\mbox{\hyperlink{classScreen}{Screen}} object).\\
+\hline
+\end{DoxyParams}
+Task to display information on the screen.
+
+This task initializes the screen and continuously updates it with the current Wi\+Fi status and temperature information. It handles both Wi\+Fi station and access point modes, displaying the IP address, SSID, and temperature readings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to the \mbox{\hyperlink{classScreen}{Screen}} object to be used for display.\\
+\hline
+\end{DoxyParams}
+The task performs the following actions\+:
+\begin{DoxyItemize}
+\item Initializes the screen.
+\item Starts the serial communication.
+\item Checks the Wi\+Fi connection status and displays the IP address and SSID if connected.
+\item Displays temperature information including inside temperature, outside temperature, setpoint temperature, and the status of the start flag.
+\item Handles client connections in access point mode and displays a message when a client is connected.
+\item Logs the stack high water mark periodically for debugging purposes.
+\end{DoxyItemize}
+
+The task runs indefinitely with a delay of 0.\+5 seconds between iterations. \mbox{\Hypertarget{main_8hpp_a19fbfc122dff7ef467f9cd7f84d99b1d}\label{main_8hpp_a19fbfc122dff7ef467f9cd7f84d99b1d}} 
+\index{main.hpp@{main.hpp}!pidTaskHandle@{pidTaskHandle}}
+\index{pidTaskHandle@{pidTaskHandle}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{pidTaskHandle()}{pidTaskHandle()}}
+{\footnotesize\ttfamily void pid\+Task\+Handle (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classPID}{PID}} task definition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & \\
+\hline
+\end{DoxyParams}
+\mbox{\hyperlink{classPID}{PID}} task definition.
+
+This task handles the \mbox{\hyperlink{classPID}{PID}} control for temperature regulation, manages the triac state based on zero crossing detection, and logs information periodically.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Parameters for the task (not used). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8hpp_a96c361e8ae7194173d6843a3b9a2fb73}\label{main_8hpp_a96c361e8ae7194173d6843a3b9a2fb73}} 
+\index{main.hpp@{main.hpp}!temperatureTask@{temperatureTask}}
+\index{temperatureTask@{temperatureTask}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{temperatureTask()}{temperatureTask()}}
+{\footnotesize\ttfamily void temperature\+Task (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classTemperature}{Temperature}} task definition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & \\
+\hline
+\end{DoxyParams}
+Task function to handle temperature control.
+
+This function is designed to be run as a Free\+RTOS task. It handles the temperature control logic, including reading temperature sensors, processing the data, and controlling actuators to maintain the desired temperature.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to the parameters passed to the task. This can be used to pass configuration or state information to the task.\\
+\hline
+\end{DoxyParams}
+\mbox{\hyperlink{classTemperature}{Temperature}} task definition.
+
+This task reads inside and outside temperature data, updates the global temperature structure, and logs information periodically.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Parameters for the task (not used). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8hpp_a571ecf6f1d11b90c386e2c900a8867e3}\label{main_8hpp_a571ecf6f1d11b90c386e2c900a8867e3}} 
+\index{main.hpp@{main.hpp}!webServerTask@{webServerTask}}
+\index{webServerTask@{webServerTask}!main.hpp@{main.hpp}}
+\doxysubsubsection{\texorpdfstring{webServerTask()}{webServerTask()}}
+{\footnotesize\ttfamily void web\+Server\+Task (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+
+
+
+Web server task definition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & \\
+\hline
+\end{DoxyParams}
+Web server task definition.
+
+This task manages the web server, handles client requests, updates temperature data, and logs information periodically.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Parameters for the task (not used). \\
+\hline
+\end{DoxyParams}
