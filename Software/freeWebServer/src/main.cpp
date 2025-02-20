@@ -6,9 +6,11 @@ TemperatureData currentTemperature;
 SemaphoreHandle_t temperatureMutex;
 
 volatile bool zeroCross = false;
+volatile bool turnOffRequest = false;
 
-void IRAM_ATTR zeroCrossISR() {
-    zeroCross = true;  // Set the flag at each zero crossing
+void IRAM_ATTR zeroCrossISR()
+{
+    zeroCross = true; // Set the flag at each zero crossing
 }
 
 void setup()
@@ -232,7 +234,8 @@ void temperatureTask(void *pvParameters)
     }
 }
 
-void pidTaskHandle(void *pvParameters) {
+void pidTaskHandle(void *pvParameters)
+{
     pinMode(MOC_PIN, OUTPUT);
     pinMode(ZCD_PIN, INPUT_PULLUP);
 
@@ -246,34 +249,50 @@ void pidTaskHandle(void *pvParameters) {
 
     currentTemperature.realTime = 0;
     uint8_t output = 0;
-    int delayTime = 0;
+    bool triacState = false; // Current state of the triac
 
-    for (;;) {
-        Serial.println(digitalRead(ZCD_PIN));
-
-        if (currentTemperature.startFlag) {
+    for (;;)
+    {
+        if (currentTemperature.startFlag)
+        {
             output = pid.compute(currentTemperature.setpoint_temperature, currentTemperature.inside_temperature);
-            
-            // Convert PID output (0 - 1) to a corresponding delay for phase control
-            delayTime = map(output * 100, 0, 100, 8000, 100); // 8ms - 0.1ms (50Hz = 10ms per half period)
-            
-            if (zeroCross) {
-                delayMicroseconds(delayTime); // Delay for phase adjustment
+
+            if (output == 1)
+            {
+                // PID wants the heating on, the triac remains active
                 digitalWrite(MOC_PIN, HIGH);
-                delayMicroseconds(100); // Short duration to trigger the triac
+                triacState = true;
+            }
+            else if (output == 0)
+            {
+                // PID requests shutdown, but we wait for zero crossing
+                turnOffRequest = true;
+            }
+
+            if (turnOffRequest && zeroCross)
+            {
+                // At the first zero crossing after shutdown is requested
                 digitalWrite(MOC_PIN, LOW);
-                zeroCross = false; // Reset the flag
+                triacState = false;
+                turnOffRequest = false;
+                zeroCross = false; // Reset zero crossing flag
             }
 
             // Update remaining time
-            if (xTaskGetTickCount() - lastTime_work > MINUT) {
-                if (abs(currentTemperature.setpoint_temperature - currentTemperature.inside_temperature) <= 3 || 
-                    currentTemperature.setpoint_temperature > currentTemperature.inside_temperature) {
-                    
-                    if (currentTemperature.setTime - currentTemperature.realTime > 0) {
+            if (xTaskGetTickCount() - lastTime_work > MINUT)
+            {
+                if (abs(currentTemperature.setpoint_temperature - currentTemperature.inside_temperature) <= 3 ||
+                    currentTemperature.setpoint_temperature > currentTemperature.inside_temperature)
+                {
+
+                    if (currentTemperature.setTime - currentTemperature.realTime > 0)
+                    {
                         currentTemperature.realTime++;
-                    } else if (currentTemperature.setTime - currentTemperature.realTime == 0) {
-                        if (xSemaphoreTake(temperatureMutex, portMAX_DELAY)) {
+                    }
+                    else if (currentTemperature.setTime - currentTemperature.realTime == 0)
+                    {
+                        if (xSemaphoreTake(temperatureMutex, portMAX_DELAY))
+                        {
                             currentTemperature.startFlag = false;
                             xSemaphoreGive(temperatureMutex);
                         }
@@ -282,20 +301,28 @@ void pidTaskHandle(void *pvParameters) {
                 }
                 lastTime_work = xTaskGetTickCount();
             }
-        } else {
+        }
+        else
+        {
             digitalWrite(MOC_PIN, 0);
+            triacState = false;
         }
 
         // Logs every 10 seconds
-        if (xTaskGetTickCount() - lastTime > LOGS_OFFSET) {
-            Serial.println("PID output: " + String(output));
-            Serial.println("Remaining time: " + String(currentTemperature.setTime - currentTemperature.realTime));
+        UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
+        if (LOG_MESSAGE)
+            if (xTaskGetTickCount() - lastTime > LOGS_OFFSET)
+            {
+                Serial.print("PID output: ");
+                Serial.println(output);
+                Serial.print("Triac State: ");
+                Serial.println(triacState);
+                Serial.print("Remained time: ");
 
-            UBaseType_t uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
-            if (LOG_MESSAGE)
+                Serial.println(currentTemperature.setTime - currentTemperature.realTime);
                 Serial.println("PID stack high water mark: " + String(uxHighWaterMark));
-            lastTime = xTaskGetTickCount();
-        }
+            }
+        lastTime = xTaskGetTickCount();
 
         vTaskDelay(pdMS_TO_TICKS(20)); // Short delay to avoid blocking the task
     }

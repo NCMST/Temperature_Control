@@ -27,6 +27,15 @@
     <li>Allowing the setting of PID constants for PWM signal</li>
 </ul>
 
+<h2>Network Configuration</h2>
+
+<p>The ESP32 is working in two modes:</p>
+
+<ul>
+    <li>Connected to a router, allowing access to all devices on the local network</li>
+    <li>Operating as an access point with the default SSID <code>your_default_ssid</code> and password <code>your_default_pass</code></li>
+</ul>
+
 <h2>Code</h2>
 
 <p>The actual code can be found in folder <code>v.0.1</code>, under <a href="/Software/freeWebServer/">MCUCod</a>.</p>
