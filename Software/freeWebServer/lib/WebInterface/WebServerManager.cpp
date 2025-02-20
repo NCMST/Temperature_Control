@@ -81,7 +81,7 @@ int WebServerManager::begin()
     // Start trying to connect to Wi-Fi networks
     while (wifiMulti.run() != WL_CONNECTED)
     {
-        if (millis() - startAttemptTime >= TEN_SEC) // Check if 10 seconds have passed
+        if (millis() - startAttemptTime >= TIME_BEFOR_AP) // Check if 10 seconds have passed
         {
             if (LOGS_MESSAGE)
                 Serial.println("Error: Failed to connect to WiFi");

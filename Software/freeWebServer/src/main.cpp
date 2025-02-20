@@ -8,13 +8,27 @@ SemaphoreHandle_t temperatureMutex;
 volatile bool zeroCross = false;
 volatile bool turnOffRequest = false;
 
+/**
+ * @brief ISR for detecting zero crossing.
+ * 
+ * This ISR is triggered at each zero crossing of the AC signal.
+ * It sets the zeroCross flag to true, which is used by the PID task
+ * to synchronize the triac control with the AC signal.
+ */
 void IRAM_ATTR zeroCrossISR()
 {
     zeroCross = true; // Set the flag at each zero crossing
 }
 
+/**
+ * @brief Setup function to initialize tasks and resources.
+ * 
+ * This function creates a mutex for temperature data access and initializes
+ * tasks for web server, display, temperature reading, and PID control.
+ */
 void setup()
 {
+    // Create a mutex for temperature data access
     temperatureMutex = xSemaphoreCreateMutex();
     if (temperatureMutex == NULL)
     {
@@ -23,16 +37,29 @@ void setup()
             ;
     }
 
+    // Create tasks and pin them to specific cores
     xTaskCreatePinnedToCore(webServerTask, "runWebServer", SERVER_TASK_STACK_SIZE, NULL, 1, &WebServerTaskHandle, 1);
     xTaskCreatePinnedToCore(displayTask, "runDisplay", DISPLAY_TASK_STACK_SIZE, new Screen(), 1, &DisplayTaskHandle, 0);
     xTaskCreatePinnedToCore(temperatureTask, "runTemperature", TEMPERATURE_TASK_STACK_SIZE, NULL, 1, &TemperatureTaskHandle, 0);
-    // PID
     xTaskCreatePinnedToCore(pidTaskHandle, "settemperature", PID_TASK_STACK_SIZE, NULL, 1, &PIDTaskHandle, 0);
 }
 
+/**
+ * @brief Main loop function.
+ * 
+ * This function is intentionally left empty as tasks are handled by FreeRTOS.
+ */
 void loop() {}
 
 // Core 1
+/**
+ * @brief Task for handling web server operations.
+ * 
+ * This task manages the web server, handles client requests, updates temperature data,
+ * and logs information periodically.
+ * 
+ * @param pvParameters Parameters for the task (not used).
+ */
 void webServerTask(void *pvParameters)
 {
     WebServerManager webServer(AP_SSID, AP_PASS, AP_SSID_WORK, AP_PASS_WORK);
@@ -100,7 +127,35 @@ void webServerTask(void *pvParameters)
     }
 }
 
-// Core 0
+// core 0
+/**
+ * @brief Task for handling display operations.
+ * 
+ * This task manages the display, shows IP address, SSID, and temperature information,
+ * and logs information periodically.
+ * 
+ * @param pvParameters Parameters for the task (Screen object).
+ */
+/**
+ * @brief Task to display information on the screen.
+ * 
+ * This task initializes the screen and continuously updates it with the current
+ * WiFi status and temperature information. It handles both WiFi station and 
+ * access point modes, displaying the IP address, SSID, and temperature readings.
+ * 
+ * @param pvParameters Pointer to the Screen object to be used for display.
+ * 
+ * The task performs the following actions:
+ * - Initializes the screen.
+ * - Starts the serial communication.
+ * - Checks the WiFi connection status and displays the IP address and SSID if connected.
+ * - Displays temperature information including inside temperature, outside temperature,
+ *   setpoint temperature, and the status of the start flag.
+ * - Handles client connections in access point mode and displays a message when a client is connected.
+ * - Logs the stack high water mark periodically for debugging purposes.
+ * 
+ * The task runs indefinitely with a delay of 0.5 seconds between iterations.
+ */
 void displayTask(void *pvParameters)
 {
     Screen *screen = (Screen *)pvParameters;
@@ -186,6 +241,14 @@ void displayTask(void *pvParameters)
     }
 }
 
+/**
+ * @brief Task for reading temperature data.
+ * 
+ * This task reads inside and outside temperature data, updates the global temperature
+ * structure, and logs information periodically.
+ * 
+ * @param pvParameters Parameters for the task (not used).
+ */
 void temperatureTask(void *pvParameters)
 {
     Temperature temperature_data;
@@ -234,6 +297,14 @@ void temperatureTask(void *pvParameters)
     }
 }
 
+/**
+ * @brief Task for PID control and triac management.
+ * 
+ * This task handles the PID control for temperature regulation, manages the triac
+ * state based on zero crossing detection, and logs information periodically.
+ * 
+ * @param pvParameters Parameters for the task (not used).
+ */
 void pidTaskHandle(void *pvParameters)
 {
     pinMode(MOC_PIN, OUTPUT);
@@ -241,7 +312,9 @@ void pidTaskHandle(void *pvParameters)
 
     attachInterrupt(digitalPinToInterrupt(ZCD_PIN), zeroCrossISR, FALLING); // Detect zero crossing
 
-    PID pid(1, 0.1, 0.1);
+    float kp = 1, ki = 0.1, kd = 0.1;
+
+    PID pid(kp, ki, kd);
     pid.setLimits(0, 1);
 
     TickType_t lastTime = xTaskGetTickCount();
