@@ -1,69 +1,22 @@
 /**
  * @file WebServerManager.cpp
  * @author Creciune Catalin creciunelcatalin@gmail.com
- * @brief 
+ * @brief WebServerManager class implementation
  * @version 0.1
  * @date 2025-02-21
- * 
+ *
  * @copyright Copyright (c) 2025
- * 
+ *
  */
 #include "WebServerManager.hpp"
 
 /**
- * @brief list all the files from the SPIFFS
- * 
- */
-void listSPIFFSFiles()
-{
-    // SPIFFS.format();
-
-    Serial.println("Listing files...");
-    File root = SPIFFS.open("/");
-    File file = root.openNextFile();
-    while (file)
-    {
-        Serial.print("FILE: ");
-        Serial.println(file.name());
-        file = root.openNextFile();
-    }
-}
-
-/**
- * @brief Read the content of a file
- * 
- * @param path 
- * @return String 
- */
-String readFile(const char *path)
-{
-    String content;
-
-    File file = SPIFFS.open(path, "r");
-
-    if (!file || file.isDirectory())
-    {
-        Serial.println("Failed to open file for reading");
-        return String();
-    }
-
-    while (file.available())
-    {
-        content += String((char)file.read());
-    }
-
-    file.close();
-
-    return content;
-}
-
-/**
  * @brief Construct a new Web Server Manager:: Web Server Manager object
- * 
- * @param ssid 
- * @param password 
- * @param secon 
- * @param seconPass 
+ *
+ * @param ssid
+ * @param password
+ * @param secon
+ * @param seconPass
  */
 WebServerManager::WebServerManager(const char *ssid, const char *password, const char *secon, const char *seconPass)
     : ssid(ssid), password(password), server(HTTP_PORT), second_ssid(secon), second_password(seconPass)
@@ -75,15 +28,15 @@ WebServerManager::WebServerManager(const char *ssid, const char *password, const
         return;
     }
 
-    homePage = readFile("/home.html");
+    homePage = fileManager.readFile("/home.html");
 
-    graphPage = readFile("/graph.html");
+    graphPage = fileManager.readFile("/graph.html");
 
-    listPage = readFile("/list.html");
+    listPage = fileManager.readFile("/list.html");
 
     if (LOGS_MESSAGE)
     {
-        listSPIFFSFiles();
+        fileManager.listSPIFFSFiles();
         Serial.println(listPage);
     }
 }
@@ -147,6 +100,12 @@ int WebServerManager::begin()
 
     server.on("/download", [this]()
               { handleDownload(); }); // Set the route for download
+
+    server.on("/pid", HTTP_POST, [this]()
+              { handlePID(); }); // Set the route for PID
+
+    server.on("/pid_constants", HTTP_GET, [this]()
+              { handlePIDPrint(); }); // Set the route for PID constants
 
     server.begin(); // Start the server
 
@@ -281,7 +240,7 @@ void WebServerManager::handleGraph()
 
 /**
  * @brief handle the list page
- * 
+ *
  */
 void WebServerManager::handleList()
 {
@@ -307,7 +266,7 @@ void WebServerManager::handleTemperatureData()
 
 /**
  * @brief handle the temperature list
- * 
+ *
  */
 void WebServerManager::handleTemperatureList()
 {
@@ -331,8 +290,8 @@ void WebServerManager::handleTemperatureList()
 
 /**
  * @brief set the temperature data
- * 
- * @param tempData 
+ *
+ * @param tempData
  */
 void WebServerManager::setTemperatureData(const TemperatureData &tempData)
 {
@@ -345,7 +304,7 @@ void WebServerManager::setTemperatureData(const TemperatureData &tempData)
 
 /**
  * @brief handle the client
- * 
+ *
  */
 void WebServerManager::handleClient()
 {
@@ -355,7 +314,7 @@ void WebServerManager::handleClient()
 
 /**
  * @brief download the list.csv file
- * 
+ *
  */
 void WebServerManager::handleDownload()
 {
@@ -372,29 +331,73 @@ void WebServerManager::handleDownload()
 }
 
 /**
+ * @brief helper function to list the files in the SPIFFS
+ *
+ * PID constants can be updated using this endpoint
+ */
+void WebServerManager::handlePID()
+{
+    JsonDocument doc;
+    DeserializationError error = deserializeJson(doc, server.arg("plain"));
+
+    if (!error)
+    {
+        float kp = doc["kp"];
+        float ki = doc["ki"];
+        float kd = doc["kd"];
+
+        if (LOGS_MESSAGE)
+        {
+            Serial.print("PID constants updated: ");
+            Serial.print("Kp=");
+            Serial.print(kp);
+            Serial.print(", Ki=");
+            Serial.print(ki);
+            Serial.print(", Kd=");
+            Serial.println(kd);
+        }
+
+        server.send(200, "text/plain", "PID constants updated");
+    }
+    else
+    {
+        if (LOGS_MESSAGE)
+            Serial.println("Failed to parse JSON");
+        server.send(400, "text/plain", "Invalid JSON");
+    }
+}
+
+/**
+ * @brief handle the PID constants
+ *
+ */
+void WebServerManager::handlePIDPrint()
+{
+    StaticJsonDocument<200> jsonDoc;
+    jsonDoc["kp"] = kp;
+    jsonDoc["ki"] = ki;
+    jsonDoc["kd"] = kd;
+
+    String jsonResponse;
+    serializeJson(jsonDoc, jsonResponse);
+    server.send(200, "application/json", jsonResponse);
+}
+
+/**
  * @brief update the list.csv file
- * 
- * @param realTemperature 
- * @param setTemperature 
- * @param time 
+ *
+ * @param realTemperature
+ * @param setTemperature
+ * @param time
  */
 void WebServerManager::updateCSV(float realTemperature, float setTemperature, uint32_t time)
 {
-    File file = SPIFFS.open("/list.csv", "a");
+    String data = String(realTemperature) + "," + String(setTemperature) + "," + String(time) + "\n";
 
-    if (!file)
+    if (!fileManager.updateFile("/list.csv", data.c_str()))
     {
         if (LOGS_MESSAGE)
             Serial.println("Failed to open file for writing");
         return;
     }
-
-    file.print(realTemperature);
-    file.print(",");
-    file.print(setTemperature);
-    file.print(",");
-    file.print(time);
-    file.println();
-
-    file.close();
 }

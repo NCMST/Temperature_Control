@@ -1,7 +1,7 @@
 /**
  * @file WebServerManager.hpp
  * @author Creciune Catalin creciunelcatalin@gmail.com
- * @brief
+ * @brief Web server manager class definition
  * @version 0.1
  * @date 2025-02-21
  *
@@ -15,10 +15,8 @@
 #include <WebServer.h>
 #include <WiFiMulti.h>
 #include <ArduinoJson.h>
-#include <vector>
-#include <FS.h>
-#include <SPIFFS.h>
 #include "TemperatureData.hpp"
+#include "FileManager.hpp"
 
 /**
  * @brief HTTP port
@@ -208,6 +206,8 @@ public:
      */
     int getSetTime() const { return setTime; }
 
+    float getPIDconstants() const { return kp, ki, kd; }
+
     /**
      * @brief Sets the Wi-Fi credentials for the primary network
      * 
@@ -243,6 +243,18 @@ public:
      */
     void updateCSV(float realTemperature, float setTemperature, uint32_t time);
 
+    /**
+     * @brief Handle PID constants
+     * 
+     */
+    void handlePID();
+
+    /**
+     * @brief Handle PID constants Print
+     * 
+     */
+    void handlePIDPrint();
+
 private:
     const char *ssid;            // SSID of the Wi-Fi network
     const char *password;        // Password of the Wi-Fi network
@@ -257,11 +269,16 @@ private:
     bool startFlag;
     uint32_t setTime;
 
+    float kp, ki, kd; // PID constants
+
     std::vector<TemperatureData> temperatureHistory;
 
     TemperatureData currentTemperature; // Variable for storing the current temperature
 
     WiFiMulti wifiMulti; // Object for managing multiple Wi-Fi networks
+
+    FileManager fileManager; // Object for managing files
 };
+
 
 #endif // WEBSERVERMANAGER_HPP

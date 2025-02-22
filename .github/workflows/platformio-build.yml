@@ -23,6 +23,21 @@ jobs:
       
       # Build the PlatformIO project
       - name: Build PlatformIO project
-        run: cd Software/freeWebServer && pio run -e esp32dev
+        run: cd Software/freeWebServer && pio run -e esp32ci
 
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # Setup PlatformIO in PATH
+      - name: Setup PlatformIO
+        uses: n-vr/setup-platformio-action@v1
+      
+      # Test the PlatformIO project
+      - name: Test PlatformIO project
+        run: cd Software/freeWebServer && pio test -e native    
 

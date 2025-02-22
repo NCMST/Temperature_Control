@@ -17,24 +17,65 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        margin: 0; /* Elimină marginile implicite */
-        padding-bottom: 60px; /* Asigură un spațiu pentru footer */
+        margin: 0;
+        /* Elimină marginile implicite */
+        padding-bottom: 100px;
+        /* Asigură un spațiu pentru footer */
       }
+
       #main {
-        padding-top: 60px; /* Asigură un spațiu pentru navbar */
-        margin: 5%; /* Asigură un spațiu pentru navbar */
+        padding-top: 60px;
+        /* Asigură un spațiu pentru navbar */
+        margin: 5%;
+        /* Asigură un spațiu pentru navbar */
       }
+
       footer {
-        background-color: #343a40; /* Culoarea de fundal a footer-ului */
-        color: white; /* Culoarea textului */
-        text-align: center; /* Centrarea textului */
-        padding: 10px 0; /* Padding pentru footer */
-        position: fixed; /* Fixează footer-ul la baza paginii */
-        bottom: 0; /* Alinierea la baza paginii */
-        width: 100%; /* Lățimea completă a footer-ului */
+        background-color: #343a40;
+        /* Culoarea de fundal a footer-ului */
+        color: white;
+        /* Culoarea textului */
+        text-align: center;
+        /* Centrarea textului */
+        padding: 10px 0;
+        /* Padding pentru footer */
+        position: static;
+        /* Schimbă poziția la static */
+        bottom: 0;
+        /* Alinierea la baza paginii */
+        width: 100%;
+        /* Lățimea completă a footer-ului */
+      }
+
+      .bordered-section {
+        border: 1px solid #6c757d;
+        /* Bordura surie */
+        border-radius: 10px;
+        /* Colțuri rotunjite */
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .start-stop-buttons {
+        border: 2px solid green;
+        /* Bordura verde */
+        border-radius: 10px;
+        /* Colțuri rotunjite */
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .start-stop-buttons button {
+        font-size: 1.5rem;
+        /* Mărimea textului */
+      }
+
+      .margin-orizontal-small {
+        margin-left: 10px; /* Ajustează valoarea după preferințe */
       }
     </style>
   </head>
+
   <body>
     <div id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/">Home</a>
@@ -59,8 +100,8 @@
 
     <div class="container mt-4">
       <div class="row">
-        <div class="col-md-6">
-          <h1>Setup for Setting Temperature!</h1>
+        <div class="col-md-6 bordered-section">
+          <h1>Setup for Setting Temperature</h1>
 
           <!-- Form for setpoint temperature and working time -->
           <form id="setpointForm" onsubmit="submitSetpoint(event)">
@@ -87,15 +128,13 @@
               />
             </div>
 
-            <button type="submit" class="btn btn-success mt-2">
-              Submitting
-            </button>
+            <button type="submit" class="btn btn-success mt-2">Submit</button>
           </form>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 bordered-section">
+          <h1 class="mt-4">Current Temperatures</h1>
           <!-- Current Temperatures Table -->
-          <h3 class="mt-4">Current Temperatures:</h3>
           <table class="table">
             <thead>
               <tr>
@@ -109,19 +148,25 @@
               <tr>
                 <th scope="row">1</th>
                 <td>Inside Temperature</td>
-                <td><p id="insideTemperature">--</p></td>
+                <td>
+                  <p id="insideTemperature">--</p>
+                </td>
                 <td>°C</td>
               </tr>
               <tr>
                 <th scope="row">2</th>
                 <td>Outside Temperature</td>
-                <td><p id="outsideTemperature">--</p></td>
+                <td>
+                  <p id="outsideTemperature">--</p>
+                </td>
                 <td>°C</td>
               </tr>
               <tr>
                 <th scope="row">3</th>
                 <td>Set Temperature</td>
-                <td><p id="setpointTemperature">--</p></td>
+                <td>
+                  <p id="setpointTemperature">--</p>
+                </td>
                 <td>°C</td>
               </tr>
             </tbody>
@@ -130,17 +175,98 @@
       </div>
     </div>
 
-      <!-- Start and Stop Buttons -->
-      <div class="mt-4 text-center">
-        <button class="btn btn-primary btn-lg mx-2" onclick='sendCommand("start")'>
+    <!-- Start and Stop Buttons -->
+    <div class="container mt-4 mb-5 bordered-section">
+      <div class="col-md-12 text-center">
+        <h1>Control</h1>
+        <button
+          class="btn btn-primary btn-lg mx-2"
+          onclick='sendCommand("start")'
+        >
           Start
         </button>
-        <button class="btn btn-danger btn-lg mx-2" onclick='sendCommand("stop")'>
+
+        <button
+          class="btn btn-danger btn-lg mx-2"
+          onclick='sendCommand("stop")'
+        >
           Stop
         </button>
       </div>
-      </br>
     </div>
+
+    <!-- PID const form -->
+    <div class="container mt-4 mb-5 bordered-section">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Setup for PID Constants</h1>
+          <p>
+            PID (Proportional-Integral-Derivative) control is a widely used
+            control algorithm in industrial control systems. It adjusts the
+            process control inputs to achieve the desired setpoint by minimizing
+            the error over time. Dynamic input of PID constants (Kp, Ki, Kd) is
+            essential to fine-tune the controller for optimal performance
+            specific to your device.
+          </p>
+          <!-- Form for PID constants -->
+          <form id="pidForm" onsubmit="submitPID(event)">
+            <div class="form-group row">
+              <label for="kpInput" class="col-sm-2 col-form-label">Kp:</label>
+              <div class="col-sm-8">
+                <input
+                  type="number"
+                  step="0.01"
+                  id="kpInput"
+                  class="form-control"
+                  placeholder="Enter Kp suggestion: 0.1"
+                  required
+                />
+              </div>
+              <div class="col-sm-2">
+                <p id="currentKpText">--</p>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label for="kiInput" class="col-sm-2 col-form-label">Ki:</label>
+              <div class="col-sm-8">
+                <input
+                  type="number"
+                  step="0.01"
+                  id="kiInput"
+                  class="form-control"
+                  placeholder="Enter Ki suggestion: 0.1"
+                  required
+                />
+              </div>
+              <div class="col-sm-2">
+                <p id="currentKiText">--</p>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label for="kdInput" class="col-sm-2 col-form-label">Kd:</label>
+              <div class="col-sm-8">
+                <input
+                  type="number"
+                  step="0.01"
+                  id="kdInput"
+                  class="form-control"
+                  placeholder="Enter Kd suggestion: 0.1"
+                  required
+                />
+              </div>
+              <div class="col-sm-2">
+                <p id="currentKdText">--</p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success mt-2">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap Footer -->
     <footer class="bg-dark text-white text-center py-3">
       <div class="container">
@@ -247,6 +373,64 @@
           })
           .catch((error) => console.error("Error:", error));
       }
+
+      function submitPID(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const kpValue = document.getElementById("kpInput").value;
+        const kiValue = document.getElementById("kiInput").value;
+        const kdValue = document.getElementById("kdInput").value;
+
+        console.log("Submitting PID constants:", kpValue, kiValue, kdValue); // Debug log
+
+        // Send the PID constants to the server
+        fetch("/pid", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            kp: parseFloat(kpValue),
+            ki: parseFloat(kiValue),
+            kd: parseFloat(kdValue),
+          }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log("PID constants updated successfully");
+              document.getElementById("kpInput").value = ""; // Clear input field
+              document.getElementById("kiInput").value = ""; // Clear input field
+              document.getElementById("kdInput").value = ""; // Clear input field
+            } else {
+              console.error(
+                "Failed to update PID constants:",
+                response.statusText
+              );
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function updatePIDConstants(kp, ki, kd) {
+        document.getElementById("currentKp").innerText = kp;
+        document.getElementById("currentKi").innerText = ki;
+        document.getElementById("currentKd").innerText = kd;
+      }
+
+      function fetchCurrentPIDConstants() {
+        fetch("/pid_constants")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Fetched PID constants:", data); // Log fetched data
+            updatePIDConstants(data.kp, data.ki, data.kd);
+          })
+          .catch((error) =>
+            console.error("Error fetching current PID constants:", error)
+          );
+      }
+
+      // Call the function to fetch and update PID constants on page load
+      fetchCurrentPIDConstants();
 
       // Apelează funcția la încărcarea paginii și la intervale regulate
       fetchCurrentTemperatures();

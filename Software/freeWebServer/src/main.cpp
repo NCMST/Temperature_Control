@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @author Creciune Catalin creciunelcatalin@gmail.com
- * @brief 
+ * @brief Main file for the smart thermostat project.
  * @version 0.1
  * @date 2025-02-21
  * 
@@ -38,6 +38,15 @@ volatile bool zeroCross = false;
  * 
  */
 volatile bool turnOffRequest = false;
+
+/**
+ * @brief Global variable for the PID controller.
+ * 
+ * This variable is used to store the PID controller object.
+ * and is accessed by the PID task.
+ * also are modified by the web server task.
+ */
+float kp = 0.0, ki = 0.0, kd = 0.0;
 
 /**
  * @brief ISR for detecting zero crossing.
@@ -117,6 +126,8 @@ void webServerTask(void *pvParameters)
                 currentTemperature.setpoint_temperature = webServer.getStetTemperature();
                 currentTemperature.startFlag = webServer.getStartFlag();
                 currentTemperature.setTime = webServer.getSetTime();
+
+                kp, ki, kd = webServer.getPIDconstants();
 
                 // Sending the temperature data to the web server
                 webServer.setTemperatureData(currentTemperature);
@@ -343,8 +354,6 @@ void pidTaskHandle(void *pvParameters)
 
     attachInterrupt(digitalPinToInterrupt(ZCD_PIN), zeroCrossISR, FALLING); // Detect zero crossing
 
-    float kp = 1, ki = 0.1, kd = 0.1;
-
     PID pid(kp, ki, kd);
     pid.setLimits(0, 1);
 
@@ -359,6 +368,10 @@ void pidTaskHandle(void *pvParameters)
     {
         if (currentTemperature.startFlag)
         {
+            pid.setKp(kp);
+            pid.setKi(ki);
+            pid.setKd(kd);
+            
             output = pid.compute(currentTemperature.setpoint_temperature, currentTemperature.inside_temperature);
 
             if (output == 1)

@@ -70,8 +70,17 @@
               placeholder="Enter temperature in °C"
               required
             />
-            <button type="submit" class="btn btn-success mb-2">
-              Set Temperature
+            <label for="workingTimeInput">Working Time (minutes):</label>
+            <input
+              type="number"
+              id="workingTimeInput"
+              class="form-control mb-2"
+              aria-label="Working time in minutes"
+              placeholder="Enter working time in minutes"
+              required
+            />
+            <button type="submit" class="btn btn-success mt-2">
+              Submit
             </button>
           </form>
           <div class="mt-4">
@@ -194,11 +203,15 @@
       }
 
       function submitSetpoint(event) {
-        event.preventDefault();
+        event.preventDefault(); // Prevent default form submission
 
         const setpointValue = document.getElementById("setpointInput").value;
-        console.log("Submitting setpoint temperature:", setpointValue);
+        const workingTimeValue =
+          document.getElementById("workingTimeInput").value; // Get working time value
 
+        console.log("Submitting setpoint temperature:", setpointValue); // Debug log
+
+        // Send the setpoint value and working time to the server
         fetch("/setpoint", {
           method: "POST",
           headers: {
@@ -206,17 +219,16 @@
           },
           body: JSON.stringify({
             setpoint_temperature: parseFloat(setpointValue),
+            working_time: parseInt(workingTimeValue), // Send working time as an integer
           }),
         })
           .then((response) => {
             if (response.ok) {
               console.log("Setpoint updated successfully");
-              document.getElementById("setpointInput").value = "";
+              document.getElementById("setpointInput").value = ""; // Clear input field
+              document.getElementById("workingTimeInput").value = ""; // Clear working time field
             } else {
-              console.error(
-                "Failed to update setpoint:",
-                response.statusText
-              );
+              console.error("Failed to update setpoint:", response.statusText);
             }
           })
           .catch((error) => console.error("Error:", error));
