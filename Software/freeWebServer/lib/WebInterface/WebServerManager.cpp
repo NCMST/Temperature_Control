@@ -342,9 +342,9 @@ void WebServerManager::handlePID()
 
     if (!error)
     {
-        float kp = doc["kp"];
-        float ki = doc["ki"];
-        float kd = doc["kd"];
+        this->kp = doc["kp"];
+        this->ki = doc["ki"];
+        this->kd = doc["kd"];
 
         if (LOGS_MESSAGE)
         {
@@ -369,14 +369,16 @@ void WebServerManager::handlePID()
 
 /**
  * @brief handle the PID constants
+ * 
+ * @details PID constants can be read using this endpoint
  *
  */
 void WebServerManager::handlePIDPrint()
 {
-    StaticJsonDocument<200> jsonDoc;
-    jsonDoc["kp"] = kp;
-    jsonDoc["ki"] = ki;
-    jsonDoc["kd"] = kd;
+    JsonDocument jsonDoc;
+    jsonDoc["kp"] = this->kp;
+    jsonDoc["ki"] = this->ki;
+    jsonDoc["kd"] = this->kd;
 
     String jsonResponse;
     serializeJson(jsonDoc, jsonResponse);
@@ -385,6 +387,8 @@ void WebServerManager::handlePIDPrint()
 
 /**
  * @brief update the list.csv file
+ * 
+ * @details update the list.csv file with the temperature data
  *
  * @param realTemperature
  * @param setTemperature

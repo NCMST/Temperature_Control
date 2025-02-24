@@ -269,7 +269,7 @@ private:
     bool startFlag;
     uint32_t setTime;
 
-    float kp, ki, kd; // PID constants
+    float kp = 0.1, ki = 0.5, kd = 0.1; // PID constants
 
     std::vector<TemperatureData> temperatureHistory;
 

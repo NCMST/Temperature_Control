@@ -46,7 +46,7 @@ volatile bool turnOffRequest = false;
  * and is accessed by the PID task.
  * also are modified by the web server task.
  */
-float kp = 0.0, ki = 0.0, kd = 0.0;
+float kp = 0.1, ki = 0.5, kd = 0.1;
 
 /**
  * @brief ISR for detecting zero crossing.
@@ -371,7 +371,7 @@ void pidTaskHandle(void *pvParameters)
             pid.setKp(kp);
             pid.setKi(ki);
             pid.setKd(kd);
-            
+
             output = pid.compute(currentTemperature.setpoint_temperature, currentTemperature.inside_temperature);
 
             if (output == 1)
