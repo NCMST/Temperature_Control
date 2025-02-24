@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @author Creciune Catalin creciunelcatalin@gmail.com
- * @brief Main file for the smart thermostat project.
+ * @brief Main file for the smart thermostat project. That implements FreeRTOS tasks for web server, temperature reading, display, and PID control.
  * @version 0.1
  * @date 2025-02-21
  * 

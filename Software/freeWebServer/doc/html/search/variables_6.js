@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['setpoint_5ftemperature_141',['setpoint_temperature',['../d7/d0d/structTemperatureData.html#a08f00d221dbc93f5739aced9f4ade3a8',1,'TemperatureData']]],
-  ['settime_142',['setTime',['../d7/d0d/structTemperatureData.html#a8d6526b09e7dee5b38e246d8ecd104de',1,'TemperatureData']]],
-  ['startflag_143',['startFlag',['../d7/d0d/structTemperatureData.html#ac5aacbaaa2247118dfebc0b4963c1404',1,'TemperatureData']]]
+  ['realtime_140',['realTime',['../d7/d0d/structTemperatureData.html#ab896ddca6eea42b2cbb7239f4f81becf',1,'TemperatureData']]]
 ];

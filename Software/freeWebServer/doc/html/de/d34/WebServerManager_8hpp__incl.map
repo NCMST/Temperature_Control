@@ -1,11 +1,9 @@
 <map id="lib/WebInterface/WebServerManager.hpp" name="lib/WebInterface/WebServerManager.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="346,5,549,47"/>
+<area shape="rect" id="node1" title="Web server manager class definition." alt="" coords="227,5,430,47"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,95,68,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="92,95,195,121"/>
 <area shape="rect" id="node4" title=" " alt="" coords="219,95,313,121"/>
 <area shape="rect" id="node5" title=" " alt="" coords="337,95,448,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="472,95,535,121"/>
-<area shape="rect" id="node7" title=" " alt="" coords="559,95,608,121"/>
-<area shape="rect" id="node8" title=" " alt="" coords="633,95,710,121"/>
-<area shape="rect" id="node9" href="$df/d7c/TemperatureData_8hpp.html" title=" " alt="" coords="734,95,897,121"/>
+<area shape="rect" id="node6" href="$df/d7c/TemperatureData_8hpp.html" title=" " alt="" coords="473,95,635,121"/>
+<area shape="rect" id="node7" title=" " alt="" coords="660,95,789,121"/>
 </map>

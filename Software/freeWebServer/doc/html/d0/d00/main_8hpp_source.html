@@ -33,6 +33,7 @@
    <div id="projectname">Temperature control
    &#160;<span id="projectnumber">1.0</span>
    </div>
+   <div id="projectbrief">Software documentation for the temperature control system on ESP32 cuzing a Triac BC138 and MAX6675. Implementing PID control with WEB interface and CSV temperature raport.</div>
   </td>
  </tr>
  </tbody>
@@ -173,11 +174,11 @@ $(document).ready(function(){initNavTree('d0/d00/main_8hpp_source.html','../../'
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keywordtype">void</span> <a class="code" href="../../d0/d00/main_8hpp.html#a19fbfc122dff7ef467f9cd7f84d99b1d">pidTaskHandle</a>(<span class="keywordtype">void</span> *pvParameters);</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// MAIN_H</span></div>
-<div class="ttc" id="aWebServerManager_8hpp_html"><div class="ttname"><a href="../../d4/dd5/WebServerManager_8hpp.html">WebServerManager.hpp</a></div></div>
-<div class="ttc" id="amain_8hpp_html_a19fbfc122dff7ef467f9cd7f84d99b1d"><div class="ttname"><a href="../../d0/d00/main_8hpp.html#a19fbfc122dff7ef467f9cd7f84d99b1d">pidTaskHandle</a></div><div class="ttdeci">void pidTaskHandle(void *pvParameters)</div><div class="ttdoc">PID task definition.</div><div class="ttdef"><b>Definition:</b> main.cpp:339</div></div>
-<div class="ttc" id="amain_8hpp_html_a571ecf6f1d11b90c386e2c900a8867e3"><div class="ttname"><a href="../../d0/d00/main_8hpp.html#a571ecf6f1d11b90c386e2c900a8867e3">webServerTask</a></div><div class="ttdeci">void webServerTask(void *pvParameters)</div><div class="ttdoc">Web server task definition.</div><div class="ttdef"><b>Definition:</b> main.cpp:94</div></div>
-<div class="ttc" id="amain_8hpp_html_a96c361e8ae7194173d6843a3b9a2fb73"><div class="ttname"><a href="../../d0/d00/main_8hpp.html#a96c361e8ae7194173d6843a3b9a2fb73">temperatureTask</a></div><div class="ttdeci">void temperatureTask(void *pvParameters)</div><div class="ttdoc">Temperature task definition.</div><div class="ttdef"><b>Definition:</b> main.cpp:283</div></div>
-<div class="ttc" id="amain_8hpp_html_ac55d0909bfe96e544bb1324d9e0be983"><div class="ttname"><a href="../../d0/d00/main_8hpp.html#ac55d0909bfe96e544bb1324d9e0be983">displayTask</a></div><div class="ttdeci">void displayTask(void *pvParameters)</div><div class="ttdoc">Display task definition.</div><div class="ttdef"><b>Definition:</b> main.cpp:190</div></div>
+<div class="ttc" id="aWebServerManager_8hpp_html"><div class="ttname"><a href="../../d4/dd5/WebServerManager_8hpp.html">WebServerManager.hpp</a></div><div class="ttdoc">Web server manager class definition.</div></div>
+<div class="ttc" id="amain_8hpp_html_a19fbfc122dff7ef467f9cd7f84d99b1d"><div class="ttname"><a href="../../d0/d00/main_8hpp.html#a19fbfc122dff7ef467f9cd7f84d99b1d">pidTaskHandle</a></div><div class="ttdeci">void pidTaskHandle(void *pvParameters)</div><div class="ttdoc">PID task definition.</div><div class="ttdef"><b>Definition:</b> main.cpp:350</div></div>
+<div class="ttc" id="amain_8hpp_html_a571ecf6f1d11b90c386e2c900a8867e3"><div class="ttname"><a href="../../d0/d00/main_8hpp.html#a571ecf6f1d11b90c386e2c900a8867e3">webServerTask</a></div><div class="ttdeci">void webServerTask(void *pvParameters)</div><div class="ttdoc">Web server task definition.</div><div class="ttdef"><b>Definition:</b> main.cpp:103</div></div>
+<div class="ttc" id="amain_8hpp_html_a96c361e8ae7194173d6843a3b9a2fb73"><div class="ttname"><a href="../../d0/d00/main_8hpp.html#a96c361e8ae7194173d6843a3b9a2fb73">temperatureTask</a></div><div class="ttdeci">void temperatureTask(void *pvParameters)</div><div class="ttdoc">Temperature task definition.</div><div class="ttdef"><b>Definition:</b> main.cpp:294</div></div>
+<div class="ttc" id="amain_8hpp_html_ac55d0909bfe96e544bb1324d9e0be983"><div class="ttname"><a href="../../d0/d00/main_8hpp.html#ac55d0909bfe96e544bb1324d9e0be983">displayTask</a></div><div class="ttdeci">void displayTask(void *pvParameters)</div><div class="ttdoc">Display task definition.</div><div class="ttdef"><b>Definition:</b> main.cpp:201</div></div>
 <div class="ttc" id="apid_8hpp_html"><div class="ttname"><a href="../../d4/db9/pid_8hpp.html">pid.hpp</a></div></div>
 <div class="ttc" id="ascreen_8hpp_html"><div class="ttname"><a href="../../d6/d5e/screen_8hpp.html">screen.hpp</a></div></div>
 <div class="ttc" id="atemperature_8hpp_html"><div class="ttname"><a href="../../dc/d32/temperature_8hpp.html">temperature.hpp</a></div></div>
@@ -187,7 +188,7 @@ $(document).ready(function(){initNavTree('d0/d00/main_8hpp_source.html','../../'
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="../../d0/d00/main_8hpp.html">main.hpp</a></li>
-    <li class="footer">Generated on Fri Feb 21 2025 01:56:40 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 24 2025 22:30:24 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

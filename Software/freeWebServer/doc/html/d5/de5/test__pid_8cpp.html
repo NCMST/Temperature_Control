@@ -33,6 +33,7 @@
    <div id="projectname">Temperature control
    &#160;<span id="projectnumber">1.0</span>
    </div>
+   <div id="projectbrief">Software documentation for the temperature control system on ESP32 cuzing a Triac BC138 and MAX6675. Implementing PID control with WEB interface and CSV temperature raport.</div>
   </td>
  </tr>
  </tbody>
@@ -112,6 +113,9 @@ $(document).ready(function(){initNavTree('d5/de5/test__pid_8cpp.html','../../');
 <div class="title">test_pid.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Test functions for <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> class.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;unity.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="../../d4/db9/pid_8hpp_source.html">pid.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -119,7 +123,7 @@ Include dependency graph for test_pid.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/df7/test__pid_8cpp__incl.png" border="0" usemap="#atest_2test__pid_2test__pid_8cpp" alt=""/></div>
 <map name="atest_2test__pid_2test__pid_8cpp" id="atest_2test__pid_2test__pid_8cpp">
-<area shape="rect" title=" " alt="" coords="17,5,149,47"/>
+<area shape="rect" title="Test functions for PID class." alt="" coords="17,5,149,47"/>
 <area shape="rect" title=" " alt="" coords="5,95,71,121"/>
 <area shape="rect" href="../../d4/db9/pid_8hpp.html" title=" " alt="" coords="95,95,165,121"/>
 </map>
@@ -132,11 +136,21 @@ Functions</h2></td></tr>
 <tr class="memitem:a9909011e5fea0c018842eec4d93d0662"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de5/test__pid_8cpp.html#a9909011e5fea0c018842eec4d93d0662">tearDown</a> (void)</td></tr>
 <tr class="separator:a9909011e5fea0c018842eec4d93d0662"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a984ca77e6f458db778a854e0016018e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de5/test__pid_8cpp.html#a984ca77e6f458db778a854e0016018e8">test_pid_with_limits</a> ()</td></tr>
+<tr class="memdesc:a984ca77e6f458db778a854e0016018e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests the <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> controller with output limits.  <a href="../../d5/de5/test__pid_8cpp.html#a984ca77e6f458db778a854e0016018e8">More...</a><br /></td></tr>
 <tr class="separator:a984ca77e6f458db778a854e0016018e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60e672223d39233d27514638181f5fa8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de5/test__pid_8cpp.html#a60e672223d39233d27514638181f5fa8">test_pid_output</a> ()</td></tr>
+<tr class="separator:a60e672223d39233d27514638181f5fa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/de5/test__pid_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="memdesc:a3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function.  <a href="../../d5/de5/test__pid_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">More...</a><br /></td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Test functions for <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> class. </p>
+<dl class="section author"><dt>Author</dt><dd>Creciune Catalin </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-02-22</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c04138a5bfe5d72780bb7e82a18e627">&#9670;&nbsp;</a></span>main()</h2>
 
@@ -162,6 +176,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Main function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td></td></tr>
+    <tr><td class="paramname">argv</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 
 </div>
 </div>
@@ -201,6 +225,23 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a60e672223d39233d27514638181f5fa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60e672223d39233d27514638181f5fa8">&#9670;&nbsp;</a></span>test_pid_output()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_pid_output </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a984ca77e6f458db778a854e0016018e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a984ca77e6f458db778a854e0016018e8">&#9670;&nbsp;</a></span>test_pid_with_limits()</h2>
 
@@ -216,6 +257,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Tests the <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> controller with output limits. </p>
+<p>This function creates a <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> controller with specific gains and sets output limits. It then tests the <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> controller with input values that exceed the set limits to ensure the output is correctly limited.</p>
+<p>The <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> controller is initialized with the following gains:</p><ul>
+<li>Proportional gain (Kp): 1.0</li>
+<li>Integral gain (Ki): 0.1</li>
+<li>Derivative gain (Kd): 0.05</li>
+</ul>
+<p>The output limits are set as follows:</p><ul>
+<li>Minimum limit: 0.0</li>
+<li>Maximum limit: 10.0</li>
+</ul>
+<p>The function performs the following tests:</p><ul>
+<li>Computes the <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> output for an input value of 20.0 with a setpoint of 5.0. The expected output should be limited to 10.0.</li>
+<li>Computes the <a class="el" href="../../d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> output for an input value of -20.0 with a setpoint of 5.0. The expected output should be limited to 0.0.</li>
+</ul>
+<p>The tests use the TEST_ASSERT_FLOAT_WITHIN macro to check if the computed output is within 0.01 of the expected limited value. </p>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -224,7 +282,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_13e138d54eb8818da29c3992edef070a.html">test</a></li><li class="navelem"><a class="el" href="../../dir_ddbb58876aa269932b62f4892d370862.html">test_pid</a></li><li class="navelem"><a class="el" href="../../d5/de5/test__pid_8cpp.html">test_pid.cpp</a></li>
-    <li class="footer">Generated on Fri Feb 21 2025 01:56:40 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 24 2025 22:30:24 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

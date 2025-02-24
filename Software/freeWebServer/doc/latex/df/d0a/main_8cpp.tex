@@ -1,5 +1,10 @@
 \hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
 \label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Main file for the smart thermostat project. That implements Free\+RTOS tasks for web server, temperature reading, display, and \mbox{\hyperlink{classPID}{PID}} control.  
+
+
 {\ttfamily \#include \char`\"{}main.\+hpp\char`\"{}}\newline
 Include dependency graph for main.\+cpp\+:\nopagebreak
 \begin{figure}[H]
@@ -43,10 +48,18 @@ Semaphore\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_ab70af3d89d266c81dca143d86e3
 volatile bool \mbox{\hyperlink{main_8cpp_a7589c154ea6fa877b87954587b64d6e1}{zero\+Cross}} = false
 \begin{DoxyCompactList}\small\item\em Flag for zero crossing detection. \end{DoxyCompactList}\item 
 volatile bool \mbox{\hyperlink{main_8cpp_a8e3938899050c4fc630f49bf4f89460f}{turn\+Off\+Request}} = false
-\begin{DoxyCompactList}\small\item\em Flag for turning off \mbox{\hyperlink{classPID}{PID}} output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Flag for turning off \mbox{\hyperlink{classPID}{PID}} output. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{main_8cpp_addfa3b9048160c42a165a633f18a91e2}{kp}} = 0.\+1
+\begin{DoxyCompactList}\small\item\em Global variable for the \mbox{\hyperlink{classPID}{PID}} controller. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{main_8cpp_ad62b41d33f3ebf3678cb18dbbd347f25}{ki}} = 0.\+5
+\item 
+float \mbox{\hyperlink{main_8cpp_a67a8d2942b887fdece9e89635990f8bb}{kd}} = 0.\+1
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+Main file for the smart thermostat project. That implements Free\+RTOS tasks for web server, temperature reading, display, and \mbox{\hyperlink{classPID}{PID}} control. 
+
 \begin{DoxyAuthor}{Author}
 Creciune Catalin \href{mailto:creciunelcatalin@gmail.com}{\texttt{ creciunelcatalin@gmail.\+com}} 
 \end{DoxyAuthor}
@@ -206,7 +219,31 @@ Current temperature data.
 \doxysubsubsection{\texorpdfstring{DisplayTaskHandle}{DisplayTaskHandle}}
 {\footnotesize\ttfamily Task\+Handle\+\_\+t Display\+Task\+Handle}
 
-\mbox{\Hypertarget{main_8cpp_ab112334482528ed6cc36eed18fb55302}\label{main_8cpp_ab112334482528ed6cc36eed18fb55302}} 
+\mbox{\Hypertarget{main_8cpp_a67a8d2942b887fdece9e89635990f8bb}\label{main_8cpp_a67a8d2942b887fdece9e89635990f8bb}} 
+\index{main.cpp@{main.cpp}!kd@{kd}}
+\index{kd@{kd}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{kd}{kd}}
+{\footnotesize\ttfamily PID\+::kd = 0.\+1}
+
+Derivative gain. \mbox{\Hypertarget{main_8cpp_ad62b41d33f3ebf3678cb18dbbd347f25}\label{main_8cpp_ad62b41d33f3ebf3678cb18dbbd347f25}} 
+\index{main.cpp@{main.cpp}!ki@{ki}}
+\index{ki@{ki}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ki}{ki}}
+{\footnotesize\ttfamily PID\+::ki = 0.\+5}
+
+Integral gain. \mbox{\Hypertarget{main_8cpp_addfa3b9048160c42a165a633f18a91e2}\label{main_8cpp_addfa3b9048160c42a165a633f18a91e2}} 
+\index{main.cpp@{main.cpp}!kp@{kp}}
+\index{kp@{kp}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{kp}{kp}}
+{\footnotesize\ttfamily PID\+::kp = 0.\+1}
+
+
+
+Global variable for the \mbox{\hyperlink{classPID}{PID}} controller. 
+
+This variable is used to store the \mbox{\hyperlink{classPID}{PID}} controller object. and is accessed by the \mbox{\hyperlink{classPID}{PID}} task. also are modified by the web server task.
+
+Proportional gain. \mbox{\Hypertarget{main_8cpp_ab112334482528ed6cc36eed18fb55302}\label{main_8cpp_ab112334482528ed6cc36eed18fb55302}} 
 \index{main.cpp@{main.cpp}!PIDTaskHandle@{PIDTaskHandle}}
 \index{PIDTaskHandle@{PIDTaskHandle}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{PIDTaskHandle}{PIDTaskHandle}}

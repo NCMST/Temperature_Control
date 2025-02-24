@@ -33,6 +33,7 @@
    <div id="projectname">Temperature control
    &#160;<span id="projectnumber">1.0</span>
    </div>
+   <div id="projectbrief">Software documentation for the temperature control system on ESP32 cuzing a Triac BC138 and MAX6675. Implementing PID control with WEB interface and CSV temperature raport.</div>
   </td>
  </tr>
  </tbody>
@@ -117,28 +118,28 @@ $(document).ready(function(){initNavTree('d4/db9/pid_8hpp_source.html','../../')
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="../../d8/da9/classPID.html">PID</a></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="../../d8/da9/classPID.html">PID</a>(<span class="keywordtype">float</span> kp, <span class="keywordtype">float</span> ki, <span class="keywordtype">float</span> kd);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="../../d8/da9/classPID.html">PID</a>(<span class="keywordtype">float</span> <a class="code" href="../../df/d0a/main_8cpp.html#addfa3b9048160c42a165a633f18a91e2">kp</a>, <span class="keywordtype">float</span> <a class="code" href="../../df/d0a/main_8cpp.html#ad62b41d33f3ebf3678cb18dbbd347f25">ki</a>, <span class="keywordtype">float</span> <a class="code" href="../../df/d0a/main_8cpp.html#a67a8d2942b887fdece9e89635990f8bb">kd</a>);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> setLimits(<span class="keywordtype">float</span> min, <span class="keywordtype">float</span> max);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">int</span> compute(<span class="keywordtype">float</span> setpoint, <span class="keywordtype">float</span> measured_value);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> setKp(<span class="keywordtype">float</span> new_kp) { kp = new_kp; }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> setKp(<span class="keywordtype">float</span> new_kp) { <a class="code" href="../../df/d0a/main_8cpp.html#addfa3b9048160c42a165a633f18a91e2">kp</a> = new_kp; }</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> setKi(<span class="keywordtype">float</span> new_ki) { ki = new_ki; }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> setKi(<span class="keywordtype">float</span> new_ki) { <a class="code" href="../../df/d0a/main_8cpp.html#ad62b41d33f3ebf3678cb18dbbd347f25">ki</a> = new_ki; }</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> setKd(<span class="keywordtype">float</span> new_kd) { kd = new_kd; }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> setKd(<span class="keywordtype">float</span> new_kd) { <a class="code" href="../../df/d0a/main_8cpp.html#a67a8d2942b887fdece9e89635990f8bb">kd</a> = new_kd; }</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">float</span> getKp(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> kp; }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">float</span> getKp(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code" href="../../df/d0a/main_8cpp.html#addfa3b9048160c42a165a633f18a91e2">kp</a>; }</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">float</span> getKi(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> ki; }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">float</span> getKi(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code" href="../../df/d0a/main_8cpp.html#ad62b41d33f3ebf3678cb18dbbd347f25">ki</a>; }</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">float</span> getKd(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> kd; }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">float</span> getKd(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <a class="code" href="../../df/d0a/main_8cpp.html#a67a8d2942b887fdece9e89635990f8bb">kd</a>; }</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">float</span> kp; <span class="comment">// proportional gain</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">float</span> ki; <span class="comment">// integral gain</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">float</span> kd; <span class="comment">// derivative gain</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="../../df/d0a/main_8cpp.html#addfa3b9048160c42a165a633f18a91e2">kp</a>; <span class="comment">// proportional gain</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="../../df/d0a/main_8cpp.html#ad62b41d33f3ebf3678cb18dbbd347f25">ki</a>; <span class="comment">// integral gain</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="../../df/d0a/main_8cpp.html#a67a8d2942b887fdece9e89635990f8bb">kd</a>; <span class="comment">// derivative gain</span></div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">float</span> integral; <span class="comment">// integral term</span></div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">float</span> last_error; <span class="comment">// last error</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">float</span> output_min; <span class="comment">// output min limit</span></div>
@@ -147,13 +148,16 @@ $(document).ready(function(){initNavTree('d4/db9/pid_8hpp_source.html','../../')
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassPID_html"><div class="ttname"><a href="../../d8/da9/classPID.html">PID</a></div><div class="ttdoc">A class to implement a PID controller.</div><div class="ttdef"><b>Definition:</b> pid.hpp:15</div></div>
+<div class="ttc" id="amain_8cpp_html_a67a8d2942b887fdece9e89635990f8bb"><div class="ttname"><a href="../../df/d0a/main_8cpp.html#a67a8d2942b887fdece9e89635990f8bb">kd</a></div><div class="ttdeci">float kd</div><div class="ttdef"><b>Definition:</b> main.cpp:49</div></div>
+<div class="ttc" id="amain_8cpp_html_ad62b41d33f3ebf3678cb18dbbd347f25"><div class="ttname"><a href="../../df/d0a/main_8cpp.html#ad62b41d33f3ebf3678cb18dbbd347f25">ki</a></div><div class="ttdeci">float ki</div><div class="ttdef"><b>Definition:</b> main.cpp:49</div></div>
+<div class="ttc" id="amain_8cpp_html_addfa3b9048160c42a165a633f18a91e2"><div class="ttname"><a href="../../df/d0a/main_8cpp.html#addfa3b9048160c42a165a633f18a91e2">kp</a></div><div class="ttdeci">float kp</div><div class="ttdoc">Global variable for the PID controller.</div><div class="ttdef"><b>Definition:</b> main.cpp:49</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="../../dir_1ea7e2220d3792a9ee38cf153a582c69.html">PID</a></li><li class="navelem"><a class="el" href="../../d4/db9/pid_8hpp.html">pid.hpp</a></li>
-    <li class="footer">Generated on Fri Feb 21 2025 01:56:40 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 24 2025 22:30:24 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

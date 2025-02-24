@@ -1,5 +1,10 @@
 \hypertarget{test__pid_8cpp}{}\doxysection{test/test\+\_\+pid/test\+\_\+pid.cpp File Reference}
 \label{test__pid_8cpp}\index{test/test\_pid/test\_pid.cpp@{test/test\_pid/test\_pid.cpp}}
+
+
+Test functions for \mbox{\hyperlink{classPID}{PID}} class.  
+
+
 {\ttfamily \#include $<$unity.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}pid.\+hpp\char`\"{}}\newline
 Include dependency graph for test\+\_\+pid.\+cpp\+:\nopagebreak
@@ -17,9 +22,28 @@ void \mbox{\hyperlink{test__pid_8cpp_a95c834d6178047ce9e1bce7cbfea2836}{set\+Up}
 void \mbox{\hyperlink{test__pid_8cpp_a9909011e5fea0c018842eec4d93d0662}{tear\+Down}} (void)
 \item 
 void \mbox{\hyperlink{test__pid_8cpp_a984ca77e6f458db778a854e0016018e8}{test\+\_\+pid\+\_\+with\+\_\+limits}} ()
+\begin{DoxyCompactList}\small\item\em Tests the \mbox{\hyperlink{classPID}{PID}} controller with output limits. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{test__pid_8cpp_a60e672223d39233d27514638181f5fa8}{test\+\_\+pid\+\_\+output}} ()
 \item 
 int \mbox{\hyperlink{test__pid_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Test functions for \mbox{\hyperlink{classPID}{PID}} class. 
+
+\begin{DoxyAuthor}{Author}
+Creciune Catalin 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/02-\/22
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Function Documentation}
@@ -29,6 +53,20 @@ int \mbox{\hyperlink{test__pid_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (i
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
 
+
+
+Main function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
 \mbox{\Hypertarget{test__pid_8cpp_a95c834d6178047ce9e1bce7cbfea2836}\label{test__pid_8cpp_a95c834d6178047ce9e1bce7cbfea2836}} 
 \index{test\_pid.cpp@{test\_pid.cpp}!setUp@{setUp}}
 \index{setUp@{setUp}!test\_pid.cpp@{test\_pid.cpp}}
@@ -41,9 +79,41 @@ int \mbox{\hyperlink{test__pid_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (i
 \doxysubsubsection{\texorpdfstring{tearDown()}{tearDown()}}
 {\footnotesize\ttfamily void tear\+Down (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{test__pid_8cpp_a60e672223d39233d27514638181f5fa8}\label{test__pid_8cpp_a60e672223d39233d27514638181f5fa8}} 
+\index{test\_pid.cpp@{test\_pid.cpp}!test\_pid\_output@{test\_pid\_output}}
+\index{test\_pid\_output@{test\_pid\_output}!test\_pid.cpp@{test\_pid.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_pid\_output()}{test\_pid\_output()}}
+{\footnotesize\ttfamily void test\+\_\+pid\+\_\+output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
 \mbox{\Hypertarget{test__pid_8cpp_a984ca77e6f458db778a854e0016018e8}\label{test__pid_8cpp_a984ca77e6f458db778a854e0016018e8}} 
 \index{test\_pid.cpp@{test\_pid.cpp}!test\_pid\_with\_limits@{test\_pid\_with\_limits}}
 \index{test\_pid\_with\_limits@{test\_pid\_with\_limits}!test\_pid.cpp@{test\_pid.cpp}}
 \doxysubsubsection{\texorpdfstring{test\_pid\_with\_limits()}{test\_pid\_with\_limits()}}
 {\footnotesize\ttfamily void test\+\_\+pid\+\_\+with\+\_\+limits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Tests the \mbox{\hyperlink{classPID}{PID}} controller with output limits. 
+
+This function creates a \mbox{\hyperlink{classPID}{PID}} controller with specific gains and sets output limits. It then tests the \mbox{\hyperlink{classPID}{PID}} controller with input values that exceed the set limits to ensure the output is correctly limited.
+
+The \mbox{\hyperlink{classPID}{PID}} controller is initialized with the following gains\+:
+\begin{DoxyItemize}
+\item Proportional gain (Kp)\+: 1.\+0
+\item Integral gain (Ki)\+: 0.\+1
+\item Derivative gain (Kd)\+: 0.\+05
+\end{DoxyItemize}
+
+The output limits are set as follows\+:
+\begin{DoxyItemize}
+\item Minimum limit\+: 0.\+0
+\item Maximum limit\+: 10.\+0
+\end{DoxyItemize}
+
+The function performs the following tests\+:
+\begin{DoxyItemize}
+\item Computes the \mbox{\hyperlink{classPID}{PID}} output for an input value of 20.\+0 with a setpoint of 5.\+0. The expected output should be limited to 10.\+0.
+\item Computes the \mbox{\hyperlink{classPID}{PID}} output for an input value of -\/20.\+0 with a setpoint of 5.\+0. The expected output should be limited to 0.\+0.
+\end{DoxyItemize}
+
+The tests use the TEST\+\_\+\+ASSERT\+\_\+\+FLOAT\+\_\+\+WITHIN macro to check if the computed output is within 0.\+01 of the expected limited value. 

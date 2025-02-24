@@ -33,6 +33,7 @@
    <div id="projectname">Temperature control
    &#160;<span id="projectnumber">1.0</span>
    </div>
+   <div id="projectbrief">Software documentation for the temperature control system on ESP32 cuzing a Triac BC138 and MAX6675. Implementing PID control with WEB interface and CSV temperature raport.</div>
   </td>
  </tr>
  </tbody>
@@ -89,12 +90,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search','.html');
       <li><a href="#index_c"><span>c</span></a></li>
       <li><a href="#index_d"><span>d</span></a></li>
       <li><a href="#index_h"><span>h</span></a></li>
+      <li><a href="#index_k"><span>k</span></a></li>
       <li><a href="#index_l"><span>l</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
       <li><a href="#index_n"><span>n</span></a></li>
       <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
-      <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
       <li><a href="#index_v"><span>v</span></a></li>
@@ -199,13 +200,23 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 </ul>
 
 
+<h3><a id="index_k"></a>- k -</h3><ul>
+<li>kd
+: <a class="el" href="df/d0a/main_8cpp.html#a67a8d2942b887fdece9e89635990f8bb">main.cpp</a>
+</li>
+<li>ki
+: <a class="el" href="df/d0a/main_8cpp.html#ad62b41d33f3ebf3678cb18dbbd347f25">main.cpp</a>
+</li>
+<li>kp
+: <a class="el" href="df/d0a/main_8cpp.html#addfa3b9048160c42a165a633f18a91e2">main.cpp</a>
+</li>
+</ul>
+
+
 <h3><a id="index_l"></a>- l -</h3><ul>
 <li>LED_BUILTIN
 : <a class="el" href="d0/d00/main_8hpp.html#a450a7c16ead7b3c7b882536b08f30a00">main.hpp</a>
 , <a class="el" href="d4/dd5/WebServerManager_8hpp.html#a450a7c16ead7b3c7b882536b08f30a00">WebServerManager.hpp</a>
-</li>
-<li>listSPIFFSFiles()
-: <a class="el" href="d6/dc0/WebServerManager_8cpp.html#a4161e4c5e6ea76fd3eedd02ad85fdf2b">WebServerManager.cpp</a>
 </li>
 <li>LOG_MESSAGE
 : <a class="el" href="d0/d00/main_8hpp.html#a7828f43ae5f3574eff31e3dd48aef334">main.hpp</a>
@@ -225,7 +236,6 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <h3><a id="index_m"></a>- m -</h3><ul>
 <li>main()
 : <a class="el" href="d5/de5/test__pid_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">test_pid.cpp</a>
-, <a class="el" href="d4/dfd/test__temperature_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">test_temperature.cpp</a>
 </li>
 <li>MINUT
 : <a class="el" href="d0/d00/main_8hpp.html#afccbf9fea014a33f945ff5d8be57f68d">main.hpp</a>
@@ -266,22 +276,15 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>PID_TASK_STACK_SIZE
 : <a class="el" href="d0/d00/main_8hpp.html#acda1e498527b0d7f38973e6deb6d2049">main.hpp</a>
 </li>
-<li>PIDTaskHandle
-: <a class="el" href="df/d0a/main_8cpp.html#ab112334482528ed6cc36eed18fb55302">main.cpp</a>
-</li>
 <li>pidTaskHandle()
 : <a class="el" href="df/d0a/main_8cpp.html#a19fbfc122dff7ef467f9cd7f84d99b1d">main.cpp</a>
 , <a class="el" href="d0/d00/main_8hpp.html#a19fbfc122dff7ef467f9cd7f84d99b1d">main.hpp</a>
 </li>
+<li>PIDTaskHandle
+: <a class="el" href="df/d0a/main_8cpp.html#ab112334482528ed6cc36eed18fb55302">main.cpp</a>
+</li>
 <li>PWM_PIN
 : <a class="el" href="dc/d32/temperature_8hpp.html#af5a48adc9d939102a42f2829b7a1b8ac">temperature.hpp</a>
-</li>
-</ul>
-
-
-<h3><a id="index_r"></a>- r -</h3><ul>
-<li>readFile()
-: <a class="el" href="d6/dc0/WebServerManager_8cpp.html#a81e0a36812b04ff04c955b167bf2cee7">WebServerManager.cpp</a>
 </li>
 </ul>
 
@@ -302,12 +305,11 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>SERVER_TASK_STACK_SIZE
 : <a class="el" href="d0/d00/main_8hpp.html#acd444e3efb7f7ff7d5f65a538c2a754c">main.hpp</a>
 </li>
-<li>setup()
-: <a class="el" href="df/d0a/main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">main.cpp</a>
-</li>
 <li>setUp()
 : <a class="el" href="d5/de5/test__pid_8cpp.html#a95c834d6178047ce9e1bce7cbfea2836">test_pid.cpp</a>
-, <a class="el" href="d4/dfd/test__temperature_8cpp.html#a95c834d6178047ce9e1bce7cbfea2836">test_temperature.cpp</a>
+</li>
+<li>setup()
+: <a class="el" href="df/d0a/main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">main.cpp</a>
 </li>
 </ul>
 
@@ -315,7 +317,6 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <h3><a id="index_t"></a>- t -</h3><ul>
 <li>tearDown()
 : <a class="el" href="d5/de5/test__pid_8cpp.html#a9909011e5fea0c018842eec4d93d0662">test_pid.cpp</a>
-, <a class="el" href="d4/dfd/test__temperature_8cpp.html#a9909011e5fea0c018842eec4d93d0662">test_temperature.cpp</a>
 </li>
 <li>TEMPERATURE_TASK_STACK_SIZE
 : <a class="el" href="d0/d00/main_8hpp.html#a254d10ab5923093ac186945fea1e82ef">main.hpp</a>
@@ -330,14 +331,11 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>TemperatureTaskHandle
 : <a class="el" href="df/d0a/main_8cpp.html#afb12f43ef50ce0fba62be0aabdb1db3b">main.cpp</a>
 </li>
+<li>test_pid_output()
+: <a class="el" href="d5/de5/test__pid_8cpp.html#a60e672223d39233d27514638181f5fa8">test_pid.cpp</a>
+</li>
 <li>test_pid_with_limits()
 : <a class="el" href="d5/de5/test__pid_8cpp.html#a984ca77e6f458db778a854e0016018e8">test_pid.cpp</a>
-</li>
-<li>test_readKTemp_with_invalid_data()
-: <a class="el" href="d4/dfd/test__temperature_8cpp.html#aaa37577979a1b766f27c3db418732e49">test_temperature.cpp</a>
-</li>
-<li>test_readKTemp_with_valid_data()
-: <a class="el" href="d4/dfd/test__temperature_8cpp.html#a1c9131628694a1063370a64b288884bd">test_temperature.cpp</a>
 </li>
 <li>TIME_BEFOR_AP
 : <a class="el" href="d4/dd5/WebServerManager_8hpp.html#adc6e235951ba21272a96f12242dfff69">WebServerManager.hpp</a>
@@ -388,7 +386,7 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Feb 21 2025 01:56:40 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 24 2025 22:30:24 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

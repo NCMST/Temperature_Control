@@ -33,6 +33,7 @@
    <div id="projectname">Temperature control
    &#160;<span id="projectnumber">1.0</span>
    </div>
+   <div id="projectbrief">Software documentation for the temperature control system on ESP32 cuzing a Triac BC138 and MAX6675. Implementing PID control with WEB interface and CSV temperature raport.</div>
   </td>
  </tr>
  </tbody>
@@ -126,13 +127,13 @@ $(document).ready(function(){initNavTree('files.html',''); initResizable(); });
 <tr id="row_1_2_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a href="dc/d32/temperature_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="dc/d32/temperature_8hpp.html" target="_self">temperature.hpp</a></td><td class="desc"></td></tr>
 <tr id="row_1_2_2_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a href="df/d7c/TemperatureData_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="df/d7c/TemperatureData_8hpp.html" target="_self">TemperatureData.hpp</a></td><td class="desc"></td></tr>
 <tr id="row_1_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_1_3_" class="arrow" onclick="toggleFolder('1_3_')">&#9660;</span><span id="img_1_3_" class="iconfopen" onclick="toggleFolder('1_3_')">&#160;</span><a class="el" href="dir_17b917191f10da35573e3cfcf377bc8f.html" target="_self">WebInterface</a></td><td class="desc"></td></tr>
-<tr id="row_1_3_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icondoc"></span><a class="el" href="d6/dc0/WebServerManager_8cpp.html" target="_self">WebServerManager.cpp</a></td><td class="desc"></td></tr>
-<tr id="row_1_3_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a href="d4/dd5/WebServerManager_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="d4/dd5/WebServerManager_8hpp.html" target="_self">WebServerManager.hpp</a></td><td class="desc"></td></tr>
+<tr id="row_1_3_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icondoc"></span><a class="el" href="d6/dc0/WebServerManager_8cpp.html" target="_self">WebServerManager.cpp</a></td><td class="desc"><a class="el" href="dc/d57/classWebServerManager.html" title="Class for managing the web server.">WebServerManager</a> class implementation </td></tr>
+<tr id="row_1_3_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a href="d4/dd5/WebServerManager_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="d4/dd5/WebServerManager_8hpp.html" target="_self">WebServerManager.hpp</a></td><td class="desc">Web server manager class definition </td></tr>
 <tr id="row_2_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_2_" class="arrow" onclick="toggleFolder('2_')">&#9660;</span><span id="img_2_" class="iconfopen" onclick="toggleFolder('2_')">&#160;</span><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html" target="_self">src</a></td><td class="desc"></td></tr>
-<tr id="row_2_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icondoc"></span><a class="el" href="df/d0a/main_8cpp.html" target="_self">main.cpp</a></td><td class="desc"></td></tr>
+<tr id="row_2_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icondoc"></span><a class="el" href="df/d0a/main_8cpp.html" target="_self">main.cpp</a></td><td class="desc">Main file for the smart thermostat project. That implements FreeRTOS tasks for web server, temperature reading, display, and <a class="el" href="d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> control </td></tr>
 <tr id="row_3_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_3_" class="arrow" onclick="toggleFolder('3_')">&#9660;</span><span id="img_3_" class="iconfopen" onclick="toggleFolder('3_')">&#160;</span><a class="el" href="dir_13e138d54eb8818da29c3992edef070a.html" target="_self">test</a></td><td class="desc"></td></tr>
 <tr id="row_3_0_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_3_0_" class="arrow" onclick="toggleFolder('3_0_')">&#9660;</span><span id="img_3_0_" class="iconfopen" onclick="toggleFolder('3_0_')">&#160;</span><a class="el" href="dir_ddbb58876aa269932b62f4892d370862.html" target="_self">test_pid</a></td><td class="desc"></td></tr>
-<tr id="row_3_0_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icondoc"></span><a class="el" href="d5/de5/test__pid_8cpp.html" target="_self">test_pid.cpp</a></td><td class="desc"></td></tr>
+<tr id="row_3_0_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icondoc"></span><a class="el" href="d5/de5/test__pid_8cpp.html" target="_self">test_pid.cpp</a></td><td class="desc">Test functions for <a class="el" href="d8/da9/classPID.html" title="A class to implement a PID controller.">PID</a> class </td></tr>
 <tr id="row_3_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_3_1_" class="arrow" onclick="toggleFolder('3_1_')">&#9660;</span><span id="img_3_1_" class="iconfopen" onclick="toggleFolder('3_1_')">&#160;</span><a class="el" href="dir_52731ece47df719a22b9b99032f0a540.html" target="_self">test_screen</a></td><td class="desc"></td></tr>
 <tr id="row_3_1_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><span class="icondoc"></span><a class="el" href="d8/d22/test__screen_8cpp.html" target="_self">test_screen.cpp</a></td><td class="desc"></td></tr>
 <tr id="row_3_2_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_3_2_" class="arrow" onclick="toggleFolder('3_2_')">&#9660;</span><span id="img_3_2_" class="iconfopen" onclick="toggleFolder('3_2_')">&#160;</span><a class="el" href="dir_f140ae0471b8985d30a33d7d160628f7.html" target="_self">test_temperature</a></td><td class="desc"></td></tr>
@@ -145,7 +146,7 @@ $(document).ready(function(){initNavTree('files.html',''); initResizable(); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Feb 21 2025 01:56:40 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 24 2025 22:30:24 for Temperature control by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
