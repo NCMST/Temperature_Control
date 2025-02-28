@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classWebServerManager" xml:lang="en-US">
+<title>WebServerManager Class Reference</title>
+<indexterm><primary>WebServerManager</primary></indexterm>
+<para>
+
+<para>Class for managing the web server. </para>
+ 
+</para>
+<para>
+<computeroutput>#include &lt;WebServerManager.hpp&gt;</computeroutput>
+</para>
+<section>
+<title>Detailed Description</title>
+
+<para>Class for managing the web server. </para>
+
+
+
+<para>Loads the HTML pages, handles the requests, and sends the responses. This class manages the connection to Wi-Fi networks and serves web pages to clients. It also handles temperature data and provides various endpoints for interacting with the web server.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>ssid</entry><entry>
+<para>- SSID of the primary Wi-Fi network </para>
+</entry>
+                            </row>
+                            <row>
+<entry>password</entry><entry>
+<para>- Password of the primary Wi-Fi network </para>
+</entry>
+                            </row>
+                            <row>
+<entry>second_ssid</entry><entry>
+<para>- SSID of the secondary Wi-Fi network </para>
+</entry>
+                            </row>
+                            <row>
+<entry>second_password</entry><entry>
+<para>- Password of the secondary Wi-Fi network </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+The documentation for this class was generated from the following file:</para>
+lib/WebInterface/<link linkend="_WebServerManager_8hpp">WebServerManager.hpp</link></section>
+</section>

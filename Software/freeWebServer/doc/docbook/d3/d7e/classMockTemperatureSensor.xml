@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classMockTemperatureSensor" xml:lang="en-US">
+<title>MockTemperatureSensor Class Reference</title>
+<indexterm><primary>MockTemperatureSensor</primary></indexterm>
+<para>
+<computeroutput>#include &lt;MockTemperatureSensor.hpp&gt;</computeroutput>
+</para>
+Inheritance diagram for MockTemperatureSensor:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d7/da7/classMockTemperatureSensor__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Collaboration diagram for MockTemperatureSensor:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/d22/classMockTemperatureSensor__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classMockTemperatureSensor_1ac24ae54dc37d360fae83af2d1c002043">MockTemperatureSensor</link> (float temp, bool read)</para>
+</listitem>
+            <listitem><para>bool <link linkend="_classMockTemperatureSensor_1a6c9d3b814deae5787e539862e6d7aa5c">readTemp</link> () override</para>
+</listitem>
+            <listitem><para>float <link linkend="_classMockTemperatureSensor_1a9020a7b1d9501b40f30ece39bb6a6993">getTemp</link> () override</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classMockTemperatureSensor_1ac24ae54dc37d360fae83af2d1c002043"/><section>
+    <title>MockTemperatureSensor()</title>
+<indexterm><primary>MockTemperatureSensor</primary><secondary>MockTemperatureSensor</secondary></indexterm>
+<indexterm><primary>MockTemperatureSensor</primary><secondary>MockTemperatureSensor</secondary></indexterm>
+<para><computeroutput>MockTemperatureSensor::MockTemperatureSensor (float temp, bool read)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classMockTemperatureSensor_1a9020a7b1d9501b40f30ece39bb6a6993"/><section>
+    <title>getTemp()</title>
+<indexterm><primary>getTemp</primary><secondary>MockTemperatureSensor</secondary></indexterm>
+<indexterm><primary>MockTemperatureSensor</primary><secondary>getTemp</secondary></indexterm>
+<para><computeroutput>float MockTemperatureSensor::getTemp ( )<computeroutput>[inline]</computeroutput>, <computeroutput>[override]</computeroutput></computeroutput></para></section>
+<anchor xml:id="_classMockTemperatureSensor_1a6c9d3b814deae5787e539862e6d7aa5c"/><section>
+    <title>readTemp()</title>
+<indexterm><primary>readTemp</primary><secondary>MockTemperatureSensor</secondary></indexterm>
+<indexterm><primary>MockTemperatureSensor</primary><secondary>readTemp</secondary></indexterm>
+<para><computeroutput>bool MockTemperatureSensor::readTemp ( )<computeroutput>[inline]</computeroutput>, <computeroutput>[override]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following file:</para>
+test/test_temperature/<link linkend="_MockTemperatureSensor_8hpp">MockTemperatureSensor.hpp</link></section>
+</section>

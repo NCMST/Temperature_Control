@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_WebServerManager_8hpp" xml:lang="en-US">
+<title>lib/WebInterface/WebServerManager.hpp File Reference</title>
+<indexterm><primary>lib/WebInterface/WebServerManager.hpp</primary></indexterm>
+<para>
+
+<para>Web server manager class definition. </para>
+ 
+</para>
+<programlisting linenumbering="unnumbered">#include &lt;WiFi.h&gt;<?linebreak?>#include &lt;WebServer.h&gt;<?linebreak?>#include &lt;WiFiMulti.h&gt;<?linebreak?>#include &lt;ArduinoJson.h&gt;<?linebreak?>#include &lt;map&gt;<?linebreak?>#include &lt;string&gt;<?linebreak?>#include &quot;TemperatureData.hpp&quot;<?linebreak?>#include &quot;FileManager.hpp&quot;<?linebreak?></programlisting>Include dependency graph for WebServerManager.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../de/d34/WebServerManager_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d2/dce/WebServerManager_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_WebServerManager_8hpp_1a0906dae4a42c1fef9ec0cd0a5212ed4a">HTTP_PORT</link>&#160;&#160;&#160;80</para>
+
+<para>HTTP port. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_WebServerManager_8hpp_1a482f23f43bfd2edd483e8f99b57baa82">LOGS_MESSAGE</link>&#160;&#160;&#160;true</para>
+
+<para>log messages to the serial monitor </para>
+</listitem>
+            <listitem><para>#define <link linkend="_WebServerManager_8hpp_1adc6e235951ba21272a96f12242dfff69">TIME_BEFOR_AP</link>&#160;&#160;&#160;5000</para>
+
+<para>Time before the access point is started. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_WebServerManager_8hpp_1a450a7c16ead7b3c7b882536b08f30a00">LED_BUILTIN</link>&#160;&#160;&#160;2</para>
+
+<para>LED_BUILTIN pin. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Web server manager class definition. </para>
+
+<para><formalpara><title>Author</title>
+
+<para>Creciune Catalin <link xlink:href="mailto:creciunelcatalin@gmail.com">creciunelcatalin@gmail.com</link> </para>
+</formalpara>
+<formalpara><title>Version</title>
+
+<para>0.1 </para>
+</formalpara>
+<formalpara><title>Date</title>
+
+<para>2025-02-21</para>
+</formalpara>
+<formalpara><title>Copyright</title>
+
+<para>Copyright (c) 2025 </para>
+</formalpara>
+</para>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_WebServerManager_8hpp_1a0906dae4a42c1fef9ec0cd0a5212ed4a"/><section>
+    <title>HTTP_PORT</title>
+<indexterm><primary>HTTP_PORT</primary><secondary>WebServerManager.hpp</secondary></indexterm>
+<indexterm><primary>WebServerManager.hpp</primary><secondary>HTTP_PORT</secondary></indexterm>
+<para><computeroutput>#define HTTP_PORT&#160;&#160;&#160;80</computeroutput></para><para>
+
+<para>HTTP port. </para>
+</para>
+</section>
+<anchor xml:id="_WebServerManager_8hpp_1a450a7c16ead7b3c7b882536b08f30a00"/><section>
+    <title>LED_BUILTIN</title>
+<indexterm><primary>LED_BUILTIN</primary><secondary>WebServerManager.hpp</secondary></indexterm>
+<indexterm><primary>WebServerManager.hpp</primary><secondary>LED_BUILTIN</secondary></indexterm>
+<para><computeroutput>#define LED_BUILTIN&#160;&#160;&#160;2</computeroutput></para><para>
+
+<para>LED_BUILTIN pin. </para>
+</para>
+</section>
+<anchor xml:id="_WebServerManager_8hpp_1a482f23f43bfd2edd483e8f99b57baa82"/><section>
+    <title>LOGS_MESSAGE</title>
+<indexterm><primary>LOGS_MESSAGE</primary><secondary>WebServerManager.hpp</secondary></indexterm>
+<indexterm><primary>WebServerManager.hpp</primary><secondary>LOGS_MESSAGE</secondary></indexterm>
+<para><computeroutput>#define LOGS_MESSAGE&#160;&#160;&#160;true</computeroutput></para><para>
+
+<para>log messages to the serial monitor </para>
+</para>
+
+<para>boolean value </para>
+</section>
+<anchor xml:id="_WebServerManager_8hpp_1adc6e235951ba21272a96f12242dfff69"/><section>
+    <title>TIME_BEFOR_AP</title>
+<indexterm><primary>TIME_BEFOR_AP</primary><secondary>WebServerManager.hpp</secondary></indexterm>
+<indexterm><primary>WebServerManager.hpp</primary><secondary>TIME_BEFOR_AP</secondary></indexterm>
+<para><computeroutput>#define TIME_BEFOR_AP&#160;&#160;&#160;5000</computeroutput></para><para>
+
+<para>Time before the access point is started. </para>
+</para>
+
+<para>if the connection to the Wi-Fi network fails esp32 will start an access point </para>
+</section>
+</section>
+</section>

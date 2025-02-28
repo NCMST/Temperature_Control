@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_temperature_8hpp" xml:lang="en-US">
+<title>lib/Temperature/temperature.hpp File Reference</title>
+<indexterm><primary>lib/Temperature/temperature.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;Arduino.h&gt;<?linebreak?>#include &lt;max6675.h&gt;<?linebreak?></programlisting>Include dependency graph for temperature.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/d0b/temperature_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d6/d63/temperature_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1af5a48adc9d939102a42f2829b7a1b8ac">PWM_PIN</link>&#160;&#160;&#160;23</para>
+
+<para>PWM_PIN - pin for PWM signal. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1ae9d49745b4dc4fd7287b4c198789adef">NTC_PIN</link>&#160;&#160;&#160;39</para>
+
+<para>NTC_PIN - pin for NTC signal. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1ad24d51d4ca0283771889508305796e4e">NTC_A</link>&#160;&#160;&#160;0.001129148</para>
+
+<para>NTC_A - NTC Steinhart-Hart coefficients. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1a8958a9741d63644e8935413dadd2ab73">NTC_B</link>&#160;&#160;&#160;0.000234125</para>
+
+<para>NTC_B - NTC Steinhart-Hart coefficients. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1a66cc6caca101ca12774cc68014aa96be">NTC_C</link>&#160;&#160;&#160;0.0000000876741</para>
+
+<para>NTC_C - NTC Steinhart-Hart coefficients. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1a122557a0293deb12253eb7a4dba4e4f6">VCC</link>&#160;&#160;&#160;3.3</para>
+
+<para>NTC_R0 - NTC resistance at 25 degrees Celsius. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1aae3f7b0c4a0759421f07b3051661c60d">NTC_R2</link>&#160;&#160;&#160;9990</para>
+
+<para>NTC_R0 - NTC resistance at 25 degrees Celsius. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1a00978ca9e8220475258dcbbbb7d29129">ADC_RESOLUTION</link>&#160;&#160;&#160;4096</para>
+
+<para>ADC_RESOLUTION - ADC resolution. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1abfcf05153ddbd63d5aff5d018867cc19">CS_PIN</link>&#160;&#160;&#160;15</para>
+
+<para>CS_PIN - Chip Select pin. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1a40f496979bb9d7199cca5e0ce136e698">CLK_PIN</link>&#160;&#160;&#160;14</para>
+
+<para>CLK_PIN - Clock pin. </para>
+</listitem>
+            <listitem><para>#define <link linkend="_temperature_8hpp_1adad67fe595ea440c8f8247ec2cddf070">DATA_PIN</link>&#160;&#160;&#160;12</para>
+
+<para>DATA_PIN - Data pin. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para><formalpara><title>Author</title>
+
+<para></para>
+</formalpara>
+<formalpara><title>Version</title>
+
+<para>0.1 </para>
+</formalpara>
+<formalpara><title>Date</title>
+
+<para>2025-02-21</para>
+</formalpara>
+<formalpara><title>Copyright</title>
+
+<para>Copyright (c) 2025 </para>
+</formalpara>
+</para>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_temperature_8hpp_1a00978ca9e8220475258dcbbbb7d29129"/><section>
+    <title>ADC_RESOLUTION</title>
+<indexterm><primary>ADC_RESOLUTION</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>ADC_RESOLUTION</secondary></indexterm>
+<para><computeroutput>#define ADC_RESOLUTION&#160;&#160;&#160;4096</computeroutput></para><para>
+
+<para>ADC_RESOLUTION - ADC resolution. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1a40f496979bb9d7199cca5e0ce136e698"/><section>
+    <title>CLK_PIN</title>
+<indexterm><primary>CLK_PIN</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>CLK_PIN</secondary></indexterm>
+<para><computeroutput>#define CLK_PIN&#160;&#160;&#160;14</computeroutput></para><para>
+
+<para>CLK_PIN - Clock pin. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1abfcf05153ddbd63d5aff5d018867cc19"/><section>
+    <title>CS_PIN</title>
+<indexterm><primary>CS_PIN</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>CS_PIN</secondary></indexterm>
+<para><computeroutput>#define CS_PIN&#160;&#160;&#160;15</computeroutput></para><para>
+
+<para>CS_PIN - Chip Select pin. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1adad67fe595ea440c8f8247ec2cddf070"/><section>
+    <title>DATA_PIN</title>
+<indexterm><primary>DATA_PIN</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>DATA_PIN</secondary></indexterm>
+<para><computeroutput>#define DATA_PIN&#160;&#160;&#160;12</computeroutput></para><para>
+
+<para>DATA_PIN - Data pin. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1ad24d51d4ca0283771889508305796e4e"/><section>
+    <title>NTC_A</title>
+<indexterm><primary>NTC_A</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>NTC_A</secondary></indexterm>
+<para><computeroutput>#define NTC_A&#160;&#160;&#160;0.001129148</computeroutput></para><para>
+
+<para>NTC_A - NTC Steinhart-Hart coefficients. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1a8958a9741d63644e8935413dadd2ab73"/><section>
+    <title>NTC_B</title>
+<indexterm><primary>NTC_B</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>NTC_B</secondary></indexterm>
+<para><computeroutput>#define NTC_B&#160;&#160;&#160;0.000234125</computeroutput></para><para>
+
+<para>NTC_B - NTC Steinhart-Hart coefficients. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1a66cc6caca101ca12774cc68014aa96be"/><section>
+    <title>NTC_C</title>
+<indexterm><primary>NTC_C</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>NTC_C</secondary></indexterm>
+<para><computeroutput>#define NTC_C&#160;&#160;&#160;0.0000000876741</computeroutput></para><para>
+
+<para>NTC_C - NTC Steinhart-Hart coefficients. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1ae9d49745b4dc4fd7287b4c198789adef"/><section>
+    <title>NTC_PIN</title>
+<indexterm><primary>NTC_PIN</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>NTC_PIN</secondary></indexterm>
+<para><computeroutput>#define NTC_PIN&#160;&#160;&#160;39</computeroutput></para><para>
+
+<para>NTC_PIN - pin for NTC signal. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1aae3f7b0c4a0759421f07b3051661c60d"/><section>
+    <title>NTC_R2</title>
+<indexterm><primary>NTC_R2</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>NTC_R2</secondary></indexterm>
+<para><computeroutput>#define NTC_R2&#160;&#160;&#160;9990</computeroutput></para><para>
+
+<para>NTC_R0 - NTC resistance at 25 degrees Celsius. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1af5a48adc9d939102a42f2829b7a1b8ac"/><section>
+    <title>PWM_PIN</title>
+<indexterm><primary>PWM_PIN</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>PWM_PIN</secondary></indexterm>
+<para><computeroutput>#define PWM_PIN&#160;&#160;&#160;23</computeroutput></para><para>
+
+<para>PWM_PIN - pin for PWM signal. </para>
+</para>
+</section>
+<anchor xml:id="_temperature_8hpp_1a122557a0293deb12253eb7a4dba4e4f6"/><section>
+    <title>VCC</title>
+<indexterm><primary>VCC</primary><secondary>temperature.hpp</secondary></indexterm>
+<indexterm><primary>temperature.hpp</primary><secondary>VCC</secondary></indexterm>
+<para><computeroutput>#define VCC&#160;&#160;&#160;3.3</computeroutput></para><para>
+
+<para>NTC_R0 - NTC resistance at 25 degrees Celsius. </para>
+</para>
+</section>
+</section>
+</section>

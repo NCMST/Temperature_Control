@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_17b917191f10da35573e3cfcf377bc8f" xml:lang="en-US">
+<title>lib/WebInterface Directory Reference</title>
+<indexterm><primary>lib/WebInterface Directory Reference</primary></indexterm>
+Directory dependency graph for WebInterface:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_17b917191f10da35573e3cfcf377bc8f_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_WebServerManager_8cpp">WebServerManager.cpp</link></para>
+
+<para><link linkend="_classWebServerManager">WebServerManager</link> class implementation. </para>
+</listitem>
+            <listitem><para>file <link linkend="_WebServerManager_8hpp">WebServerManager.hpp</link></para>
+
+<para>Web server manager class definition. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

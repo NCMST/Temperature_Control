@@ -1,5 +1,5 @@
-\hypertarget{classScreen}{}\doxysection{Screen Class Reference}
-\label{classScreen}\index{Screen@{Screen}}
+\doxysection{Screen Class Reference}
+\hypertarget{classScreen}{}\label{classScreen}\index{Screen@{Screen}}
 
 
 A class to manage the OLED screen using Adafruit\+\_\+\+SSD1306 library.  
@@ -11,29 +11,19 @@ A class to manage the OLED screen using Adafruit\+\_\+\+SSD1306 library.
 
 
 
-Inheritance diagram for Screen\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=184pt]{d7/d6d/classScreen__inherit__graph}
-\end{center}
-\end{figure}
+Inheritance diagram for Screen\+:
+% FIG 0
 
 
-Collaboration diagram for Screen\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=184pt]{de/dcf/classScreen__coll__graph}
-\end{center}
-\end{figure}
-\doxysubsection*{Public Member Functions}
+Collaboration diagram for Screen\+:
+% FIG 1
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classScreen_ab15688f15969591b4da987ec8e2526ce}{Screen}} (int8\+\_\+t reset\+\_\+pin=\mbox{\hyperlink{screen_8hpp_a619e07239fb3b9b14d40646ab41d5b4f}{OLED\+\_\+\+RESET}})
-\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classScreen}{Screen}} object. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{classScreen_a7923190c9409229d86c2888d76752f77}{$\sim$\+Screen}} () noexcept
-\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{classScreen}{Screen}} object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classScreen}{Screen} object. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classScreen_af86414f26bd6956e78bd419b36c49ec7}{\texorpdfstring{$\sim$}{\string~}\+Screen}} () noexcept
+\begin{DoxyCompactList}\small\item\em Destroy the \doxylink{classScreen}{Screen} object. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classScreen_a368787716b5a044b1140a01c4a4772b6}{init}} ()
 \begin{DoxyCompactList}\small\item\em Initialize the screen. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classScreen_addaa49f81c2e276476c2bae2583c9863}{print\+Text}} (uint8\+\_\+t x, uint8\+\_\+t y, uint8\+\_\+t size, String text)
@@ -51,15 +41,15 @@ Inherits from Adafruit\+\_\+\+SSD1306.
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classScreen_ab15688f15969591b4da987ec8e2526ce}\label{classScreen_ab15688f15969591b4da987ec8e2526ce}} 
-\index{Screen@{Screen}!Screen@{Screen}}
+\Hypertarget{classScreen_ab15688f15969591b4da987ec8e2526ce}\index{Screen@{Screen}!Screen@{Screen}}
 \index{Screen@{Screen}!Screen@{Screen}}
 \doxysubsubsection{\texorpdfstring{Screen()}{Screen()}}
-{\footnotesize\ttfamily Screen\+::\+Screen (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{reset\+\_\+pin = {\ttfamily \mbox{\hyperlink{screen_8hpp_a619e07239fb3b9b14d40646ab41d5b4f}{OLED\+\_\+\+RESET}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classScreen_ab15688f15969591b4da987ec8e2526ce} 
+Screen\+::\+Screen (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{reset\+\_\+pin}{ = {\ttfamily \mbox{\hyperlink{screen_8hpp_a619e07239fb3b9b14d40646ab41d5b4f}{OLED\+\_\+\+RESET}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Construct a new \mbox{\hyperlink{classScreen}{Screen}} object. 
+Construct a new \doxylink{classScreen}{Screen} object. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -68,24 +58,24 @@ Construct a new \mbox{\hyperlink{classScreen}{Screen}} object.
 {\em reset\+\_\+pin} & The pin number used to reset the screen. Default is OLED\+\_\+\+RESET. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classScreen_a7923190c9409229d86c2888d76752f77}\label{classScreen_a7923190c9409229d86c2888d76752f77}} 
-\index{Screen@{Screen}!````~Screen@{$\sim$Screen}}
-\index{````~Screen@{$\sim$Screen}!Screen@{Screen}}
-\doxysubsubsection{\texorpdfstring{$\sim$Screen()}{~Screen()}}
-{\footnotesize\ttfamily Screen\+::$\sim$\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+\Hypertarget{classScreen_af86414f26bd6956e78bd419b36c49ec7}\index{Screen@{Screen}!````~Screen@{\texorpdfstring{$\sim$}{\string~}Screen}}
+\index{````~Screen@{\texorpdfstring{$\sim$}{\string~}Screen}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Screen()}{\string~Screen()}}
+{\footnotesize\ttfamily \label{classScreen_af86414f26bd6956e78bd419b36c49ec7} 
+virtual Screen\+::\texorpdfstring{$\sim$}{\string~}\+Screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
-Destroy the \mbox{\hyperlink{classScreen}{Screen}} object. 
+Destroy the \doxylink{classScreen}{Screen} object. 
 
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classScreen_a368787716b5a044b1140a01c4a4772b6}\label{classScreen_a368787716b5a044b1140a01c4a4772b6}} 
-\index{Screen@{Screen}!init@{init}}
+\Hypertarget{classScreen_a368787716b5a044b1140a01c4a4772b6}\index{Screen@{Screen}!init@{init}}
 \index{init@{init}!Screen@{Screen}}
 \doxysubsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily bool Screen\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classScreen_a368787716b5a044b1140a01c4a4772b6} 
+bool Screen\+::init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
@@ -106,11 +96,11 @@ true if the screen is initialized successfully.
 
 false if the screen initialization fails. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classScreen_addaa49f81c2e276476c2bae2583c9863}\label{classScreen_addaa49f81c2e276476c2bae2583c9863}} 
-\index{Screen@{Screen}!printText@{printText}}
+\Hypertarget{classScreen_addaa49f81c2e276476c2bae2583c9863}\index{Screen@{Screen}!printText@{printText}}
 \index{printText@{printText}!Screen@{Screen}}
 \doxysubsubsection{\texorpdfstring{printText()}{printText()}}
-{\footnotesize\ttfamily bool Screen\+::print\+Text (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x,  }\item[{uint8\+\_\+t}]{y,  }\item[{uint8\+\_\+t}]{size,  }\item[{String}]{text }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{classScreen_addaa49f81c2e276476c2bae2583c9863} 
+bool Screen\+::print\+Text (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x}{, }\item[{uint8\+\_\+t}]{y}{, }\item[{uint8\+\_\+t}]{size}{, }\item[{String}]{text}{}\end{DoxyParamCaption})}
 
 
 

@@ -1,0 +1,107 @@
+\doxysection{Web\+Server\+Manager.\+hpp}
+\hypertarget{WebServerManager_8hpp_source}{}\label{WebServerManager_8hpp_source}\index{lib/WebInterface/WebServerManager.hpp@{lib/WebInterface/WebServerManager.hpp}}
+\mbox{\hyperlink{WebServerManager_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ WEBSERVERMANAGER\_HPP}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ WEBSERVERMANAGER\_HPP}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <WiFi.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <WebServer.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <WiFiMulti.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <ArduinoJson.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{TemperatureData_8hpp}{TemperatureData.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}FileManager.hpp"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ HTTP\_PORT\ 80}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ LOGS\_MESSAGE\ true}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ TIME\_BEFOR\_AP\ 5000}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ LED\_BUILTIN\ 2}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classWebServerManager}{WebServerManager}}}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classWebServerManager}{WebServerManager}}(\textcolor{keyword}{const}\ std::map<std::string,\ std::string>\ \&\mbox{\hyperlink{config_8h_a70dfb136f96c1d6754684c18a5c3965d}{wifiConfig}},\ uint8\_t\ nrPass);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{int}\ begin();}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ handleHome();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ handleList();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{void}\ handleGraph();}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{void}\ handleTemperatureData();}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ handleTemperatureList();}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{void}\ handleClient();}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ setTemperatureData(\textcolor{keyword}{const}\ \mbox{\hyperlink{structTemperatureData}{TemperatureData}}\ \&tempData);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ handleSetPoint();}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{void}\ handleCommand();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structTemperatureData}{TemperatureData}}\ \&getTemperature()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{main_8cpp_ac0997dd0c5c5eeef33bafa6b6a8d3381}{currentTemperature}};\ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{float}\ getStetTemperature()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ stetTemperature;\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{bool}\ getStartFlag()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ startFlag;\ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{int}\ getSetTime()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ setTime;\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{float}\ getPIDconstants()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{main_8cpp_a1f7add0f84d583bc2eceb290d6c4cc06}{kp}},\ \mbox{\hyperlink{main_8cpp_a050993b7ca6c97e62c1020017f716b91}{ki}},\ \mbox{\hyperlink{main_8cpp_ae7a5c6018507bb1361fcca170e069b9c}{kd}};\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{void}\ setWiFiCredentials(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ssid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *password)}
+\DoxyCodeLine{00222\ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ this-\/>ssid\ =\ ssid;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ this-\/>password\ =\ password;}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{void}\ setupWiFIRouter(\textcolor{keyword}{const}\ std::map<std::string,\ std::string>\ \&\mbox{\hyperlink{config_8h_a70dfb136f96c1d6754684c18a5c3965d}{wifiConfig}});}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordtype}{void}\ handleDownload();}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCSV(\textcolor{keywordtype}{float}\ realTemperature,\ \textcolor{keywordtype}{float}\ setTemperature,\ uint32\_t\ time);}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{void}\ handlePID();}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{void}\ handlePIDPrint();}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ssid;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ SSID\ of\ the\ Wi-\/Fi\ network}}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *password;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Password\ of\ the\ Wi-\/Fi\ network}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *second\_ssid;\ \ \ \ \ \textcolor{comment}{//\ SSID\ of\ the\ second\ Wi-\/Fi\ network}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *second\_password;\ \textcolor{comment}{//\ Password\ of\ the\ second\ Wi-\/Fi\ network}}
+\DoxyCodeLine{00267\ \ \ \ \ WebServer\ server;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Web\ server\ object}}
+\DoxyCodeLine{00268\ \ \ \ \ String\ homePage;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ HTML\ home\ page}}
+\DoxyCodeLine{00269\ \ \ \ \ String\ graphPage;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ HTML\ graph\ page}}
+\DoxyCodeLine{00270\ \ \ \ \ String\ listPage;}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{float}\ stetTemperature;}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordtype}{bool}\ startFlag;}
+\DoxyCodeLine{00274\ \ \ \ \ uint32\_t\ setTime;}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{main_8cpp_a1f7add0f84d583bc2eceb290d6c4cc06}{kp}}\ =\ 0.1,\ \mbox{\hyperlink{main_8cpp_a050993b7ca6c97e62c1020017f716b91}{ki}}\ =\ 0.5,\ \mbox{\hyperlink{main_8cpp_ae7a5c6018507bb1361fcca170e069b9c}{kd}}\ =\ 0.1;\ \textcolor{comment}{//\ PID\ constants}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ std::vector<TemperatureData>\ temperatureHistory;}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \mbox{\hyperlink{structTemperatureData}{TemperatureData}}\ \mbox{\hyperlink{main_8cpp_ac0997dd0c5c5eeef33bafa6b6a8d3381}{currentTemperature}};\ \textcolor{comment}{//\ Variable\ for\ storing\ the\ current\ temperature}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ WiFiMulti\ wifiMulti;\ \textcolor{comment}{//\ Object\ for\ managing\ multiple\ Wi-\/Fi\ networks}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ FileManager\ fileManager;\ \textcolor{comment}{//\ Object\ for\ managing\ files}}
+\DoxyCodeLine{00285\ \};}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WEBSERVERMANAGER\_HPP}}
+
+\end{DoxyCode}

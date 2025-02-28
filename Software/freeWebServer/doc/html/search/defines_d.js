@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['wf_5fpass_183',['WF_PASS',['../d0/d00/main_8hpp.html#a9c132ed40fe0cce3c1d0800864be1c58',1,'main.hpp']]],
-  ['wf_5fssid_184',['WF_SSID',['../d0/d00/main_8hpp.html#a173bba050e90d1b685d079d4da839309',1,'main.hpp']]]
+  ['wifi_5fpass_5fnr_0',['WIFI_PASS_NR',['../d0/d00/main_8hpp.html#a693f708a9e34e5a85f574db716c95065',1,'main.hpp']]]
 ];

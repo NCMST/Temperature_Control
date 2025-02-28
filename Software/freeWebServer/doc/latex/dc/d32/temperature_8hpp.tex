@@ -1,22 +1,12 @@
-\hypertarget{temperature_8hpp}{}\doxysection{lib/\+Temperature/temperature.hpp File Reference}
-\label{temperature_8hpp}\index{lib/Temperature/temperature.hpp@{lib/Temperature/temperature.hpp}}
+\doxysection{lib/\+Temperature/temperature.hpp File Reference}
+\hypertarget{temperature_8hpp}{}\label{temperature_8hpp}\index{lib/Temperature/temperature.hpp@{lib/Temperature/temperature.hpp}}
 {\ttfamily \#include $<$Arduino.\+h$>$}\newline
-{\ttfamily \#include $<$Gyver\+MAX6675.\+h$>$}\newline
-Include dependency graph for temperature.\+hpp\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=270pt]{da/d0b/temperature_8hpp__incl}
-\end{center}
-\end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{d6/d63/temperature_8hpp__dep__incl}
-\end{center}
-\end{figure}
-\doxysubsection*{Macros}
+{\ttfamily \#include $<$max6675.\+h$>$}\newline
+Include dependency graph for temperature.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{temperature_8hpp_af5a48adc9d939102a42f2829b7a1b8ac}{PWM\+\_\+\+PIN}}~23
@@ -45,7 +35,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 
 \doxysubsection{Detailed Description}
 \begin{DoxyAuthor}{Author}
-Creciune Catalin \href{mailto:creciunelcatalin@gmail.com}{\texttt{ creciunelcatalin@gmail.\+com}} 
+
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
 0.\+1 
@@ -59,111 +49,111 @@ Copyright (c) 2025
 
 
 \doxysubsection{Macro Definition Documentation}
-\mbox{\Hypertarget{temperature_8hpp_a00978ca9e8220475258dcbbbb7d29129}\label{temperature_8hpp_a00978ca9e8220475258dcbbbb7d29129}} 
-\index{temperature.hpp@{temperature.hpp}!ADC\_RESOLUTION@{ADC\_RESOLUTION}}
+\Hypertarget{temperature_8hpp_a00978ca9e8220475258dcbbbb7d29129}\index{temperature.hpp@{temperature.hpp}!ADC\_RESOLUTION@{ADC\_RESOLUTION}}
 \index{ADC\_RESOLUTION@{ADC\_RESOLUTION}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{ADC\_RESOLUTION}{ADC\_RESOLUTION}}
-{\footnotesize\ttfamily \#define ADC\+\_\+\+RESOLUTION~4096}
+{\footnotesize\ttfamily \label{temperature_8hpp_a00978ca9e8220475258dcbbbb7d29129} 
+\#define ADC\+\_\+\+RESOLUTION~4096}
 
 
 
 ADC\+\_\+\+RESOLUTION -\/ ADC resolution. 
 
-\mbox{\Hypertarget{temperature_8hpp_a40f496979bb9d7199cca5e0ce136e698}\label{temperature_8hpp_a40f496979bb9d7199cca5e0ce136e698}} 
-\index{temperature.hpp@{temperature.hpp}!CLK\_PIN@{CLK\_PIN}}
+\Hypertarget{temperature_8hpp_a40f496979bb9d7199cca5e0ce136e698}\index{temperature.hpp@{temperature.hpp}!CLK\_PIN@{CLK\_PIN}}
 \index{CLK\_PIN@{CLK\_PIN}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{CLK\_PIN}{CLK\_PIN}}
-{\footnotesize\ttfamily \#define CLK\+\_\+\+PIN~14}
+{\footnotesize\ttfamily \label{temperature_8hpp_a40f496979bb9d7199cca5e0ce136e698} 
+\#define CLK\+\_\+\+PIN~14}
 
 
 
 CLK\+\_\+\+PIN -\/ Clock pin. 
 
-\mbox{\Hypertarget{temperature_8hpp_abfcf05153ddbd63d5aff5d018867cc19}\label{temperature_8hpp_abfcf05153ddbd63d5aff5d018867cc19}} 
-\index{temperature.hpp@{temperature.hpp}!CS\_PIN@{CS\_PIN}}
+\Hypertarget{temperature_8hpp_abfcf05153ddbd63d5aff5d018867cc19}\index{temperature.hpp@{temperature.hpp}!CS\_PIN@{CS\_PIN}}
 \index{CS\_PIN@{CS\_PIN}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{CS\_PIN}{CS\_PIN}}
-{\footnotesize\ttfamily \#define CS\+\_\+\+PIN~15}
+{\footnotesize\ttfamily \label{temperature_8hpp_abfcf05153ddbd63d5aff5d018867cc19} 
+\#define CS\+\_\+\+PIN~15}
 
 
 
 CS\+\_\+\+PIN -\/ Chip Select pin. 
 
-\mbox{\Hypertarget{temperature_8hpp_adad67fe595ea440c8f8247ec2cddf070}\label{temperature_8hpp_adad67fe595ea440c8f8247ec2cddf070}} 
-\index{temperature.hpp@{temperature.hpp}!DATA\_PIN@{DATA\_PIN}}
+\Hypertarget{temperature_8hpp_adad67fe595ea440c8f8247ec2cddf070}\index{temperature.hpp@{temperature.hpp}!DATA\_PIN@{DATA\_PIN}}
 \index{DATA\_PIN@{DATA\_PIN}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{DATA\_PIN}{DATA\_PIN}}
-{\footnotesize\ttfamily \#define DATA\+\_\+\+PIN~12}
+{\footnotesize\ttfamily \label{temperature_8hpp_adad67fe595ea440c8f8247ec2cddf070} 
+\#define DATA\+\_\+\+PIN~12}
 
 
 
 DATA\+\_\+\+PIN -\/ Data pin. 
 
-\mbox{\Hypertarget{temperature_8hpp_ad24d51d4ca0283771889508305796e4e}\label{temperature_8hpp_ad24d51d4ca0283771889508305796e4e}} 
-\index{temperature.hpp@{temperature.hpp}!NTC\_A@{NTC\_A}}
+\Hypertarget{temperature_8hpp_ad24d51d4ca0283771889508305796e4e}\index{temperature.hpp@{temperature.hpp}!NTC\_A@{NTC\_A}}
 \index{NTC\_A@{NTC\_A}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{NTC\_A}{NTC\_A}}
-{\footnotesize\ttfamily \#define NTC\+\_\+A~0.\+001129148}
+{\footnotesize\ttfamily \label{temperature_8hpp_ad24d51d4ca0283771889508305796e4e} 
+\#define NTC\+\_\+A~0.\+001129148}
 
 
 
 NTC\+\_\+A -\/ NTC Steinhart-\/\+Hart coefficients. 
 
-\mbox{\Hypertarget{temperature_8hpp_a8958a9741d63644e8935413dadd2ab73}\label{temperature_8hpp_a8958a9741d63644e8935413dadd2ab73}} 
-\index{temperature.hpp@{temperature.hpp}!NTC\_B@{NTC\_B}}
+\Hypertarget{temperature_8hpp_a8958a9741d63644e8935413dadd2ab73}\index{temperature.hpp@{temperature.hpp}!NTC\_B@{NTC\_B}}
 \index{NTC\_B@{NTC\_B}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{NTC\_B}{NTC\_B}}
-{\footnotesize\ttfamily \#define NTC\+\_\+B~0.\+000234125}
+{\footnotesize\ttfamily \label{temperature_8hpp_a8958a9741d63644e8935413dadd2ab73} 
+\#define NTC\+\_\+B~0.\+000234125}
 
 
 
 NTC\+\_\+B -\/ NTC Steinhart-\/\+Hart coefficients. 
 
-\mbox{\Hypertarget{temperature_8hpp_a66cc6caca101ca12774cc68014aa96be}\label{temperature_8hpp_a66cc6caca101ca12774cc68014aa96be}} 
-\index{temperature.hpp@{temperature.hpp}!NTC\_C@{NTC\_C}}
+\Hypertarget{temperature_8hpp_a66cc6caca101ca12774cc68014aa96be}\index{temperature.hpp@{temperature.hpp}!NTC\_C@{NTC\_C}}
 \index{NTC\_C@{NTC\_C}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{NTC\_C}{NTC\_C}}
-{\footnotesize\ttfamily \#define NTC\+\_\+C~0.\+0000000876741}
+{\footnotesize\ttfamily \label{temperature_8hpp_a66cc6caca101ca12774cc68014aa96be} 
+\#define NTC\+\_\+C~0.\+0000000876741}
 
 
 
 NTC\+\_\+C -\/ NTC Steinhart-\/\+Hart coefficients. 
 
-\mbox{\Hypertarget{temperature_8hpp_ae9d49745b4dc4fd7287b4c198789adef}\label{temperature_8hpp_ae9d49745b4dc4fd7287b4c198789adef}} 
-\index{temperature.hpp@{temperature.hpp}!NTC\_PIN@{NTC\_PIN}}
+\Hypertarget{temperature_8hpp_ae9d49745b4dc4fd7287b4c198789adef}\index{temperature.hpp@{temperature.hpp}!NTC\_PIN@{NTC\_PIN}}
 \index{NTC\_PIN@{NTC\_PIN}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{NTC\_PIN}{NTC\_PIN}}
-{\footnotesize\ttfamily \#define NTC\+\_\+\+PIN~39}
+{\footnotesize\ttfamily \label{temperature_8hpp_ae9d49745b4dc4fd7287b4c198789adef} 
+\#define NTC\+\_\+\+PIN~39}
 
 
 
 NTC\+\_\+\+PIN -\/ pin for NTC signal. 
 
-\mbox{\Hypertarget{temperature_8hpp_aae3f7b0c4a0759421f07b3051661c60d}\label{temperature_8hpp_aae3f7b0c4a0759421f07b3051661c60d}} 
-\index{temperature.hpp@{temperature.hpp}!NTC\_R2@{NTC\_R2}}
+\Hypertarget{temperature_8hpp_aae3f7b0c4a0759421f07b3051661c60d}\index{temperature.hpp@{temperature.hpp}!NTC\_R2@{NTC\_R2}}
 \index{NTC\_R2@{NTC\_R2}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{NTC\_R2}{NTC\_R2}}
-{\footnotesize\ttfamily \#define NTC\+\_\+\+R2~9990}
+{\footnotesize\ttfamily \label{temperature_8hpp_aae3f7b0c4a0759421f07b3051661c60d} 
+\#define NTC\+\_\+\+R2~9990}
 
 
 
 NTC\+\_\+\+R0 -\/ NTC resistance at 25 degrees Celsius. 
 
-\mbox{\Hypertarget{temperature_8hpp_af5a48adc9d939102a42f2829b7a1b8ac}\label{temperature_8hpp_af5a48adc9d939102a42f2829b7a1b8ac}} 
-\index{temperature.hpp@{temperature.hpp}!PWM\_PIN@{PWM\_PIN}}
+\Hypertarget{temperature_8hpp_af5a48adc9d939102a42f2829b7a1b8ac}\index{temperature.hpp@{temperature.hpp}!PWM\_PIN@{PWM\_PIN}}
 \index{PWM\_PIN@{PWM\_PIN}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{PWM\_PIN}{PWM\_PIN}}
-{\footnotesize\ttfamily \#define PWM\+\_\+\+PIN~23}
+{\footnotesize\ttfamily \label{temperature_8hpp_af5a48adc9d939102a42f2829b7a1b8ac} 
+\#define PWM\+\_\+\+PIN~23}
 
 
 
 PWM\+\_\+\+PIN -\/ pin for PWM signal. 
 
-\mbox{\Hypertarget{temperature_8hpp_a122557a0293deb12253eb7a4dba4e4f6}\label{temperature_8hpp_a122557a0293deb12253eb7a4dba4e4f6}} 
-\index{temperature.hpp@{temperature.hpp}!VCC@{VCC}}
+\Hypertarget{temperature_8hpp_a122557a0293deb12253eb7a4dba4e4f6}\index{temperature.hpp@{temperature.hpp}!VCC@{VCC}}
 \index{VCC@{VCC}!temperature.hpp@{temperature.hpp}}
 \doxysubsubsection{\texorpdfstring{VCC}{VCC}}
-{\footnotesize\ttfamily \#define VCC~3.\+3}
+{\footnotesize\ttfamily \label{temperature_8hpp_a122557a0293deb12253eb7a4dba4e4f6} 
+\#define VCC~3.\+3}
 
 
 

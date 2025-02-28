@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classTemperature" xml:lang="en-US">
+<title>Temperature Class Reference</title>
+<indexterm><primary>Temperature</primary></indexterm>
+<para>
+
+<para>A class to handle temperature readings from a K type thermocouple and an NTC thermistor. </para>
+ 
+</para>
+<para>
+<computeroutput>#include &lt;temperature.hpp&gt;</computeroutput>
+</para>
+<section>
+<title>Detailed Description</title>
+
+<para>A class to handle temperature readings from a K type thermocouple and an NTC thermistor. </para>
+
+
+
+<para>This class provides methods to read temperatures from a K type thermocouple using the Adafruit_MAX6675 sensor and from an NTC thermistor. It abstracts the hardware-specific details and provides a simple interface for obtaining temperature readings.</para>
+
+<para><note><title>Note</title>
+
+<para>Ensure that the CLK_PIN, DATA_PIN, and CS_PIN are correctly defined for the Adafruit_MAX6675 sensor.</para>
+</note>
+<caution><title>Attention</title>
+
+<para>This class assumes that the necessary hardware connections are made and the Adafruit_MAX6675 library is included.</para>
+</caution>
+<warning><title>Warning</title>
+
+<para>The temperature readings are dependent on the accuracy of the sensors and the correct configuration of the pins.</para>
+</warning>
+<formalpara><title>See also</title>
+
+<para>Adafruit_MAX6675 </para>
+</formalpara>
+</para>
+<para>
+The documentation for this class was generated from the following file:</para>
+lib/Temperature/<link linkend="_temperature_8hpp">temperature.hpp</link></section>
+</section>

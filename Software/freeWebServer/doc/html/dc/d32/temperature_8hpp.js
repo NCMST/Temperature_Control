@@ -10,6 +10,5 @@ var temperature_8hpp =
     [ "NTC_PIN", "dc/d32/temperature_8hpp.html#ae9d49745b4dc4fd7287b4c198789adef", null ],
     [ "NTC_R2", "dc/d32/temperature_8hpp.html#aae3f7b0c4a0759421f07b3051661c60d", null ],
     [ "PWM_PIN", "dc/d32/temperature_8hpp.html#af5a48adc9d939102a42f2829b7a1b8ac", null ],
-    [ "VCC", "dc/d32/temperature_8hpp.html#a122557a0293deb12253eb7a4dba4e4f6", null ],
-    [ "max6675", "dc/d32/temperature_8hpp.html#a68bc48c3bb8d17963988e6ed5e565b55", null ]
+    [ "VCC", "dc/d32/temperature_8hpp.html#a122557a0293deb12253eb7a4dba4e4f6", null ]
 ];

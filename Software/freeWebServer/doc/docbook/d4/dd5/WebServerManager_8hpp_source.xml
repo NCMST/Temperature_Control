@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_WebServerManager_8hpp_source" xml:lang="en-US">
+<title>WebServerManager.hpp</title>
+<indexterm><primary>lib/WebInterface/WebServerManager.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 
+11 <emphasis role="preprocessor">#ifndef&#32;WEBSERVERMANAGER_HPP</emphasis>
+12 <emphasis role="preprocessor">#define&#32;WEBSERVERMANAGER_HPP</emphasis>
+13 
+14 <emphasis role="preprocessor">#include&#32;&lt;WiFi.h&gt;</emphasis>
+15 <emphasis role="preprocessor">#include&#32;&lt;WebServer.h&gt;</emphasis>
+16 <emphasis role="preprocessor">#include&#32;&lt;WiFiMulti.h&gt;</emphasis>
+17 <emphasis role="preprocessor">#include&#32;&lt;ArduinoJson.h&gt;</emphasis>
+18 
+19 <emphasis role="preprocessor">#include&#32;&lt;map&gt;</emphasis>
+20 <emphasis role="preprocessor">#include&#32;&lt;string&gt;</emphasis>
+21 
+22 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_TemperatureData_8hpp">TemperatureData.hpp</link>&quot;</emphasis>
+23 <emphasis role="preprocessor">#include&#32;&quot;FileManager.hpp&quot;</emphasis>
+24 
+29 <emphasis role="preprocessor">#define&#32;HTTP_PORT&#32;80</emphasis>
+30 
+37 <emphasis role="preprocessor">#define&#32;LOGS_MESSAGE&#32;true</emphasis>
+38 
+45 <emphasis role="preprocessor">#define&#32;TIME_BEFOR_AP&#32;5000</emphasis>
+46 
+51 <emphasis role="preprocessor">#define&#32;LED_BUILTIN&#32;2</emphasis>
+52 
+53 <emphasis role="keyword">class&#32;</emphasis><link linkend="_classWebServerManager">WebServerManager</link>
+103 {
+104 <emphasis role="keyword">public</emphasis>:
+113 &#32;&#32;&#32;&#32;<link linkend="_classWebServerManager">WebServerManager</link>(<emphasis role="keyword">const</emphasis>&#32;std::map&lt;std::string,&#32;std::string&gt;&#32;&amp;<link linkend="_config_8h_1a70dfb136f96c1d6754684c18a5c3965d">wifiConfig</link>,&#32;uint8_t&#32;nrPass);
+114 
+120 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;begin();
+121 
+126 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handleHome();
+127 
+134 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handleList();
+135 
+142 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handleGraph();
+143 
+148 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handleTemperatureData();
+149 
+154 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handleTemperatureList();
+155 
+160 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handleClient();
+161 
+169 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;setTemperatureData(<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structTemperatureData">TemperatureData</link>&#32;&amp;tempData);
+170 
+176 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handleSetPoint();
+177 
+183 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handleCommand();
+184 
+190 &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<link linkend="_structTemperatureData">TemperatureData</link>&#32;&amp;getTemperature()<emphasis role="keyword">&#32;const&#32;</emphasis>{&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_main_8cpp_1ac0997dd0c5c5eeef33bafa6b6a8d3381">currentTemperature</link>;&#32;}
+191 
+197 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;getStetTemperature()<emphasis role="keyword">&#32;const&#32;</emphasis>{&#32;<emphasis role="keywordflow">return</emphasis>&#32;stetTemperature;&#32;}
+198 
+204 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;getStartFlag()<emphasis role="keyword">&#32;const&#32;</emphasis>{&#32;<emphasis role="keywordflow">return</emphasis>&#32;startFlag;&#32;}
+205 
+211 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;getSetTime()<emphasis role="keyword">&#32;const&#32;</emphasis>{&#32;<emphasis role="keywordflow">return</emphasis>&#32;setTime;&#32;}
+212 
+213 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;getPIDconstants()<emphasis role="keyword">&#32;const&#32;</emphasis>{&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_main_8cpp_1a1f7add0f84d583bc2eceb290d6c4cc06">kp</link>,&#32;<link linkend="_main_8cpp_1a050993b7ca6c97e62c1020017f716b91">ki</link>,&#32;<link linkend="_main_8cpp_1ae7a5c6018507bb1361fcca170e069b9c">kd</link>;&#32;}
+214 
+221 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;setWiFiCredentials(<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*ssid,&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*password)
+222 &#32;&#32;&#32;&#32;{
+223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;ssid&#32;=&#32;ssid;
+224 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this-&gt;password&#32;=&#32;password;
+225 &#32;&#32;&#32;&#32;}
+226 
+233 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;setupWiFIRouter(<emphasis role="keyword">const</emphasis>&#32;std::map&lt;std::string,&#32;std::string&gt;&#32;&amp;<link linkend="_config_8h_1a70dfb136f96c1d6754684c18a5c3965d">wifiConfig</link>);
+234 
+239 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handleDownload();
+240 
+248 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;updateCSV(<emphasis role="keywordtype">float</emphasis>&#32;realTemperature,&#32;<emphasis role="keywordtype">float</emphasis>&#32;setTemperature,&#32;uint32_t&#32;time);
+249 
+254 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handlePID();
+255 
+260 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;handlePIDPrint();
+261 
+262 <emphasis role="keyword">private</emphasis>:
+263 &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*ssid;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;SSID&#32;of&#32;the&#32;Wi-Fi&#32;network</emphasis>
+264 &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*password;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Password&#32;of&#32;the&#32;Wi-Fi&#32;network</emphasis>
+265 &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*second_ssid;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;SSID&#32;of&#32;the&#32;second&#32;Wi-Fi&#32;network</emphasis>
+266 &#32;&#32;&#32;&#32;<emphasis role="keyword">const</emphasis>&#32;<emphasis role="keywordtype">char</emphasis>&#32;*second_password;&#32;<emphasis role="comment">//&#32;Password&#32;of&#32;the&#32;second&#32;Wi-Fi&#32;network</emphasis>
+267 &#32;&#32;&#32;&#32;WebServer&#32;server;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Web&#32;server&#32;object</emphasis>
+268 &#32;&#32;&#32;&#32;String&#32;homePage;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;HTML&#32;home&#32;page</emphasis>
+269 &#32;&#32;&#32;&#32;String&#32;graphPage;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;HTML&#32;graph&#32;page</emphasis>
+270 &#32;&#32;&#32;&#32;String&#32;listPage;
+271 
+272 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;stetTemperature;
+273 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;startFlag;
+274 &#32;&#32;&#32;&#32;uint32_t&#32;setTime;
+275 
+276 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_main_8cpp_1a1f7add0f84d583bc2eceb290d6c4cc06">kp</link>&#32;=&#32;0.1,&#32;<link linkend="_main_8cpp_1a050993b7ca6c97e62c1020017f716b91">ki</link>&#32;=&#32;0.5,&#32;<link linkend="_main_8cpp_1ae7a5c6018507bb1361fcca170e069b9c">kd</link>&#32;=&#32;0.1;&#32;<emphasis role="comment">//&#32;PID&#32;constants</emphasis>
+277 
+278 &#32;&#32;&#32;&#32;std::vector&lt;TemperatureData&gt;&#32;temperatureHistory;
+279 
+280 &#32;&#32;&#32;&#32;<link linkend="_structTemperatureData">TemperatureData</link>&#32;<link linkend="_main_8cpp_1ac0997dd0c5c5eeef33bafa6b6a8d3381">currentTemperature</link>;&#32;<emphasis role="comment">//&#32;Variable&#32;for&#32;storing&#32;the&#32;current&#32;temperature</emphasis>
+281 
+282 &#32;&#32;&#32;&#32;WiFiMulti&#32;wifiMulti;&#32;<emphasis role="comment">//&#32;Object&#32;for&#32;managing&#32;multiple&#32;Wi-Fi&#32;networks</emphasis>
+283 
+284 &#32;&#32;&#32;&#32;FileManager&#32;fileManager;&#32;<emphasis role="comment">//&#32;Object&#32;for&#32;managing&#32;files</emphasis>
+285 };
+286 
+287 
+288 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;WEBSERVERMANAGER_HPP</emphasis>
+</programlisting></section>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_test__screen_8cpp" xml:lang="en-US">
+<title>test/test_screen/test_screen.cpp File Reference</title>
+<indexterm><primary>test/test_screen/test_screen.cpp</primary></indexterm>
+<para>
+
+<para>test functions for screen class </para>
+ 
+</para>
+<section>
+<title>Detailed Description</title>
+
+<para>test functions for screen class </para>
+
+<para><formalpara><title>Author</title>
+
+<para>Creciunel Catalin </para>
+</formalpara>
+<formalpara><title>Version</title>
+
+<para>0.1 </para>
+</formalpara>
+<formalpara><title>Date</title>
+
+<para>2025-02-22</para>
+</formalpara>
+<formalpara><title>Copyright</title>
+
+<para>Copyright (c) 2025 </para>
+</formalpara>
+</para>
+</section>
+</section>

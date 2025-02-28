@@ -1,0 +1,66 @@
+\doxysection{main.\+hpp}
+\hypertarget{main_8hpp_source}{}\label{main_8hpp_source}\index{include/main.hpp@{include/main.hpp}}
+\mbox{\hyperlink{main_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ MAIN\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ MAIN\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <freertos/FreeRTOS.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <freertos/task.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pid_8hpp}{pid.hpp}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{WebServerManager_8hpp}{WebServerManager.hpp}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{screen_8hpp}{screen.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{temperature_8hpp}{temperature.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ WiFi\ parameters}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#ifdef\ USE\_CONFIG\_H}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00031\ std::map<std::string,\ std::string>\ \mbox{\hyperlink{config_8h_a70dfb136f96c1d6754684c18a5c3965d}{wifiConfig}}\ =\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \{\textcolor{stringliteral}{"{}NCMST"{}},\ \textcolor{stringliteral}{"{}Tech0dev2016"{}}\},}
+\DoxyCodeLine{00033\ \ \ \ \ \{\textcolor{stringliteral}{"{}UltraFast"{}},\ \textcolor{stringliteral}{"{}Fastet123"{}}\},}
+\DoxyCodeLine{00034\ \ \ \ \ \{\textcolor{stringliteral}{"{}NCMST"{}},\ \textcolor{stringliteral}{"{}password"{}}\}}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ WIFI\_PASS\_NR\ 2}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ Task\ stack\ sizes}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ SERVER\_TASK\_STACK\_SIZE\ \ \ \ \ \ 8192}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_TASK\_STACK\_SIZE\ 2048}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ DISPLAY\_TASK\_STACK\_SIZE\ \ \ \ \ 4096}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ PID\_TASK\_STACK\_SIZE\ \ \ \ \ \ \ \ \ 4096}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ System\ parameters}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ BAUD\_RATE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 115200}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ LED\_BUILTIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ MOC\_PIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 23}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ ZCD\_PIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 36\ }}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ Log\ and\ time\ parameters}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ LOG\_MESSAGE\ false}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ LOGS\_OFFSET\ pdMS\_TO\_TICKS(10000)}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ SECOND\ pdMS\_TO\_TICKS(1000)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ MINUT\ pdMS\_TO\_TICKS(1000\ *\ 60)}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8hpp_a571ecf6f1d11b90c386e2c900a8867e3}{webServerTask}}(\textcolor{keywordtype}{void}*\ pvParameters);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8hpp_ac55d0909bfe96e544bb1324d9e0be983}{displayTask}}(\textcolor{keywordtype}{void}*\ pvParameters);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8hpp_a96c361e8ae7194173d6843a3b9a2fb73}{temperatureTask}}(\textcolor{keywordtype}{void}\ *pvParameters);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00099\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8hpp_a19fbfc122dff7ef467f9cd7f84d99b1d}{pidTaskHandle}}(\textcolor{keywordtype}{void}\ *pvParameters);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MAIN\_H}}
+
+\end{DoxyCode}

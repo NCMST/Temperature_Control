@@ -1,5 +1,5 @@
-\hypertarget{WebServerManager_8hpp}{}\doxysection{lib/\+Web\+Interface/\+Web\+Server\+Manager.hpp File Reference}
-\label{WebServerManager_8hpp}\index{lib/WebInterface/WebServerManager.hpp@{lib/WebInterface/WebServerManager.hpp}}
+\doxysection{lib/\+Web\+Interface/\+Web\+Server\+Manager.hpp File Reference}
+\hypertarget{WebServerManager_8hpp}{}\label{WebServerManager_8hpp}\index{lib/WebInterface/WebServerManager.hpp@{lib/WebInterface/WebServerManager.hpp}}
 
 
 Web server manager class definition.  
@@ -9,23 +9,27 @@ Web server manager class definition.
 {\ttfamily \#include $<$Web\+Server.\+h$>$}\newline
 {\ttfamily \#include $<$Wi\+Fi\+Multi.\+h$>$}\newline
 {\ttfamily \#include $<$Arduino\+Json.\+h$>$}\newline
-{\ttfamily \#include \char`\"{}Temperature\+Data.\+hpp\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}File\+Manager.\+hpp\char`\"{}}\newline
-Include dependency graph for Web\+Server\+Manager.\+hpp\+:\nopagebreak
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include "{}Temperature\+Data.\+hpp"{}}\newline
+{\ttfamily \#include "{}File\+Manager.\+hpp"{}}\newline
+Include dependency graph for Web\+Server\+Manager.\+hpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{de/d34/WebServerManager_8hpp__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{d2/dce/WebServerManager_8hpp__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Macros}
+\doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{WebServerManager_8hpp_a0906dae4a42c1fef9ec0cd0a5212ed4a}{HTTP\+\_\+\+PORT}}~80
@@ -56,41 +60,41 @@ Copyright (c) 2025
 
 
 \doxysubsection{Macro Definition Documentation}
-\mbox{\Hypertarget{WebServerManager_8hpp_a0906dae4a42c1fef9ec0cd0a5212ed4a}\label{WebServerManager_8hpp_a0906dae4a42c1fef9ec0cd0a5212ed4a}} 
-\index{WebServerManager.hpp@{WebServerManager.hpp}!HTTP\_PORT@{HTTP\_PORT}}
+\Hypertarget{WebServerManager_8hpp_a0906dae4a42c1fef9ec0cd0a5212ed4a}\index{WebServerManager.hpp@{WebServerManager.hpp}!HTTP\_PORT@{HTTP\_PORT}}
 \index{HTTP\_PORT@{HTTP\_PORT}!WebServerManager.hpp@{WebServerManager.hpp}}
 \doxysubsubsection{\texorpdfstring{HTTP\_PORT}{HTTP\_PORT}}
-{\footnotesize\ttfamily \#define HTTP\+\_\+\+PORT~80}
+{\footnotesize\ttfamily \label{WebServerManager_8hpp_a0906dae4a42c1fef9ec0cd0a5212ed4a} 
+\#define HTTP\+\_\+\+PORT~80}
 
 
 
 HTTP port. 
 
-\mbox{\Hypertarget{WebServerManager_8hpp_a450a7c16ead7b3c7b882536b08f30a00}\label{WebServerManager_8hpp_a450a7c16ead7b3c7b882536b08f30a00}} 
-\index{WebServerManager.hpp@{WebServerManager.hpp}!LED\_BUILTIN@{LED\_BUILTIN}}
+\Hypertarget{WebServerManager_8hpp_a450a7c16ead7b3c7b882536b08f30a00}\index{WebServerManager.hpp@{WebServerManager.hpp}!LED\_BUILTIN@{LED\_BUILTIN}}
 \index{LED\_BUILTIN@{LED\_BUILTIN}!WebServerManager.hpp@{WebServerManager.hpp}}
 \doxysubsubsection{\texorpdfstring{LED\_BUILTIN}{LED\_BUILTIN}}
-{\footnotesize\ttfamily \#define LED\+\_\+\+BUILTIN~2}
+{\footnotesize\ttfamily \label{WebServerManager_8hpp_a450a7c16ead7b3c7b882536b08f30a00} 
+\#define LED\+\_\+\+BUILTIN~2}
 
 
 
 LED\+\_\+\+BUILTIN pin. 
 
-\mbox{\Hypertarget{WebServerManager_8hpp_a482f23f43bfd2edd483e8f99b57baa82}\label{WebServerManager_8hpp_a482f23f43bfd2edd483e8f99b57baa82}} 
-\index{WebServerManager.hpp@{WebServerManager.hpp}!LOGS\_MESSAGE@{LOGS\_MESSAGE}}
+\Hypertarget{WebServerManager_8hpp_a482f23f43bfd2edd483e8f99b57baa82}\index{WebServerManager.hpp@{WebServerManager.hpp}!LOGS\_MESSAGE@{LOGS\_MESSAGE}}
 \index{LOGS\_MESSAGE@{LOGS\_MESSAGE}!WebServerManager.hpp@{WebServerManager.hpp}}
 \doxysubsubsection{\texorpdfstring{LOGS\_MESSAGE}{LOGS\_MESSAGE}}
-{\footnotesize\ttfamily \#define LOGS\+\_\+\+MESSAGE~true}
+{\footnotesize\ttfamily \label{WebServerManager_8hpp_a482f23f43bfd2edd483e8f99b57baa82} 
+\#define LOGS\+\_\+\+MESSAGE~true}
 
 
 
 log messages to the serial monitor 
 
-boolean value \mbox{\Hypertarget{WebServerManager_8hpp_adc6e235951ba21272a96f12242dfff69}\label{WebServerManager_8hpp_adc6e235951ba21272a96f12242dfff69}} 
-\index{WebServerManager.hpp@{WebServerManager.hpp}!TIME\_BEFOR\_AP@{TIME\_BEFOR\_AP}}
+boolean value \Hypertarget{WebServerManager_8hpp_adc6e235951ba21272a96f12242dfff69}\index{WebServerManager.hpp@{WebServerManager.hpp}!TIME\_BEFOR\_AP@{TIME\_BEFOR\_AP}}
 \index{TIME\_BEFOR\_AP@{TIME\_BEFOR\_AP}!WebServerManager.hpp@{WebServerManager.hpp}}
 \doxysubsubsection{\texorpdfstring{TIME\_BEFOR\_AP}{TIME\_BEFOR\_AP}}
-{\footnotesize\ttfamily \#define TIME\+\_\+\+BEFOR\+\_\+\+AP~5000}
+{\footnotesize\ttfamily \label{WebServerManager_8hpp_adc6e235951ba21272a96f12242dfff69} 
+\#define TIME\+\_\+\+BEFOR\+\_\+\+AP~5000}
 
 
 

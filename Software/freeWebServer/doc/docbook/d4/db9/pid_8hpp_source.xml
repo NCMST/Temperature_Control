@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_pid_8hpp_source" xml:lang="en-US">
+<title>pid.hpp</title>
+<indexterm><primary>lib/PID/pid.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 
+11 
+12 <emphasis role="preprocessor">#ifndef&#32;PID_H</emphasis>
+13 <emphasis role="preprocessor">#define&#32;PID_H</emphasis>
+14 
+15 <emphasis role="keyword">class&#32;</emphasis><link linkend="_classPID">PID</link>
+47 {
+48 <emphasis role="keyword">public</emphasis>:
+56 &#32;&#32;&#32;&#32;<link linkend="_classPID">PID</link>(<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_main_8cpp_1a1f7add0f84d583bc2eceb290d6c4cc06">kp</link>,&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_main_8cpp_1a050993b7ca6c97e62c1020017f716b91">ki</link>,&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_main_8cpp_1ae7a5c6018507bb1361fcca170e069b9c">kd</link>);
+57 
+64 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;setLimits(<emphasis role="keywordtype">float</emphasis>&#32;min,&#32;<emphasis role="keywordtype">float</emphasis>&#32;max);
+65 
+74 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;compute(<emphasis role="keywordtype">float</emphasis>&#32;setpoint,&#32;<emphasis role="keywordtype">float</emphasis>&#32;measured_value);
+75 
+81 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;setKp(<emphasis role="keywordtype">float</emphasis>&#32;new_kp)&#32;{&#32;<link linkend="_main_8cpp_1a1f7add0f84d583bc2eceb290d6c4cc06">kp</link>&#32;=&#32;new_kp;&#32;}
+82 
+88 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;setKi(<emphasis role="keywordtype">float</emphasis>&#32;new_ki)&#32;{&#32;<link linkend="_main_8cpp_1a050993b7ca6c97e62c1020017f716b91">ki</link>&#32;=&#32;new_ki;&#32;}
+89 
+95 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">void</emphasis>&#32;setKd(<emphasis role="keywordtype">float</emphasis>&#32;new_kd)&#32;{&#32;<link linkend="_main_8cpp_1ae7a5c6018507bb1361fcca170e069b9c">kd</link>&#32;=&#32;new_kd;&#32;}
+96 
+102 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;getKp(<emphasis role="keywordtype">void</emphasis>)&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_main_8cpp_1a1f7add0f84d583bc2eceb290d6c4cc06">kp</link>;&#32;}
+103 
+109 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;getKi(<emphasis role="keywordtype">void</emphasis>)&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_main_8cpp_1a050993b7ca6c97e62c1020017f716b91">ki</link>;&#32;}
+110 
+116 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;getKd(<emphasis role="keywordtype">void</emphasis>)&#32;{&#32;<emphasis role="keywordflow">return</emphasis>&#32;<link linkend="_main_8cpp_1ae7a5c6018507bb1361fcca170e069b9c">kd</link>;&#32;}
+117 
+118 <emphasis role="keyword">private</emphasis>:
+119 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_main_8cpp_1a1f7add0f84d583bc2eceb290d6c4cc06">kp</link>;&#32;<emphasis role="comment">//&#32;proportional&#32;gain</emphasis>
+120 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_main_8cpp_1a050993b7ca6c97e62c1020017f716b91">ki</link>;&#32;<emphasis role="comment">//&#32;integral&#32;gain</emphasis>
+121 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_main_8cpp_1ae7a5c6018507bb1361fcca170e069b9c">kd</link>;&#32;<emphasis role="comment">//&#32;derivative&#32;gain</emphasis>
+122 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;integral;&#32;<emphasis role="comment">//&#32;integral&#32;term</emphasis>
+123 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;last_error;&#32;<emphasis role="comment">//&#32;last&#32;error</emphasis>
+124 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;output_min;&#32;<emphasis role="comment">//&#32;output&#32;min&#32;limit</emphasis>
+125 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;output_max;&#32;<emphasis role="comment">//&#32;output&#32;max&#32;limit</emphasis>
+126 };
+127 
+128 <emphasis role="preprocessor">#endif</emphasis>
+</programlisting></section>

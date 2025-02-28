@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_97aefd0d527b934f1d99a682da8fe6a9" xml:lang="en-US">
+<title>lib Directory Reference</title>
+<indexterm><primary>lib Directory Reference</primary></indexterm>
+Directory dependency graph for lib:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_97aefd0d527b934f1d99a682da8fe6a9_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_1ea7e2220d3792a9ee38cf153a582c69">PID</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_188104f805a4d69d16d5f1fe26e8f3c7">Screen</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_51938c47d203f48b02f840ed72dfec00">Temperature</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_17b917191f10da35573e3cfcf377bc8f">WebInterface</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

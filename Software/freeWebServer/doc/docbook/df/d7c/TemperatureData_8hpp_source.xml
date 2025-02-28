@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_TemperatureData_8hpp_source" xml:lang="en-US">
+<title>TemperatureData.hpp</title>
+<indexterm><primary>lib/Temperature/TemperatureData.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 
+11 
+12 <emphasis role="preprocessor">#ifndef&#32;TEMPERATUREDATA_HPP</emphasis>
+13 <emphasis role="preprocessor">#define&#32;TEMPERATUREDATA_HPP</emphasis>
+14 
+19 <emphasis role="keyword">struct&#32;</emphasis><link linkend="_structTemperatureData">TemperatureData</link>&#32;{
+20 
+27 &#32;&#32;&#32;&#32;String&#32;<link linkend="_structTemperatureData_1af6bbd831ff802d35b95df256c4800888">timestamp</link>;&#32;&#32;&#32;&#32;&#32;&#32;
+28 
+35 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_structTemperatureData_1ad55413517a9886ab98c925de3c1f3deb">inside_temperature</link>;
+36 &#32;&#32;&#32;&#32;
+43 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_structTemperatureData_1a0a0151751c1f41555d65d30fb16efea2">outside_temperature</link>;
+44 &#32;&#32;&#32;&#32;
+51 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_structTemperatureData_1a08f00d221dbc93f5739aced9f4ade3a8">setpoint_temperature</link>;
+52 
+59 &#32;&#32;&#32;&#32;uint32_t&#32;<link linkend="_structTemperatureData_1a8d6526b09e7dee5b38e246d8ecd104de">setTime</link>;
+60 
+67 &#32;&#32;&#32;&#32;uint32_t&#32;<link linkend="_structTemperatureData_1ab896ddca6eea42b2cbb7239f4f81becf">realTime</link>;
+68 &#32;&#32;&#32;&#32;
+75 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_structTemperatureData_1ac5aacbaaa2247118dfebc0b4963c1404">startFlag</link>;
+76 };
+77 
+78 <emphasis role="preprocessor">#endif</emphasis>
+</programlisting></section>

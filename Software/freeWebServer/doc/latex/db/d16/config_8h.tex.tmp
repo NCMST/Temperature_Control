@@ -1,0 +1,29 @@
+\doxysection{include/config.h File Reference}
+\hypertarget{config_8h}{}\label{config_8h}\index{include/config.h@{include/config.h}}
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for config.\+h\+:
+% FIG 0
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{config_8h_a70dfb136f96c1d6754684c18a5c3965d}{wifi\+Config}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{config_8h_a70dfb136f96c1d6754684c18a5c3965d}\index{config.h@{config.h}!wifiConfig@{wifiConfig}}
+\index{wifiConfig@{wifiConfig}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{wifiConfig}{wifiConfig}}
+{\footnotesize\ttfamily \label{config_8h_a70dfb136f96c1d6754684c18a5c3965d} 
+std\+::map$<$std\+::string, std\+::string$>$ wifi\+Config}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}NCMST"{}},\ \textcolor{stringliteral}{"{}Tech0dev2016"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}UltraFast"{}},\ \textcolor{stringliteral}{"{}Fastet123"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}NCMST"{}},\ \textcolor{stringliteral}{"{}password"{}}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

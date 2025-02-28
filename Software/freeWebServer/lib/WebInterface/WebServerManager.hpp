@@ -15,6 +15,10 @@
 #include <WebServer.h>
 #include <WiFiMulti.h>
 #include <ArduinoJson.h>
+
+#include <map>
+#include <string>
+
 #include "TemperatureData.hpp"
 #include "FileManager.hpp"
 
@@ -106,7 +110,7 @@ public:
      * @param second_ssid 
      * @param second_password 
      */
-    WebServerManager(const char *ssid, const char *password, const char *second_ssid, const char *second_password);
+    WebServerManager(const std::map<std::string, std::string> &wifiConfig, uint8_t nrPass);
 
     /**
      * @brief Initialize the web server and start listening for client requests
@@ -114,6 +118,12 @@ public:
      * @return int 
      */
     int begin();
+
+    /**
+     * @brief Handle requests to the auto tune page
+     * 
+     */
+    void handleAutoTune();
 
     /**
      * @brief Handle requests to the home page
@@ -206,7 +216,14 @@ public:
      */
     int getSetTime() const { return setTime; }
 
+    /**
+     * @brief Get the PID constants
+     * 
+     * @return float 
+     */
     float getPIDconstants() const { return kp, ki, kd; }
+
+    bool getAutoTune() const { return autotune; }
 
     /**
      * @brief Sets the Wi-Fi credentials for the primary network
@@ -226,7 +243,7 @@ public:
      * @param ssid 
      * @param password 
      */
-    void setupWiFIRouter(const char *ssid, const char *password);
+    void setupWiFIRouter(const std::map<std::string, std::string> &wifiConfig);
 
     /**
      * @brief Handles requests to download data
@@ -264,6 +281,8 @@ private:
     String homePage;             // HTML home page
     String graphPage;            // HTML graph page
     String listPage;
+
+    bool autotune = false;
 
     float stetTemperature;
     bool startFlag;

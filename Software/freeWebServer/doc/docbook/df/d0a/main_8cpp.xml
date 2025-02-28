@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_main_8cpp" xml:lang="en-US">
+<title>src/main.cpp File Reference</title>
+<indexterm><primary>src/main.cpp</primary></indexterm>
+<para>
+
+<para>Main file for the smart thermostat project. That implements FreeRTOS tasks for web server, temperature reading, display, and <link linkend="_classPID">PID</link> control. </para>
+ 
+</para>
+<programlisting linenumbering="unnumbered">#include &quot;main.hpp&quot;<?linebreak?></programlisting>Include dependency graph for main.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../da/dce/main_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void IRAM_ATTR <link linkend="_main_8cpp_1a7c1cc02070c2f0e788f10a08e38ef57b">zeroCrossISR</link> ()</para>
+
+<para>ISR for detecting zero crossing. </para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d">setup</link> ()</para>
+
+<para>Setup function to initialize tasks and resources. </para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1afe461d27b9c48d5921c00d521181f12f">loop</link> ()</para>
+
+<para>Main loop function. </para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1a571ecf6f1d11b90c386e2c900a8867e3">webServerTask</link> (void *pvParameters)</para>
+
+<para>Task for handling web server operations. </para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1ac55d0909bfe96e544bb1324d9e0be983">displayTask</link> (void *pvParameters)</para>
+
+<para>Task for handling display operations. </para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1a96c361e8ae7194173d6843a3b9a2fb73">temperatureTask</link> (void *pvParameters)</para>
+
+<para>Task for reading temperature data. </para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8cpp_1a19fbfc122dff7ef467f9cd7f84d99b1d">pidTaskHandle</link> (void *pvParameters)</para>
+
+<para>Task for <link linkend="_classPID">PID</link> control and triac management. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>TaskHandle_t <link linkend="_main_8cpp_1a54f480b471d82539b01bcae0758ab8dc">WebServerTaskHandle</link></para>
+
+<para>Task handles for web server, temperature reading, display, and <link linkend="_classPID">PID</link> control. </para>
+</listitem>
+            <listitem><para>TaskHandle_t <link linkend="_main_8cpp_1afb12f43ef50ce0fba62be0aabdb1db3b">TemperatureTaskHandle</link></para>
+</listitem>
+            <listitem><para>TaskHandle_t <link linkend="_main_8cpp_1ad344a61fcea7cf007193183240616e80">DisplayTaskHandle</link></para>
+</listitem>
+            <listitem><para>TaskHandle_t <link linkend="_main_8cpp_1ab112334482528ed6cc36eed18fb55302">PIDTaskHandle</link></para>
+</listitem>
+            <listitem><para><link linkend="_structTemperatureData">TemperatureData</link> <link linkend="_main_8cpp_1ac0997dd0c5c5eeef33bafa6b6a8d3381">currentTemperature</link></para>
+
+<para>Current temperature data. </para>
+</listitem>
+            <listitem><para>SemaphoreHandle_t <link linkend="_main_8cpp_1ab70af3d89d266c81dca143d86e3d0461">temperatureMutex</link></para>
+
+<para>Semaphore for temperature data access. </para>
+</listitem>
+            <listitem><para>volatile bool <link linkend="_main_8cpp_1a7589c154ea6fa877b87954587b64d6e1">zeroCross</link> = false</para>
+
+<para>Flag for zero crossing detection. </para>
+</listitem>
+            <listitem><para>volatile bool <link linkend="_main_8cpp_1a8e3938899050c4fc630f49bf4f89460f">turnOffRequest</link> = false</para>
+
+<para>Flag for turning off <link linkend="_classPID">PID</link> output. </para>
+</listitem>
+            <listitem><para>float <link linkend="_main_8cpp_1a1f7add0f84d583bc2eceb290d6c4cc06">kp</link> = 0.1</para>
+
+<para>Global variable for the <link linkend="_classPID">PID</link> controller. </para>
+</listitem>
+            <listitem><para>float <link linkend="_main_8cpp_1a050993b7ca6c97e62c1020017f716b91">ki</link> = 0.5</para>
+</listitem>
+            <listitem><para>float <link linkend="_main_8cpp_1ae7a5c6018507bb1361fcca170e069b9c">kd</link> = 0.1</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>Main file for the smart thermostat project. That implements FreeRTOS tasks for web server, temperature reading, display, and <link linkend="_classPID">PID</link> control. </para>
+
+<para><formalpara><title>Author</title>
+
+<para>Creciune Catalin <link xlink:href="mailto:creciunelcatalin@gmail.com">creciunelcatalin@gmail.com</link> </para>
+</formalpara>
+<formalpara><title>Version</title>
+
+<para>0.1 </para>
+</formalpara>
+<formalpara><title>Date</title>
+
+<para>2025-02-21</para>
+</formalpara>
+<formalpara><title>Copyright</title>
+
+<para>Copyright (c) 2025 </para>
+</formalpara>
+</para>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_main_8cpp_1ac55d0909bfe96e544bb1324d9e0be983"/><section>
+    <title>displayTask()</title>
+<indexterm><primary>displayTask</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>displayTask</secondary></indexterm>
+<para><computeroutput>void displayTask (void * pvParameters)</computeroutput></para><para>
+
+<para>Task for handling display operations. </para>
+</para>
+
+<para>Display task definition.</para>
+
+<para>This task manages the display, shows IP address, SSID, and temperature information, and logs information periodically.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Parameters for the task (<link linkend="_classScreen">Screen</link> object).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Task to display information on the screen.</para>
+
+<para>This task initializes the screen and continuously updates it with the current WiFi status and temperature information. It handles both WiFi station and access point modes, displaying the IP address, SSID, and temperature readings.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Pointer to the <link linkend="_classScreen">Screen</link> object to be used for display.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                The task performs the following actions:<itemizedlist>
+<listitem>
+<para>Initializes the screen.</para>
+</listitem><listitem>
+<para>Starts the serial communication.</para>
+</listitem><listitem>
+<para>Checks the WiFi connection status and displays the IP address and SSID if connected.</para>
+</listitem><listitem>
+<para>Displays temperature information including inside temperature, outside temperature, setpoint temperature, and the status of the start flag.</para>
+</listitem><listitem>
+<para>Handles client connections in access point mode and displays a message when a client is connected.</para>
+</listitem><listitem>
+<para>Logs the stack high water mark periodically for debugging purposes.</para>
+</listitem></itemizedlist>
+</para>
+
+<para>The task runs indefinitely with a delay of 0.5 seconds between iterations. </para>
+</section>
+<anchor xml:id="_main_8cpp_1afe461d27b9c48d5921c00d521181f12f"/><section>
+    <title>loop()</title>
+<indexterm><primary>loop</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>loop</secondary></indexterm>
+<para><computeroutput>void loop ( )</computeroutput></para><para>
+
+<para>Main loop function. </para>
+</para>
+
+<para>This function is intentionally left empty as tasks are handled by FreeRTOS. </para>
+</section>
+<anchor xml:id="_main_8cpp_1a19fbfc122dff7ef467f9cd7f84d99b1d"/><section>
+    <title>pidTaskHandle()</title>
+<indexterm><primary>pidTaskHandle</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>pidTaskHandle</secondary></indexterm>
+<para><computeroutput>void pidTaskHandle (void * pvParameters)</computeroutput></para><para>
+
+<para>Task for <link linkend="_classPID">PID</link> control and triac management. </para>
+</para>
+
+<para><link linkend="_classPID">PID</link> task definition.</para>
+
+<para>This task handles the <link linkend="_classPID">PID</link> control for temperature regulation, manages the triac state based on zero crossing detection, and logs information periodically.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Parameters for the task (not used). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+</section>
+<anchor xml:id="_main_8cpp_1a4fc01d736fe50cf5b977f755b675f11d"/><section>
+    <title>setup()</title>
+<indexterm><primary>setup</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>setup</secondary></indexterm>
+<para><computeroutput>void setup ( )</computeroutput></para><para>
+
+<para>Setup function to initialize tasks and resources. </para>
+</para>
+
+<para>This function creates a mutex for temperature data access and initializes tasks for web server, display, temperature reading, and <link linkend="_classPID">PID</link> control. </para>
+</section>
+<anchor xml:id="_main_8cpp_1a96c361e8ae7194173d6843a3b9a2fb73"/><section>
+    <title>temperatureTask()</title>
+<indexterm><primary>temperatureTask</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>temperatureTask</secondary></indexterm>
+<para><computeroutput>void temperatureTask (void * pvParameters)</computeroutput></para><para>
+
+<para>Task for reading temperature data. </para>
+</para>
+
+<para><link linkend="_classTemperature">Temperature</link> task definition.</para>
+
+<para>This task reads inside and outside temperature data, updates the global temperature structure, and logs information periodically.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Parameters for the task (not used). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+</section>
+<anchor xml:id="_main_8cpp_1a571ecf6f1d11b90c386e2c900a8867e3"/><section>
+    <title>webServerTask()</title>
+<indexterm><primary>webServerTask</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>webServerTask</secondary></indexterm>
+<para><computeroutput>void webServerTask (void * pvParameters)</computeroutput></para><para>
+
+<para>Task for handling web server operations. </para>
+</para>
+
+<para>Web server task definition.</para>
+
+<para>This task manages the web server, handles client requests, updates temperature data, and logs information periodically.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Parameters for the task (not used). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+</section>
+<anchor xml:id="_main_8cpp_1a7c1cc02070c2f0e788f10a08e38ef57b"/><section>
+    <title>zeroCrossISR()</title>
+<indexterm><primary>zeroCrossISR</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>zeroCrossISR</secondary></indexterm>
+<para><computeroutput>void IRAM_ATTR zeroCrossISR ( )</computeroutput></para><para>
+
+<para>ISR for detecting zero crossing. </para>
+</para>
+
+<para>This ISR is triggered at each zero crossing of the AC signal. It sets the zeroCross flag to true, which is used by the <link linkend="_classPID">PID</link> task to synchronize the triac control with the AC signal. </para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_main_8cpp_1ac0997dd0c5c5eeef33bafa6b6a8d3381"/><section>
+    <title>currentTemperature</title>
+<indexterm><primary>currentTemperature</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>currentTemperature</secondary></indexterm>
+<para><computeroutput><link linkend="_structTemperatureData">TemperatureData</link> currentTemperature</computeroutput></para><para>
+
+<para>Current temperature data. </para>
+</para>
+</section>
+<anchor xml:id="_main_8cpp_1ad344a61fcea7cf007193183240616e80"/><section>
+    <title>DisplayTaskHandle</title>
+<indexterm><primary>DisplayTaskHandle</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>DisplayTaskHandle</secondary></indexterm>
+<para><computeroutput>TaskHandle_t DisplayTaskHandle</computeroutput></para></section>
+<anchor xml:id="_main_8cpp_1ae7a5c6018507bb1361fcca170e069b9c"/><section>
+    <title>kd</title>
+<indexterm><primary>kd</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>kd</secondary></indexterm>
+<para><computeroutput>float kd = 0.1</computeroutput></para>
+<para>Derivative gain. </para>
+</section>
+<anchor xml:id="_main_8cpp_1a050993b7ca6c97e62c1020017f716b91"/><section>
+    <title>ki</title>
+<indexterm><primary>ki</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>ki</secondary></indexterm>
+<para><computeroutput>float ki = 0.5</computeroutput></para>
+<para>Integral gain. </para>
+</section>
+<anchor xml:id="_main_8cpp_1a1f7add0f84d583bc2eceb290d6c4cc06"/><section>
+    <title>kp</title>
+<indexterm><primary>kp</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>kp</secondary></indexterm>
+<para><computeroutput>float kp = 0.1</computeroutput></para><para>
+
+<para>Global variable for the <link linkend="_classPID">PID</link> controller. </para>
+</para>
+
+<para>This variable is used to store the <link linkend="_classPID">PID</link> controller object. and is accessed by the <link linkend="_classPID">PID</link> task. also are modified by the web server task.</para>
+
+<para>Proportional gain. </para>
+</section>
+<anchor xml:id="_main_8cpp_1ab112334482528ed6cc36eed18fb55302"/><section>
+    <title>PIDTaskHandle</title>
+<indexterm><primary>PIDTaskHandle</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>PIDTaskHandle</secondary></indexterm>
+<para><computeroutput>TaskHandle_t PIDTaskHandle</computeroutput></para></section>
+<anchor xml:id="_main_8cpp_1ab70af3d89d266c81dca143d86e3d0461"/><section>
+    <title>temperatureMutex</title>
+<indexterm><primary>temperatureMutex</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>temperatureMutex</secondary></indexterm>
+<para><computeroutput>SemaphoreHandle_t temperatureMutex</computeroutput></para><para>
+
+<para>Semaphore for temperature data access. </para>
+</para>
+</section>
+<anchor xml:id="_main_8cpp_1afb12f43ef50ce0fba62be0aabdb1db3b"/><section>
+    <title>TemperatureTaskHandle</title>
+<indexterm><primary>TemperatureTaskHandle</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>TemperatureTaskHandle</secondary></indexterm>
+<para><computeroutput>TaskHandle_t TemperatureTaskHandle</computeroutput></para></section>
+<anchor xml:id="_main_8cpp_1a8e3938899050c4fc630f49bf4f89460f"/><section>
+    <title>turnOffRequest</title>
+<indexterm><primary>turnOffRequest</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>turnOffRequest</secondary></indexterm>
+<para><computeroutput>volatile bool turnOffRequest = false</computeroutput></para><para>
+
+<para>Flag for turning off <link linkend="_classPID">PID</link> output. </para>
+</para>
+</section>
+<anchor xml:id="_main_8cpp_1a54f480b471d82539b01bcae0758ab8dc"/><section>
+    <title>WebServerTaskHandle</title>
+<indexterm><primary>WebServerTaskHandle</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>WebServerTaskHandle</secondary></indexterm>
+<para><computeroutput>TaskHandle_t WebServerTaskHandle</computeroutput></para><para>
+
+<para>Task handles for web server, temperature reading, display, and <link linkend="_classPID">PID</link> control. </para>
+</para>
+</section>
+<anchor xml:id="_main_8cpp_1a7589c154ea6fa877b87954587b64d6e1"/><section>
+    <title>zeroCross</title>
+<indexterm><primary>zeroCross</primary><secondary>main.cpp</secondary></indexterm>
+<indexterm><primary>main.cpp</primary><secondary>zeroCross</secondary></indexterm>
+<para><computeroutput>volatile bool zeroCross = false</computeroutput></para><para>
+
+<para>Flag for zero crossing detection. </para>
+</para>
+</section>
+</section>
+</section>

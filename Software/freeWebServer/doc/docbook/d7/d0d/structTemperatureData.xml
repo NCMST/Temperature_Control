@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structTemperatureData" xml:lang="en-US">
+<title>TemperatureData Struct Reference</title>
+<indexterm><primary>TemperatureData</primary></indexterm>
+<para>
+
+<para>A data structure that holds the temperature data. </para>
+ 
+</para>
+<para>
+<computeroutput>#include &lt;TemperatureData.hpp&gt;</computeroutput>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>String <link linkend="_structTemperatureData_1af6bbd831ff802d35b95df256c4800888">timestamp</link></para>
+
+<para>timestamp when the temperature was recorded </para>
+</listitem>
+            <listitem><para>float <link linkend="_structTemperatureData_1ad55413517a9886ab98c925de3c1f3deb">inside_temperature</link></para>
+
+<para>the temperature inside the house </para>
+</listitem>
+            <listitem><para>float <link linkend="_structTemperatureData_1a0a0151751c1f41555d65d30fb16efea2">outside_temperature</link></para>
+
+<para>the temperature outside the house </para>
+</listitem>
+            <listitem><para>float <link linkend="_structTemperatureData_1a08f00d221dbc93f5739aced9f4ade3a8">setpoint_temperature</link></para>
+
+<para>the temperature setpoint </para>
+</listitem>
+            <listitem><para>uint32_t <link linkend="_structTemperatureData_1a8d6526b09e7dee5b38e246d8ecd104de">setTime</link></para>
+
+<para>the humidity inside the house </para>
+</listitem>
+            <listitem><para>uint32_t <link linkend="_structTemperatureData_1ab896ddca6eea42b2cbb7239f4f81becf">realTime</link></para>
+
+<para>the humidity outside the house </para>
+</listitem>
+            <listitem><para>bool <link linkend="_structTemperatureData_1ac5aacbaaa2247118dfebc0b4963c1404">startFlag</link></para>
+
+<para>the humidity setpoint </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para>A data structure that holds the temperature data. </para>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structTemperatureData_1ad55413517a9886ab98c925de3c1f3deb"/><section>
+    <title>inside_temperature</title>
+<indexterm><primary>inside_temperature</primary><secondary>TemperatureData</secondary></indexterm>
+<indexterm><primary>TemperatureData</primary><secondary>inside_temperature</secondary></indexterm>
+<para><computeroutput>float TemperatureData::inside_temperature</computeroutput></para><para>
+
+<para>the temperature inside the house </para>
+</para>
+
+<para>in °C </para>
+</section>
+<anchor xml:id="_structTemperatureData_1a0a0151751c1f41555d65d30fb16efea2"/><section>
+    <title>outside_temperature</title>
+<indexterm><primary>outside_temperature</primary><secondary>TemperatureData</secondary></indexterm>
+<indexterm><primary>TemperatureData</primary><secondary>outside_temperature</secondary></indexterm>
+<para><computeroutput>float TemperatureData::outside_temperature</computeroutput></para><para>
+
+<para>the temperature outside the house </para>
+</para>
+
+<para>in °C </para>
+</section>
+<anchor xml:id="_structTemperatureData_1ab896ddca6eea42b2cbb7239f4f81becf"/><section>
+    <title>realTime</title>
+<indexterm><primary>realTime</primary><secondary>TemperatureData</secondary></indexterm>
+<indexterm><primary>TemperatureData</primary><secondary>realTime</secondary></indexterm>
+<para><computeroutput>uint32_t TemperatureData::realTime</computeroutput></para><para>
+
+<para>the humidity outside the house </para>
+</para>
+
+<para>in minutes </para>
+</section>
+<anchor xml:id="_structTemperatureData_1a08f00d221dbc93f5739aced9f4ade3a8"/><section>
+    <title>setpoint_temperature</title>
+<indexterm><primary>setpoint_temperature</primary><secondary>TemperatureData</secondary></indexterm>
+<indexterm><primary>TemperatureData</primary><secondary>setpoint_temperature</secondary></indexterm>
+<para><computeroutput>float TemperatureData::setpoint_temperature</computeroutput></para><para>
+
+<para>the temperature setpoint </para>
+</para>
+
+<para>in °C </para>
+</section>
+<anchor xml:id="_structTemperatureData_1a8d6526b09e7dee5b38e246d8ecd104de"/><section>
+    <title>setTime</title>
+<indexterm><primary>setTime</primary><secondary>TemperatureData</secondary></indexterm>
+<indexterm><primary>TemperatureData</primary><secondary>setTime</secondary></indexterm>
+<para><computeroutput>uint32_t TemperatureData::setTime</computeroutput></para><para>
+
+<para>the humidity inside the house </para>
+</para>
+
+<para>in minutes </para>
+</section>
+<anchor xml:id="_structTemperatureData_1ac5aacbaaa2247118dfebc0b4963c1404"/><section>
+    <title>startFlag</title>
+<indexterm><primary>startFlag</primary><secondary>TemperatureData</secondary></indexterm>
+<indexterm><primary>TemperatureData</primary><secondary>startFlag</secondary></indexterm>
+<para><computeroutput>bool TemperatureData::startFlag</computeroutput></para><para>
+
+<para>the humidity setpoint </para>
+</para>
+
+<para>as boolean </para>
+</section>
+<anchor xml:id="_structTemperatureData_1af6bbd831ff802d35b95df256c4800888"/><section>
+    <title>timestamp</title>
+<indexterm><primary>timestamp</primary><secondary>TemperatureData</secondary></indexterm>
+<indexterm><primary>TemperatureData</primary><secondary>timestamp</secondary></indexterm>
+<para><computeroutput>String TemperatureData::timestamp</computeroutput></para><para>
+
+<para>timestamp when the temperature was recorded </para>
+</para>
+
+<para>in format &quot;YYYY-MM-DD HH:MM:SS&quot; </para>
+</section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+lib/Temperature/<link linkend="_TemperatureData_8hpp">TemperatureData.hpp</link></section>
+</section>

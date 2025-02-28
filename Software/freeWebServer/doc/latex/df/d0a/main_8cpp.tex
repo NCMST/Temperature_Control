@@ -1,19 +1,14 @@
-\hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
-\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
 
 
-Main file for the smart thermostat project. That implements Free\+RTOS tasks for web server, temperature reading, display, and \mbox{\hyperlink{classPID}{PID}} control.  
+Main file for the smart thermostat project. That implements Free\+RTOS tasks for web server, temperature reading, display, and \doxylink{classPID}{PID} control.  
 
 
-{\ttfamily \#include \char`\"{}main.\+hpp\char`\"{}}\newline
-Include dependency graph for main.\+cpp\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{da/dce/main_8cpp__incl}
-\end{center}
-\end{figure}
-\doxysubsection*{Functions}
+{\ttfamily \#include "{}main.\+hpp"{}}\newline
+Include dependency graph for main.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void IRAM\+\_\+\+ATTR \mbox{\hyperlink{main_8cpp_a7c1cc02070c2f0e788f10a08e38ef57b}{zero\+Cross\+ISR}} ()
@@ -22,19 +17,19 @@ void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
 \begin{DoxyCompactList}\small\item\em Setup function to initialize tasks and resources. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
 \begin{DoxyCompactList}\small\item\em Main loop function. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_a571ecf6f1d11b90c386e2c900a8867e3}{web\+Server\+Task}} (void $\ast$pv\+Parameters)
+void \mbox{\hyperlink{main_8cpp_a571ecf6f1d11b90c386e2c900a8867e3}{web\+Server\+Task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
 \begin{DoxyCompactList}\small\item\em Task for handling web server operations. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_ac55d0909bfe96e544bb1324d9e0be983}{display\+Task}} (void $\ast$pv\+Parameters)
+void \mbox{\hyperlink{main_8cpp_ac55d0909bfe96e544bb1324d9e0be983}{display\+Task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
 \begin{DoxyCompactList}\small\item\em Task for handling display operations. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_a96c361e8ae7194173d6843a3b9a2fb73}{temperature\+Task}} (void $\ast$pv\+Parameters)
+void \mbox{\hyperlink{main_8cpp_a96c361e8ae7194173d6843a3b9a2fb73}{temperature\+Task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
 \begin{DoxyCompactList}\small\item\em Task for reading temperature data. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_a19fbfc122dff7ef467f9cd7f84d99b1d}{pid\+Task\+Handle}} (void $\ast$pv\+Parameters)
-\begin{DoxyCompactList}\small\item\em Task for \mbox{\hyperlink{classPID}{PID}} control and triac management. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+void \mbox{\hyperlink{main_8cpp_a19fbfc122dff7ef467f9cd7f84d99b1d}{pid\+Task\+Handle}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task for \doxylink{classPID}{PID} control and triac management. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 Task\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_a54f480b471d82539b01bcae0758ab8dc}{Web\+Server\+Task\+Handle}}
-\begin{DoxyCompactList}\small\item\em Task handles for web server, temperature reading, display, and \mbox{\hyperlink{classPID}{PID}} control. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Task handles for web server, temperature reading, display, and \doxylink{classPID}{PID} control. \end{DoxyCompactList}\item 
 Task\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_afb12f43ef50ce0fba62be0aabdb1db3b}{Temperature\+Task\+Handle}}
 \item 
 Task\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_ad344a61fcea7cf007193183240616e80}{Display\+Task\+Handle}}
@@ -48,17 +43,17 @@ Semaphore\+Handle\+\_\+t \mbox{\hyperlink{main_8cpp_ab70af3d89d266c81dca143d86e3
 volatile bool \mbox{\hyperlink{main_8cpp_a7589c154ea6fa877b87954587b64d6e1}{zero\+Cross}} = false
 \begin{DoxyCompactList}\small\item\em Flag for zero crossing detection. \end{DoxyCompactList}\item 
 volatile bool \mbox{\hyperlink{main_8cpp_a8e3938899050c4fc630f49bf4f89460f}{turn\+Off\+Request}} = false
-\begin{DoxyCompactList}\small\item\em Flag for turning off \mbox{\hyperlink{classPID}{PID}} output. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{main_8cpp_addfa3b9048160c42a165a633f18a91e2}{kp}} = 0.\+1
-\begin{DoxyCompactList}\small\item\em Global variable for the \mbox{\hyperlink{classPID}{PID}} controller. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{main_8cpp_ad62b41d33f3ebf3678cb18dbbd347f25}{ki}} = 0.\+5
+\begin{DoxyCompactList}\small\item\em Flag for turning off \doxylink{classPID}{PID} output. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{main_8cpp_a1f7add0f84d583bc2eceb290d6c4cc06}{kp}} = 0.\+1
+\begin{DoxyCompactList}\small\item\em Global variable for the \doxylink{classPID}{PID} controller. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{main_8cpp_a050993b7ca6c97e62c1020017f716b91}{ki}} = 0.\+5
 \item 
-float \mbox{\hyperlink{main_8cpp_a67a8d2942b887fdece9e89635990f8bb}{kd}} = 0.\+1
+float \mbox{\hyperlink{main_8cpp_ae7a5c6018507bb1361fcca170e069b9c}{kd}} = 0.\+1
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Main file for the smart thermostat project. That implements Free\+RTOS tasks for web server, temperature reading, display, and \mbox{\hyperlink{classPID}{PID}} control. 
+Main file for the smart thermostat project. That implements Free\+RTOS tasks for web server, temperature reading, display, and \doxylink{classPID}{PID} control. 
 
 \begin{DoxyAuthor}{Author}
 Creciune Catalin \href{mailto:creciunelcatalin@gmail.com}{\texttt{ creciunelcatalin@gmail.\+com}} 
@@ -75,11 +70,11 @@ Copyright (c) 2025
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{main_8cpp_ac55d0909bfe96e544bb1324d9e0be983}\label{main_8cpp_ac55d0909bfe96e544bb1324d9e0be983}} 
-\index{main.cpp@{main.cpp}!displayTask@{displayTask}}
+\Hypertarget{main_8cpp_ac55d0909bfe96e544bb1324d9e0be983}\index{main.cpp@{main.cpp}!displayTask@{displayTask}}
 \index{displayTask@{displayTask}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{displayTask()}{displayTask()}}
-{\footnotesize\ttfamily void display\+Task (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{main_8cpp_ac55d0909bfe96e544bb1324d9e0be983} 
+void display\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
 
 
 
@@ -91,7 +86,7 @@ This task manages the display, shows IP address, SSID, and temperature informati
 
 
 \begin{DoxyParams}{Parameters}
-{\em pv\+Parameters} & Parameters for the task (\mbox{\hyperlink{classScreen}{Screen}} object).\\
+{\em pv\+Parameters} & Parameters for the task (\doxylink{classScreen}{Screen} object).\\
 \hline
 \end{DoxyParams}
 Task to display information on the screen.
@@ -100,7 +95,7 @@ This task initializes the screen and continuously updates it with the current Wi
 
 
 \begin{DoxyParams}{Parameters}
-{\em pv\+Parameters} & Pointer to the \mbox{\hyperlink{classScreen}{Screen}} object to be used for display.\\
+{\em pv\+Parameters} & Pointer to the \doxylink{classScreen}{Screen} object to be used for display.\\
 \hline
 \end{DoxyParams}
 The task performs the following actions\+:
@@ -113,56 +108,56 @@ The task performs the following actions\+:
 \item Logs the stack high water mark periodically for debugging purposes.
 \end{DoxyItemize}
 
-The task runs indefinitely with a delay of 0.\+5 seconds between iterations. \mbox{\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\label{main_8cpp_afe461d27b9c48d5921c00d521181f12f}} 
-\index{main.cpp@{main.cpp}!loop@{loop}}
+The task runs indefinitely with a delay of 0.\+5 seconds between iterations. \Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{main.cpp@{main.cpp}!loop@{loop}}
 \index{loop@{loop}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{loop()}{loop()}}
-{\footnotesize\ttfamily void loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
 Main loop function. 
 
-This function is intentionally left empty as tasks are handled by Free\+RTOS. \mbox{\Hypertarget{main_8cpp_a19fbfc122dff7ef467f9cd7f84d99b1d}\label{main_8cpp_a19fbfc122dff7ef467f9cd7f84d99b1d}} 
-\index{main.cpp@{main.cpp}!pidTaskHandle@{pidTaskHandle}}
+This function is intentionally left empty as tasks are handled by Free\+RTOS. \Hypertarget{main_8cpp_a19fbfc122dff7ef467f9cd7f84d99b1d}\index{main.cpp@{main.cpp}!pidTaskHandle@{pidTaskHandle}}
 \index{pidTaskHandle@{pidTaskHandle}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{pidTaskHandle()}{pidTaskHandle()}}
-{\footnotesize\ttfamily void pid\+Task\+Handle (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{main_8cpp_a19fbfc122dff7ef467f9cd7f84d99b1d} 
+void pid\+Task\+Handle (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
 
 
 
-Task for \mbox{\hyperlink{classPID}{PID}} control and triac management. 
+Task for \doxylink{classPID}{PID} control and triac management. 
 
-\mbox{\hyperlink{classPID}{PID}} task definition.
+\doxylink{classPID}{PID} task definition.
 
-This task handles the \mbox{\hyperlink{classPID}{PID}} control for temperature regulation, manages the triac state based on zero crossing detection, and logs information periodically.
+This task handles the \doxylink{classPID}{PID} control for temperature regulation, manages the triac state based on zero crossing detection, and logs information periodically.
 
 
 \begin{DoxyParams}{Parameters}
 {\em pv\+Parameters} & Parameters for the task (not used). \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}} 
-\index{main.cpp@{main.cpp}!setup@{setup}}
+\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{main.cpp@{main.cpp}!setup@{setup}}
 \index{setup@{setup}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{setup()}{setup()}}
-{\footnotesize\ttfamily void setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
 Setup function to initialize tasks and resources. 
 
-This function creates a mutex for temperature data access and initializes tasks for web server, display, temperature reading, and \mbox{\hyperlink{classPID}{PID}} control. \mbox{\Hypertarget{main_8cpp_a96c361e8ae7194173d6843a3b9a2fb73}\label{main_8cpp_a96c361e8ae7194173d6843a3b9a2fb73}} 
-\index{main.cpp@{main.cpp}!temperatureTask@{temperatureTask}}
+This function creates a mutex for temperature data access and initializes tasks for web server, display, temperature reading, and \doxylink{classPID}{PID} control. \Hypertarget{main_8cpp_a96c361e8ae7194173d6843a3b9a2fb73}\index{main.cpp@{main.cpp}!temperatureTask@{temperatureTask}}
 \index{temperatureTask@{temperatureTask}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{temperatureTask()}{temperatureTask()}}
-{\footnotesize\ttfamily void temperature\+Task (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{main_8cpp_a96c361e8ae7194173d6843a3b9a2fb73} 
+void temperature\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
 
 
 
 Task for reading temperature data. 
 
-\mbox{\hyperlink{classTemperature}{Temperature}} task definition.
+\doxylink{classTemperature}{Temperature} task definition.
 
 This task reads inside and outside temperature data, updates the global temperature structure, and logs information periodically.
 
@@ -171,11 +166,11 @@ This task reads inside and outside temperature data, updates the global temperat
 {\em pv\+Parameters} & Parameters for the task (not used). \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{main_8cpp_a571ecf6f1d11b90c386e2c900a8867e3}\label{main_8cpp_a571ecf6f1d11b90c386e2c900a8867e3}} 
-\index{main.cpp@{main.cpp}!webServerTask@{webServerTask}}
+\Hypertarget{main_8cpp_a571ecf6f1d11b90c386e2c900a8867e3}\index{main.cpp@{main.cpp}!webServerTask@{webServerTask}}
 \index{webServerTask@{webServerTask}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{webServerTask()}{webServerTask()}}
-{\footnotesize\ttfamily void web\+Server\+Task (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{main_8cpp_a571ecf6f1d11b90c386e2c900a8867e3} 
+void web\+Server\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
 
 
 
@@ -190,106 +185,106 @@ This task manages the web server, handles client requests, updates temperature d
 {\em pv\+Parameters} & Parameters for the task (not used). \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{main_8cpp_a7c1cc02070c2f0e788f10a08e38ef57b}\label{main_8cpp_a7c1cc02070c2f0e788f10a08e38ef57b}} 
-\index{main.cpp@{main.cpp}!zeroCrossISR@{zeroCrossISR}}
+\Hypertarget{main_8cpp_a7c1cc02070c2f0e788f10a08e38ef57b}\index{main.cpp@{main.cpp}!zeroCrossISR@{zeroCrossISR}}
 \index{zeroCrossISR@{zeroCrossISR}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{zeroCrossISR()}{zeroCrossISR()}}
-{\footnotesize\ttfamily void IRAM\+\_\+\+ATTR zero\+Cross\+ISR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{main_8cpp_a7c1cc02070c2f0e788f10a08e38ef57b} 
+void IRAM\+\_\+\+ATTR zero\+Cross\+ISR (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
 ISR for detecting zero crossing. 
 
-This ISR is triggered at each zero crossing of the AC signal. It sets the zero\+Cross flag to true, which is used by the \mbox{\hyperlink{classPID}{PID}} task to synchronize the triac control with the AC signal. 
+This ISR is triggered at each zero crossing of the AC signal. It sets the zero\+Cross flag to true, which is used by the \doxylink{classPID}{PID} task to synchronize the triac control with the AC signal. 
 
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{main_8cpp_ac0997dd0c5c5eeef33bafa6b6a8d3381}\label{main_8cpp_ac0997dd0c5c5eeef33bafa6b6a8d3381}} 
-\index{main.cpp@{main.cpp}!currentTemperature@{currentTemperature}}
+\Hypertarget{main_8cpp_ac0997dd0c5c5eeef33bafa6b6a8d3381}\index{main.cpp@{main.cpp}!currentTemperature@{currentTemperature}}
 \index{currentTemperature@{currentTemperature}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{currentTemperature}{currentTemperature}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structTemperatureData}{Temperature\+Data}} current\+Temperature}
+{\footnotesize\ttfamily \label{main_8cpp_ac0997dd0c5c5eeef33bafa6b6a8d3381} 
+\mbox{\hyperlink{structTemperatureData}{Temperature\+Data}} current\+Temperature}
 
 
 
 Current temperature data. 
 
-\mbox{\Hypertarget{main_8cpp_ad344a61fcea7cf007193183240616e80}\label{main_8cpp_ad344a61fcea7cf007193183240616e80}} 
-\index{main.cpp@{main.cpp}!DisplayTaskHandle@{DisplayTaskHandle}}
+\Hypertarget{main_8cpp_ad344a61fcea7cf007193183240616e80}\index{main.cpp@{main.cpp}!DisplayTaskHandle@{DisplayTaskHandle}}
 \index{DisplayTaskHandle@{DisplayTaskHandle}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{DisplayTaskHandle}{DisplayTaskHandle}}
-{\footnotesize\ttfamily Task\+Handle\+\_\+t Display\+Task\+Handle}
+{\footnotesize\ttfamily \label{main_8cpp_ad344a61fcea7cf007193183240616e80} 
+Task\+Handle\+\_\+t Display\+Task\+Handle}
 
-\mbox{\Hypertarget{main_8cpp_a67a8d2942b887fdece9e89635990f8bb}\label{main_8cpp_a67a8d2942b887fdece9e89635990f8bb}} 
-\index{main.cpp@{main.cpp}!kd@{kd}}
+\Hypertarget{main_8cpp_ae7a5c6018507bb1361fcca170e069b9c}\index{main.cpp@{main.cpp}!kd@{kd}}
 \index{kd@{kd}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{kd}{kd}}
-{\footnotesize\ttfamily PID\+::kd = 0.\+1}
+{\footnotesize\ttfamily \label{main_8cpp_ae7a5c6018507bb1361fcca170e069b9c} 
+float kd = 0.\+1}
 
-Derivative gain. \mbox{\Hypertarget{main_8cpp_ad62b41d33f3ebf3678cb18dbbd347f25}\label{main_8cpp_ad62b41d33f3ebf3678cb18dbbd347f25}} 
-\index{main.cpp@{main.cpp}!ki@{ki}}
+Derivative gain. \Hypertarget{main_8cpp_a050993b7ca6c97e62c1020017f716b91}\index{main.cpp@{main.cpp}!ki@{ki}}
 \index{ki@{ki}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{ki}{ki}}
-{\footnotesize\ttfamily PID\+::ki = 0.\+5}
+{\footnotesize\ttfamily \label{main_8cpp_a050993b7ca6c97e62c1020017f716b91} 
+float ki = 0.\+5}
 
-Integral gain. \mbox{\Hypertarget{main_8cpp_addfa3b9048160c42a165a633f18a91e2}\label{main_8cpp_addfa3b9048160c42a165a633f18a91e2}} 
-\index{main.cpp@{main.cpp}!kp@{kp}}
+Integral gain. \Hypertarget{main_8cpp_a1f7add0f84d583bc2eceb290d6c4cc06}\index{main.cpp@{main.cpp}!kp@{kp}}
 \index{kp@{kp}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{kp}{kp}}
-{\footnotesize\ttfamily PID\+::kp = 0.\+1}
+{\footnotesize\ttfamily \label{main_8cpp_a1f7add0f84d583bc2eceb290d6c4cc06} 
+float kp = 0.\+1}
 
 
 
-Global variable for the \mbox{\hyperlink{classPID}{PID}} controller. 
+Global variable for the \doxylink{classPID}{PID} controller. 
 
-This variable is used to store the \mbox{\hyperlink{classPID}{PID}} controller object. and is accessed by the \mbox{\hyperlink{classPID}{PID}} task. also are modified by the web server task.
+This variable is used to store the \doxylink{classPID}{PID} controller object. and is accessed by the \doxylink{classPID}{PID} task. also are modified by the web server task.
 
-Proportional gain. \mbox{\Hypertarget{main_8cpp_ab112334482528ed6cc36eed18fb55302}\label{main_8cpp_ab112334482528ed6cc36eed18fb55302}} 
-\index{main.cpp@{main.cpp}!PIDTaskHandle@{PIDTaskHandle}}
+Proportional gain. \Hypertarget{main_8cpp_ab112334482528ed6cc36eed18fb55302}\index{main.cpp@{main.cpp}!PIDTaskHandle@{PIDTaskHandle}}
 \index{PIDTaskHandle@{PIDTaskHandle}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{PIDTaskHandle}{PIDTaskHandle}}
-{\footnotesize\ttfamily Task\+Handle\+\_\+t PIDTask\+Handle}
+{\footnotesize\ttfamily \label{main_8cpp_ab112334482528ed6cc36eed18fb55302} 
+Task\+Handle\+\_\+t PIDTask\+Handle}
 
-\mbox{\Hypertarget{main_8cpp_ab70af3d89d266c81dca143d86e3d0461}\label{main_8cpp_ab70af3d89d266c81dca143d86e3d0461}} 
-\index{main.cpp@{main.cpp}!temperatureMutex@{temperatureMutex}}
+\Hypertarget{main_8cpp_ab70af3d89d266c81dca143d86e3d0461}\index{main.cpp@{main.cpp}!temperatureMutex@{temperatureMutex}}
 \index{temperatureMutex@{temperatureMutex}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{temperatureMutex}{temperatureMutex}}
-{\footnotesize\ttfamily Semaphore\+Handle\+\_\+t temperature\+Mutex}
+{\footnotesize\ttfamily \label{main_8cpp_ab70af3d89d266c81dca143d86e3d0461} 
+Semaphore\+Handle\+\_\+t temperature\+Mutex}
 
 
 
 Semaphore for temperature data access. 
 
-\mbox{\Hypertarget{main_8cpp_afb12f43ef50ce0fba62be0aabdb1db3b}\label{main_8cpp_afb12f43ef50ce0fba62be0aabdb1db3b}} 
-\index{main.cpp@{main.cpp}!TemperatureTaskHandle@{TemperatureTaskHandle}}
+\Hypertarget{main_8cpp_afb12f43ef50ce0fba62be0aabdb1db3b}\index{main.cpp@{main.cpp}!TemperatureTaskHandle@{TemperatureTaskHandle}}
 \index{TemperatureTaskHandle@{TemperatureTaskHandle}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{TemperatureTaskHandle}{TemperatureTaskHandle}}
-{\footnotesize\ttfamily Task\+Handle\+\_\+t Temperature\+Task\+Handle}
+{\footnotesize\ttfamily \label{main_8cpp_afb12f43ef50ce0fba62be0aabdb1db3b} 
+Task\+Handle\+\_\+t Temperature\+Task\+Handle}
 
-\mbox{\Hypertarget{main_8cpp_a8e3938899050c4fc630f49bf4f89460f}\label{main_8cpp_a8e3938899050c4fc630f49bf4f89460f}} 
-\index{main.cpp@{main.cpp}!turnOffRequest@{turnOffRequest}}
+\Hypertarget{main_8cpp_a8e3938899050c4fc630f49bf4f89460f}\index{main.cpp@{main.cpp}!turnOffRequest@{turnOffRequest}}
 \index{turnOffRequest@{turnOffRequest}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{turnOffRequest}{turnOffRequest}}
-{\footnotesize\ttfamily volatile bool turn\+Off\+Request = false}
+{\footnotesize\ttfamily \label{main_8cpp_a8e3938899050c4fc630f49bf4f89460f} 
+volatile bool turn\+Off\+Request = false}
 
 
 
-Flag for turning off \mbox{\hyperlink{classPID}{PID}} output. 
+Flag for turning off \doxylink{classPID}{PID} output. 
 
-\mbox{\Hypertarget{main_8cpp_a54f480b471d82539b01bcae0758ab8dc}\label{main_8cpp_a54f480b471d82539b01bcae0758ab8dc}} 
-\index{main.cpp@{main.cpp}!WebServerTaskHandle@{WebServerTaskHandle}}
+\Hypertarget{main_8cpp_a54f480b471d82539b01bcae0758ab8dc}\index{main.cpp@{main.cpp}!WebServerTaskHandle@{WebServerTaskHandle}}
 \index{WebServerTaskHandle@{WebServerTaskHandle}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{WebServerTaskHandle}{WebServerTaskHandle}}
-{\footnotesize\ttfamily Task\+Handle\+\_\+t Web\+Server\+Task\+Handle}
+{\footnotesize\ttfamily \label{main_8cpp_a54f480b471d82539b01bcae0758ab8dc} 
+Task\+Handle\+\_\+t Web\+Server\+Task\+Handle}
 
 
 
-Task handles for web server, temperature reading, display, and \mbox{\hyperlink{classPID}{PID}} control. 
+Task handles for web server, temperature reading, display, and \doxylink{classPID}{PID} control. 
 
-\mbox{\Hypertarget{main_8cpp_a7589c154ea6fa877b87954587b64d6e1}\label{main_8cpp_a7589c154ea6fa877b87954587b64d6e1}} 
-\index{main.cpp@{main.cpp}!zeroCross@{zeroCross}}
+\Hypertarget{main_8cpp_a7589c154ea6fa877b87954587b64d6e1}\index{main.cpp@{main.cpp}!zeroCross@{zeroCross}}
 \index{zeroCross@{zeroCross}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{zeroCross}{zeroCross}}
-{\footnotesize\ttfamily volatile bool zero\+Cross = false}
+{\footnotesize\ttfamily \label{main_8cpp_a7589c154ea6fa877b87954587b64d6e1} 
+volatile bool zero\+Cross = false}
 
 
 

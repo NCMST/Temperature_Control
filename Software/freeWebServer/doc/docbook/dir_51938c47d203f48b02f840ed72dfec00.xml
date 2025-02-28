@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_51938c47d203f48b02f840ed72dfec00" xml:lang="en-US">
+<title>lib/Temperature Directory Reference</title>
+<indexterm><primary>lib/Temperature Directory Reference</primary></indexterm>
+Directory dependency graph for Temperature:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_51938c47d203f48b02f840ed72dfec00_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_temperature_8cpp">temperature.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_temperature_8hpp">temperature.hpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_TemperatureData_8hpp">TemperatureData.hpp</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

@@ -16,17 +16,28 @@
 
 #include <Arduino.h>
 
-#include <WiFi.h>
-#include <WebServer.h>
-#include <ESPmDNS.h>
-#include <FS.h>
-#include <SPIFFS.h>
-#include <LittleFS.h>
+#include <map>
+#include <string>
+
+#include <PID_AutoTune_v0.h>
 
 #include "pid.hpp"
 #include "WebServerManager.hpp"
 #include "screen.hpp"
 #include "temperature.hpp"
+
+// WiFi parameters
+#ifdef USE_CONFIG_H
+#include "config.h"
+#else
+std::map<std::string, std::string> wifiConfig = {
+    {"NCMST", "Tech0dev2016"},
+    {"UltraFast", "Fastet123"},
+    {"NCMST", "password"}
+};
+#endif
+
+#define WIFI_PASS_NR 2
 
 // Task stack sizes
 #define SERVER_TASK_STACK_SIZE      8192
@@ -40,26 +51,14 @@
 #define MOC_PIN                     23
 #define ZCD_PIN                     36 
 
-// WiFi parameters
-#ifdef USE_CONFIG_H
-#include "config.h"
-#else
-#define AP_SSID_WORK "your_default_ssid_work"
-#define AP_PASS_WORK "your_default_pass_work"
-
-#define AP_SSID "your_default_ssid"
-#define AP_PASS "your_default_pass"
-
-#define WF_SSID "your_default_ssid"
-#define WF_PASS "your_default_pass"
-#endif
-
 // Log and time parameters
 #define LOG_MESSAGE false
 #define LOGS_OFFSET pdMS_TO_TICKS(10000)
 
 #define SECOND pdMS_TO_TICKS(1000)
 #define MINUT pdMS_TO_TICKS(1000 * 60)
+
+
 
 /**
  * @brief Web server task definition
@@ -100,5 +99,7 @@ void temperatureTask(void *pvParameters);
  * @param pvParameters 
  */
 void pidTaskHandle(void *pvParameters);
+
+
 
 #endif // MAIN_H

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_temperature_8hpp_source" xml:lang="en-US">
+<title>temperature.hpp</title>
+<indexterm><primary>lib/Temperature/temperature.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 
+11 
+12 <emphasis role="preprocessor">#ifndef&#32;TEMPERATURE_HPP</emphasis>
+13 <emphasis role="preprocessor">#define&#32;TEMPERATURE_HPP</emphasis>
+14 
+15 <emphasis role="preprocessor">#ifdef&#32;UNIT_TEST</emphasis>
+16 <emphasis role="comment">//&#32;Dacă&#32;suntem&#32;în&#32;test,&#32;nu&#32;include&#32;Arduino.h</emphasis>
+17 <emphasis role="preprocessor">#include&#32;&lt;stdint.h&gt;</emphasis>
+18 <emphasis role="preprocessor">#include&#32;&lt;math.h&gt;</emphasis>
+19 <emphasis role="preprocessor">#include&#32;&lt;stddef.h&gt;</emphasis>
+20 <emphasis role="preprocessor">#else</emphasis>
+21 <emphasis role="preprocessor">#include&#32;&lt;Arduino.h&gt;</emphasis>
+22 <emphasis role="preprocessor">#include&#32;&lt;max6675.h&gt;</emphasis>
+23 <emphasis role="preprocessor">#endif</emphasis>
+24 
+29 <emphasis role="preprocessor">#define&#32;PWM_PIN&#32;23</emphasis>
+30 
+35 <emphasis role="preprocessor">#define&#32;NTC_PIN&#32;39</emphasis>
+36 
+41 <emphasis role="preprocessor">#define&#32;NTC_A&#32;0.001129148</emphasis>
+42 
+47 <emphasis role="preprocessor">#define&#32;NTC_B&#32;0.000234125</emphasis>
+48 
+53 <emphasis role="preprocessor">#define&#32;NTC_C&#32;0.0000000876741</emphasis>
+54 
+59 <emphasis role="preprocessor">#define&#32;VCC&#32;3.3</emphasis>
+60 
+65 <emphasis role="preprocessor">#define&#32;NTC_R2&#32;9990</emphasis>
+66 
+71 <emphasis role="preprocessor">#define&#32;ADC_RESOLUTION&#32;4096</emphasis>
+72 
+77 <emphasis role="preprocessor">#define&#32;CS_PIN&#32;15</emphasis>
+78 
+83 <emphasis role="preprocessor">#define&#32;CLK_PIN&#32;14</emphasis>
+84 
+89 <emphasis role="preprocessor">#define&#32;DATA_PIN&#32;12</emphasis>
+90 
+91 <emphasis role="keyword">class&#32;</emphasis><link linkend="_classTemperature">Temperature</link>&#32;
+92 
+114 
+115 {
+116 <emphasis role="keyword">private</emphasis>:
+117 &#32;&#32;&#32;&#32;MAX6675&#32;&#32;max6675;&#32;&#32;&#32;
+118 <emphasis role="keyword">public</emphasis>:
+123 &#32;&#32;&#32;&#32;<link linkend="_classTemperature">Temperature</link>()&#32;:&#32;max6675(<link linkend="_temperature_8hpp_1a40f496979bb9d7199cca5e0ce136e698">CLK_PIN</link>,&#32;<link linkend="_temperature_8hpp_1abfcf05153ddbd63d5aff5d018867cc19">CS_PIN</link>,&#32;<link linkend="_temperature_8hpp_1adad67fe595ea440c8f8247ec2cddf070">DATA_PIN</link>)&#32;{}
+124 
+132 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;readKTemp(<emphasis role="keywordtype">void</emphasis>);
+133 
+141 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">double</emphasis>&#32;readNTCTemp(<emphasis role="keywordtype">void</emphasis>);
+142 
+147 &#32;&#32;&#32;&#32;<link linkend="_classTemperature">~Temperature</link>();
+148 };
+149 
+150 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;TEMPERATURE_HPP</emphasis>
+</programlisting></section>

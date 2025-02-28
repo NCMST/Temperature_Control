@@ -1,0 +1,60 @@
+\doxysection{temperature.\+hpp}
+\hypertarget{temperature_8hpp_source}{}\label{temperature_8hpp_source}\index{lib/Temperature/temperature.hpp@{lib/Temperature/temperature.hpp}}
+\mbox{\hyperlink{temperature_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ TEMPERATURE\_HPP}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_HPP}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifdef\ UNIT\_TEST}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Dacă\ suntem\ în\ test,\ nu\ include\ Arduino.h}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <max6675.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ PWM\_PIN\ 23}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ NTC\_PIN\ 39}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ NTC\_A\ 0.001129148}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ NTC\_B\ 0.000234125}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ NTC\_C\ 0.0000000876741}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ VCC\ 3.3}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ NTC\_R2\ 9990}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ ADC\_RESOLUTION\ 4096}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ CS\_PIN\ 15}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ CLK\_PIN\ 14}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ DATA\_PIN\ 12}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTemperature}{Temperature}}\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00117\ \ \ \ \ MAX6675\ \ max6675;\ \ \ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{classTemperature}{Temperature}}()\ :\ max6675(\mbox{\hyperlink{temperature_8hpp_a40f496979bb9d7199cca5e0ce136e698}{CLK\_PIN}},\ \mbox{\hyperlink{temperature_8hpp_abfcf05153ddbd63d5aff5d018867cc19}{CS\_PIN}},\ \mbox{\hyperlink{temperature_8hpp_adad67fe595ea440c8f8247ec2cddf070}{DATA\_PIN}})\ \{\}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{float}\ readKTemp(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{double}\ readNTCTemp(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{classTemperature}{\string~Temperature}}();}
+\DoxyCodeLine{00148\ \};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TEMPERATURE\_HPP}}
+
+\end{DoxyCode}

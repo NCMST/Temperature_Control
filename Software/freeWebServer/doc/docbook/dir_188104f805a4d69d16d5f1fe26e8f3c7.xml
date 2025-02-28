@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_188104f805a4d69d16d5f1fe26e8f3c7" xml:lang="en-US">
+<title>lib/Screen Directory Reference</title>
+<indexterm><primary>lib/Screen Directory Reference</primary></indexterm>
+Directory dependency graph for Screen:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_188104f805a4d69d16d5f1fe26e8f3c7_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_screen_8cpp">screen.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_screen_8hpp">screen.hpp</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

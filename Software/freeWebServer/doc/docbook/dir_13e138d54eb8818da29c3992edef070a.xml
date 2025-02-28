@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_13e138d54eb8818da29c3992edef070a" xml:lang="en-US">
+<title>test Directory Reference</title>
+<indexterm><primary>test Directory Reference</primary></indexterm>
+Directory dependency graph for test:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_13e138d54eb8818da29c3992edef070a_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_ddbb58876aa269932b62f4892d370862">test_pid</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_52731ece47df719a22b9b99032f0a540">test_screen</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_f140ae0471b8985d30a33d7d160628f7">test_temperature</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

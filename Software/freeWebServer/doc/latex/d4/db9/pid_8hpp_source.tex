@@ -1,0 +1,43 @@
+\doxysection{pid.\+hpp}
+\hypertarget{pid_8hpp_source}{}\label{pid_8hpp_source}\index{lib/PID/pid.hpp@{lib/PID/pid.hpp}}
+\mbox{\hyperlink{pid_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ PID\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ PID\_H}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPID}{PID}}}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classPID}{PID}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{main_8cpp_a1f7add0f84d583bc2eceb290d6c4cc06}{kp}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{main_8cpp_a050993b7ca6c97e62c1020017f716b91}{ki}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{main_8cpp_ae7a5c6018507bb1361fcca170e069b9c}{kd}});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ setLimits(\textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{int}\ compute(\textcolor{keywordtype}{float}\ setpoint,\ \textcolor{keywordtype}{float}\ measured\_value);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ setKp(\textcolor{keywordtype}{float}\ new\_kp)\ \{\ \mbox{\hyperlink{main_8cpp_a1f7add0f84d583bc2eceb290d6c4cc06}{kp}}\ =\ new\_kp;\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ setKi(\textcolor{keywordtype}{float}\ new\_ki)\ \{\ \mbox{\hyperlink{main_8cpp_a050993b7ca6c97e62c1020017f716b91}{ki}}\ =\ new\_ki;\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ setKd(\textcolor{keywordtype}{float}\ new\_kd)\ \{\ \mbox{\hyperlink{main_8cpp_ae7a5c6018507bb1361fcca170e069b9c}{kd}}\ =\ new\_kd;\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{float}\ getKp(\textcolor{keywordtype}{void})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{main_8cpp_a1f7add0f84d583bc2eceb290d6c4cc06}{kp}};\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{float}\ getKi(\textcolor{keywordtype}{void})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{main_8cpp_a050993b7ca6c97e62c1020017f716b91}{ki}};\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{float}\ getKd(\textcolor{keywordtype}{void})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{main_8cpp_ae7a5c6018507bb1361fcca170e069b9c}{kd}};\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{main_8cpp_a1f7add0f84d583bc2eceb290d6c4cc06}{kp}};\ \textcolor{comment}{//\ proportional\ gain}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{main_8cpp_a050993b7ca6c97e62c1020017f716b91}{ki}};\ \textcolor{comment}{//\ integral\ gain}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{main_8cpp_ae7a5c6018507bb1361fcca170e069b9c}{kd}};\ \textcolor{comment}{//\ derivative\ gain}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{float}\ integral;\ \textcolor{comment}{//\ integral\ term}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{float}\ last\_error;\ \textcolor{comment}{//\ last\ error}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{float}\ output\_min;\ \textcolor{comment}{//\ output\ min\ limit}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{float}\ output\_max;\ \textcolor{comment}{//\ output\ max\ limit}}
+\DoxyCodeLine{00126\ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

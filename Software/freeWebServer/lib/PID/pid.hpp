@@ -12,6 +12,9 @@
 #ifndef PID_H
 #define PID_H
 
+#include <cstdint>
+#include <cmath>
+
 class PID
 /**
  * @class PID
@@ -123,6 +126,8 @@ private:
     float last_error; // last error
     float output_min; // output min limit
     float output_max; // output max limit
+     
+
 };
 
 #endif

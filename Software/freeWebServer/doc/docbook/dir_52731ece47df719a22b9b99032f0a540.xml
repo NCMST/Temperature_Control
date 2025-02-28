@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_52731ece47df719a22b9b99032f0a540" xml:lang="en-US">
+<title>test/test_screen Directory Reference</title>
+<indexterm><primary>test/test_screen Directory Reference</primary></indexterm>
+Directory dependency graph for test_screen:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_52731ece47df719a22b9b99032f0a540_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_test__screen_8cpp">test_screen.cpp</link></para>
+
+<para>test functions for screen class </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

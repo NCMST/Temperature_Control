@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_screen_8hpp_source" xml:lang="en-US">
+<title>screen.hpp</title>
+<indexterm><primary>lib/Screen/screen.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 
+11 
+12 <emphasis role="preprocessor">#ifndef&#32;SCREEN_HPP</emphasis>
+13 <emphasis role="preprocessor">#define&#32;SCREEN_HPP</emphasis>
+14 
+15 <emphasis role="preprocessor">#ifdef&#32;UNIT_TEST</emphasis>
+16 <emphasis role="comment">//&#32;Pentru&#32;testele&#32;native&#32;folosim&#32;stubs/fakes</emphasis>
+17 
+18 <emphasis role="preprocessor">#else</emphasis>
+19 <emphasis role="preprocessor">#include&#32;&lt;Arduino.h&gt;</emphasis>
+20 
+21 <emphasis role="preprocessor">#include&#32;&lt;freertos/FreeRTOS.h&gt;</emphasis>
+22 <emphasis role="preprocessor">#include&#32;&lt;freertos/task.h&gt;</emphasis>
+23 <emphasis role="preprocessor">#include&#32;&lt;SPI.h&gt;</emphasis>
+24 <emphasis role="preprocessor">#include&#32;&lt;Wire.h&gt;</emphasis>
+25 <emphasis role="preprocessor">#include&#32;&lt;Adafruit_GFX.h&gt;</emphasis>
+26 <emphasis role="preprocessor">#include&#32;&lt;Adafruit_SSD1306.h&gt;</emphasis>
+27 <emphasis role="preprocessor">#endif</emphasis>
+28 
+33 <emphasis role="preprocessor">#define&#32;SCREEN_WIDTH&#32;128</emphasis>
+34 
+39 <emphasis role="preprocessor">#define&#32;SCREEN_HEIGHT&#32;64</emphasis>
+40 
+47 <emphasis role="preprocessor">#define&#32;OLED_RESET&#32;-1</emphasis>
+48 
+56 <emphasis role="preprocessor">#define&#32;SCREEN_ADDRESS&#32;0x3C</emphasis>
+57 
+91 <emphasis role="keyword">class&#32;</emphasis><link linkend="_classScreen_1ab15688f15969591b4da987ec8e2526ce">Screen</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;Adafruit_SSD1306
+92 {
+93 <emphasis role="keyword">public</emphasis>:
+99 &#32;&#32;&#32;&#32;<link linkend="_classScreen_1ab15688f15969591b4da987ec8e2526ce">Screen</link>(int8_t&#32;reset_pin&#32;=&#32;<link linkend="_screen_8hpp_1a619e07239fb3b9b14d40646ab41d5b4f">OLED_RESET</link>)&#32;:&#32;Adafruit_SSD1306(<link linkend="_screen_8hpp_1a2cd109632a6dcccaa80b43561b1ab700">SCREEN_WIDTH</link>,&#32;<link linkend="_screen_8hpp_1a6974d08a74da681b3957b2fead2608b8">SCREEN_HEIGHT</link>,&#32;&amp;Wire,&#32;reset_pin)&#32;{}
+100 
+105 &#32;&#32;&#32;&#32;<emphasis role="keyword">virtual</emphasis>&#32;<link linkend="_classScreen_1af86414f26bd6956e78bd419b36c49ec7">~Screen</link>()&#32;noexcept&#32;{}
+106 
+113 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_classScreen_1a368787716b5a044b1140a01c4a4772b6">init</link>();
+114 
+126 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_classScreen_1addaa49f81c2e276476c2bae2583c9863">printText</link>(uint8_t&#32;x,&#32;uint8_t&#32;y,&#32;uint8_t&#32;size,&#32;String&#32;text);
+127 };
+128 
+129 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;SCREEN_HPP</emphasis>
+</programlisting></section>

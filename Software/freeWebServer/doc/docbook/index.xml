@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_index" xml:lang="en-US">
+    <info>
+    <title>Temperature control</title>
+    </info>
+<chapter>
+    <title>Class Documentation</title>
+    <xi:include href="d3/d7e/classMockTemperatureSensor.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d8/da9/classPID.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="df/dc5/classScreen.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d4/d4f/classTemperature.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d7/d0d/structTemperatureData.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="dc/d57/classWebServerManager.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<chapter>
+    <title>File Documentation</title>
+    <xi:include href="db/d16/config_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="db/d16/config_8h_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d0/d00/main_8hpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d0/d00/main_8hpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d8/dcb/pid_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d4/db9/pid_8hpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d4/db9/pid_8hpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="de/dd8/screen_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d6/d5e/screen_8hpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d6/d5e/screen_8hpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d0/d3d/temperature_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="dc/d32/temperature_8hpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="dc/d32/temperature_8hpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="df/d7c/TemperatureData_8hpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="df/d7c/TemperatureData_8hpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d6/dc0/WebServerManager_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d4/dd5/WebServerManager_8hpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d4/dd5/WebServerManager_8hpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="df/d0a/main_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d5/de5/test__pid_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d8/d22/test__screen_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="df/d87/MockTemperatureSensor_8hpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="df/d87/MockTemperatureSensor_8hpp_source.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="d4/dfd/test__temperature_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<index/>
+</book>

@@ -18,8 +18,9 @@
  * @return float 
  */
 float Temperature::readKTemp(void) {
-    if (max6675.readTemp()) { 
-        return max6675.getTemp(); 
+    float temp = max6675.readCelsius();
+    if (temp != NAN) { 
+        return temp; 
     }
     return false; 
 }

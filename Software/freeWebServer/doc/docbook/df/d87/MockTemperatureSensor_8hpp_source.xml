@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_MockTemperatureSensor_8hpp_source" xml:lang="en-US">
+<title>MockTemperatureSensor.hpp</title>
+<indexterm><primary>test/test_temperature/MockTemperatureSensor.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#ifndef&#32;MOCKTEMPERATURESENSOR_H</emphasis>
+2 <emphasis role="preprocessor">#define&#32;MOCKTEMPERATURESENSOR_H</emphasis>
+3 
+4 <emphasis role="preprocessor">#include&#32;&quot;ITemperatureSensor.hpp&quot;</emphasis>
+5 
+6 <emphasis role="keyword">class&#32;</emphasis><link linkend="_classMockTemperatureSensor_1ac24ae54dc37d360fae83af2d1c002043">MockTemperatureSensor</link>&#32;:&#32;<emphasis role="keyword">public</emphasis>&#32;ITemperatureSensor&#32;{
+7 <emphasis role="keyword">private</emphasis>:
+8 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;mockTemp;
+9 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;shouldRead;
+10 
+11 <emphasis role="keyword">public</emphasis>:
+12 &#32;&#32;&#32;&#32;<link linkend="_classMockTemperatureSensor_1ac24ae54dc37d360fae83af2d1c002043">MockTemperatureSensor</link>(<emphasis role="keywordtype">float</emphasis>&#32;temp,&#32;<emphasis role="keywordtype">bool</emphasis>&#32;read)&#32;:&#32;mockTemp(temp),&#32;shouldRead(read)&#32;{}
+13 
+14 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">bool</emphasis>&#32;<link linkend="_classMockTemperatureSensor_1a6c9d3b814deae5787e539862e6d7aa5c">readTemp</link>()<emphasis role="keyword">&#32;override&#32;</emphasis>{
+15 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;shouldRead;
+16 &#32;&#32;&#32;&#32;}
+17 
+18 &#32;&#32;&#32;&#32;<emphasis role="keywordtype">float</emphasis>&#32;<link linkend="_classMockTemperatureSensor_1a9020a7b1d9501b40f30ece39bb6a6993">getTemp</link>()<emphasis role="keyword">&#32;override&#32;</emphasis>{
+19 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;mockTemp;
+20 &#32;&#32;&#32;&#32;}
+21 };
+22 
+23 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;MOCKTEMPERATURESENSOR_H</emphasis>
+</programlisting></section>

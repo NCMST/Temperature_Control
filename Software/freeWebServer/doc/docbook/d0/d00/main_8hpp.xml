@@ -1,0 +1,463 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_main_8hpp" xml:lang="en-US">
+<title>include/main.hpp File Reference</title>
+<indexterm><primary>include/main.hpp</primary></indexterm>
+<programlisting linenumbering="unnumbered">#include &lt;freertos/FreeRTOS.h&gt;<?linebreak?>#include &lt;freertos/task.h&gt;<?linebreak?>#include &lt;Arduino.h&gt;<?linebreak?>#include &lt;map&gt;<?linebreak?>#include &lt;string&gt;<?linebreak?>#include &quot;pid.hpp&quot;<?linebreak?>#include &quot;WebServerManager.hpp&quot;<?linebreak?>#include &quot;screen.hpp&quot;<?linebreak?>#include &quot;temperature.hpp&quot;<?linebreak?></programlisting>Include dependency graph for main.hpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../db/dfd/main_8hpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="../../d0/dcf/main_8hpp__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_main_8hpp_1a693f708a9e34e5a85f574db716c95065">WIFI_PASS_NR</link>&#160;&#160;&#160;2</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1acd444e3efb7f7ff7d5f65a538c2a754c">SERVER_TASK_STACK_SIZE</link>&#160;&#160;&#160;8192</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1a254d10ab5923093ac186945fea1e82ef">TEMPERATURE_TASK_STACK_SIZE</link>&#160;&#160;&#160;2048</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1ac018fe3f2622c6da250fdcc3d1df54f2">DISPLAY_TASK_STACK_SIZE</link>&#160;&#160;&#160;4096</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1acda1e498527b0d7f38973e6deb6d2049">PID_TASK_STACK_SIZE</link>&#160;&#160;&#160;4096</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1ad4455691936f92fdd6c37566fc58ba1f">BAUD_RATE</link>&#160;&#160;&#160;115200</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1a450a7c16ead7b3c7b882536b08f30a00">LED_BUILTIN</link>&#160;&#160;&#160;2</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1a73ed85b75df76333b431eb1b65939460">MOC_PIN</link>&#160;&#160;&#160;23</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1afc5a566b0f9d846738dfe5b76596658a">ZCD_PIN</link>&#160;&#160;&#160;36</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1a7828f43ae5f3574eff31e3dd48aef334">LOG_MESSAGE</link>&#160;&#160;&#160;false</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1a5f26437558d3eb56f6b16ffadba424db">LOGS_OFFSET</link>&#160;&#160;&#160;pdMS_TO_TICKS(10000)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1a94212be2394d2d37d9dfd33d07d82dba">SECOND</link>&#160;&#160;&#160;pdMS_TO_TICKS(1000)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_main_8hpp_1afccbf9fea014a33f945ff5d8be57f68d">MINUT</link>&#160;&#160;&#160;pdMS_TO_TICKS(1000 * 60)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_main_8hpp_1a571ecf6f1d11b90c386e2c900a8867e3">webServerTask</link> (void *pvParameters)</para>
+
+<para>Web server task definition. </para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8hpp_1ac55d0909bfe96e544bb1324d9e0be983">displayTask</link> (void *pvParameters)</para>
+
+<para>Display task definition. </para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8hpp_1a96c361e8ae7194173d6843a3b9a2fb73">temperatureTask</link> (void *pvParameters)</para>
+
+<para><link linkend="_classTemperature">Temperature</link> task definition. </para>
+</listitem>
+            <listitem><para>void <link linkend="_main_8hpp_1a19fbfc122dff7ef467f9cd7f84d99b1d">pidTaskHandle</link> (void *pvParameters)</para>
+
+<para><link linkend="_classPID">PID</link> task definition. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>std::map&lt; std::string, std::string &gt; <link linkend="_main_8hpp_1a70dfb136f96c1d6754684c18a5c3965d">wifiConfig</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para><formalpara><title>Author</title>
+
+<para>Creciune Catalin <link xlink:href="mailto:creciunelcatalin@gmail.com">creciunelcatalin@gmail.com</link> </para>
+</formalpara>
+<formalpara><title>Version</title>
+
+<para>0.1 </para>
+</formalpara>
+<formalpara><title>Date</title>
+
+<para>2025-02-21</para>
+</formalpara>
+<formalpara><title>Copyright</title>
+
+<para>Copyright (c) 2025 </para>
+</formalpara>
+</para>
+</section>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_main_8hpp_1ad4455691936f92fdd6c37566fc58ba1f"/><section>
+    <title>BAUD_RATE</title>
+<indexterm><primary>BAUD_RATE</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>BAUD_RATE</secondary></indexterm>
+<para><computeroutput>#define BAUD_RATE&#160;&#160;&#160;115200</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1ac018fe3f2622c6da250fdcc3d1df54f2"/><section>
+    <title>DISPLAY_TASK_STACK_SIZE</title>
+<indexterm><primary>DISPLAY_TASK_STACK_SIZE</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>DISPLAY_TASK_STACK_SIZE</secondary></indexterm>
+<para><computeroutput>#define DISPLAY_TASK_STACK_SIZE&#160;&#160;&#160;4096</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1a450a7c16ead7b3c7b882536b08f30a00"/><section>
+    <title>LED_BUILTIN</title>
+<indexterm><primary>LED_BUILTIN</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>LED_BUILTIN</secondary></indexterm>
+<para><computeroutput>#define LED_BUILTIN&#160;&#160;&#160;2</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1a7828f43ae5f3574eff31e3dd48aef334"/><section>
+    <title>LOG_MESSAGE</title>
+<indexterm><primary>LOG_MESSAGE</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>LOG_MESSAGE</secondary></indexterm>
+<para><computeroutput>#define LOG_MESSAGE&#160;&#160;&#160;false</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1a5f26437558d3eb56f6b16ffadba424db"/><section>
+    <title>LOGS_OFFSET</title>
+<indexterm><primary>LOGS_OFFSET</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>LOGS_OFFSET</secondary></indexterm>
+<para><computeroutput>#define LOGS_OFFSET&#160;&#160;&#160;pdMS_TO_TICKS(10000)</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1afccbf9fea014a33f945ff5d8be57f68d"/><section>
+    <title>MINUT</title>
+<indexterm><primary>MINUT</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>MINUT</secondary></indexterm>
+<para><computeroutput>#define MINUT&#160;&#160;&#160;pdMS_TO_TICKS(1000 * 60)</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1a73ed85b75df76333b431eb1b65939460"/><section>
+    <title>MOC_PIN</title>
+<indexterm><primary>MOC_PIN</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>MOC_PIN</secondary></indexterm>
+<para><computeroutput>#define MOC_PIN&#160;&#160;&#160;23</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1acda1e498527b0d7f38973e6deb6d2049"/><section>
+    <title>PID_TASK_STACK_SIZE</title>
+<indexterm><primary>PID_TASK_STACK_SIZE</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>PID_TASK_STACK_SIZE</secondary></indexterm>
+<para><computeroutput>#define PID_TASK_STACK_SIZE&#160;&#160;&#160;4096</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1a94212be2394d2d37d9dfd33d07d82dba"/><section>
+    <title>SECOND</title>
+<indexterm><primary>SECOND</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>SECOND</secondary></indexterm>
+<para><computeroutput>#define SECOND&#160;&#160;&#160;pdMS_TO_TICKS(1000)</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1acd444e3efb7f7ff7d5f65a538c2a754c"/><section>
+    <title>SERVER_TASK_STACK_SIZE</title>
+<indexterm><primary>SERVER_TASK_STACK_SIZE</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>SERVER_TASK_STACK_SIZE</secondary></indexterm>
+<para><computeroutput>#define SERVER_TASK_STACK_SIZE&#160;&#160;&#160;8192</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1a254d10ab5923093ac186945fea1e82ef"/><section>
+    <title>TEMPERATURE_TASK_STACK_SIZE</title>
+<indexterm><primary>TEMPERATURE_TASK_STACK_SIZE</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>TEMPERATURE_TASK_STACK_SIZE</secondary></indexterm>
+<para><computeroutput>#define TEMPERATURE_TASK_STACK_SIZE&#160;&#160;&#160;2048</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1a693f708a9e34e5a85f574db716c95065"/><section>
+    <title>WIFI_PASS_NR</title>
+<indexterm><primary>WIFI_PASS_NR</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>WIFI_PASS_NR</secondary></indexterm>
+<para><computeroutput>#define WIFI_PASS_NR&#160;&#160;&#160;2</computeroutput></para></section>
+<anchor xml:id="_main_8hpp_1afc5a566b0f9d846738dfe5b76596658a"/><section>
+    <title>ZCD_PIN</title>
+<indexterm><primary>ZCD_PIN</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>ZCD_PIN</secondary></indexterm>
+<para><computeroutput>#define ZCD_PIN&#160;&#160;&#160;36</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_main_8hpp_1ac55d0909bfe96e544bb1324d9e0be983"/><section>
+    <title>displayTask()</title>
+<indexterm><primary>displayTask</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>displayTask</secondary></indexterm>
+<para><computeroutput>void displayTask (void * pvParameters)</computeroutput></para><para>
+
+<para>Display task definition. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry></entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Display task definition.</para>
+
+<para>This task manages the display, shows IP address, SSID, and temperature information, and logs information periodically.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Parameters for the task (<link linkend="_classScreen">Screen</link> object).</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Task to display information on the screen.</para>
+
+<para>This task initializes the screen and continuously updates it with the current WiFi status and temperature information. It handles both WiFi station and access point modes, displaying the IP address, SSID, and temperature readings.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Pointer to the <link linkend="_classScreen">Screen</link> object to be used for display.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                The task performs the following actions:<itemizedlist>
+<listitem>
+<para>Initializes the screen.</para>
+</listitem><listitem>
+<para>Starts the serial communication.</para>
+</listitem><listitem>
+<para>Checks the WiFi connection status and displays the IP address and SSID if connected.</para>
+</listitem><listitem>
+<para>Displays temperature information including inside temperature, outside temperature, setpoint temperature, and the status of the start flag.</para>
+</listitem><listitem>
+<para>Handles client connections in access point mode and displays a message when a client is connected.</para>
+</listitem><listitem>
+<para>Logs the stack high water mark periodically for debugging purposes.</para>
+</listitem></itemizedlist>
+</para>
+
+<para>The task runs indefinitely with a delay of 0.5 seconds between iterations. </para>
+</section>
+<anchor xml:id="_main_8hpp_1a19fbfc122dff7ef467f9cd7f84d99b1d"/><section>
+    <title>pidTaskHandle()</title>
+<indexterm><primary>pidTaskHandle</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>pidTaskHandle</secondary></indexterm>
+<para><computeroutput>void pidTaskHandle (void * pvParameters)</computeroutput></para><para>
+
+<para><link linkend="_classPID">PID</link> task definition. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry></entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <link linkend="_classPID">PID</link> task definition.</para>
+
+<para>This task handles the <link linkend="_classPID">PID</link> control for temperature regulation, manages the triac state based on zero crossing detection, and logs information periodically.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Parameters for the task (not used). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+</section>
+<anchor xml:id="_main_8hpp_1a96c361e8ae7194173d6843a3b9a2fb73"/><section>
+    <title>temperatureTask()</title>
+<indexterm><primary>temperatureTask</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>temperatureTask</secondary></indexterm>
+<para><computeroutput>void temperatureTask (void * pvParameters)</computeroutput></para><para>
+
+<para><link linkend="_classTemperature">Temperature</link> task definition. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry></entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Task function to handle temperature control.</para>
+
+<para>This function is designed to be run as a FreeRTOS task. It handles the temperature control logic, including reading temperature sensors, processing the data, and controlling actuators to maintain the desired temperature.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Pointer to the parameters passed to the task. This can be used to pass configuration or state information to the task.</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                <link linkend="_classTemperature">Temperature</link> task definition.</para>
+
+<para>This task reads inside and outside temperature data, updates the global temperature structure, and logs information periodically.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Parameters for the task (not used). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+</section>
+<anchor xml:id="_main_8hpp_1a571ecf6f1d11b90c386e2c900a8867e3"/><section>
+    <title>webServerTask()</title>
+<indexterm><primary>webServerTask</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>webServerTask</secondary></indexterm>
+<para><computeroutput>void webServerTask (void * pvParameters)</computeroutput></para><para>
+
+<para>Web server task definition. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry></entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                Web server task definition.</para>
+
+<para>This task manages the web server, handles client requests, updates temperature data, and logs information periodically.</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>pvParameters</entry><entry>
+<para>Parameters for the task (not used). </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_main_8hpp_1a70dfb136f96c1d6754684c18a5c3965d"/><section>
+    <title>wifiConfig</title>
+<indexterm><primary>wifiConfig</primary><secondary>main.hpp</secondary></indexterm>
+<indexterm><primary>main.hpp</primary><secondary>wifiConfig</secondary></indexterm>
+<para><computeroutput>std::map&lt;std::string, std::string&gt; wifiConfig</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting linenumbering="unnumbered">=&#32;{
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;NCMST&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Tech0dev2016&quot;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;UltraFast&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Fastet123&quot;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;NCMST&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;password&quot;</emphasis>}
+}
+</programlisting></section>
+</section>
+</section>

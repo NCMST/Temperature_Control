@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_main_8hpp_source" xml:lang="en-US">
+<title>main.hpp</title>
+<indexterm><primary>include/main.hpp</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 
+11 <emphasis role="preprocessor">#ifndef&#32;MAIN_H</emphasis>
+12 <emphasis role="preprocessor">#define&#32;MAIN_H</emphasis>
+13 
+14 <emphasis role="preprocessor">#include&#32;&lt;freertos/FreeRTOS.h&gt;</emphasis>
+15 <emphasis role="preprocessor">#include&#32;&lt;freertos/task.h&gt;</emphasis>
+16 
+17 <emphasis role="preprocessor">#include&#32;&lt;Arduino.h&gt;</emphasis>
+18 
+19 <emphasis role="preprocessor">#include&#32;&lt;map&gt;</emphasis>
+20 <emphasis role="preprocessor">#include&#32;&lt;string&gt;</emphasis>
+21 
+22 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_pid_8hpp">pid.hpp</link>&quot;</emphasis>
+23 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_WebServerManager_8hpp">WebServerManager.hpp</link>&quot;</emphasis>
+24 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_screen_8hpp">screen.hpp</link>&quot;</emphasis>
+25 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_temperature_8hpp">temperature.hpp</link>&quot;</emphasis>
+26 
+27 <emphasis role="comment">//&#32;WiFi&#32;parameters</emphasis>
+28 <emphasis role="preprocessor">#ifdef&#32;USE_CONFIG_H</emphasis>
+29 <emphasis role="preprocessor">#include&#32;&quot;<link linkend="_config_8h">config.h</link>&quot;</emphasis>
+30 <emphasis role="preprocessor">#else</emphasis>
+31 std::map&lt;std::string,&#32;std::string&gt;&#32;<link linkend="_config_8h_1a70dfb136f96c1d6754684c18a5c3965d">wifiConfig</link>&#32;=&#32;{
+32 &#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;NCMST&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Tech0dev2016&quot;</emphasis>},
+33 &#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;UltraFast&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Fastet123&quot;</emphasis>},
+34 &#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;NCMST&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;password&quot;</emphasis>}
+35 };
+36 <emphasis role="preprocessor">#endif</emphasis>
+37 
+38 <emphasis role="preprocessor">#define&#32;WIFI_PASS_NR&#32;2</emphasis>
+39 
+40 <emphasis role="comment">//&#32;Task&#32;stack&#32;sizes</emphasis>
+41 <emphasis role="preprocessor">#define&#32;SERVER_TASK_STACK_SIZE&#32;&#32;&#32;&#32;&#32;&#32;8192</emphasis>
+42 <emphasis role="preprocessor">#define&#32;TEMPERATURE_TASK_STACK_SIZE&#32;2048</emphasis>
+43 <emphasis role="preprocessor">#define&#32;DISPLAY_TASK_STACK_SIZE&#32;&#32;&#32;&#32;&#32;4096</emphasis>
+44 <emphasis role="preprocessor">#define&#32;PID_TASK_STACK_SIZE&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;4096</emphasis>
+45 
+46 <emphasis role="comment">//&#32;System&#32;parameters</emphasis>
+47 <emphasis role="preprocessor">#define&#32;BAUD_RATE&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;115200</emphasis>
+48 <emphasis role="preprocessor">#define&#32;LED_BUILTIN&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;2</emphasis>
+49 <emphasis role="preprocessor">#define&#32;MOC_PIN&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;23</emphasis>
+50 <emphasis role="preprocessor">#define&#32;ZCD_PIN&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;36&#32;</emphasis>
+51 
+52 <emphasis role="comment">//&#32;Log&#32;and&#32;time&#32;parameters</emphasis>
+53 <emphasis role="preprocessor">#define&#32;LOG_MESSAGE&#32;false</emphasis>
+54 <emphasis role="preprocessor">#define&#32;LOGS_OFFSET&#32;pdMS_TO_TICKS(10000)</emphasis>
+55 
+56 <emphasis role="preprocessor">#define&#32;SECOND&#32;pdMS_TO_TICKS(1000)</emphasis>
+57 <emphasis role="preprocessor">#define&#32;MINUT&#32;pdMS_TO_TICKS(1000&#32;*&#32;60)</emphasis>
+58 
+59 
+60 
+66 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_main_8hpp_1a571ecf6f1d11b90c386e2c900a8867e3">webServerTask</link>(<emphasis role="keywordtype">void</emphasis>*&#32;pvParameters);
+67 
+73 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_main_8hpp_1ac55d0909bfe96e544bb1324d9e0be983">displayTask</link>(<emphasis role="keywordtype">void</emphasis>*&#32;pvParameters);
+74 
+92 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_main_8hpp_1a96c361e8ae7194173d6843a3b9a2fb73">temperatureTask</link>(<emphasis role="keywordtype">void</emphasis>&#32;*pvParameters);
+93 
+99 <emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_main_8hpp_1a19fbfc122dff7ef467f9cd7f84d99b1d">pidTaskHandle</link>(<emphasis role="keywordtype">void</emphasis>&#32;*pvParameters);
+100 
+101 <emphasis role="preprocessor">#endif&#32;</emphasis><emphasis role="comment">//&#32;MAIN_H</emphasis>
+</programlisting></section>

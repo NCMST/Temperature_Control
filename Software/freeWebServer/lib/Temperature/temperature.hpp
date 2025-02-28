@@ -1,6 +1,6 @@
 /**
  * @file temperature.hpp
- * @author Creciune Catalin creciunelcatalin@gmail.com
+ * @author 
  * @brief 
  * @version 0.1
  * @date 2025-02-21
@@ -19,7 +19,7 @@
 #include <stddef.h>
 #else
 #include <Arduino.h>
-#include <GyverMAX6675.h>
+#include <max6675.h>
 #endif
 
 /**
@@ -95,17 +95,17 @@ class Temperature
  * 
  * @brief A class to handle temperature readings from a K type thermocouple and an NTC thermistor.
  * 
- * This class provides methods to read temperatures from a K type thermocouple using the GyverMAX6675 sensor
+ * This class provides methods to read temperatures from a K type thermocouple using the Adafruit_MAX6675 sensor
  * and from an NTC thermistor. It abstracts the hardware-specific details and provides a simple interface
  * for obtaining temperature readings.
  * 
- * @note Ensure that the CLK_PIN, DATA_PIN, and CS_PIN are correctly defined for the GyverMAX6675 sensor.
+ * @note Ensure that the CLK_PIN, DATA_PIN, and CS_PIN are correctly defined for the Adafruit_MAX6675 sensor.
  * 
- * @attention This class assumes that the necessary hardware connections are made and the GyverMAX6675 library is included.
+ * @attention This class assumes that the necessary hardware connections are made and the Adafruit_MAX6675 library is included.
  * 
  * @warning The temperature readings are dependent on the accuracy of the sensors and the correct configuration of the pins.
  * 
- * @see GyverMAX6675
+ * @see Adafruit_MAX6675
  * 
  * @fn float readKTemp(void)
  * @fn double readNTCTemp(void)
@@ -114,13 +114,13 @@ class Temperature
 
 {
 private:
-    GyverMAX6675<CLK_PIN, DATA_PIN, CS_PIN> max6675;
+    MAX6675  max6675;   
 public:
     /**
      * @brief Construct a new Temperature object
      * 
      */
-    Temperature() {}
+    Temperature() : max6675(CLK_PIN, CS_PIN, DATA_PIN) {}
 
     /**
      * @brief readKTemp - read K type thermocouple temperature

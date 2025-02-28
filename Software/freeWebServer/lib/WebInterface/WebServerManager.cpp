@@ -18,9 +18,22 @@
  * @param secon
  * @param seconPass
  */
-WebServerManager::WebServerManager(const char *ssid, const char *password, const char *secon, const char *seconPass)
-    : ssid(ssid), password(password), server(HTTP_PORT), second_ssid(secon), second_password(seconPass)
+WebServerManager::WebServerManager(const std::map<std::string, std::string> &wifiConfig, uint8_t nrPass)
+    : server(HTTP_PORT)
 {
+    int i = 0;
+    for (const auto &entry : wifiConfig)
+    {
+        if (i < nrPass)
+        {
+            wifiMulti.addAP(entry.first.c_str(), entry.second.c_str());
+        }
+        else
+        {
+            break;
+        }
+        ++i;
+    }
 
     if (!SPIFFS.begin(true))
     {
@@ -51,10 +64,6 @@ WebServerManager::WebServerManager(const char *ssid, const char *password, const
 int WebServerManager::begin()
 {
     Serial.begin(115200);
-
-    // Add SSIDs to WiFiMulti
-    wifiMulti.addAP(ssid, password);               // First network
-    wifiMulti.addAP(second_ssid, second_password); // Second network
 
     unsigned long startAttemptTime = millis();
 
@@ -107,6 +116,9 @@ int WebServerManager::begin()
     server.on("/pid_constants", HTTP_GET, [this]()
               { handlePIDPrint(); }); // Set the route for PID constants
 
+    server.on("/autotune", HTTP_POST, [this]()
+              { handleAutoTune(); }); // Set the route for autotune
+
     server.begin(); // Start the server
 
     return 0;
@@ -118,7 +130,7 @@ int WebServerManager::begin()
  * @param ssid
  * @param password
  */
-void WebServerManager::setupWiFIRouter(const char *ssid, const char *password)
+void WebServerManager::setupWiFIRouter(const std::map<std::string, std::string> &wifiConfig)
 {
     WiFi.mode(WIFI_AP);
     if (WiFi.softAP(ssid, password))
@@ -386,6 +398,36 @@ void WebServerManager::handlePIDPrint()
 }
 
 /**
+ * @brief handle the auto tune
+ * 
+ *
+ * @details This handler updates the autotune state based on the received command from graph.html
+ */
+void WebServerManager::handleAutoTune()
+{
+    JsonDocument doc;
+    DeserializationError error = deserializeJson(doc, server.arg("plain"));
+    if (!error){
+        bool autotune = doc["autotune"];
+        this->autotune = autotune;
+
+        if (LOGS_MESSAGE)
+        {
+            Serial.print("Autotune state updated to: ");
+            Serial.println(autotune ? "ON" : "OFF");
+        }
+
+        server.send(200, "text/plain", "Autotune state updated");
+    }
+    else
+    {
+        if (LOGS_MESSAGE)
+            Serial.println("Failed to parse JSON");
+        server.send(400, "text/plain", "Invalid JSON");
+    }
+}    
+
+/**
  * @brief update the list.csv file
  * 
  * @details update the list.csv file with the temperature data
@@ -396,7 +438,7 @@ void WebServerManager::handlePIDPrint()
  */
 void WebServerManager::updateCSV(float realTemperature, float setTemperature, uint32_t time)
 {
-    String data = String(realTemperature) + "," + String(setTemperature) + "," + String(time) + "\n";
+    String data = String(realTemperature) + "," + String(setTemperature) + "," + String(time);
 
     if (!fileManager.updateFile("/list.csv", data.c_str()))
     {

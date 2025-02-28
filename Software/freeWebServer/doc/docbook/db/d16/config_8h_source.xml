@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_config_8h_source" xml:lang="en-US">
+<title>config.h</title>
+<indexterm><primary>include/config.h</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered">1 <emphasis role="preprocessor">#ifndef&#32;Config_h</emphasis>
+2 <emphasis role="preprocessor">#define&#32;Config_h</emphasis>
+3 
+4 <emphasis role="preprocessor">#include&#32;&lt;map&gt;</emphasis>
+5 <emphasis role="preprocessor">#include&#32;&lt;string&gt;</emphasis>
+6 
+7 std::map&lt;std::string,&#32;std::string&gt;&#32;<link linkend="_config_8h_1a70dfb136f96c1d6754684c18a5c3965d">wifiConfig</link>&#32;=&#32;{
+8 &#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;NCMST&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Tech0dev2016&quot;</emphasis>},
+9 &#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;UltraFast&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;Fastet123&quot;</emphasis>},
+10 &#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;NCMST&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;password&quot;</emphasis>}
+11 };
+12 
+13 <emphasis role="preprocessor">#endif</emphasis>
+</programlisting></section>

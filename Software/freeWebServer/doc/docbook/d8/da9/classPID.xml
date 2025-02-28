@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classPID" xml:lang="en-US">
+<title>PID Class Reference</title>
+<indexterm><primary>PID</primary></indexterm>
+<para>
+
+<para>A class to implement a <link linkend="_classPID">PID</link> controller. </para>
+ 
+</para>
+<para>
+<computeroutput>#include &lt;pid.hpp&gt;</computeroutput>
+</para>
+<section>
+<title>Detailed Description</title>
+
+<para>A class to implement a <link linkend="_classPID">PID</link> controller. </para>
+
+
+
+<para>The <link linkend="_classPID">PID</link> class provides methods to set <link linkend="_classPID">PID</link> coefficients, compute the output value, and set limits for the output value. It also provides getter and setter methods for the <link linkend="_classPID">PID</link> coefficients.</para>
+
+<para><note><title>Note</title>
+
+<para>The compute method should be called periodically to update the output value. </para>
+</note>
+</para>
+<para>
+The documentation for this class was generated from the following file:</para>
+lib/PID/<link linkend="_pid_8hpp">pid.hpp</link></section>
+</section>

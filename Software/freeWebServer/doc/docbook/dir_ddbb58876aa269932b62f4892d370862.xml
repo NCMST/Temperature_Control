@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_ddbb58876aa269932b62f4892d370862" xml:lang="en-US">
+<title>test/test_pid Directory Reference</title>
+<indexterm><primary>test/test_pid Directory Reference</primary></indexterm>
+Directory dependency graph for test_pid:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_ddbb58876aa269932b62f4892d370862_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_test__pid_8cpp">test_pid.cpp</link></para>
+
+<para>Test functions for <link linkend="_classPID">PID</link> class. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>
