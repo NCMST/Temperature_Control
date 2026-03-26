@@ -29,8 +29,8 @@ jobs:
       - name: Build Firmware
         run: |
           export ZEPHYR_BASE=$(pwd)/zephyr_ws/zephyr
-          
-          west build -p always -b esp32_devkitc/esp32/procpu app/Software
+          # Folosim numele exact raportat de west boards
+          west build -p always -b doit_esp32_devkit_v1 app/Software
 
       - name: Archive Firmware Binar
         uses: actions/upload-artifact@v4
