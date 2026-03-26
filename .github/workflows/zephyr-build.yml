@@ -2,16 +2,16 @@ name: Zephyr Build CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ ** ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ ** ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     container:
-      image: zephyrprojectrtos/ci:latest # Folosim imaginea oficială de Docker Zephyr
+      image: zephyrprojectrtos/ci:latest 
 
     steps:
       - name: Checkout code
