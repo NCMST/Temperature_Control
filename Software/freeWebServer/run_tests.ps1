@@ -1,1 +1,0 @@
-pio test -e native

@@ -1,0 +1,5 @@
+west:
+  command: /home/crc/zephyrproject/.venv/bin/west build -p always -b doit_esp32_devkit_v1/esp32/procpu
+    .
+  topdir: /home/crc/zephyrproject
+  version: 1.5.0

@@ -1,0 +1,110 @@
+ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF32
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           Tensilica Xtensa Processor
+  Version:                           0x1
+  Entry point address:               0x400846f4
+  Start of program headers:          52 (bytes into file)
+  Start of section headers:          2046252 (bytes into file)
+  Flags:                             0x300
+  Size of this header:               52 (bytes)
+  Size of program headers:           32 (bytes)
+  Number of program headers:         13
+  Size of section headers:           40 (bytes)
+  Number of section headers:         50
+  Section header string table index: 49
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] .rtc.text         PROGBITS        400c0000 024048 000000 00   W  0   0  1
+  [ 2] .rtc.dummy        PROGBITS        3ff80000 024048 000000 00   W  0   0  1
+  [ 3] .rtc.force_fast   PROGBITS        3ff80000 024048 000000 00   W  0   0  1
+  [ 4] .rtc.data         PROGBITS        50000000 024048 000000 00   W  0   0  1
+  [ 5] .rtc_noinit       PROGBITS        50000000 024048 000000 00   W  0   0  1
+  [ 6] .rtc.force_slow   PROGBITS        50000000 0001d4 000028 00  WA  0   0  4
+  [ 7] .iram0.vectors    PROGBITS        40080000 0001fc 000400 00  AX  0   0  4
+  [ 8] .iram0.text       PROGBITS        40080400 0005fc 008860 00  AX  0   0  4
+  [ 9] .loader.text      PROGBITS        40088c60 008e5c 0003e0 00  AX  0   0  4
+  [10] .iram0.text_end   NOBITS          40089040 00aaf8 0000c0 00  WA  0   0  1
+  [11] .iram0.data       PROGBITS        40089100 024048 000000 00   W  0   0  1
+  [12] .iram0.bss        PROGBITS        40089100 024048 000000 00   W  0   0  1
+  [13] .dram0.data       PROGBITS        3ffb0000 009240 0018b8 00  WA  0   0  8
+  [14] .loader.data      PROGBITS        3ffb18b8 00aaf8 0003fc 00   A  0   0  4
+  [15] sw_isr_table      PROGBITS        3ffb1cb4 00aef4 000100 00  WA  0   0  4
+  [16] device_states     PROGBITS        3ffb1db4 00aff4 000008 00  WA  0   0  1
+  [17] log_mpsc_pbu[...] PROGBITS        3ffb1dbc 00affc 000038 00  WA  0   0  4
+  [18] log_msg_ptr_area  PROGBITS        3ffb1df4 00b034 000004 00  WA  0   0  4
+  [19] k_heap_area       PROGBITS        3ffb1df8 00b038 000014 00  WA  0   0  4
+  [20] k_sem_area        PROGBITS        3ffb1e0c 00b04c 000010 00  WA  0   0  4
+  [21] log_const_area    PROGBITS        3ffb1e1c 00b05c 000060 00   A  0   0  4
+  [22] log_backend_area  PROGBITS        3ffb1e7c 00b0bc 000010 00   A  0   0  4
+  [23] .dram0.bss        NOBITS          3ffb1e90 00b0d0 0017c8 00  WA  0   0 16
+  [24] .dram0.noinit     NOBITS          3ffe8000 024050 001800 00  WA  0   0 16
+  [25] .flash.rodat[...] NOBITS          0000aef4 00b0cc 00510c 00  WA  0   0  1
+  [26] .flash.rodata     PROGBITS        3f400000 010000 0010e8 00   A  0   0 65536
+  [27] .flash.rodata_end NOBITS          3f4011fc 0111fc 00ee04 00  WA  0   0  1
+  [28] initlevel         PROGBITS        3f4010e8 0110e8 000050 00   A  0   0  4
+  [29] device_area       PROGBITS        3f401138 011138 000070 00   A  0   0  4
+  [30] gpio_driver_[...] PROGBITS        3f4011a8 0111a8 000024 00   A  0   0  4
+  [31] clock_contro[...] PROGBITS        3f4011cc 0111cc 00001c 00   A  0   0  4
+  [32] uart_driver_[...] PROGBITS        3f4011e8 0111e8 000014 00   A  0   0  4
+  [33] .text_dummy       NOBITS          000111fc 0111fc 00ee04 00  WA  0   0  1
+  [34] .text             PROGBITS        400d0000 020000 004048 00 WAX  0   0 65536
+  [35] .comment          PROGBITS        00000000 024048 00001f 01  MS  0   0  1
+  [36] .debug_aranges    PROGBITS        00000000 024068 002a20 00      0   0  8
+  [37] .debug_info       PROGBITS        00000000 026a88 0c77c6 00      0   0  1
+  [38] .debug_abbrev     PROGBITS        00000000 0ee24e 01805a 00      0   0  1
+  [39] .debug_line       PROGBITS        00000000 1062a8 075f6a 00      0   0  1
+  [40] .debug_frame      PROGBITS        00000000 17c214 0062cc 00      0   0  4
+  [41] .debug_str        PROGBITS        00000000 1824e0 019702 01  MS  0   0  1
+  [42] .debug_loc        PROGBITS        00000000 19bbe2 02f274 00      0   0  1
+  [43] .debug_ranges     PROGBITS        00000000 1cae58 008020 00      0   0  8
+  [44] .xtensa.info      NOTE            00000000 1d2e78 000038 00      0   0  1
+  [45] .xt.prop          PROGBITS        00000000 1d2eb0 00b37c 00      0   0  1
+  [46] .xt.lit           PROGBITS        00000000 1de22c 0006b8 00      0   0  1
+  [47] .symtab           SYMTAB          00000000 1de8e4 008e60 10     48 567  4
+  [48] .strtab           STRTAB          00000000 1e7744 00bf60 00      0   0  1
+  [49] .shstrtab         STRTAB          00000000 1f36a4 000288 00      0   0  1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  D (mbind), p (processor specific)
+
+Program Headers:
+  Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
+  LOAD           0x0001d4 0x50000000 0x00000000 0x00028 0x00028 RW  0x4
+  LOAD           0x0001fc 0x40080000 0x00000028 0x09040 0x09040 R E 0x4
+  LOAD           0x009240 0x3ffb0000 0x00009068 0x018b8 0x018b8 RW  0x8
+  LOAD           0x000000 0x40089040 0x00009068 0x00000 0x000c0 RW  0x1
+  LOAD           0x00aaf8 0x3ffb18b8 0x0000a920 0x005d4 0x005d4 RW  0x4
+  LOAD           0x000000 0x0000aef4 0x0000aef4 0x00000 0x0510c RW  0x1
+  LOAD           0x000000 0x3ffb1e90 0x0000aef4 0x00000 0x017c8 RW  0x10
+  LOAD           0x010000 0x3f400000 0x00010000 0x011fc 0x011fc R   0x10000
+  LOAD           0x000000 0x000111fc 0x000111fc 0x00000 0x0ee04 RW  0x1
+  LOAD           0x000000 0x3f4011fc 0x000111fc 0x00000 0x0ee04 RW  0x1
+  LOAD           0x020000 0x400d0000 0x00020000 0x04048 0x04048 RWE 0x10000
+  LOAD           0x000000 0x3ffe8000 0x3ffe8000 0x00000 0x01800 RW  0x10
+  GNU_STACK      0x000000 0x00000000 0x00000000 0x00000 0x00000 RW  0x10
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .rtc.force_slow 
+   01     .iram0.vectors .iram0.text .loader.text 
+   02     .dram0.data 
+   03     .iram0.text_end 
+   04     .loader.data sw_isr_table device_states log_mpsc_pbuf_area log_msg_ptr_area k_heap_area k_sem_area log_const_area log_backend_area 
+   05     .flash.rodata_dummy 
+   06     .dram0.bss 
+   07     .flash.rodata initlevel device_area gpio_driver_api_area clock_control_driver_api_area uart_driver_api_area 
+   08     .text_dummy 
+   09     .flash.rodata_end 
+   10     .text 
+   11     .dram0.noinit 
+   12     
