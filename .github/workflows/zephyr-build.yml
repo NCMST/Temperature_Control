@@ -1,0 +1,38 @@
+name: Zephyr Build CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: zephyrprojectrtos/ci:latest # Folosim imaginea oficială de Docker Zephyr
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: Temperature_Control
+
+      - name: Initialize West
+        run: |
+          west init -m https://github.com/zephyrproject-rtos/zephyr --mr v3.5.0 zephyrproject
+          cd zephyrproject
+          west update
+          west zephyr-export
+
+      - name: Build Firmware
+        run: |
+          export ZEPHYR_BASE=$(pwd)/zephyrproject/zephyr
+          west build -p always -b doit_esp32_devkit_v1/esp32/procpu Temperature_Control/Software
+
+      - name: Archive Firmware Binar
+        uses: actions/upload-artifact@v4
+        with:
+          name: zephyr-bin
+          path: build/zephyr/zephyr.bin
