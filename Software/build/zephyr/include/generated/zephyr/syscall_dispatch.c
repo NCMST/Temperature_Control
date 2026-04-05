@@ -27,18 +27,6 @@ uintptr_t z_mrsh_zephyr_fwrite(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_sys_clock_getrtoffset(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_sys_clock_settime(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_sys_clock_nanosleep(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_z_sys_mutex_kernel_lock(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
@@ -80,6 +68,18 @@ uintptr_t z_mrsh_log_filter_set(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
 
 __weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_log_frontend_filter_set(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
+
+__weak ALIAS_OF(handler_no_syscall)
+uintptr_t z_mrsh_adc_channel_setup(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
+
+__weak ALIAS_OF(handler_no_syscall)
+uintptr_t z_mrsh_adc_read(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
+
+__weak ALIAS_OF(handler_no_syscall)
+uintptr_t z_mrsh_adc_read_async(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
@@ -231,10 +231,6 @@ uintptr_t z_mrsh_device_init(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_device_deinit(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_device_get_by_dt_nodelabel(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
@@ -252,18 +248,6 @@ uintptr_t z_mrsh_k_thread_create(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
 
 __weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_k_thread_stack_space_get(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_thread_runtime_stack_unused_threshold_pct_set(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_thread_runtime_stack_unused_threshold_set(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_thread_runtime_stack_unused_threshold_get(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
@@ -316,14 +300,6 @@ uintptr_t z_mrsh_k_thread_priority_set(uintptr_t arg1, uintptr_t arg2, uintptr_t
 
 __weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_k_thread_deadline_set(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_thread_absolute_deadline_set(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_reschedule(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
@@ -459,14 +435,6 @@ uintptr_t z_mrsh_k_event_wait_all(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_event_wait_safe(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_event_wait_all_safe(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_k_stack_alloc_init(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
@@ -535,10 +503,6 @@ uintptr_t z_mrsh_k_msgq_put(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_msgq_put_front(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_k_msgq_get(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
@@ -567,23 +531,31 @@ uintptr_t z_mrsh_k_msgq_num_used_get(uintptr_t arg1, uintptr_t arg2, uintptr_t a
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_pipe_init(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+uintptr_t z_mrsh_k_pipe_alloc_init(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_pipe_write(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+uintptr_t z_mrsh_k_pipe_put(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_pipe_read(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+uintptr_t z_mrsh_k_pipe_get(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_pipe_reset(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+uintptr_t z_mrsh_k_pipe_read_avail(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_pipe_close(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+uintptr_t z_mrsh_k_pipe_write_avail(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
+
+__weak ALIAS_OF(handler_no_syscall)
+uintptr_t z_mrsh_k_pipe_flush(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
+
+__weak ALIAS_OF(handler_no_syscall)
+uintptr_t z_mrsh_k_pipe_buffer_flush(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
@@ -619,10 +591,6 @@ uintptr_t z_mrsh_k_float_enable(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_k_object_access_check(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_k_object_alloc_size(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
@@ -643,9 +611,6 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_ZEPHYR_WRITE_STDOUT] = z_mrsh_zephyr_write_stdout,
 	[K_SYSCALL_ZEPHYR_FPUTC] = z_mrsh_zephyr_fputc,
 	[K_SYSCALL_ZEPHYR_FWRITE] = z_mrsh_zephyr_fwrite,
-	[K_SYSCALL_SYS_CLOCK_GETRTOFFSET] = z_mrsh_sys_clock_getrtoffset,
-	[K_SYSCALL_SYS_CLOCK_SETTIME] = z_mrsh_sys_clock_settime,
-	[K_SYSCALL_SYS_CLOCK_NANOSLEEP] = z_mrsh_sys_clock_nanosleep,
 	[K_SYSCALL_Z_SYS_MUTEX_KERNEL_LOCK] = z_mrsh_z_sys_mutex_kernel_lock,
 	[K_SYSCALL_Z_SYS_MUTEX_KERNEL_UNLOCK] = z_mrsh_z_sys_mutex_kernel_unlock,
 	[K_SYSCALL_Z_LOG_MSG_SIMPLE_CREATE_0] = z_mrsh_z_log_msg_simple_create_0,
@@ -657,6 +622,9 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_LOG_BUFFERED_CNT] = z_mrsh_log_buffered_cnt,
 	[K_SYSCALL_LOG_FILTER_SET] = z_mrsh_log_filter_set,
 	[K_SYSCALL_LOG_FRONTEND_FILTER_SET] = z_mrsh_log_frontend_filter_set,
+	[K_SYSCALL_ADC_CHANNEL_SETUP] = z_mrsh_adc_channel_setup,
+	[K_SYSCALL_ADC_READ] = z_mrsh_adc_read,
+	[K_SYSCALL_ADC_READ_ASYNC] = z_mrsh_adc_read_async,
 	[K_SYSCALL_GPIO_PIN_INTERRUPT_CONFIGURE] = z_mrsh_gpio_pin_interrupt_configure,
 	[K_SYSCALL_GPIO_PIN_CONFIGURE] = z_mrsh_gpio_pin_configure,
 	[K_SYSCALL_GPIO_PORT_GET_DIRECTION] = z_mrsh_gpio_port_get_direction,
@@ -694,15 +662,11 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_DEVICE_GET_BINDING] = z_mrsh_device_get_binding,
 	[K_SYSCALL_DEVICE_IS_READY] = z_mrsh_device_is_ready,
 	[K_SYSCALL_DEVICE_INIT] = z_mrsh_device_init,
-	[K_SYSCALL_DEVICE_DEINIT] = z_mrsh_device_deinit,
 	[K_SYSCALL_DEVICE_GET_BY_DT_NODELABEL] = z_mrsh_device_get_by_dt_nodelabel,
 	[K_SYSCALL_K_THREAD_STACK_ALLOC] = z_mrsh_k_thread_stack_alloc,
 	[K_SYSCALL_K_THREAD_STACK_FREE] = z_mrsh_k_thread_stack_free,
 	[K_SYSCALL_K_THREAD_CREATE] = z_mrsh_k_thread_create,
 	[K_SYSCALL_K_THREAD_STACK_SPACE_GET] = z_mrsh_k_thread_stack_space_get,
-	[K_SYSCALL_K_THREAD_RUNTIME_STACK_UNUSED_THRESHOLD_PCT_SET] = z_mrsh_k_thread_runtime_stack_unused_threshold_pct_set,
-	[K_SYSCALL_K_THREAD_RUNTIME_STACK_UNUSED_THRESHOLD_SET] = z_mrsh_k_thread_runtime_stack_unused_threshold_set,
-	[K_SYSCALL_K_THREAD_RUNTIME_STACK_UNUSED_THRESHOLD_GET] = z_mrsh_k_thread_runtime_stack_unused_threshold_get,
 	[K_SYSCALL_K_THREAD_JOIN] = z_mrsh_k_thread_join,
 	[K_SYSCALL_K_SLEEP] = z_mrsh_k_sleep,
 	[K_SYSCALL_K_USLEEP] = z_mrsh_k_usleep,
@@ -716,8 +680,6 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_K_THREAD_PRIORITY_GET] = z_mrsh_k_thread_priority_get,
 	[K_SYSCALL_K_THREAD_PRIORITY_SET] = z_mrsh_k_thread_priority_set,
 	[K_SYSCALL_K_THREAD_DEADLINE_SET] = z_mrsh_k_thread_deadline_set,
-	[K_SYSCALL_K_THREAD_ABSOLUTE_DEADLINE_SET] = z_mrsh_k_thread_absolute_deadline_set,
-	[K_SYSCALL_K_RESCHEDULE] = z_mrsh_k_reschedule,
 	[K_SYSCALL_K_THREAD_SUSPEND] = z_mrsh_k_thread_suspend,
 	[K_SYSCALL_K_THREAD_RESUME] = z_mrsh_k_thread_resume,
 	[K_SYSCALL_K_IS_PREEMPT_THREAD] = z_mrsh_k_is_preempt_thread,
@@ -751,8 +713,6 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_K_EVENT_CLEAR] = z_mrsh_k_event_clear,
 	[K_SYSCALL_K_EVENT_WAIT] = z_mrsh_k_event_wait,
 	[K_SYSCALL_K_EVENT_WAIT_ALL] = z_mrsh_k_event_wait_all,
-	[K_SYSCALL_K_EVENT_WAIT_SAFE] = z_mrsh_k_event_wait_safe,
-	[K_SYSCALL_K_EVENT_WAIT_ALL_SAFE] = z_mrsh_k_event_wait_all_safe,
 	[K_SYSCALL_K_STACK_ALLOC_INIT] = z_mrsh_k_stack_alloc_init,
 	[K_SYSCALL_K_STACK_PUSH] = z_mrsh_k_stack_push,
 	[K_SYSCALL_K_STACK_POP] = z_mrsh_k_stack_pop,
@@ -770,7 +730,6 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_K_SEM_COUNT_GET] = z_mrsh_k_sem_count_get,
 	[K_SYSCALL_K_MSGQ_ALLOC_INIT] = z_mrsh_k_msgq_alloc_init,
 	[K_SYSCALL_K_MSGQ_PUT] = z_mrsh_k_msgq_put,
-	[K_SYSCALL_K_MSGQ_PUT_FRONT] = z_mrsh_k_msgq_put_front,
 	[K_SYSCALL_K_MSGQ_GET] = z_mrsh_k_msgq_get,
 	[K_SYSCALL_K_MSGQ_PEEK] = z_mrsh_k_msgq_peek,
 	[K_SYSCALL_K_MSGQ_PEEK_AT] = z_mrsh_k_msgq_peek_at,
@@ -778,11 +737,13 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_K_MSGQ_NUM_FREE_GET] = z_mrsh_k_msgq_num_free_get,
 	[K_SYSCALL_K_MSGQ_GET_ATTRS] = z_mrsh_k_msgq_get_attrs,
 	[K_SYSCALL_K_MSGQ_NUM_USED_GET] = z_mrsh_k_msgq_num_used_get,
-	[K_SYSCALL_K_PIPE_INIT] = z_mrsh_k_pipe_init,
-	[K_SYSCALL_K_PIPE_WRITE] = z_mrsh_k_pipe_write,
-	[K_SYSCALL_K_PIPE_READ] = z_mrsh_k_pipe_read,
-	[K_SYSCALL_K_PIPE_RESET] = z_mrsh_k_pipe_reset,
-	[K_SYSCALL_K_PIPE_CLOSE] = z_mrsh_k_pipe_close,
+	[K_SYSCALL_K_PIPE_ALLOC_INIT] = z_mrsh_k_pipe_alloc_init,
+	[K_SYSCALL_K_PIPE_PUT] = z_mrsh_k_pipe_put,
+	[K_SYSCALL_K_PIPE_GET] = z_mrsh_k_pipe_get,
+	[K_SYSCALL_K_PIPE_READ_AVAIL] = z_mrsh_k_pipe_read_avail,
+	[K_SYSCALL_K_PIPE_WRITE_AVAIL] = z_mrsh_k_pipe_write_avail,
+	[K_SYSCALL_K_PIPE_FLUSH] = z_mrsh_k_pipe_flush,
+	[K_SYSCALL_K_PIPE_BUFFER_FLUSH] = z_mrsh_k_pipe_buffer_flush,
 	[K_SYSCALL_K_POLL] = z_mrsh_k_poll,
 	[K_SYSCALL_K_POLL_SIGNAL_INIT] = z_mrsh_k_poll_signal_init,
 	[K_SYSCALL_K_POLL_SIGNAL_RESET] = z_mrsh_k_poll_signal_reset,
@@ -793,7 +754,6 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_K_FLOAT_ENABLE] = z_mrsh_k_float_enable,
 	[K_SYSCALL_K_OBJECT_ACCESS_GRANT] = z_mrsh_k_object_access_grant,
 	[K_SYSCALL_K_OBJECT_RELEASE] = z_mrsh_k_object_release,
-	[K_SYSCALL_K_OBJECT_ACCESS_CHECK] = z_mrsh_k_object_access_check,
 	[K_SYSCALL_K_OBJECT_ALLOC] = z_mrsh_k_object_alloc,
 	[K_SYSCALL_K_OBJECT_ALLOC_SIZE] = z_mrsh_k_object_alloc_size,
 	[K_SYSCALL_SYS_CLOCK_HW_CYCLES_PER_SEC_RUNTIME_GET] = z_mrsh_sys_clock_hw_cycles_per_sec_runtime_get,

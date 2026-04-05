@@ -34,126 +34,106 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/home/crc/zephyr-sdk-1.0.0/gnu/xtensa-espressif_esp32_zephyr-elf/bin/xtensa-espressif_esp32_zephyr-elf-objdump")
+  set(CMAKE_OBJDUMP "/home/crc/zephyr-sdk-0.17.0/xtensa-espressif_esp32_zephyr-elf/bin/xtensa-espressif_esp32_zephyr-elf-objdump")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/canbus/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/canbus/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/debug/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/debug/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/fb/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/fb/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/fs/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/fs/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/gnss/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/ipc/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/instrumentation/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/logging/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/ipc/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/mem_mgmt/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/kvss/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/mgmt/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/logging/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/modbus/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/mem_mgmt/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/pm/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/mgmt/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/portability/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/modbus/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/random/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/pm/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/rtio/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/pmci/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/sd/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/portability/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/stats/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/random/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/storage/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/rtio/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/task_wdt/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/sd/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/testsuite/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/stats/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/tracing/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/storage/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/task_wdt/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/testsuite/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/tracing/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/crc/Documents/Temperature_Control/Software/build/zephyr/subsys/usb/cmake_install.cmake")
+  include("/home/crc/Workspace/Temperature_Control/Software/build/zephyr/subsys/usb/cmake_install.cmake")
 endif()
 

@@ -1,61 +1,53 @@
 cmake:
   application:
-    configuration-dir: '/home/crc/Documents/Temperature_Control/Software'
-    source-dir: '/home/crc/Documents/Temperature_Control/Software'
+    configuration-dir: /home/crc/Workspace/Temperature_Control/Software/app
+    source-dir: /home/crc/Workspace/Temperature_Control/Software/app
   board:
-    name: 'doit_esp32_devkit_v1'
-    path:
-     - '/home/crc/zephyrproject/zephyr/boards/others/doit_esp32_devkit_v1'
-    qualifiers: 'esp32/procpu'
-    revision: ''
+    name: esp32_devkitc_wroom
+    qualifiers: esp32/procpu
+    revision: 
   devicetree:
     bindings-dirs:
-     - '/home/crc/zephyrproject/zephyr/dts/bindings'
+     - /home/crc/zephyrproject/zephyr/dts/bindings
     files:
-     - '/home/crc/zephyrproject/zephyr/boards/others/doit_esp32_devkit_v1/doit_esp32_devkit_v1_procpu.dts'
-     - '/home/crc/Documents/Temperature_Control/Software/app.overlay'
+     - /home/crc/zephyrproject/zephyr/boards/espressif/esp32_devkitc_wroom/esp32_devkitc_wroom_procpu.dts
+     - /home/crc/Workspace/Temperature_Control/Software/app/esp32_devkitc_wroom.overlay
     include-dirs:
-     - '/home/crc/zephyrproject/modules/hal/ambiq/dts'
-     - '/home/crc/zephyrproject/modules/hal/atmel/include'
-     - '/home/crc/zephyrproject/modules/hal/bouffalolab/include'
-     - '/home/crc/zephyrproject/modules/hal/bouffalolab/include/zephyr'
-     - '/home/crc/zephyrproject/modules/hal/gigadevice/include'
-     - '/home/crc/zephyrproject/modules/hal/microchip/include'
-     - '/home/crc/zephyrproject/modules/hal/microchip/dts'
-     - '/home/crc/zephyrproject/modules/hal/nuvoton/dts'
-     - '/home/crc/zephyrproject/modules/hal/nxp/dts'
-     - '/home/crc/zephyrproject/modules/hal/stm32/dts'
-     - '/home/crc/zephyrproject/modules/hal/ti/dts'
-     - '/home/crc/zephyrproject/zephyr/include'
-     - '/home/crc/zephyrproject/zephyr/include/zephyr'
-     - '/home/crc/zephyrproject/zephyr/dts/common'
-     - '/home/crc/zephyrproject/zephyr/dts/vendor'
-     - '/home/crc/zephyrproject/zephyr/dts/rx'
-     - '/home/crc/zephyrproject/zephyr/dts/x86'
-     - '/home/crc/zephyrproject/zephyr/dts/xtensa'
-     - '/home/crc/zephyrproject/zephyr/dts/sparc'
-     - '/home/crc/zephyrproject/zephyr/dts/riscv'
-     - '/home/crc/zephyrproject/zephyr/dts/posix'
-     - '/home/crc/zephyrproject/zephyr/dts/arm64'
-     - '/home/crc/zephyrproject/zephyr/dts/arm'
-     - '/home/crc/zephyrproject/zephyr/dts/arc'
-     - '/home/crc/zephyrproject/zephyr/dts'
+     - /home/crc/zephyrproject/modules/hal/atmel/include
+     - /home/crc/zephyrproject/modules/hal/gigadevice/include
+     - /home/crc/zephyrproject/modules/hal/microchip/dts
+     - /home/crc/zephyrproject/modules/hal/nuvoton/dts
+     - /home/crc/zephyrproject/modules/hal/nxp/dts
+     - /home/crc/zephyrproject/modules/hal/stm32/dts
+     - /home/crc/zephyrproject/zephyr/include
+     - /home/crc/zephyrproject/zephyr/include/zephyr
+     - /home/crc/zephyrproject/zephyr/dts/common
+     - /home/crc/zephyrproject/zephyr/dts/x86
+     - /home/crc/zephyrproject/zephyr/dts/xtensa
+     - /home/crc/zephyrproject/zephyr/dts/sparc
+     - /home/crc/zephyrproject/zephyr/dts/riscv
+     - /home/crc/zephyrproject/zephyr/dts/posix
+     - /home/crc/zephyrproject/zephyr/dts/nios2
+     - /home/crc/zephyrproject/zephyr/dts/arm64
+     - /home/crc/zephyrproject/zephyr/dts/arm
+     - /home/crc/zephyrproject/zephyr/dts/arc
+     - /home/crc/zephyrproject/zephyr/dts
     user-files:
-     - '/home/crc/Documents/Temperature_Control/Software/app.overlay'
+     - /home/crc/Workspace/Temperature_Control/Software/app/esp32_devkitc_wroom.overlay
   kconfig:
     files:
-     - '/home/crc/zephyrproject/zephyr/boards/others/doit_esp32_devkit_v1/doit_esp32_devkit_v1_procpu_defconfig'
-     - '/home/crc/Documents/Temperature_Control/Software/prj.conf'
+     - /home/crc/zephyrproject/zephyr/boards/espressif/esp32_devkitc_wroom/esp32_devkitc_wroom_procpu_defconfig
+     - /home/crc/Workspace/Temperature_Control/Software/app/prj.conf
     user-files:
-     - '/home/crc/Documents/Temperature_Control/Software/prj.conf'
+     - /home/crc/Workspace/Temperature_Control/Software/app/prj.conf
   toolchain:
-    name: 'zephyr'
-    path: '/home/crc/zephyr-sdk-1.0.0'
+    name: zephyr
+    path: /home/crc/zephyr-sdk-0.17.0
   zephyr:
-    version: '4.4.0-rc1'
-    zephyr-base: '/home/crc/zephyrproject/zephyr'
-version: '0.1.0'
+    version: 4.0.99
+    zephyr-base: /home/crc/zephyrproject/zephyr
+version: 0.1.0
 west:
-  command: '/home/crc/zephyrproject/.venv/bin/west build -p always -b doit_esp32_devkit_v1/esp32/procpu .'
-  topdir: '/home/crc/zephyrproject'
-  version: '1.5.0'
+  command: /home/crc/zephyrproject/.venv/bin/west build --board esp32_devkitc_wroom/esp32/procpu app -p
+  topdir: /home/crc
+  version: 1.3.0

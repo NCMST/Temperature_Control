@@ -2,3 +2,7 @@
 Software\ControlESP32DEV\include\main.h
 Software\ESPHome\esphome_env
 Software/ESPHome/esphome_env
+Software/build
+build
+Software\build
+Software/build/

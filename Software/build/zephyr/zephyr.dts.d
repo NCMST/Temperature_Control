@@ -1,5 +1,5 @@
 empty_file.o: /home/crc/zephyrproject/zephyr/misc/empty_file.c \
- /home/crc/zephyrproject/zephyr/boards/others/doit_esp32_devkit_v1/doit_esp32_devkit_v1_procpu.dts \
+ /home/crc/zephyrproject/zephyr/boards/espressif/esp32_devkitc_wroom/esp32_devkitc_wroom_procpu.dts \
  /home/crc/zephyrproject/zephyr/dts/xtensa/espressif/esp32/esp32_wroom_32ue_n4.dtsi \
  /home/crc/zephyrproject/zephyr/dts/xtensa/espressif/esp32/esp32_common.dtsi \
  /home/crc/zephyrproject/zephyr/dts/common/mem.h \
@@ -22,11 +22,11 @@ empty_file.o: /home/crc/zephyrproject/zephyr/misc/empty_file.c \
  /home/crc/zephyrproject/zephyr/include/zephyr/dt-bindings/interrupt-controller/esp-xtensa-intmux.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/dt-bindings/pinctrl/esp32-pinctrl.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/dt-bindings/pwm/pwm.h \
- /home/crc/zephyrproject/zephyr/boards/others/doit_esp32_devkit_v1/doit_esp32_devkit_v1-pinctrl.dtsi \
+ /home/crc/zephyrproject/zephyr/boards/espressif/esp32_devkitc_wroom/esp32_devkitc_wroom-pinctrl.dtsi \
  /home/crc/zephyrproject/zephyr/include/zephyr/dt-bindings/pinctrl/esp-pinctrl-common.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/dt-bindings/pinctrl/esp32-gpio-sigmap.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/dt-bindings/input/input-event-codes.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/dt-bindings/input/esp32-touch-sensor-input.h \
- /home/crc/zephyrproject/zephyr/dts/vendor/espressif/partitions_0x1000_amp.dtsi \
- /home/crc/zephyrproject/zephyr/dts/vendor/espressif/partitions_0x1000_amp_4M.dtsi \
- /home/crc/Documents/Temperature_Control/Software/app.overlay
+ /home/crc/zephyrproject/zephyr/dts/common/espressif/partitions_0x1000_amp.dtsi \
+ /home/crc/zephyrproject/zephyr/dts/common/espressif/partitions_0x1000_amp_4M.dtsi \
+ /home/crc/Workspace/Temperature_Control/Software/app/esp32_devkitc_wroom.overlay

@@ -4,19 +4,17 @@
 		(K_SYSCALL_OBJ(ptr, K_OBJ_DRIVER_##driver_upper_case) || \
 		 K_SYSCALL_DRIVER_OP(ptr, driver_lower_case##_driver_api, op))
                 
+#define K_SYSCALL_DRIVER_ADC(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, adc, ADC)
+
 #define K_SYSCALL_DRIVER_GPIO(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, gpio, GPIO)
 
 #define K_SYSCALL_DRIVER_SHARED_IRQ(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, shared_irq, SHARED_IRQ)
 
 #define K_SYSCALL_DRIVER_CRYPTO(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, crypto, CRYPTO)
 
-#define K_SYSCALL_DRIVER_ADC(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, adc, ADC)
-
 #define K_SYSCALL_DRIVER_AUXDISPLAY(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, auxdisplay, AUXDISPLAY)
 
 #define K_SYSCALL_DRIVER_BBRAM(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, bbram, BBRAM)
-
-#define K_SYSCALL_DRIVER_BIOMETRIC(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, biometric, BIOMETRIC)
 
 #define K_SYSCALL_DRIVER_BT_HCI(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, bt_hci, BT_HCI)
 
@@ -33,8 +31,6 @@
 #define K_SYSCALL_DRIVER_COREDUMP(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, coredump, COREDUMP)
 
 #define K_SYSCALL_DRIVER_COUNTER(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, counter, COUNTER)
-
-#define K_SYSCALL_DRIVER_CRC(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, crc, CRC)
 
 #define K_SYSCALL_DRIVER_DAC(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, dac, DAC)
 
@@ -82,6 +78,8 @@
 
 #define K_SYSCALL_DRIVER_IPM(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, ipm, IPM)
 
+#define K_SYSCALL_DRIVER_KSCAN(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, kscan, KSCAN)
+
 #define K_SYSCALL_DRIVER_LED(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, led, LED)
 
 #define K_SYSCALL_DRIVER_LED_STRIP(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, led_strip, LED_STRIP)
@@ -97,10 +95,6 @@
 #define K_SYSCALL_DRIVER_MIPI_DSI(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, mipi_dsi, MIPI_DSI)
 
 #define K_SYSCALL_DRIVER_MSPI(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, mspi, MSPI)
-
-#define K_SYSCALL_DRIVER_OPAMP(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, opamp, OPAMP)
-
-#define K_SYSCALL_DRIVER_OTP(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, otp, OTP)
 
 #define K_SYSCALL_DRIVER_PECI(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, peci, PECI)
 
@@ -128,21 +122,17 @@
 
 #define K_SYSCALL_DRIVER_SPI(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, spi, SPI)
 
+#define K_SYSCALL_DRIVER_STEPPER(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, stepper, STEPPER)
+
 #define K_SYSCALL_DRIVER_SYSCON(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, syscon, SYSCON)
 
 #define K_SYSCALL_DRIVER_TEE(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, tee, TEE)
 
-#define K_SYSCALL_DRIVER_UAOL(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, uaol, UAOL)
-
 #define K_SYSCALL_DRIVER_VIDEO(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, video, VIDEO)
-
-#define K_SYSCALL_DRIVER_VIRTIO(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, virtio, VIRTIO)
 
 #define K_SYSCALL_DRIVER_W1(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, w1, W1)
 
 #define K_SYSCALL_DRIVER_WDT(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, wdt, WDT)
-
-#define K_SYSCALL_DRIVER_WUC(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, wuc, WUC)
 
 #define K_SYSCALL_DRIVER_CAN_TRANSCEIVER(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, can_transceiver, CAN_TRANSCEIVER)
 
@@ -154,23 +144,13 @@
 
 #define K_SYSCALL_DRIVER_VTD(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, vtd, VTD)
 
-#define K_SYSCALL_DRIVER_RENESAS_ELC(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, renesas_elc, RENESAS_ELC)
-
 #define K_SYSCALL_DRIVER_TGPIO(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, tgpio, TGPIO)
 
 #define K_SYSCALL_DRIVER_PCIE_CTRL(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, pcie_ctrl, PCIE_CTRL)
 
 #define K_SYSCALL_DRIVER_PCIE_EP(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, pcie_ep, PCIE_EP)
 
-#define K_SYSCALL_DRIVER_PSI5(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, psi5, PSI5)
-
-#define K_SYSCALL_DRIVER_SENT(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, sent, SENT)
-
 #define K_SYSCALL_DRIVER_SVC(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, svc, SVC)
-
-#define K_SYSCALL_DRIVER_STEPPER(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, stepper, STEPPER)
-
-#define K_SYSCALL_DRIVER_STEPPER_CTRL(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, stepper_ctrl, STEPPER_CTRL)
 
 #define K_SYSCALL_DRIVER_UART(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, uart, UART)
 

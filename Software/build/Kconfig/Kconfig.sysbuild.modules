@@ -10,28 +10,19 @@ config ZEPHYR_CMSIS_DSP_MODULE
 config ZEPHYR_CMSIS_NN_MODULE
    bool
    default y
-config ZEPHYR_CMSIS_6_MODULE
-   bool
-   default y
-config ZEPHYR_DHARA_MODULE
-   bool
-   default y
 config ZEPHYR_FATFS_MODULE
    bool
    default y
 config ZEPHYR_ADI_MODULE
    bool
    default y
-config ZEPHYR_HAL_AFBR_MODULE
+config ZEPHYR_ALTERA_MODULE
    bool
    default y
 config ZEPHYR_HAL_AMBIQ_MODULE
    bool
    default y
 config ZEPHYR_ATMEL_MODULE
-   bool
-   default y
-config ZEPHYR_HAL_BOUFFALOLAB_MODULE
    bool
    default y
 config ZEPHYR_HAL_ESPRESSIF_MODULE
@@ -67,16 +58,10 @@ config ZEPHYR_OPENISA_MODULE
 config ZEPHYR_QUICKLOGIC_MODULE
    bool
    default y
-config ZEPHYR_HAL_REALTEK_MODULE
-   bool
-   default y
 config ZEPHYR_HAL_RENESAS_MODULE
    bool
    default y
 config ZEPHYR_HAL_RPI_PICO_MODULE
-   bool
-   default y
-config ZEPHYR_HAL_SIFLI_MODULE
    bool
    default y
 config ZEPHYR_HAL_SILABS_MODULE
@@ -86,9 +71,6 @@ config ZEPHYR_HAL_ST_MODULE
    bool
    default y
 config ZEPHYR_HAL_STM32_MODULE
-   bool
-   default y
-config ZEPHYR_HAL_TDK_MODULE
    bool
    default y
 config ZEPHYR_HAL_TELINK_MODULE
@@ -112,19 +94,10 @@ config ZEPHYR_HOSTAP_MODULE
 config ZEPHYR_LIBLC3_MODULE
    bool
    default y
-config ZEPHYR_LIBMCTP_MODULE
-   bool
-   default y
 config ZEPHYR_LIBMETAL_MODULE
    bool
    default y
-config ZEPHYR_LIBSBC_MODULE
-   bool
-   default y
 config ZEPHYR_LITTLEFS_MODULE
-   bool
-   default y
-config ZEPHYR_LORA_BASICS_MODEM_MODULE
    bool
    default y
 config ZEPHYR_LORAMAC_NODE_MODULE
@@ -136,16 +109,10 @@ config ZEPHYR_LVGL_MODULE
 config ZEPHYR_MBEDTLS_MODULE
    bool
    default y
-config ZEPHYR_MBEDTLS_3_6_MODULE
-   bool
-   default y
 config ZEPHYR_MCUBOOT_MODULE
    bool
    default y
 config ZEPHYR_MIPI_SYS_T_MODULE
-   bool
-   default y
-config ZEPHYR_NANOPB_MODULE
    bool
    default y
 config ZEPHYR_NRF_WIFI_MODULE
@@ -163,16 +130,10 @@ config ZEPHYR_PERCEPIO_MODULE
 config ZEPHYR_PICOLIBC_MODULE
    bool
    default y
-config ZEPHYR_PSA_ARCH_TESTS_MODULE
-   bool
-   default y
 config ZEPHYR_SEGGER_MODULE
    bool
    default y
-config ZEPHYR_TF_M_TESTS_MODULE
-   bool
-   default y
-config ZEPHYR_TF_PSA_CRYPTO_MODULE
+config ZEPHYR_TINYCRYPT_MODULE
    bool
    default y
 config ZEPHYR_TRUSTED_FIRMWARE_A_MODULE

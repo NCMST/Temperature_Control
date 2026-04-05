@@ -1,8 +1,8 @@
 linker_zephyr_pre0.cmd: \
- /home/crc/zephyrproject/zephyr/soc/espressif/common/../esp32/default.ld \
- /home/crc/Documents/Temperature_Control/Software/build/zephyr/include/generated/zephyr/autoconf.h \
+ /home/crc/zephyrproject/zephyr/soc/espressif/esp32/default.ld \
+ /home/crc/Workspace/Temperature_Control/Software/build/zephyr/include/generated/zephyr/autoconf.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/devicetree.h \
- /home/crc/Documents/Temperature_Control/Software/build/zephyr/include/generated/zephyr/devicetree_generated.h \
+ /home/crc/Workspace/Temperature_Control/Software/build/zephyr/include/generated/zephyr/devicetree_generated.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/irq_multilevel.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/sys/util.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/sys/util_macro.h \
@@ -15,7 +15,7 @@ linker_zephyr_pre0.cmd: \
  /home/crc/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_x2.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/toolchain.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/toolchain/gcc.h \
- /home/crc/zephyr-sdk-1.0.0/gnu/xtensa-espressif_esp32_zephyr-elf/lib/gcc/xtensa-espressif_esp32_zephyr-elf/14.3.0/include/stdbool.h \
+ /home/crc/zephyr-sdk-0.17.0/xtensa-espressif_esp32_zephyr-elf/lib/gcc/xtensa-espressif_esp32_zephyr-elf/12.2.0/include/stdbool.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/io-channels.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/clocks.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/gpio.h \
@@ -29,45 +29,37 @@ linker_zephyr_pre0.cmd: \
  /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/reset.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/mbox.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/port-endpoint.h \
- /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/display.h \
- /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/hwspinlock.h \
- /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/map.h \
- /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/wuc.h \
- /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/mapped-partition.h \
- /home/crc/zephyrproject/zephyr/include/zephyr/devicetree/partitions.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/sections.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/section_tags.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/linker-defs.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/toolchain/common.h \
- /home/crc/Documents/Temperature_Control/Software/build/zephyr/include/generated/zephyr/offsets.h \
+ /home/crc/Workspace/Temperature_Control/Software/build/zephyr/include/generated/zephyr/offsets.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/linker-tool.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/linker-tool-gcc.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/kernel/mm.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/kernel/internal/mm.h \
- /home/crc/zephyrproject/zephyr/soc/espressif/common/../esp32/memory.h \
+ /home/crc/zephyrproject/zephyr/soc/espressif/esp32/memory.h \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/rel-sections.ld \
- /home/crc/zephyrproject/zephyr/include/zephyr/linker/llext-sections.ld \
- /home/crc/Documents/Temperature_Control/Software/build/zephyr/include/generated/snippets-rwdata.ld \
+ /home/crc/Workspace/Temperature_Control/Software/build/zephyr/include/generated/snippets-rwdata.ld \
+ /home/crc/Workspace/Temperature_Control/Software/build/zephyr/include/generated/snippets-data-sections.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/common-ram.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/iterable_sections.h \
- /home/crc/Documents/Temperature_Control/Software/build/zephyr/include/generated/snippets-data-sections.ld \
- /home/crc/Documents/Temperature_Control/Software/build/zephyr/include/generated/snippets-ram-sections.ld \
+ /home/crc/Workspace/Temperature_Control/Software/build/zephyr/include/generated/snippets-ram-sections.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/cplusplus-ram.ld \
- /home/crc/zephyrproject/zephyr/include/zephyr/linker/kobject-data.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/common-rom/common-rom-logging.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/ram-end.ld \
- /home/crc/Documents/Temperature_Control/Software/build/zephyr/include/generated/snippets-rodata.ld \
+ /home/crc/Workspace/Temperature_Control/Software/build/zephyr/include/generated/snippets-rodata.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/cplusplus-rom.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/common-rom/common-rom-init.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/common-rom/common-rom-kernel-devices.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/device-deps.ld \
- /home/crc/Documents/Temperature_Control/Software/build/zephyr/include/generated/device-api-sections.ld \
+ /home/crc/Workspace/Temperature_Control/Software/build/zephyr/include/generated/device-api-sections.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/common-rom/common-rom-ztest.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/common-rom/common-rom-net.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/common-rom/common-rom-bt.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/common-rom/common-rom-debug.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/common-rom/common-rom-misc.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/thread-local-storage.ld \
- /home/crc/Documents/Temperature_Control/Software/build/zephyr/include/generated/snippets-sections.ld \
+ /home/crc/Workspace/Temperature_Control/Software/build/zephyr/include/generated/snippets-sections.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/intlist.ld \
  /home/crc/zephyrproject/zephyr/include/zephyr/linker/debug-sections.ld

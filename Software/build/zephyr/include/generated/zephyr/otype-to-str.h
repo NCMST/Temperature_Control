@@ -36,23 +36,16 @@ case K_OBJ_RTIO: ret = "rtio"; break;
 #ifdef CONFIG_RTIO
 case K_OBJ_RTIO_IODEV: ret = "rtio_iodev"; break;
 #endif
-#ifdef CONFIG_RTIO
-case K_OBJ_RTIO_POOL: ret = "rtio_pool"; break;
-#endif
-#ifdef CONFIG_ADC_STREAM
-case K_OBJ_ADC_DECODER_API: ret = "adc_decoder_api"; break;
-#endif
 #ifdef CONFIG_SENSOR_ASYNC_API
 case K_OBJ_SENSOR_DECODER_API: ret = "sensor_decoder_api"; break;
 #endif
 /* Driver subsystems */
+case K_OBJ_DRIVER_ADC: ret = "adc driver"; break;
 case K_OBJ_DRIVER_GPIO: ret = "gpio driver"; break;
 case K_OBJ_DRIVER_SHARED_IRQ: ret = "shared_irq driver"; break;
 case K_OBJ_DRIVER_CRYPTO: ret = "crypto driver"; break;
-case K_OBJ_DRIVER_ADC: ret = "adc driver"; break;
 case K_OBJ_DRIVER_AUXDISPLAY: ret = "auxdisplay driver"; break;
 case K_OBJ_DRIVER_BBRAM: ret = "bbram driver"; break;
-case K_OBJ_DRIVER_BIOMETRIC: ret = "biometric driver"; break;
 case K_OBJ_DRIVER_BT_HCI: ret = "bt_hci driver"; break;
 case K_OBJ_DRIVER_CAN: ret = "can driver"; break;
 case K_OBJ_DRIVER_CELLULAR: ret = "cellular driver"; break;
@@ -61,7 +54,6 @@ case K_OBJ_DRIVER_CLOCK_CONTROL: ret = "clock_control driver"; break;
 case K_OBJ_DRIVER_COMPARATOR: ret = "comparator driver"; break;
 case K_OBJ_DRIVER_COREDUMP: ret = "coredump driver"; break;
 case K_OBJ_DRIVER_COUNTER: ret = "counter driver"; break;
-case K_OBJ_DRIVER_CRC: ret = "crc driver"; break;
 case K_OBJ_DRIVER_DAC: ret = "dac driver"; break;
 case K_OBJ_DRIVER_DAI: ret = "dai driver"; break;
 case K_OBJ_DRIVER_DISPLAY: ret = "display driver"; break;
@@ -85,6 +77,7 @@ case K_OBJ_DRIVER_I2C_TARGET: ret = "i2c_target driver"; break;
 case K_OBJ_DRIVER_I2S: ret = "i2s driver"; break;
 case K_OBJ_DRIVER_I3C: ret = "i3c driver"; break;
 case K_OBJ_DRIVER_IPM: ret = "ipm driver"; break;
+case K_OBJ_DRIVER_KSCAN: ret = "kscan driver"; break;
 case K_OBJ_DRIVER_LED: ret = "led driver"; break;
 case K_OBJ_DRIVER_LED_STRIP: ret = "led_strip driver"; break;
 case K_OBJ_DRIVER_LORA: ret = "lora driver"; break;
@@ -93,8 +86,6 @@ case K_OBJ_DRIVER_MDIO: ret = "mdio driver"; break;
 case K_OBJ_DRIVER_MIPI_DBI: ret = "mipi_dbi driver"; break;
 case K_OBJ_DRIVER_MIPI_DSI: ret = "mipi_dsi driver"; break;
 case K_OBJ_DRIVER_MSPI: ret = "mspi driver"; break;
-case K_OBJ_DRIVER_OPAMP: ret = "opamp driver"; break;
-case K_OBJ_DRIVER_OTP: ret = "otp driver"; break;
 case K_OBJ_DRIVER_PECI: ret = "peci driver"; break;
 case K_OBJ_DRIVER_PS2: ret = "ps2 driver"; break;
 case K_OBJ_DRIVER_PTP_CLOCK: ret = "ptp_clock driver"; break;
@@ -108,28 +99,21 @@ case K_OBJ_DRIVER_SDHC: ret = "sdhc driver"; break;
 case K_OBJ_DRIVER_SENSOR: ret = "sensor driver"; break;
 case K_OBJ_DRIVER_SMBUS: ret = "smbus driver"; break;
 case K_OBJ_DRIVER_SPI: ret = "spi driver"; break;
+case K_OBJ_DRIVER_STEPPER: ret = "stepper driver"; break;
 case K_OBJ_DRIVER_SYSCON: ret = "syscon driver"; break;
 case K_OBJ_DRIVER_TEE: ret = "tee driver"; break;
-case K_OBJ_DRIVER_UAOL: ret = "uaol driver"; break;
 case K_OBJ_DRIVER_VIDEO: ret = "video driver"; break;
-case K_OBJ_DRIVER_VIRTIO: ret = "virtio driver"; break;
 case K_OBJ_DRIVER_W1: ret = "w1 driver"; break;
 case K_OBJ_DRIVER_WDT: ret = "wdt driver"; break;
-case K_OBJ_DRIVER_WUC: ret = "wuc driver"; break;
 case K_OBJ_DRIVER_CAN_TRANSCEIVER: ret = "can_transceiver driver"; break;
 case K_OBJ_DRIVER_NRF_CLOCK_CONTROL: ret = "nrf_clock_control driver"; break;
 case K_OBJ_DRIVER_I3C_TARGET: ret = "i3c_target driver"; break;
 case K_OBJ_DRIVER_ITS: ret = "its driver"; break;
 case K_OBJ_DRIVER_VTD: ret = "vtd driver"; break;
-case K_OBJ_DRIVER_RENESAS_ELC: ret = "renesas_elc driver"; break;
 case K_OBJ_DRIVER_TGPIO: ret = "tgpio driver"; break;
 case K_OBJ_DRIVER_PCIE_CTRL: ret = "pcie_ctrl driver"; break;
 case K_OBJ_DRIVER_PCIE_EP: ret = "pcie_ep driver"; break;
-case K_OBJ_DRIVER_PSI5: ret = "psi5 driver"; break;
-case K_OBJ_DRIVER_SENT: ret = "sent driver"; break;
 case K_OBJ_DRIVER_SVC: ret = "svc driver"; break;
-case K_OBJ_DRIVER_STEPPER: ret = "stepper driver"; break;
-case K_OBJ_DRIVER_STEPPER_CTRL: ret = "stepper_ctrl driver"; break;
 case K_OBJ_DRIVER_UART: ret = "uart driver"; break;
 case K_OBJ_DRIVER_BC12_EMUL: ret = "bc12_emul driver"; break;
 case K_OBJ_DRIVER_BC12: ret = "bc12 driver"; break;
