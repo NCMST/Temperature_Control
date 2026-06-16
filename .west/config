@@ -1,0 +1,7 @@
+[manifest]
+path = Software
+file = west.yml
+
+[zephyr]
+base = deps/zephyr
+

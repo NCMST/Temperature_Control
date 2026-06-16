@@ -1,39 +1,35 @@
-name: Zephyr Build CI
+name: Build Zephyr ESP32
 
 on:
   push:
-    branches: [ "**" ]
   pull_request:
-    branches: [ "**" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: zephyrprojectrtos/ci:latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          path: app 
+      - uses: actions/checkout@v4
 
-      - name: Initialize West
+      - name: Build
         run: |
-          west init -m https://github.com/zephyrproject-rtos/zephyr --mr v3.5.0 zephyr_ws
-          cd zephyr_ws
-          west update
-          west zephyr-export
-          pip install -r zephyr/scripts/requirements.txt
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            ghcr.io/zephyrproject-rtos/ci:v0.27.4 \
+            bash -c '
+              pip install west
+              west init -l .
+              west update
+              west zephyr-export
 
-      - name: Build Firmware
-        run: |
-          export ZEPHYR_BASE=$(pwd)/zephyr_ws/zephyr
-          # Folosim numele exact raportat de west boards
-          west build -p always -b doit_esp32_devkit_v1 app/Software
+              west build -b esp32_devkitc_wroom/esp32/procpu app --pristine 
+            '
 
-      - name: Archive Firmware Binar
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: zephyr-bin
-          path: build/zephyr/zephyr.bin
+          name: zephyr-esp32
+          path: |
+            build/zephyr/zephyr.bin
+            build/zephyr/zephyr.elf

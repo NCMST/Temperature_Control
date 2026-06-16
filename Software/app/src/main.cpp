@@ -100,9 +100,7 @@ int main(void)
     while (1)
     {
         /* LOG_INF prints the variable with a timestamp */
-        double temp_F = read_ntc_temp();
-
-        auto temp_c = (temp_F - 32) * (5.0 / 9.0); // Convertim în Celsius
+        double temp_c = read_ntc_temp();
 
         LOG_INF("Current temperature: %.2f °C", temp_c);
 
