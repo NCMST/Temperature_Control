@@ -6,3 +6,14 @@ Software/build
 build
 Software\build
 Software/build/
+
+# West dependencies
+deps/
+
+# Architecture build directories
+build/
+Software/build/
+
+# Python virtual environment (dacă ai unul local în acest folder)
+.venv/
+__pycache__/
