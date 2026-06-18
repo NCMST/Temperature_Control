@@ -1,0 +1,75 @@
+/ {
+    /* Mapare pini auxiliari prin nodul user pentru portabilitate */
+    zephyr,user {
+        moc-gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
+        zcd-gpios = <&gpio0 36 GPIO_ACTIVE_HIGH>;
+    };
+};
+
+&pinctrl {
+    /* Configurare pini pentru I2C0 */
+    i2c0_default: i2c0_default {
+        group1 {
+            pinmux = <I2C0_SDA_GPIO21>,
+                     <I2C0_SCL_GPIO22>;
+            bias-pull-up;
+        };
+    };
+
+    /* Configurare pini pentru SPI2 */
+    spi2_default: spi2_default {
+        group1 {
+            pinmux = <SPI2_SCLK_GPIO14>,
+                     <SPI2_MOSI_GPIO13>, /* Definit de HAL, chiar daca nu e mapat fizic */
+                     <SPI2_MISO_GPIO12>;
+        };
+    };
+};
+
+&i2c0 {
+    status = "okay";
+    pinctrl-0 = <&i2c0_default>;
+    pinctrl-names = "default";
+    clock-frequency = <I2C_BITRATE_STANDARD>;
+
+    ssd1306: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <64>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <63>;
+        segment-remap;
+        com-invdir;
+        prechargep = <0x22>;
+    };
+};
+
+&spi2 {
+    status = "okay";
+    pinctrl-0 = <&spi2_default>;
+    pinctrl-names = "default";
+    cs-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
+
+    max6675: max6675@0 {
+        compatible = "maxim,max6675";
+        reg = <0>;
+        spi-max-frequency = <4000000>; /* 4 MHz */
+    };
+};
+
+&adc1 {
+    status = "okay";
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    channel@3 {
+        reg = <3>;
+        zephyr,gain = "ADC_GAIN_1_4";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+        zephyr,resolution = <12>;
+    };
+};

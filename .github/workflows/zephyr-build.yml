@@ -2,34 +2,45 @@ name: Build Zephyr ESP32
 
 on:
   push:
+    branches: [ main, master ]
   pull_request:
+    branches: [ main, master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Build
+      - name: Build Firmware inside Zephyr CI Container
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
             ghcr.io/zephyrproject-rtos/ci:v0.27.4 \
             bash -c '
-              pip install west
-              west init -l .
+              # Initialize workspace pointing to the Software directory where west.yml lives
+              west init -l Software/
+              
+              # Fetch all dependencies into Software/deps/
               west update
+              
+              # Export Zephyr CMake package
               west zephyr-export
 
-              west build -b esp32_devkitc_wroom/esp32/procpu app --pristine 
+              # Point to the pre-installed SDK inside the CI image (v0.16.x compatible)
+              export ZEPHYR_SDK_INSTALL_DIR=/opt/toolchains/zephyr-sdk-0.16.8
+
+              # Run the build using the correct board specifier
+              west build -p always -b esp32_devkitc/esp32/procpu Software/app
             '
 
-      - name: Upload artifacts
+      - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: zephyr-esp32
+          name: esp32-thermal-reactor-firmware
           path: |
             build/zephyr/zephyr.bin
             build/zephyr/zephyr.elf
