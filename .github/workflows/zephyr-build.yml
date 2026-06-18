@@ -2,9 +2,9 @@ name: Build Zephyr ESP32
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ Zephyr ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ Zephyr ]
 
 jobs:
   build:
