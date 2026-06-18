@@ -1,0 +1,29 @@
+source "Kconfig.zephyr"
+
+menu "Thermal Reactor Configuration"
+
+config THERMAL_ADC_CHANNEL
+    int "ADC Channel for NTC"
+    default 3
+    help
+      The ADC1 channel connected to the NTC thermistor.
+
+config THERMAL_NTC_RESISTOR_FIXED
+    string "Fixed resistor value in Ohms"
+    default "9990.0"
+    help
+      The value of the fixed resistor in the voltage divider network.
+
+config THERMAL_NTC_COEFF_A
+    string "Steinhart-Hart Coefficient A"
+    default "0.001129148"
+
+config THERMAL_NTC_COEFF_B
+    string "Steinhart-Hart Coefficient B"
+    default "0.000234125"
+
+config THERMAL_NTC_COEFF_C
+    string "Steinhart-Hart Coefficient C"
+    default "0.0000000876741"
+
+endmenu

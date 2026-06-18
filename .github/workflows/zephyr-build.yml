@@ -30,11 +30,15 @@ jobs:
               # Export Zephyr CMake package
               west zephyr-export
 
-              # Point to the pre-installed SDK inside the CI image (v0.16.x compatible)
-              export ZEPHYR_SDK_INSTALL_DIR=/opt/toolchains/zephyr-sdk-0.16.8
+              # Din log reiese ca imaginea are v0.17.0 instalat nativ
+              export ZEPHYR_SDK_INSTALL_DIR=/opt/toolchains/zephyr-sdk-0.17.0
 
-              # Run the build using the correct board specifier
+              # Run the build folosind calea aplicatiei
               west build -p always -b esp32_devkitc/esp32/procpu Software/app
+
+              # IMPORTANT: Reparam permisiunile fisierelor generate de Docker (root) 
+              # pentru ca runner-ul de GitHub Actions sa le poata accesa la upload
+              chown -R $(stat -c "%u:%g" Software/) build/
             '
 
       - name: Upload Build Artifacts

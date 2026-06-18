@@ -1,5 +1,6 @@
+#include <zephyr/dt-bindings/pinctrl/esp32-pinctrl.h>
+
 / {
-    /* Mapare pini auxiliari prin nodul user pentru portabilitate */
     zephyr,user {
         moc-gpios = <&gpio0 23 GPIO_ACTIVE_HIGH>;
         zcd-gpios = <&gpio0 36 GPIO_ACTIVE_HIGH>;
@@ -10,8 +11,9 @@
     /* Configurare pini pentru I2C0 */
     i2c0_default: i2c0_default {
         group1 {
-            pinmux = <I2C0_SDA_GPIO21>,
-                     <I2C0_SCL_GPIO22>;
+            /* 1 corespunde funcției de I2C pentru ESP32 */
+            pinmux = <ESP32_PINMUX(0, 21, 1)>,  /* SDA */
+                     <ESP32_PINMUX(0, 22, 1)>;  /* SCL */
             bias-pull-up;
         };
     };
@@ -19,9 +21,10 @@
     /* Configurare pini pentru SPI2 */
     spi2_default: spi2_default {
         group1 {
-            pinmux = <SPI2_SCLK_GPIO14>,
-                     <SPI2_MOSI_GPIO13>, /* Definit de HAL, chiar daca nu e mapat fizic */
-                     <SPI2_MISO_GPIO12>;
+            /* 2 corespunde funcției de SPI pentru ESP32 */
+            pinmux = <ESP32_PINMUX(0, 14, 2)>,  /* SCLK */
+                     <ESP32_PINMUX(0, 13, 2)>,  /* MOSI */
+                     <ESP32_PINMUX(0, 12, 2)>;  /* MISO */
         };
     };
 };
@@ -30,7 +33,7 @@
     status = "okay";
     pinctrl-0 = <&i2c0_default>;
     pinctrl-names = "default";
-    clock-frequency = <I2C_BITRATE_STANDARD>;
+    clock-frequency = <100000>; /* 100 kHz standard */
 
     ssd1306: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
