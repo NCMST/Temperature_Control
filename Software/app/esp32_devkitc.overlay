@@ -11,29 +11,31 @@
     /* Configurare pini pentru I2C0 */
     i2c0_default: i2c0_default {
         group1 {
-            /* 1 corespunde funcției de I2C pentru ESP32 */
-            pinmux = <ESP32_PINMUX(0, 21, 1)>,  /* SDA */
-                     <ESP32_PINMUX(0, 22, 1)>;  /* SCL */
+            /* 30 = I2C0_SDA, 29 = I2C0_SCL */
+            pinmux = <ESP32_PINMUX(21, 30, 30)>,
+                     <ESP32_PINMUX(22, 29, 29)>;
             bias-pull-up;
+            drive-open-drain;
+            output-low;
         };
     };
 
     /* Configurare pini pentru SPI2 */
     spi2_default: spi2_default {
         group1 {
-            /* 2 corespunde funcției de SPI pentru ESP32 */
-            pinmux = <ESP32_PINMUX(0, 14, 2)>,  /* SCLK */
-                     <ESP32_PINMUX(0, 13, 2)>,  /* MOSI */
-                     <ESP32_PINMUX(0, 12, 2)>;  /* MISO */
+            /* 8 = HSPICLK (out), 9 = HSPIQ (in) -> 0x1FF înseamnă NOSIG */
+            pinmux = <ESP32_PINMUX(14, 0x1FF, 8)>,
+                     <ESP32_PINMUX(12, 9, 0x1FF)>;
+            output-high;
         };
     };
 };
 
 &i2c0 {
     status = "okay";
+    clock-frequency = <I2C_BITRATE_STANDARD>; /* Mergem la 100kHz pentru siguranță initială */
     pinctrl-0 = <&i2c0_default>;
     pinctrl-names = "default";
-    clock-frequency = <100000>; /* 100 kHz standard */
 
     ssd1306: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
@@ -54,12 +56,12 @@
     status = "okay";
     pinctrl-0 = <&spi2_default>;
     pinctrl-names = "default";
-    cs-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>; /* CS_PIN 15 din Arduino */
 
     max6675: max6675@0 {
         compatible = "maxim,max6675";
         reg = <0>;
-        spi-max-frequency = <4000000>; /* 4 MHz */
+        spi-max-frequency = <4000000>;
     };
 };
 
